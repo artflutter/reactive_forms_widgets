@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.2.0
+- entry point rename
+
 ## 0.1.1
 - `example` fix
 
