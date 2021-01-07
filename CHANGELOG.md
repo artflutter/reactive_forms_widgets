@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.3.0
+- wrap `dropdown_search` mode
+
 ## 0.2.0
 - entry point rename
 

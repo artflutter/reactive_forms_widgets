@@ -1,9 +1,7 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:example/sample_screen.dart';
 import 'package:flutter/material.dart' hide ProgressIndicator;
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_forms_widgets/reactive_dropdown_search/reactive_dropdown_search.dart';
-import 'package:reactive_forms_widgets/reactive_forms_fields.dart';
+import 'package:reactive_forms_widgets/reactive_forms_widgets.dart';
 
 class Widgets extends StatelessWidget {
   FormGroup buildForm() => fb.group({
@@ -32,7 +30,7 @@ class Widgets extends StatelessWidget {
                   contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                   border: OutlineInputBorder(),
                 ),
-                mode: Mode.MENU,
+                mode: ReactiveDropdownSearchMode.MENU,
                 hint: "Select a country",
                 showSelectedItem: true,
                 items: ["Brazil", "Italia (Disabled)", "Tunisia", 'Canada'],
@@ -43,7 +41,7 @@ class Widgets extends StatelessWidget {
               SizedBox(height: 8),
               ReactiveDropdownSearch<String>(
                 formControlName: 'bottomSheet',
-                mode: Mode.BOTTOM_SHEET,
+                mode: ReactiveDropdownSearchMode.BOTTOM_SHEET,
                 decoration: InputDecoration(
                   helperText: '',
                   contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),

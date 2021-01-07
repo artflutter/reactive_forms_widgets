@@ -6,6 +6,23 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+enum ReactiveDropdownSearchMode { DIALOG, BOTTOM_SHEET, MENU }
+
+extension ReactiveDropdownSearchModeExt on ReactiveDropdownSearchMode {
+  Mode get dropdownMode {
+    switch (this) {
+      case ReactiveDropdownSearchMode.DIALOG:
+        return Mode.DIALOG;
+      case ReactiveDropdownSearchMode.BOTTOM_SHEET:
+        return Mode.BOTTOM_SHEET;
+      case ReactiveDropdownSearchMode.MENU:
+        return Mode.MENU;
+    }
+
+    return Mode.MENU;
+  }
+}
+
 /// A [ReactiveDropdownSearch] that contains a [DropdownSearch].
 ///
 /// This is a convenience widget that wraps a [DropdownSearch] widget in a
@@ -84,7 +101,7 @@ class ReactiveDropdownSearch<T> extends ReactiveFormField<T> {
     ValidationMessagesFunction validationMessages,
     ControlValueAccessor valueAccessor,
     ShowErrorsFunction showErrors,
-    Mode mode = Mode.DIALOG,
+    ReactiveDropdownSearchMode mode = ReactiveDropdownSearchMode.DIALOG,
     String label,
     String hint,
     bool isFilteredOnline = false,
@@ -130,7 +147,7 @@ class ReactiveDropdownSearch<T> extends ReactiveFormField<T> {
 
             return DropdownSearch<T>(
               onChanged: field.didChange,
-              mode: mode,
+              mode: mode.dropdownMode,
               label: label,
               hint: hint,
               isFilteredOnline: isFilteredOnline,

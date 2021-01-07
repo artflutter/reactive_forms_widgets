@@ -51,7 +51,7 @@ packages:
     source: hosted
     version: "1.0.0"
   dropdown_search:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: dropdown_search
       url: "https://pub.dartlang.org"
@@ -122,7 +122,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
