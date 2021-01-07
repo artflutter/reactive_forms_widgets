@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.1.1
+- `example` fix
+
 ## 0.1.0
 - ReactiveDatePickerField => ReactiveDateTimePicker
 

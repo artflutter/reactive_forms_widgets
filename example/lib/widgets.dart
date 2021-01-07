@@ -139,7 +139,7 @@ class Widgets extends StatelessWidget {
                 },
               ),
               SizedBox(height: 8),
-              ReactiveDatePickerField(
+              ReactiveDateTimePicker(
                 formControlName: 'date',
                 decoration: const InputDecoration(
                   labelText: 'Date',
@@ -149,7 +149,7 @@ class Widgets extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 8),
-              ReactiveDatePickerField(
+              ReactiveDateTimePicker(
                 formControlName: 'time',
                 type: ReactiveDatePickerFieldType.time,
                 decoration: const InputDecoration(
@@ -160,7 +160,7 @@ class Widgets extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 8),
-              ReactiveDatePickerField(
+              ReactiveDateTimePicker(
                 formControlName: 'dateTime',
                 type: ReactiveDatePickerFieldType.dateTime,
                 decoration: const InputDecoration(
