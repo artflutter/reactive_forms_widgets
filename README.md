@@ -4,11 +4,11 @@ Collection of advanced widgets based on Reactive Forms.
 
 ## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+Clone the repository and launch `example` to see the demo of all available fields.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## Fields
+
+- **ReactiveDateTimePicker** - date and time picker
+- **ReactiveDropdownSearch** - wrapper around [`dropdown_search`](https://pub.dev/packages/dropdown_search)
+- **ReactiveTouchSpin** - wrapper around [`flutter_touch_spin`](https://pub.dev/packages/flutter_touch_spin)
+- **ReactiveSegmentedControl** - wrapper around [`CupertinoSegmentedControl`](https://api.flutter.dev/flutter/cupertino/CupertinoSegmentedControl-class.html)
