@@ -11,6 +11,9 @@ class Widgets extends StatelessWidget {
         'bottomSheet': FormControl<String>(value: 'Brazil'),
         'touchSpin': FormControl<double>(value: 10),
         'rate': FormControl<String>(value: 'a'),
+        'date': FormControl<DateTime>(value: DateTime.now()),
+        'time': FormControl<DateTime>(value: DateTime.now()),
+        'dateTime': FormControl<DateTime>(value: DateTime.now()),
       });
 
   @override
@@ -125,6 +128,7 @@ class Widgets extends StatelessWidget {
                 decoration: const InputDecoration(
                   labelText: 'Rating',
                   border: OutlineInputBorder(),
+                  helperText: '',
                 ),
                 padding: EdgeInsets.all(0),
                 formControlName: 'rate',
@@ -133,6 +137,38 @@ class Widgets extends StatelessWidget {
                   'b': Text('B'),
                   'c': Text('C'),
                 },
+              ),
+              SizedBox(height: 8),
+              ReactiveDatePickerField(
+                formControlName: 'date',
+                decoration: const InputDecoration(
+                  labelText: 'Date',
+                  border: OutlineInputBorder(),
+                  helperText: '',
+                  suffixIcon: Icon(Icons.calendar_today),
+                ),
+              ),
+              SizedBox(height: 8),
+              ReactiveDatePickerField(
+                formControlName: 'time',
+                type: ReactiveDatePickerFieldType.time,
+                decoration: const InputDecoration(
+                  labelText: 'Time',
+                  border: OutlineInputBorder(),
+                  helperText: '',
+                  suffixIcon: Icon(Icons.watch_later_outlined),
+                ),
+              ),
+              SizedBox(height: 8),
+              ReactiveDatePickerField(
+                formControlName: 'dateTime',
+                type: ReactiveDatePickerFieldType.dateTime,
+                decoration: const InputDecoration(
+                  labelText: 'Date & Time',
+                  border: OutlineInputBorder(),
+                  helperText: '',
+                  suffixIcon: Icon(Icons.calendar_today),
+                ),
               ),
               SizedBox(height: 16),
               RaisedButton(
