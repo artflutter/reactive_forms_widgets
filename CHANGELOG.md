@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.3.1
+- ReactiveDateTimePicker bugfix
+
 ## 0.3.0
 - wrap `dropdown_search` mode
 

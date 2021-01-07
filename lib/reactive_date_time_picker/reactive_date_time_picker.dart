@@ -129,6 +129,8 @@ class ReactiveDateTimePicker extends ReactiveFormField<dynamic> {
               }
             }
 
+            final effectiveLastDate = lastDate ?? DateTime(2100);
+
             return GestureDetector(
               onTap: () async {
                 DateTime date;
@@ -138,9 +140,12 @@ class ReactiveDateTimePicker extends ReactiveFormField<dynamic> {
                     type == ReactiveDatePickerFieldType.dateTime) {
                   date = await showDatePicker(
                     context: field.context,
-                    initialDate: _getInitialDate(field.control.value, lastDate),
+                    initialDate: _getInitialDate(
+                      field.control.value,
+                      effectiveLastDate,
+                    ),
                     firstDate: firstDate ?? DateTime(1900),
-                    lastDate: lastDate ?? DateTime(2100),
+                    lastDate: effectiveLastDate,
                     initialEntryMode: datePickerEntryMode,
                     selectableDayPredicate: selectableDayPredicate,
                     helpText: helpText,
