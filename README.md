@@ -6,6 +6,17 @@ Collection of advanced widgets based on Reactive Forms.
 
 Clone the repository and launch `example` to see the demo of all available fields.
 
+## Installation and Usage
+
+Once you're familiar with `reactive_forms` you may install this package adding `reactive_forms_widgets` to the dependencies list
+of the `pubspec.yaml` file as follow:
+
+```yaml
+dependencies:
+
+  reactive_forms_widgets: latest
+```
+
 ## Fields
 
 - **ReactiveDateTimePicker** - date and time picker
