@@ -46,10 +46,12 @@ packages:
   dropdown_search:
     dependency: "direct main"
     description:
-      name: dropdown_search
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.8"
+      path: "."
+      ref: "feature/icon-dropdown-buttons-builder"
+      resolved-ref: "9151eee045346ef90fe0872f3864a23ee1cf72c3"
+      url: "https://github.com/artflutter/searchable_dropdown.git"
+    source: git
+    version: "0.4.9"
   fake_async:
     dependency: transitive
     description:

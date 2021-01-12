@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.4.0
+- ReactiveDropdownSearch temporary update
+
 ## 0.3.1
 - ReactiveDateTimePicker bugfix
 
