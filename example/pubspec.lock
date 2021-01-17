@@ -53,12 +53,10 @@ packages:
   dropdown_search:
     dependency: transitive
     description:
-      path: "."
-      ref: "feature/icon-dropdown-buttons-builder"
-      resolved-ref: "9151eee045346ef90fe0872f3864a23ee1cf72c3"
-      url: "https://github.com/artflutter/searchable_dropdown.git"
-    source: git
-    version: "0.4.9"
+      name: dropdown_search
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.8"
   fake_async:
     dependency: transitive
     description:
@@ -124,7 +122,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.3.1"
+    version: "0.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
