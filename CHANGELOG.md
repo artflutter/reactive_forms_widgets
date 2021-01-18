@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.3.4
+- error text missing bugfix
+
 ## 0.3.3
 - ReactiveDateTimePicker clear -> didChange
 

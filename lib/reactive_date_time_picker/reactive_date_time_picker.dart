@@ -205,7 +205,8 @@ class ReactiveDateTimePicker extends ReactiveFormField<dynamic> {
                 }
               },
               child: InputDecorator(
-                decoration: effectiveDecoration,
+                decoration:
+                    effectiveDecoration.copyWith(errorText: field.errorText),
                 isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
                 child: Text(
                   effectiveValueAccessor

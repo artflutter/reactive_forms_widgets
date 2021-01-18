@@ -111,7 +111,8 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T> {
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
             return InputDecorator(
-              decoration: effectiveDecoration,
+              decoration:
+                  effectiveDecoration.copyWith(errorText: field.errorText),
               child: TouchSpin(
                 value: field.value,
                 onChanged: field.didChange,

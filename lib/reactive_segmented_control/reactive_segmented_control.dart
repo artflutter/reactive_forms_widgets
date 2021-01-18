@@ -104,7 +104,8 @@ class ReactiveSegmentedControl<T> extends ReactiveFormField<T> {
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
             return InputDecorator(
-              decoration: effectiveDecoration,
+              decoration:
+                  effectiveDecoration.copyWith(errorText: field.errorText),
               child: CupertinoSegmentedControl(
                 children: children,
                 onValueChanged: field.didChange,

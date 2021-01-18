@@ -167,7 +167,8 @@ class ReactiveDropdownSearch<T> extends ReactiveFormField<T> {
               itemAsString: itemAsString,
               showSelectedItem: showSelectedItem,
               compareFn: compareFn,
-              dropdownSearchDecoration: effectiveDecoration,
+              dropdownSearchDecoration:
+                  effectiveDecoration.copyWith(errorText: field.errorText),
               emptyBuilder: emptyBuilder,
               loadingBuilder: loadingBuilder,
               errorBuilder: errorBuilder,
