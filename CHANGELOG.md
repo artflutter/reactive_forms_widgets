@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.3.3
+- ReactiveDateTimePicker clear -> didChange
+
 ## 0.3.2
 - ReactiveDateTimePicker validationMessages was missing
 
