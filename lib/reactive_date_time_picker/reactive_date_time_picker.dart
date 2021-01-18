@@ -56,6 +56,7 @@ class ReactiveDateTimePicker extends ReactiveFormField<dynamic> {
     FormControl formControl,
     TextStyle style,
     ControlValueAccessor valueAccessor,
+    ValidationMessagesFunction validationMessages,
     ReactiveDatePickerFieldType type = ReactiveDatePickerFieldType.date,
     InputDecoration decoration,
     bool showClearIcon = true,
@@ -89,6 +90,7 @@ class ReactiveDateTimePicker extends ReactiveFormField<dynamic> {
           key: key,
           formControl: formControl,
           formControlName: formControlName,
+          validationMessages: validationMessages,
           builder: (ReactiveFormFieldState<dynamic> field) {
             Widget suffixIcon = decoration?.suffixIcon;
             final isEmptyValue =
