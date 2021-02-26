@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:example/sample_screen.dart';
 import 'package:flutter/material.dart' hide ProgressIndicator;
 import 'package:reactive_forms/reactive_forms.dart';
@@ -12,6 +14,7 @@ class Widgets extends StatelessWidget {
         'date': FormControl<DateTime>(value: DateTime.now()),
         'time': FormControl<DateTime>(value: DateTime.now()),
         'dateTime': FormControl<DateTime>(value: DateTime.now()),
+        'signature': FormControl<Uint8List>(),
       });
 
   @override
@@ -168,6 +171,15 @@ class Widgets extends StatelessWidget {
                   suffixIcon: Icon(Icons.calendar_today),
                 ),
               ),
+              // ReactiveSignature(
+              //   formControlName: 'signature',
+              //   decoration: const InputDecoration(
+              //     labelText: 'Date & Time',
+              //     border: OutlineInputBorder(),
+              //     helperText: '',
+              //     suffixIcon: Icon(Icons.calendar_today),
+              //   ),
+              // ),
               SizedBox(height: 16),
               RaisedButton(
                 child: Text('Sign Up'),

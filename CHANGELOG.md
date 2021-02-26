@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.3.5
+- dropdown_search update to v0.4.9
+
 ## 0.3.4
 - error text missing bugfix
 
