@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.3.6
+- take disabled property into account
+
 ## 0.3.5
 - dropdown_search update to v0.4.9
 

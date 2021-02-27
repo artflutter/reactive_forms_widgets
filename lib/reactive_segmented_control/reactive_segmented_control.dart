@@ -103,18 +103,23 @@ class ReactiveSegmentedControl<T> extends ReactiveFormField<T> {
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
-            return InputDecorator(
-              decoration:
-                  effectiveDecoration.copyWith(errorText: field.errorText),
-              child: CupertinoSegmentedControl(
-                children: children,
-                onValueChanged: field.didChange,
-                groupValue: field.value,
-                unselectedColor: unselectedColor,
-                selectedColor: selectedColor,
-                borderColor: borderColor,
-                pressedColor: pressedColor,
-                padding: padding,
+            return IgnorePointer(
+              ignoring: !field.control.enabled,
+              child: InputDecorator(
+                decoration: effectiveDecoration.copyWith(
+                  errorText: field.errorText,
+                  enabled: field.control.enabled,
+                ),
+                child: CupertinoSegmentedControl(
+                  children: children,
+                  onValueChanged: field.didChange,
+                  groupValue: field.value,
+                  unselectedColor: unselectedColor,
+                  selectedColor: selectedColor,
+                  borderColor: borderColor,
+                  pressedColor: pressedColor,
+                  padding: padding,
+                ),
               ),
             );
           },
