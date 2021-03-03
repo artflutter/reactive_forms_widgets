@@ -15,6 +15,7 @@ class Widgets extends StatelessWidget {
         'date': FormControl<DateTime>(value: DateTime.now()),
         'time': FormControl<DateTime>(value: DateTime.now()),
         'dateTime': FormControl<DateTime>(value: DateTime.now()),
+        'dateRange': FormControl<DateTimeRange>(),
         'signature': FormControl<Uint8List>(),
         'image': FormControl<ImageFile>(),
       });
@@ -168,6 +169,16 @@ class Widgets extends StatelessWidget {
                 type: ReactiveDatePickerFieldType.dateTime,
                 decoration: const InputDecoration(
                   labelText: 'Date & Time',
+                  border: OutlineInputBorder(),
+                  helperText: '',
+                  suffixIcon: Icon(Icons.calendar_today),
+                ),
+              ),
+              SizedBox(height: 8),
+              ReactiveDateRangePicker(
+                formControlName: 'dateRange',
+                decoration: const InputDecoration(
+                  labelText: 'Date range',
                   border: OutlineInputBorder(),
                   helperText: '',
                   suffixIcon: Icon(Icons.calendar_today),

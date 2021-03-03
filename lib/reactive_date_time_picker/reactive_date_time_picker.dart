@@ -34,7 +34,7 @@ enum ReactiveDatePickerFieldType {
 ///   formControlName: 'birthday',
 /// )
 /// ```
-class ReactiveDateTimePicker extends ReactiveFormField<dynamic> {
+class ReactiveDateTimePicker extends ReactiveFormField<DateTime> {
   /// Creates a [ReactiveDatePickerField] that wraps the function [showDatePicker].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.

@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.3.9
+- new widget: reactive_date_range_picker
+
 ## 0.3.8
 - new widget: reactive_image_picker
 
