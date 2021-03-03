@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.3.7
+- bugfix: widgets are missing `touched` handling
+
 ## 0.3.6
 - take disabled property into account
 

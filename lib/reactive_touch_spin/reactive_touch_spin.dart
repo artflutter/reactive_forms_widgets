@@ -110,26 +110,33 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T> {
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
-            return InputDecorator(
-              decoration: effectiveDecoration.copyWith(
-                errorText: field.errorText,
-                enabled: field.control.enabled,
-              ),
-              child: TouchSpin(
-                value: field.value,
-                onChanged: field.didChange,
-                min: min,
-                max: max,
-                step: step,
-                iconSize: iconSize,
-                displayFormat: displayFormat,
-                subtractIcon: subtractIcon,
-                addIcon: addIcon,
-                iconPadding: iconPadding,
-                textStyle: textStyle,
-                iconActiveColor: iconActiveColor,
-                iconDisabledColor: iconDisabledColor,
-                enabled: field.control.enabled,
+            return Listener(
+              onPointerDown: (_) {
+                if (field.control.enabled) {
+                  field.control.markAsTouched();
+                }
+              },
+              child: InputDecorator(
+                decoration: effectiveDecoration.copyWith(
+                  errorText: field.errorText,
+                  enabled: field.control.enabled,
+                ),
+                child: TouchSpin(
+                  value: field.value,
+                  onChanged: field.didChange,
+                  min: min,
+                  max: max,
+                  step: step,
+                  iconSize: iconSize,
+                  displayFormat: displayFormat,
+                  subtractIcon: subtractIcon,
+                  addIcon: addIcon,
+                  iconPadding: iconPadding,
+                  textStyle: textStyle,
+                  iconActiveColor: iconActiveColor,
+                  iconDisabledColor: iconDisabledColor,
+                  enabled: field.control.enabled,
+                ),
               ),
             );
           },

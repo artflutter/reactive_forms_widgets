@@ -135,91 +135,95 @@ class ReactiveDateTimePicker extends ReactiveFormField<dynamic> {
 
             return IgnorePointer(
               ignoring: !field.control.enabled,
-              child: GestureDetector(
-                onTap: () async {
-                  DateTime date;
-                  TimeOfDay time;
+              child: Listener(
+                onPointerDown: (_) => field.control.markAsTouched(),
+                child: GestureDetector(
+                  onTap: () async {
+                    DateTime date;
+                    TimeOfDay time;
 
-                  if (type == ReactiveDatePickerFieldType.date ||
-                      type == ReactiveDatePickerFieldType.dateTime) {
-                    date = await showDatePicker(
-                      context: field.context,
-                      initialDate: _getInitialDate(
-                        field.control.value,
-                        effectiveLastDate,
-                      ),
-                      firstDate: firstDate ?? DateTime(1900),
-                      lastDate: effectiveLastDate,
-                      initialEntryMode: datePickerEntryMode,
-                      selectableDayPredicate: selectableDayPredicate,
-                      helpText: helpText,
-                      cancelText: cancelText,
-                      confirmText: confirmText,
-                      locale: locale,
-                      useRootNavigator: useRootNavigator,
-                      routeSettings: datePickerRouteSettings,
-                      textDirection: textDirection,
-                      builder: builder,
-                      initialDatePickerMode: initialDatePickerMode,
-                      errorFormatText: errorFormatText,
-                      errorInvalidText: errorInvalidText,
-                      fieldHintText: fieldHintText,
-                      fieldLabelText: fieldLabelText,
-                    );
-                  }
-
-                  if (type == ReactiveDatePickerFieldType.time ||
-                      (type == ReactiveDatePickerFieldType.dateTime &&
-                          // there is no need to show timepicker if cancel was pressed on datepicker
-                          date != null)) {
-                    time = await showTimePicker(
-                      context: field.context,
-                      initialTime: _getInitialTime(field.control.value),
-                      builder: builder,
-                      useRootNavigator: useRootNavigator,
-                      initialEntryMode: timePickerEntryMode,
-                      cancelText: cancelText,
-                      confirmText: confirmText,
-                      helpText: helpText,
-                      routeSettings: timePickerRouteSettings,
-                    );
-                  }
-
-                  if (
-                      // if `date` and `time` in `dateTime` mode is not empty...
-                      (type == ReactiveDatePickerFieldType.dateTime &&
-                              (date != null && time != null)) ||
-                          // ... or if `date` in `date` mode is not empty ...
-                          (type == ReactiveDatePickerFieldType.date &&
-                              date != null) ||
-                          // ... or if `time` in `time` mode is not empty ...
-                          (type == ReactiveDatePickerFieldType.time &&
-                              time != null)) {
-                    final dateTime = _combine(date, time);
-
-                    // ... and new value is not the same as was before...
-                    if (field.value == null ||
-                        dateTime.compareTo(field.value as DateTime) != 0) {
-                      // ... this means that cancel was not pressed at any moment
-                      // so we can update the field
-                      field.didChange(_combine(date, time));
+                    if (type == ReactiveDatePickerFieldType.date ||
+                        type == ReactiveDatePickerFieldType.dateTime) {
+                      date = await showDatePicker(
+                        context: field.context,
+                        initialDate: _getInitialDate(
+                          field.control.value,
+                          effectiveLastDate,
+                        ),
+                        firstDate: firstDate ?? DateTime(1900),
+                        lastDate: effectiveLastDate,
+                        initialEntryMode: datePickerEntryMode,
+                        selectableDayPredicate: selectableDayPredicate,
+                        helpText: helpText,
+                        cancelText: cancelText,
+                        confirmText: confirmText,
+                        locale: locale,
+                        useRootNavigator: useRootNavigator,
+                        routeSettings: datePickerRouteSettings,
+                        textDirection: textDirection,
+                        builder: builder,
+                        initialDatePickerMode: initialDatePickerMode,
+                        errorFormatText: errorFormatText,
+                        errorInvalidText: errorInvalidText,
+                        fieldHintText: fieldHintText,
+                        fieldLabelText: fieldLabelText,
+                      );
                     }
-                  }
-                },
-                child: InputDecorator(
-                  decoration: effectiveDecoration.copyWith(
-                    errorText: field.errorText,
-                    enabled: field.control.enabled,
-                  ),
-                  isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
-                  child: Text(
-                    effectiveValueAccessor
-                        .modelToViewValue(field.value as DateTime)
-                        .toString(),
-                    style: Theme.of(field.context)
-                        .textTheme
-                        .subtitle1
-                        .merge(style),
+
+                    if (type == ReactiveDatePickerFieldType.time ||
+                        (type == ReactiveDatePickerFieldType.dateTime &&
+                            // there is no need to show timepicker if cancel was pressed on datepicker
+                            date != null)) {
+                      time = await showTimePicker(
+                        context: field.context,
+                        initialTime: _getInitialTime(field.control.value),
+                        builder: builder,
+                        useRootNavigator: useRootNavigator,
+                        initialEntryMode: timePickerEntryMode,
+                        cancelText: cancelText,
+                        confirmText: confirmText,
+                        helpText: helpText,
+                        routeSettings: timePickerRouteSettings,
+                      );
+                    }
+
+                    if (
+                        // if `date` and `time` in `dateTime` mode is not empty...
+                        (type == ReactiveDatePickerFieldType.dateTime &&
+                                (date != null && time != null)) ||
+                            // ... or if `date` in `date` mode is not empty ...
+                            (type == ReactiveDatePickerFieldType.date &&
+                                date != null) ||
+                            // ... or if `time` in `time` mode is not empty ...
+                            (type == ReactiveDatePickerFieldType.time &&
+                                time != null)) {
+                      final dateTime = _combine(date, time);
+
+                      // ... and new value is not the same as was before...
+                      if (field.value == null ||
+                          dateTime.compareTo(field.value as DateTime) != 0) {
+                        // ... this means that cancel was not pressed at any moment
+                        // so we can update the field
+                        field.didChange(_combine(date, time));
+                      }
+                    }
+                  },
+                  child: InputDecorator(
+                    decoration: effectiveDecoration.copyWith(
+                      errorText: field.errorText,
+                      enabled: field.control.enabled,
+                    ),
+                    isEmpty:
+                        isEmptyValue && effectiveDecoration.hintText == null,
+                    child: Text(
+                      effectiveValueAccessor
+                          .modelToViewValue(field.value as DateTime)
+                          .toString(),
+                      style: Theme.of(field.context)
+                          .textTheme
+                          .subtitle1
+                          .merge(style),
+                    ),
                   ),
                 ),
               ),
