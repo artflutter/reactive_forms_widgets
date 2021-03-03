@@ -4,6 +4,7 @@ import 'package:example/sample_screen.dart';
 import 'package:flutter/material.dart' hide ProgressIndicator;
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_widgets/reactive_forms_widgets.dart';
+import 'package:reactive_forms_widgets/reactive_image_picker/image_file.dart';
 
 class Widgets extends StatelessWidget {
   FormGroup buildForm() => fb.group({
@@ -15,6 +16,7 @@ class Widgets extends StatelessWidget {
         'time': FormControl<DateTime>(value: DateTime.now()),
         'dateTime': FormControl<DateTime>(value: DateTime.now()),
         'signature': FormControl<Uint8List>(),
+        'image': FormControl<ImageFile>(),
       });
 
   @override
@@ -180,6 +182,32 @@ class Widgets extends StatelessWidget {
               //     suffixIcon: Icon(Icons.calendar_today),
               //   ),
               // ),
+              ReactiveImagePicker(
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.zero,
+                    labelText: 'Image',
+                    filled: false,
+                    border: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                    helperText: ''),
+                inputBuilder: (onPressed) => FlatButton.icon(
+                  height: 50,
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: Color(0xFF00A7E1),
+                      width: 1,
+                      style: BorderStyle.solid,
+                    ),
+                  ),
+                  onPressed: onPressed,
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  icon: Icon(Icons.add),
+                  label: Text('Add a image'),
+                ),
+                formControlName: 'image',
+              ),
               SizedBox(height: 16),
               RaisedButton(
                 child: Text('Sign Up'),

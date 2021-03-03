@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.3.8
+- new widget: reactive_image_picker
+
 ## 0.3.7
 - bugfix: widgets are missing `touched` handling
 

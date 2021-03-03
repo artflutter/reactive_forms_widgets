@@ -23,3 +23,4 @@ dependencies:
 - **ReactiveDropdownSearch** - wrapper around [`dropdown_search`](https://pub.dev/packages/dropdown_search)
 - **ReactiveTouchSpin** - wrapper around [`flutter_touch_spin`](https://pub.dev/packages/flutter_touch_spin)
 - **ReactiveSegmentedControl** - wrapper around [`CupertinoSegmentedControl`](https://api.flutter.dev/flutter/cupertino/CupertinoSegmentedControl-class.html)
+- **ReactiveImagePicker** - wrapper around [`ImagePicker`](https://pub.dev/packages/image_picker)

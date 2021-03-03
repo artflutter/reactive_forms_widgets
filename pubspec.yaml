@@ -1,6 +1,6 @@
 name: reactive_forms_widgets
 description: A new Flutter package.
-version: 0.3.7
+version: 0.3.8
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -13,12 +13,15 @@ dependencies:
   dropdown_search: ^0.4.9
   signature: ^3.2.1
   flutter_touch_spin: ^1.0.1
+  image_picker: ^0.6.7+22
+  freezed_annotation: 0.12.0
   reactive_forms: ^8.0.3
   intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  freezed: ^0.12.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
