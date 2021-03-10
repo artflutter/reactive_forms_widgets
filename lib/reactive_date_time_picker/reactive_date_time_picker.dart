@@ -204,9 +204,8 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime> {
                       // so we can update the field
                       field.didChange(_combine(date, time));
                     }
-
-                    field.control.markAsTouched();
                   }
+                  field.control.markAsTouched();
                 },
                 child: InputDecorator(
                   decoration: effectiveDecoration.copyWith(

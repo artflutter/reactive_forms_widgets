@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.4.1
+- bugfix: date time picker `touched` handling
+
 ## 0.4.0
 - updated `touched` handling for date pickers and search box
   now the touched will be applied only on closing popup

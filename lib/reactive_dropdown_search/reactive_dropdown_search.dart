@@ -190,7 +190,7 @@ class ReactiveDropdownSearch<T> extends ReactiveFormField<T> {
               popupBarrierColor: popupBarrierColor,
               onPopupDismissed: () {
                 field.control.markAsTouched();
-                onPopupDismissed();
+                onPopupDismissed?.call();
               },
               searchBoxController: searchBoxController,
               searchDelay: searchDelay,
