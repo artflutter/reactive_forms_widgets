@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.4.0
+- updated `touched` handling for date pickers and search box
+  now the touched will be applied only on closing popup
+  previously the error was shown underneath the popup right after first interation
+  which might confuse.
+  most of all the searchable dropdown suffered from this behaviour cause the error was
+  visible through the semitransparent overlay 
+
 ## 0.3.9
 - new widget: reactive_date_range_picker
 

@@ -110,53 +110,50 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange> {
 
             return IgnorePointer(
               ignoring: !field.control.enabled,
-              child: Listener(
-                onPointerDown: (_) => field.control.markAsTouched(),
-                child: GestureDetector(
-                  onTap: () async {
-                    final dateRange = await showDateRangePicker(
-                      context: field.context,
-                      initialDateRange: field.control.value as DateTimeRange,
-                      firstDate: firstDate ?? DateTime(1900),
-                      lastDate: effectiveLastDate,
-                      currentDate: currentDate,
-                      initialEntryMode: initialEntryMode,
-                      helpText: helpText,
-                      cancelText: cancelText,
-                      confirmText: confirmText,
-                      saveText: saveText,
-                      errorFormatText: errorFormatText,
-                      errorInvalidText: errorInvalidText,
-                      errorInvalidRangeText: errorInvalidRangeText,
-                      fieldStartHintText: fieldStartHintText,
-                      fieldEndHintText: fieldEndHintText,
-                      fieldStartLabelText: fieldStartLabelText,
-                      fieldEndLabelText: fieldEndLabelText,
-                      locale: locale,
-                      useRootNavigator: useRootNavigator,
-                      routeSettings: routeSettings,
-                      textDirection: textDirection,
-                      builder: builder,
-                    );
+              child: GestureDetector(
+                onTap: () async {
+                  final dateRange = await showDateRangePicker(
+                    context: field.context,
+                    initialDateRange: field.control.value as DateTimeRange,
+                    firstDate: firstDate ?? DateTime(1900),
+                    lastDate: effectiveLastDate,
+                    currentDate: currentDate,
+                    initialEntryMode: initialEntryMode,
+                    helpText: helpText,
+                    cancelText: cancelText,
+                    confirmText: confirmText,
+                    saveText: saveText,
+                    errorFormatText: errorFormatText,
+                    errorInvalidText: errorInvalidText,
+                    errorInvalidRangeText: errorInvalidRangeText,
+                    fieldStartHintText: fieldStartHintText,
+                    fieldEndHintText: fieldEndHintText,
+                    fieldStartLabelText: fieldStartLabelText,
+                    fieldEndLabelText: fieldEndLabelText,
+                    locale: locale,
+                    useRootNavigator: useRootNavigator,
+                    routeSettings: routeSettings,
+                    textDirection: textDirection,
+                    builder: builder,
+                  );
 
-                    field.didChange(dateRange);
-                  },
-                  child: InputDecorator(
-                    decoration: effectiveDecoration.copyWith(
-                      errorText: field.errorText,
-                      enabled: field.control.enabled,
-                    ),
-                    isEmpty:
-                        isEmptyValue && effectiveDecoration.hintText == null,
-                    child: Text(
-                      effectiveValueAccessor
-                          .modelToViewValue(field.value as DateTimeRange)
-                          .toString(),
-                      style: Theme.of(field.context)
-                          .textTheme
-                          .subtitle1
-                          .merge(style),
-                    ),
+                  field.control.markAsTouched();
+                  field.didChange(dateRange);
+                },
+                child: InputDecorator(
+                  decoration: effectiveDecoration.copyWith(
+                    errorText: field.errorText,
+                    enabled: field.control.enabled,
+                  ),
+                  isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
+                  child: Text(
+                    effectiveValueAccessor
+                        .modelToViewValue(field.value as DateTimeRange)
+                        .toString(),
+                    style: Theme.of(field.context)
+                        .textTheme
+                        .subtitle1
+                        .merge(style),
                   ),
                 ),
               ),

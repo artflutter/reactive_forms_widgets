@@ -1,6 +1,6 @@
 name: reactive_forms_widgets
 description: A new Flutter package.
-version: 0.3.9
+version: 0.4.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -17,6 +17,7 @@ dependencies:
   freezed_annotation: ^0.12.0
   reactive_forms: ^8.0.3
   intl: ^0.16.1
+  flutter_colorpicker: ^0.3.5
 
 dev_dependencies:
   flutter_test:

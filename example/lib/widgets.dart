@@ -18,6 +18,7 @@ class Widgets extends StatelessWidget {
         'dateRange': FormControl<DateTimeRange>(),
         'signature': FormControl<Uint8List>(),
         'image': FormControl<ImageFile>(),
+        'blockColor': FormControl<Color>(),
       });
 
   @override
@@ -183,6 +184,25 @@ class Widgets extends StatelessWidget {
                   helperText: '',
                   suffixIcon: Icon(Icons.calendar_today),
                 ),
+              ),
+              ReactiveBlockColorPicker(
+                formControlName: 'blockColor',
+                availableColors: [
+                  Colors.red,
+                  Colors.pink,
+                  Colors.purple,
+                  Colors.deepPurple,
+                  Colors.indigo,
+                  Colors.blue,
+                ],
+                decoration: const InputDecoration(
+                  contentPadding:
+                      EdgeInsets.only(left: 12, right: 12, top: 16, bottom: 16),
+                  labelText: 'Color picker',
+                  border: OutlineInputBorder(),
+                  helperText: '',
+                ),
+                // availableColors: [Colors.red],
               ),
               // ReactiveSignature(
               //   formControlName: 'signature',
