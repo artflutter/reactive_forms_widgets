@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.5.0
+- package updates
+
 ## 0.4.1
 - bugfix: date time picker `touched` handling
 
