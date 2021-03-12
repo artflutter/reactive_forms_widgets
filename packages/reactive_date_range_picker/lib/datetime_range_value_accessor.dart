@@ -21,7 +21,7 @@ class DateTimeRangeValueAccessor
   String modelToViewValue(DateTimeRange modelValue) {
     return modelValue == null
         ? ''
-        : '${dateTimeFormat.format(modelValue.start)}${delimiter}${dateTimeFormat.format(modelValue.end)}';
+        : '${dateTimeFormat.format(modelValue.start)}$delimiter${dateTimeFormat.format(modelValue.end)}';
   }
 
   @override
