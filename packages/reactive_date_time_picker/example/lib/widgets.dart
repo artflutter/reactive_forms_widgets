@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:example/sample_screen.dart';
 import 'package:flutter/material.dart' hide ProgressIndicator;
 import 'package:reactive_date_time_picker/reactive_date_time_picker.dart';
