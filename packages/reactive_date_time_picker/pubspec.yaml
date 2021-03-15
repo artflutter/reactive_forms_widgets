@@ -1,6 +1,6 @@
 name: reactive_date_time_picker
 description: A new Flutter package.
-version: 0.0.2
+version: 0.0.3
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:

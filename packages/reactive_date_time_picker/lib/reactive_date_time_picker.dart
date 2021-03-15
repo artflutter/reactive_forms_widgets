@@ -102,7 +102,10 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime> {
               suffixIcon = InkWell(
                 borderRadius: BorderRadius.circular(25),
                 child: clearIcon,
-                onTap: () => field.didChange(null),
+                onTap: () {
+                  field.control.markAsTouched();
+                  field.didChange(null);
+                },
               );
             }
 
