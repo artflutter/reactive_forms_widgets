@@ -25,3 +25,4 @@ dependencies:
 - **ReactiveTouchSpin** - wrapper around [`flutter_touch_spin`](https://pub.dev/packages/flutter_touch_spin)
 - **ReactiveSegmentedControl** - wrapper around [`CupertinoSegmentedControl`](https://api.flutter.dev/flutter/cupertino/CupertinoSegmentedControl-class.html)
 - **ReactiveImagePicker** - wrapper around [`ImagePicker`](https://pub.dev/packages/image_picker)
+- **ReactiveSignature** - wrapper around [`Signature`](https://pub.dev/packages/signature)

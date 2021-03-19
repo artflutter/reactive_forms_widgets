@@ -1,3 +1,5 @@
+library reactive_signature;
+
 // Copyright 2020 Joan Pablo Jiménez Milian. All rights reserved.
 // Use of this source code is governed by the MIT license that can be
 // found in the LICENSE file.
@@ -5,12 +7,15 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms/src/value_accessors/control_value_accessor.dart';
-import 'package:reactive_forms/src/value_accessors/double_value_accessor.dart';
-import 'package:reactive_forms/src/value_accessors/int_value_accessor.dart';
 import 'package:signature/signature.dart';
+
+typedef Widget SignatureBuilder(
+  BuildContext context,
+  Widget signaturePad,
+  SignatureController controller,
+);
 
 /// A [ReactiveSignature] that contains a [TextField].
 ///
@@ -83,22 +88,24 @@ class ReactiveSignature extends ReactiveFormField<Uint8List> {
   ///
   /// For documentation about the various parameters, see the [TextField] class
   /// and [new TextField], the constructor.
-  ReactiveSignature(
-      {Key key,
-      String formControlName,
-      FormControl formControl,
-      ValidationMessagesFunction validationMessages,
-      ControlValueAccessor valueAccessor,
-      ShowErrorsFunction showErrors,
-      InputDecoration decoration = const InputDecoration(),
-      SignatureController controller,
-      Color backgroundColor = Colors.grey,
-      double width,
-      double height,
-      Color penColor = Colors.black,
-      this.penStrokeWidth = 3.0,
-      Color exportBackgroundColor})
-      : super(
+  ReactiveSignature({
+    Key key,
+    String formControlName,
+    FormControl formControl,
+    ValidationMessagesFunction validationMessages,
+    ControlValueAccessor valueAccessor,
+    ShowErrorsFunction showErrors,
+    InputDecoration decoration = const InputDecoration(),
+    SignatureController controller,
+    SignatureBuilder signatureBuilder,
+    Color backgroundColor = Colors.grey,
+    double width,
+    double height,
+    this.penColor = Colors.black,
+    this.exportBackgroundColor = Colors.blue,
+    this.penStrokeWidth = 3.0,
+    this.points,
+  }) : super(
           key: key,
           formControl: formControl,
           formControlName: formControlName,
@@ -111,16 +118,40 @@ class ReactiveSignature extends ReactiveFormField<Uint8List> {
                     const InputDecoration())
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);
 
-            return Signature(
+            final child = Signature(
               controller: state._signatureController,
               width: width,
               height: height,
               backgroundColor: backgroundColor,
             );
+
+            return InputDecorator(
+              decoration: effectiveDecoration.copyWith(
+                errorText: field.errorText,
+                enabled: field.control.enabled,
+              ),
+              child: signatureBuilder?.call(
+                      field.context, child, state._signatureController) ??
+                  Row(
+                    children: [
+                      Expanded(child: child),
+                      IconButton(
+                        icon: Icon(Icons.clear),
+                        onPressed: () => state._signatureController.clear(),
+                      )
+                    ],
+                  ),
+            );
           },
         );
 
   final double penStrokeWidth;
+
+  final Color penColor;
+
+  final Color exportBackgroundColor;
+
+  final List<Point> points;
 
   @override
   ReactiveFormFieldState<Uint8List> createState() => _ReactiveTextFieldState();
@@ -128,21 +159,17 @@ class ReactiveSignature extends ReactiveFormField<Uint8List> {
 
 class _ReactiveTextFieldState extends ReactiveFormFieldState<Uint8List> {
   SignatureController _signatureController;
-  // FocusNode _focusNode;
-  // FocusController _focusController;
-
-  // FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override
   void initState() {
     super.initState();
 
-    final initialValue = this.value;
-    final test = widget;
+    final reactiveSignature = widget as ReactiveSignature;
     _signatureController = SignatureController(
-      penStrokeWidth: 5,
-      penColor: Colors.red,
-      exportBackgroundColor: Colors.blue,
+      points: reactiveSignature.points,
+      penStrokeWidth: reactiveSignature.penStrokeWidth,
+      penColor: reactiveSignature.penColor,
+      exportBackgroundColor: reactiveSignature.exportBackgroundColor,
     );
 
     _signatureController.addListener(() async {
@@ -151,61 +178,16 @@ class _ReactiveTextFieldState extends ReactiveFormFieldState<Uint8List> {
     });
   }
 
-  // @override
-  // void subscribeControl() {
-  //   // _registerFocusController(FocusController());
-  //   super.subscribeControl();
-  // }
-  //
-  // @override
-  // void unsubscribeControl() {
-  //   // _unregisterFocusController();
-  //   super.unsubscribeControl();
-  // }
+  @override
+  void dispose() {
+    _signatureController.dispose();
+    super.dispose();
+  }
 
   @override
   void onControlValueChanged(dynamic value) {
-    // String effectiveValue = (value == null) ? '' : value.toString();
     _signatureController.value = _signatureController.value;
 
     super.onControlValueChanged(value);
   }
-  //
-  // @override
-  // ControlValueAccessor selectValueAccessor() {
-  //   if (this.control is FormControl<int>) {
-  //     return IntValueAccessor();
-  //   } else if (this.control is FormControl<double>) {
-  //     return DoubleValueAccessor();
-  //   } else if (this.control is FormControl<DateTime>) {
-  //     return DateTimeValueAccessor();
-  //   } else if (this.control is FormControl<TimeOfDay>) {
-  //     return TimeOfDayValueAccessor();
-  //   }
-  //
-  //   return super.selectValueAccessor();
-  // }
-
-  // void _registerFocusController(FocusController focusController) {
-  //   _focusController = focusController;
-  //   this.control.registerFocusController(focusController);
-  // }
-  //
-  // void _unregisterFocusController() {
-  //   this.control.unregisterFocusController(_focusController);
-  //   _focusController.dispose();
-  // }
-  //
-  // void _setFocusNode(FocusNode focusNode) {
-  //   if (_focusNode == focusNode) {
-  //     return;
-  //   } else if (focusNode == null && _focusNode != null) {
-  //     _focusNode = null;
-  //   } else if (focusNode != null && _focusNode == null) {
-  //     _focusNode = focusNode;
-  //   }
-  //
-  //   _unregisterFocusController();
-  //   _registerFocusController(FocusController(focusNode: _focusNode));
-  // }
 }
