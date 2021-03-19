@@ -1,4 +1,8 @@
 
+## [0.0.4]
+
+* readme update
+
 ## [0.0.3]
 
 * mark as touched on clear button pressed
