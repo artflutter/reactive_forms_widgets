@@ -1,9 +1,5 @@
 library reactive_image_picker;
 
-// Copyright 2020 Joan Pablo Jiménez Milian. All rights reserved.
-// Use of this source code is governed by the MIT license that can be
-// found in the LICENSE file.
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';

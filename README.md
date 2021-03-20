@@ -11,3 +11,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveSegmentedControl](https://pub.dev/packages/reactive_segmented_control)** - wrapper around [`CupertinoSegmentedControl`](https://api.flutter.dev/flutter/cupertino/CupertinoSegmentedControl-class.html)
 - **[ReactiveImagePicker](https://pub.dev/packages/reactive_image_picker)** - wrapper around [`ImagePicker`](https://pub.dev/packages/image_picker)
 - **[ReactiveSignature](https://pub.dev/packages/reactive_signature)** - wrapper around [`Signature`](https://pub.dev/packages/signature)
+- **[ReactiveMultiImagePicker](https://pub.dev/packages/reactive_multi_image_picker)** - wrapper around [`MultiImagePicker`](https://pub.dev/packages/multi_image_picker)

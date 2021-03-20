@@ -21,7 +21,6 @@ class Widgets extends StatelessWidget {
           return Column(
             children: [
               ReactiveSignature(
-                // width: 200,
                 height: 200,
                 backgroundColor: Colors.grey,
                 formControlName: 'signature',
