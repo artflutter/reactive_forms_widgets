@@ -1,3 +1,5 @@
+[![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
+
 # reactive_forms_widgets
 
 Collection of advanced widgets based on Reactive Forms managed by [Melos](https://pub.dev/packages/melos) monorepo package

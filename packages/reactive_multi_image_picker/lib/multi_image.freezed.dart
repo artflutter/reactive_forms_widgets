@@ -1,0 +1,154 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+
+part of 'multi_image.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+/// @nodoc
+class _$MultiImageTearOff {
+  const _$MultiImageTearOff();
+
+// ignore: unused_element
+  _MultiImage<T> call<T>(
+      {List<T> images = const [], List<Asset> assets = const []}) {
+    return _MultiImage<T>(
+      images: images,
+      assets: assets,
+    );
+  }
+}
+
+/// @nodoc
+// ignore: unused_element
+const $MultiImage = _$MultiImageTearOff();
+
+/// @nodoc
+mixin _$MultiImage<T> {
+  List<T> get images;
+  List<Asset> get assets;
+
+  @JsonKey(ignore: true)
+  $MultiImageCopyWith<T, MultiImage<T>> get copyWith;
+}
+
+/// @nodoc
+abstract class $MultiImageCopyWith<T, $Res> {
+  factory $MultiImageCopyWith(
+          MultiImage<T> value, $Res Function(MultiImage<T>) then) =
+      _$MultiImageCopyWithImpl<T, $Res>;
+  $Res call({List<T> images, List<Asset> assets});
+}
+
+/// @nodoc
+class _$MultiImageCopyWithImpl<T, $Res>
+    implements $MultiImageCopyWith<T, $Res> {
+  _$MultiImageCopyWithImpl(this._value, this._then);
+
+  final MultiImage<T> _value;
+  // ignore: unused_field
+  final $Res Function(MultiImage<T>) _then;
+
+  @override
+  $Res call({
+    Object images = freezed,
+    Object assets = freezed,
+  }) {
+    return _then(_value.copyWith(
+      images: images == freezed ? _value.images : images as List<T>,
+      assets: assets == freezed ? _value.assets : assets as List<Asset>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$MultiImageCopyWith<T, $Res>
+    implements $MultiImageCopyWith<T, $Res> {
+  factory _$MultiImageCopyWith(
+          _MultiImage<T> value, $Res Function(_MultiImage<T>) then) =
+      __$MultiImageCopyWithImpl<T, $Res>;
+  @override
+  $Res call({List<T> images, List<Asset> assets});
+}
+
+/// @nodoc
+class __$MultiImageCopyWithImpl<T, $Res>
+    extends _$MultiImageCopyWithImpl<T, $Res>
+    implements _$MultiImageCopyWith<T, $Res> {
+  __$MultiImageCopyWithImpl(
+      _MultiImage<T> _value, $Res Function(_MultiImage<T>) _then)
+      : super(_value, (v) => _then(v as _MultiImage<T>));
+
+  @override
+  _MultiImage<T> get _value => super._value as _MultiImage<T>;
+
+  @override
+  $Res call({
+    Object images = freezed,
+    Object assets = freezed,
+  }) {
+    return _then(_MultiImage<T>(
+      images: images == freezed ? _value.images : images as List<T>,
+      assets: assets == freezed ? _value.assets : assets as List<Asset>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_MultiImage<T> extends _MultiImage<T> {
+  const _$_MultiImage({this.images = const [], this.assets = const []})
+      : assert(images != null),
+        assert(assets != null),
+        super._();
+
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<T> images;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<Asset> assets;
+
+  @override
+  String toString() {
+    return 'MultiImage<$T>(images: $images, assets: $assets)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _MultiImage<T> &&
+            (identical(other.images, images) ||
+                const DeepCollectionEquality().equals(other.images, images)) &&
+            (identical(other.assets, assets) ||
+                const DeepCollectionEquality().equals(other.assets, assets)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(images) ^
+      const DeepCollectionEquality().hash(assets);
+
+  @JsonKey(ignore: true)
+  @override
+  _$MultiImageCopyWith<T, _MultiImage<T>> get copyWith =>
+      __$MultiImageCopyWithImpl<T, _MultiImage<T>>(this, _$identity);
+}
+
+abstract class _MultiImage<T> extends MultiImage<T> {
+  const _MultiImage._() : super._();
+  const factory _MultiImage({List<T> images, List<Asset> assets}) =
+      _$_MultiImage<T>;
+
+  @override
+  List<T> get images;
+  @override
+  List<Asset> get assets;
+  @override
+  @JsonKey(ignore: true)
+  _$MultiImageCopyWith<T, _MultiImage<T>> get copyWith;
+}

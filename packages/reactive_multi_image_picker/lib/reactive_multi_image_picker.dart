@@ -4,12 +4,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:reactive_multi_image_picker/multi_image.dart';
 
 export 'package:multi_image_picker/multi_image_picker.dart';
 
 typedef Future<void> PickImageCallback();
-typedef Widget ImagePickerBuilder(
-    PickImageCallback pickImage, List<Asset> images);
+typedef void ImagePickerChangeCallback<T>(MultiImage<T> images);
+
+typedef Widget ImagePickerBuilder<T>(
+  PickImageCallback pickImage,
+  MultiImage<T> images,
+  ImagePickerChangeCallback<T> onChange,
+);
 
 /// A [ReactiveMultiImagePicker] that contains a [CupertinoSegmentedControl].
 ///
@@ -18,7 +24,7 @@ typedef Widget ImagePickerBuilder(
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveMultiImagePicker extends ReactiveFormField<List<Asset>> {
+class ReactiveMultiImagePicker<T> extends ReactiveFormField<MultiImage<T>> {
   /// Creates a [ReactiveMultiImagePicker] that contains a [CupertinoSegmentedControl].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -90,7 +96,7 @@ class ReactiveMultiImagePicker extends ReactiveFormField<List<Asset>> {
     ValidationMessagesFunction validationMessages,
     ControlValueAccessor valueAccessor,
     ShowErrorsFunction showErrors,
-    ImagePickerBuilder imagePickerBuilder,
+    @required ImagePickerBuilder<T> imagePickerBuilder,
     int maxImages = 300,
     bool enableCamera = false,
     CupertinoOptions cupertinoOptions = const CupertinoOptions(),
@@ -103,57 +109,39 @@ class ReactiveMultiImagePicker extends ReactiveFormField<List<Asset>> {
           validationMessages: validationMessages,
           showErrors: showErrors,
           builder: (ReactiveFormFieldState field) {
+            final value = field.value as MultiImage<T> ?? MultiImage<T>();
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
-            var resultList = <Asset>[];
             String pickerError;
 
             final pickImage = () async {
               try {
-                resultList = await MultiImagePicker.pickImages(
+                final resultList = await MultiImagePicker.pickImages(
                   maxImages: maxImages,
                   enableCamera: enableCamera,
-                  selectedAssets: field.value,
+                  selectedAssets: value.assets,
                   cupertinoOptions: cupertinoOptions,
                   materialOptions: materialOptions,
                 );
 
                 field.control.markAsTouched();
-                field.didChange(resultList);
+                field.didChange(value.copyWith(assets: resultList));
               } on Exception catch (e) {
                 pickerError = e.toString();
               }
             };
 
             return InputDecorator(
-              decoration: effectiveDecoration.copyWith(
-                errorText: field.errorText ?? pickerError,
-                enabled: field.control.enabled,
-              ),
-              child: imagePickerBuilder?.call(
-                      pickImage, field.value as List<Asset>) ??
-                  Column(
-                    children: [
-                      Expanded(
-                        child: GridView.count(
-                          crossAxisCount: 3,
-                          children: List.generate(
-                              (field.value as List<Asset>).length, (index) {
-                            final asset = field.value[index];
-                            return AssetThumb(
-                                asset: asset, width: 300, height: 300);
-                          }),
-                        ),
-                      ),
-                      ElevatedButton(
-                        child: Text("Pick images"),
-                        onPressed: pickImage,
-                      ),
-                    ],
-                  ),
-            );
+                decoration: effectiveDecoration.copyWith(
+                  errorText: field.errorText ?? pickerError,
+                  enabled: field.control.enabled,
+                ),
+                child: imagePickerBuilder?.call(pickImage, value, (images) {
+                  field.control.markAsTouched();
+                  field.didChange(images);
+                }));
           },
         );
 }
