@@ -31,7 +31,7 @@ class Widgets extends StatelessWidget {
                   'c': Text('C'),
                 },
               ),
-              RaisedButton(
+              ElevatedButton(
                 child: Text('Sign Up'),
                 onPressed: () {
                   if (form.valid) {

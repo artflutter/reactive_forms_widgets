@@ -26,7 +26,7 @@ class Widgets extends StatelessWidget {
                   suffixIcon: Icon(Icons.calendar_today),
                 ),
               ),
-              RaisedButton(
+              ElevatedButton(
                 child: Text('Sign Up'),
                 onPressed: () {
                   if (form.valid) {

@@ -1,4 +1,8 @@
 
+## [0.0.6]
+
+* typo
+
 ## [0.0.5]
 
 * excluded pubspec.lock from package
