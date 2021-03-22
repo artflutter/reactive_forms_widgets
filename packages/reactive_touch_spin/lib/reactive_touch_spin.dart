@@ -95,7 +95,6 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T> {
     TextStyle textStyle = const TextStyle(fontSize: 24),
     Color iconActiveColor,
     Color iconDisabledColor,
-    bool enabled = true,
   }) : super(
           key: key,
           formControl: formControl,

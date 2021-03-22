@@ -1,4 +1,8 @@
 
+## [0.0.4]
+
+* excluded pubspec.lock from package
+
 ## [0.0.3]
 
 * readme update

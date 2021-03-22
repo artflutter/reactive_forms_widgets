@@ -134,14 +134,15 @@ class ReactiveMultiImagePicker<T> extends ReactiveFormField<MultiImage<T>> {
             };
 
             return InputDecorator(
-                decoration: effectiveDecoration.copyWith(
-                  errorText: field.errorText ?? pickerError,
-                  enabled: field.control.enabled,
-                ),
-                child: imagePickerBuilder?.call(pickImage, value, (images) {
-                  field.control.markAsTouched();
-                  field.didChange(images);
-                }));
+              decoration: effectiveDecoration.copyWith(
+                errorText: field.errorText ?? pickerError,
+                enabled: field.control.enabled,
+              ),
+              child: imagePickerBuilder?.call(pickImage, value, (images) {
+                field.control.markAsTouched();
+                field.didChange(images);
+              }),
+            );
           },
         );
 }

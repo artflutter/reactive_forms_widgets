@@ -8,11 +8,14 @@
 .buildlog/
 .history
 .svn/
+pubspec.lock
 
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
+.fvm
+example/ios/.symlinks
 .idea/
 
 # The .vscode folder contains launch configuration and tasks you configure in

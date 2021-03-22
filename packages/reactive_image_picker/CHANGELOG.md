@@ -1,4 +1,7 @@
 
+## [0.1.1]
+* excluded pubspec.lock from package
+
 ## [0.1.0]
 * onBefore change callback to allow image pre-processing
 
