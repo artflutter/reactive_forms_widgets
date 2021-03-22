@@ -45,7 +45,7 @@ class Widgets extends StatelessWidget {
                 formControlName: 'image',
               ),
               SizedBox(height: 16),
-              RaisedButton(
+              ElevatedButton(
                 child: Text('Sign Up'),
                 onPressed: () {
                   if (form.valid) {

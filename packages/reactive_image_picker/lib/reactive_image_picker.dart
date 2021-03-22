@@ -5,30 +5,27 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+export 'package:image_picker/image_picker.dart';
+
 import 'image_file.dart';
 
 typedef Widget ImageViewBuilder(ImageFile image);
+
 typedef Widget InputButtonBuilder(VoidCallback onPressed);
-typedef void ErrorPickBuilder(ImagePickerSource source, {BuildContext context});
+
+typedef void ErrorPickBuilder(ImageSource source, {BuildContext context});
+
 typedef void DeleteDialogBuilder(BuildContext context, VoidCallback onConfirm);
+
 typedef void PopupDialogBuilder(
-    BuildContext context, ImagePickCallback pickImage);
-typedef void ImagePickCallback(BuildContext context, ImagePickerSource source);
+  BuildContext context,
+  ImagePickCallback pickImage,
+);
 
-enum ImagePickerSource { camera, gallery }
+typedef Future<ImageFile> OnBeforeChangeCallback(
+    BuildContext context, ImageFile image);
 
-extension ImagePickerSourceExt on ImagePickerSource {
-  ImageSource get source {
-    switch (this) {
-      case ImagePickerSource.camera:
-        return ImageSource.camera;
-      case ImagePickerSource.gallery:
-        return ImageSource.gallery;
-    }
-
-    return null;
-  }
-}
+typedef void ImagePickCallback(BuildContext context, ImageSource source);
 
 /// A [ReactiveImagePicker] that contains a [DropdownSearch].
 ///
@@ -110,6 +107,7 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile> {
     ErrorPickBuilder errorPickBuilder,
     PopupDialogBuilder popupDialogBuilder,
     BoxDecoration imageContainerDecoration,
+    OnBeforeChangeCallback onBeforeChange,
     Widget editIcon,
     Widget deleteIcon,
     FormControl formControl,
@@ -125,18 +123,16 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile> {
           validationMessages: (control) {
             final error = validationMessages?.call(control) ?? {};
 
-            if (error?.containsKey(ImagePickerSource.camera.toString()) !=
-                true) {
+            if (error?.containsKey(ImageSource.camera.toString()) != true) {
               error.addEntries([
-                MapEntry(ImagePickerSource.camera.toString(),
+                MapEntry(ImageSource.camera.toString(),
                     'Error while taking image from camera')
               ]);
             }
 
-            if (error?.containsKey(ImagePickerSource.gallery.toString()) !=
-                true) {
+            if (error?.containsKey(ImageSource.gallery.toString()) != true) {
               error.addEntries([
-                MapEntry(ImagePickerSource.gallery.toString(),
+                MapEntry(ImageSource.gallery.toString(),
                     'Error while taking image from gallery')
               ]);
             }
@@ -154,17 +150,18 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile> {
               child: ImagePickerWidget(
                 imageViewBuilder: imageViewBuilder,
                 popupDialogBuilder: popupDialogBuilder,
+                onBeforeChange: onBeforeChange,
                 errorPickBuilder: errorPickBuilder ??
-                    (ImagePickerSource source, {BuildContext context}) {
-                      if (source == ImagePickerSource.camera) {
+                    (ImageSource source, {BuildContext context}) {
+                      if (source == ImageSource.camera) {
                         field.control.setErrors(<String, dynamic>{
-                          ImagePickerSource.camera.toString(): true,
+                          ImageSource.camera.toString(): true,
                         });
                       }
 
-                      if (source == ImagePickerSource.gallery) {
+                      if (source == ImageSource.gallery) {
                         field.control.setErrors(<String, dynamic>{
-                          ImagePickerSource.gallery.toString(): true,
+                          ImageSource.gallery.toString(): true,
                         });
                       }
                     },
@@ -185,6 +182,7 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile> {
 
 class ImagePickerWidget extends StatelessWidget {
   final InputDecoration decoration;
+  final OnBeforeChangeCallback onBeforeChange;
   final BoxDecoration imageContainerDecoration;
   final Widget editIcon;
   final Widget deleteIcon;
@@ -211,23 +209,28 @@ class ImagePickerWidget extends StatelessWidget {
     this.deleteDialogBuilder,
     this.errorPickBuilder,
     this.popupDialogBuilder,
+    this.onBeforeChange,
   }) : super(key: key);
 
-  void _onImageButtonPressed(
-      BuildContext context, ImagePickerSource source) async {
+  void _onImageButtonPressed(BuildContext context, ImageSource source) async {
     final picker = ImagePicker();
 
     try {
-      final pickedFile = await picker.getImage(source: source.source);
+      final pickedFile = await picker.getImage(source: source);
 
       if (pickedFile != null) {
-        onChanged(
-            (value ?? ImageFile()).copyWith(image: File(pickedFile.path)));
+        final imageFile =
+            (value ?? ImageFile()).copyWith(image: File(pickedFile.path));
+
+        onChanged(await onBeforeChange?.call(context, imageFile) ??
+            _onBeforeChange(imageFile));
       }
     } catch (e) {
       errorPickBuilder?.call(source, context: context);
     }
   }
+
+  Future<ImageFile> _onBeforeChange(ImageFile image) => Future.value(image);
 
   void _buildPopupMenu(BuildContext context) {
     if (popupDialogBuilder != null) {
@@ -255,7 +258,7 @@ class ImagePickerWidget extends StatelessWidget {
                           Navigator.of(context).pop();
                           _onImageButtonPressed(
                             context,
-                            ImagePickerSource.camera,
+                            ImageSource.camera,
                           );
                         },
                       ),
@@ -266,7 +269,7 @@ class ImagePickerWidget extends StatelessWidget {
                           Navigator.of(context).pop();
                           _onImageButtonPressed(
                             context,
-                            ImagePickerSource.gallery,
+                            ImageSource.gallery,
                           );
                         },
                       ),
@@ -301,11 +304,11 @@ class ImagePickerWidget extends StatelessWidget {
           title: Text("Delete image"),
           content: Text("This action could not be undone"),
           actions: [
-            FlatButton(
+            TextButton(
               child: Text("CLOSE"),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            FlatButton(
+            TextButton(
               child: Text("CONFIRM"),
               onPressed: () {
                 onConfirm();
@@ -356,7 +359,7 @@ class ImagePickerWidget extends StatelessWidget {
   }
 
   Widget _buildInput(BuildContext context) {
-    return OutlineButton.icon(
+    return OutlinedButton.icon(
       onPressed: () => _buildPopupMenu(context),
       icon: Icon(Icons.add, color: Color(0xFF00A7E1)),
       label: Text('Pick image'),

@@ -1,4 +1,7 @@
 
+## [0.1.0]
+* onBefore change callback to allow image pre-processing
+
 ## [0.0.2]
 * readme update
 
