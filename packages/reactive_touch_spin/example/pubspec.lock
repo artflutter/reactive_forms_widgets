@@ -73,7 +73,7 @@ packages:
       name: flutter_touch_spin
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0-nullsafety.0"
+    version: "2.0.0-nullsafety.1"
   intl:
     dependency: transitive
     description:
@@ -108,14 +108,14 @@ packages:
       name: reactive_forms
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "9.1.0"
+    version: "10.0.1"
   reactive_touch_spin:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1-nullsafety.2"
+    version: "0.1.0-nullsafety.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -178,5 +178,5 @@ packages:
     source: hosted
     version: "2.1.0"
 sdks:
-  dart: ">=2.12.0-0.0 <3.0.0"
-  flutter: ">=1.17.0"
+  dart: ">=2.12.0 <3.0.0"
+  flutter: ">=1.20.0"

@@ -5,13 +5,13 @@ import 'package:reactive_touch_spin/reactive_touch_spin.dart';
 
 class Widgets extends StatelessWidget {
   FormGroup buildForm() => fb.group({
-        'touchSpin': FormControl<double>(value: 10),
+        'touchSpin': FormControl<num>(value: 10),
       });
 
   @override
   Widget build(BuildContext context) {
     return SampleScreen(
-      title: Text('Dropdown sample'),
+      title: Text(''),
       body: ReactiveFormBuilder(
         form: buildForm,
         builder: (context, form, child) {

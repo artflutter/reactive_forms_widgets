@@ -12,7 +12,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveTouchSpin<T> extends ReactiveFormField<T> {
+class ReactiveTouchSpin extends ReactiveFormField<num, num> {
   /// Creates a [ReactiveTouchSpin] that contains a [TouchSpin].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -77,24 +77,24 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T> {
   /// For documentation about the various parameters, see the [TouchSpin] class
   /// and [new TouchSpin], the constructor.
   ReactiveTouchSpin({
-    Key key,
-    String formControlName,
-    InputDecoration decoration,
-    FormControl formControl,
-    ValidationMessagesFunction validationMessages,
-    ControlValueAccessor valueAccessor,
-    ShowErrorsFunction showErrors,
+    Key? key,
+    String? formControlName,
+    InputDecoration? decoration,
+    FormControl<double>? formControl,
+    ValidationMessagesFunction? validationMessages,
+    ControlValueAccessor<double, double>? valueAccessor,
+    ShowErrorsFunction? showErrors,
     num min = 1.0,
     num max = 9999999.0,
     num step = 1.0,
     double iconSize = 24.0,
-    NumberFormat displayFormat,
+    NumberFormat? displayFormat,
     Icon subtractIcon = const Icon(Icons.remove),
     Icon addIcon = const Icon(Icons.add),
     EdgeInsets iconPadding = const EdgeInsets.all(4.0),
     TextStyle textStyle = const TextStyle(fontSize: 24),
-    Color iconActiveColor,
-    Color iconDisabledColor,
+    Color? iconActiveColor,
+    Color? iconDisabledColor,
   }) : super(
           key: key,
           formControl: formControl,
@@ -102,7 +102,7 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T> {
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState field) {
+          builder: (field) {
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
@@ -119,7 +119,7 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T> {
                   enabled: field.control.enabled,
                 ),
                 child: TouchSpin(
-                  value: field.value,
+                  value: field.value ?? min,
                   onChanged: field.didChange,
                   min: min,
                   max: max,
