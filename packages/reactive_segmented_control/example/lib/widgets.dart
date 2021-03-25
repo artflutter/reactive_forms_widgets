@@ -17,7 +17,7 @@ class Widgets extends StatelessWidget {
         builder: (context, form, child) {
           return Column(
             children: [
-              ReactiveSegmentedControl(
+              ReactiveSegmentedControl<String, String>(
                 decoration: const InputDecoration(
                   labelText: 'Rating',
                   border: OutlineInputBorder(),

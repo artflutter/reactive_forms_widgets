@@ -14,7 +14,8 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveSegmentedControl<T> extends ReactiveFormField<T> {
+class ReactiveSegmentedControl<T extends Object, K extends Object>
+    extends ReactiveFormField<T, K> {
   /// Creates a [ReactiveSegmentedControl] that contains a [CupertinoSegmentedControl].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -79,19 +80,19 @@ class ReactiveSegmentedControl<T> extends ReactiveFormField<T> {
   /// For documentation about the various parameters, see the [CupertinoSegmentedControl] class
   /// and [new CupertinoSegmentedControl], the constructor.
   ReactiveSegmentedControl({
-    Key key,
-    String formControlName,
-    InputDecoration decoration,
-    FormControl formControl,
-    ValidationMessagesFunction validationMessages,
-    ControlValueAccessor valueAccessor,
-    ShowErrorsFunction showErrors,
-    Map<T, Widget> children,
-    Color unselectedColor,
-    Color selectedColor,
-    Color borderColor,
-    Color pressedColor,
-    EdgeInsets padding,
+    Key? key,
+    String? formControlName,
+    InputDecoration? decoration,
+    FormControl<T>? formControl,
+    ValidationMessagesFunction? validationMessages,
+    ControlValueAccessor<T, K>? valueAccessor,
+    ShowErrorsFunction? showErrors,
+    required Map<T, Widget> children,
+    Color? unselectedColor,
+    Color? selectedColor,
+    Color? borderColor,
+    Color? pressedColor,
+    EdgeInsets? padding,
   }) : super(
           key: key,
           formControl: formControl,
@@ -113,7 +114,7 @@ class ReactiveSegmentedControl<T> extends ReactiveFormField<T> {
                     errorText: field.errorText,
                     enabled: field.control.enabled,
                   ),
-                  child: CupertinoSegmentedControl(
+                  child: CupertinoSegmentedControl<T>(
                     children: children,
                     onValueChanged: field.didChange,
                     groupValue: field.value,
