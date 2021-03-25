@@ -15,3 +15,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveSignature](https://pub.dev/packages/reactive_signature)** - wrapper around [`Signature`](https://pub.dev/packages/signature)
 - **[ReactiveMultiImagePicker](https://pub.dev/packages/reactive_multi_image_picker)** - wrapper around [`MultiImagePicker`](https://pub.dev/packages/multi_image_picker)
 - **[ReactiveFilePicker](https://pub.dev/packages/reactive_file_picker)** - wrapper around [`FilePicker`](https://pub.dev/packages/file_picker)
+- **[ReactiveAdvancedSwitch](https://pub.dev/packages/reactive_advanced_switch)** - Wrapper around [`flutter_advanced_switch`](https://pub.dev/packages/flutter_advanced_switch)
