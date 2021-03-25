@@ -1,4 +1,9 @@
 
+## [0.1.0]
+
+* null safety
+* bugfix: valueAccessor was not passed to constructor
+
 ## [0.0.4]
 
 * excluded pubspec.lock from package

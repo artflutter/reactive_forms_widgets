@@ -27,8 +27,8 @@ import 'datetime_range_value_accessor.dart';
 ///   formControlName: 'birthday',
 /// )
 /// ```
-class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange> {
-  /// Creates a [ReactiveDateRangePickerField] that wraps the function [showDatePicker].
+class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
+  /// Creates a [ReactiveDateRangePickerField] that wraps the function [showDateRangePicker].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
   ///
@@ -41,47 +41,48 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange> {
   /// The parameter [transitionBuilder] is the equivalent of [builder]
   /// parameter in the [showTimePicker].
   ///
-  /// For documentation about the various parameters, see the [showTimePicker]
+  /// For documentation about the various parameters, see the [showDateRangePicker]
   /// function parameters.
   ReactiveDateRangePicker({
-    Key key,
-    String formControlName,
-    FormControl formControl,
-    TextStyle style,
-    ControlValueAccessor valueAccessor,
-    ValidationMessagesFunction validationMessages,
-    InputDecoration decoration,
+    Key? key,
+    String? formControlName,
+    FormControl<DateTimeRange>? formControl,
+    TextStyle? style,
+    ControlValueAccessor<DateTimeRange, String>? valueAccessor,
+    ValidationMessagesFunction? validationMessages,
+    InputDecoration? decoration,
     bool showClearIcon = true,
     Widget clearIcon = const Icon(Icons.clear),
 
     // date range picker params
-    TransitionBuilder builder,
+    TransitionBuilder? builder,
     bool useRootNavigator = true,
-    String cancelText,
-    String confirmText,
-    String helpText,
-    String saveText,
-    String errorFormatText,
-    String errorInvalidText,
-    String errorInvalidRangeText,
-    String fieldStartHintText,
-    String fieldEndHintText,
-    String fieldStartLabelText,
-    String fieldEndLabelText,
-    DateTime firstDate,
-    DateTime lastDate,
-    DateTime currentDate,
+    String? cancelText,
+    String? confirmText,
+    String? helpText,
+    String? saveText,
+    String? errorFormatText,
+    String? errorInvalidText,
+    String? errorInvalidRangeText,
+    String? fieldStartHintText,
+    String? fieldEndHintText,
+    String? fieldStartLabelText,
+    String? fieldEndLabelText,
+    DateTime? firstDate,
+    DateTime? lastDate,
+    DateTime? currentDate,
     DatePickerEntryMode initialEntryMode = DatePickerEntryMode.calendar,
-    Locale locale,
-    TextDirection textDirection,
-    RouteSettings routeSettings,
+    Locale? locale,
+    TextDirection? textDirection,
+    RouteSettings? routeSettings,
   }) : super(
           key: key,
           formControl: formControl,
           formControlName: formControlName,
           validationMessages: validationMessages,
-          builder: (ReactiveFormFieldState<dynamic> field) {
-            Widget suffixIcon = decoration?.suffixIcon;
+          valueAccessor: valueAccessor ?? DateTimeRangeValueAccessor(),
+          builder: (field) {
+            Widget? suffixIcon = decoration?.suffixIcon;
             final isEmptyValue =
                 field.value == null || field.value.toString().isEmpty;
 
@@ -101,11 +102,8 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange> {
                     .applyDefaults(Theme.of(field.context).inputDecorationTheme)
                     .copyWith(suffixIcon: suffixIcon);
 
-            DateTimeRangeValueAccessor effectiveValueAccessor = valueAccessor;
-
-            if (effectiveValueAccessor == null) {
-              effectiveValueAccessor = DateTimeRangeValueAccessor();
-            }
+            final effectiveValueAccessor =
+                valueAccessor ?? DateTimeRangeValueAccessor();
 
             final effectiveLastDate = lastDate ?? DateTime(2100);
 
@@ -115,7 +113,7 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange> {
                 onTap: () async {
                   final dateRange = await showDateRangePicker(
                     context: field.context,
-                    initialDateRange: field.control.value as DateTimeRange,
+                    initialDateRange: field.control.value,
                     firstDate: firstDate ?? DateTime(1900),
                     lastDate: effectiveLastDate,
                     currentDate: currentDate,
@@ -139,7 +137,8 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange> {
                   );
 
                   field.control.markAsTouched();
-                  field.didChange(dateRange);
+                  field.didChange(
+                      effectiveValueAccessor.modelToViewValue(dateRange));
                 },
                 child: InputDecorator(
                   decoration: effectiveDecoration.copyWith(
@@ -148,13 +147,11 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange> {
                   ),
                   isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
                   child: Text(
-                    effectiveValueAccessor
-                        .modelToViewValue(field.value as DateTimeRange)
-                        .toString(),
+                    field.value ?? '',
                     style: Theme.of(field.context)
                         .textTheme
                         .subtitle1
-                        .merge(style),
+                        ?.merge(style),
                   ),
                 ),
               ),

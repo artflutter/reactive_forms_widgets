@@ -10,18 +10,18 @@ class DateTimeRangeValueAccessor
   final String delimiter;
 
   DateTimeRangeValueAccessor(
-      {DateFormat dateTimeFormat, this.delimiter = ' - '})
+      {DateFormat? dateTimeFormat, this.delimiter = ' - '})
       : dateTimeFormat = dateTimeFormat ?? DateFormat('yyyy/MM/dd');
 
   @override
-  String modelToViewValue(DateTimeRange modelValue) {
+  String? modelToViewValue(DateTimeRange? modelValue) {
     return modelValue == null
         ? ''
         : '${dateTimeFormat.format(modelValue.start)}$delimiter${dateTimeFormat.format(modelValue.end)}';
   }
 
   @override
-  DateTimeRange viewToModelValue(String viewValue) {
+  DateTimeRange? viewToModelValue(String? viewValue) {
     final dateRange = viewValue?.trim()?.split(delimiter);
 
     return dateRange == null || dateRange.isEmpty
