@@ -32,7 +32,7 @@ enum ReactiveDatePickerFieldType {
 ///   formControlName: 'birthday',
 /// )
 /// ```
-class ReactiveDateTimePicker extends ReactiveFormField<DateTime> {
+class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
   /// Creates a [ReactiveDatePickerField] that wraps the function [showDatePicker].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -49,50 +49,51 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime> {
   /// For documentation about the various parameters, see the [showTimePicker]
   /// function parameters.
   ReactiveDateTimePicker({
-    Key key,
-    String formControlName,
-    FormControl formControl,
-    TextStyle style,
-    ControlValueAccessor valueAccessor,
-    ValidationMessagesFunction validationMessages,
+    Key? key,
+    String? formControlName,
+    FormControl<DateTime>? formControl,
+    TextStyle? style,
+    ControlValueAccessor<DateTime, String>? valueAccessor,
+    ValidationMessagesFunction? validationMessages,
     ReactiveDatePickerFieldType type = ReactiveDatePickerFieldType.date,
-    InputDecoration decoration,
+    InputDecoration? decoration,
     bool showClearIcon = true,
     Widget clearIcon = const Icon(Icons.clear),
 
     // common params
-    TransitionBuilder builder,
+    TransitionBuilder? builder,
     bool useRootNavigator = true,
-    String cancelText,
-    String confirmText,
-    String helpText,
+    String? cancelText,
+    String? confirmText,
+    String? helpText,
 
     // date picker params
-    DateTime firstDate,
-    DateTime lastDate,
+    DateTime? firstDate,
+    DateTime? lastDate,
     DatePickerEntryMode datePickerEntryMode = DatePickerEntryMode.calendar,
-    SelectableDayPredicate selectableDayPredicate,
-    Locale locale,
-    TextDirection textDirection,
+    SelectableDayPredicate? selectableDayPredicate,
+    Locale? locale,
+    TextDirection? textDirection,
     DatePickerMode initialDatePickerMode = DatePickerMode.day,
-    String errorFormatText,
-    String errorInvalidText,
-    String fieldHintText,
-    String fieldLabelText,
-    RouteSettings datePickerRouteSettings,
+    String? errorFormatText,
+    String? errorInvalidText,
+    String? fieldHintText,
+    String? fieldLabelText,
+    RouteSettings? datePickerRouteSettings,
 
     // time picker params
     TimePickerEntryMode timePickerEntryMode = TimePickerEntryMode.dial,
-    RouteSettings timePickerRouteSettings,
+    RouteSettings? timePickerRouteSettings,
   }) : super(
           key: key,
           formControl: formControl,
           formControlName: formControlName,
           validationMessages: validationMessages,
-          builder: (ReactiveFormFieldState<dynamic> field) {
-            Widget suffixIcon = decoration?.suffixIcon;
+          valueAccessor: valueAccessor ?? _effectiveValueAccessor(type),
+          builder: (field) {
+            Widget? suffixIcon = decoration?.suffixIcon;
             final isEmptyValue =
-                field.value == null || field.value.toString().isEmpty;
+                field.value == null || field.value?.isEmpty == true;
 
             if (showClearIcon && !isEmptyValue) {
               suffixIcon = InkWell(
@@ -110,27 +111,8 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime> {
                     .applyDefaults(Theme.of(field.context).inputDecorationTheme)
                     .copyWith(suffixIcon: suffixIcon);
 
-            DateTimeValueAccessor effectiveValueAccessor = valueAccessor;
-
-            if (effectiveValueAccessor == null) {
-              switch (type) {
-                case ReactiveDatePickerFieldType.date:
-                  effectiveValueAccessor = DateTimeValueAccessor(
-                    dateTimeFormat: DateFormat('yyyy/MM/dd'),
-                  );
-                  break;
-                case ReactiveDatePickerFieldType.time:
-                  effectiveValueAccessor = DateTimeValueAccessor(
-                    dateTimeFormat: DateFormat('HH:mm'),
-                  );
-                  break;
-                case ReactiveDatePickerFieldType.dateTime:
-                  effectiveValueAccessor = DateTimeValueAccessor(
-                    dateTimeFormat: DateFormat('yyyy/MM/dd HH:mm'),
-                  );
-                  break;
-              }
-            }
+            final effectiveValueAccessor =
+                valueAccessor ?? _effectiveValueAccessor(type);
 
             final effectiveLastDate = lastDate ?? DateTime(2100);
 
@@ -138,8 +120,8 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime> {
               ignoring: !field.control.enabled,
               child: GestureDetector(
                 onTap: () async {
-                  DateTime date;
-                  TimeOfDay time;
+                  DateTime? date;
+                  TimeOfDay? time;
 
                   if (type == ReactiveDatePickerFieldType.date ||
                       type == ReactiveDatePickerFieldType.dateTime) {
@@ -198,12 +180,16 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime> {
                               time != null)) {
                     final dateTime = _combine(date, time);
 
+                    final value = field.control.value;
                     // ... and new value is not the same as was before...
-                    if (field.value == null ||
-                        dateTime.compareTo(field.value as DateTime) != 0) {
+                    if (value == null || dateTime.compareTo(value) != 0) {
                       // ... this means that cancel was not pressed at any moment
                       // so we can update the field
-                      field.didChange(_combine(date, time));
+                      field.didChange(
+                        effectiveValueAccessor.modelToViewValue(
+                          _combine(date, time),
+                        ),
+                      );
                     }
                   }
                   field.control.markAsTouched();
@@ -215,13 +201,11 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime> {
                   ),
                   isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
                   child: Text(
-                    effectiveValueAccessor
-                        .modelToViewValue(field.value as DateTime)
-                        .toString(),
+                    field.value ?? '',
                     style: Theme.of(field.context)
                         .textTheme
                         .subtitle1
-                        .merge(style),
+                        ?.merge(style),
                   ),
                 ),
               ),
@@ -229,7 +213,24 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime> {
           },
         );
 
-  static DateTime _combine(DateTime date, TimeOfDay time) {
+  static _effectiveValueAccessor(ReactiveDatePickerFieldType fieldType) {
+    switch (fieldType) {
+      case ReactiveDatePickerFieldType.date:
+        return DateTimeValueAccessor(
+          dateTimeFormat: DateFormat('yyyy/MM/dd'),
+        );
+      case ReactiveDatePickerFieldType.time:
+        return DateTimeValueAccessor(
+          dateTimeFormat: DateFormat('HH:mm'),
+        );
+      case ReactiveDatePickerFieldType.dateTime:
+        return DateTimeValueAccessor(
+          dateTimeFormat: DateFormat('yyyy/MM/dd HH:mm'),
+        );
+    }
+  }
+
+  static DateTime _combine(DateTime? date, TimeOfDay? time) {
     DateTime dateTime = DateTime(0);
 
     if (date != null) {
@@ -243,9 +244,9 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime> {
     return dateTime;
   }
 
-  static DateTime _getInitialDate(dynamic fieldValue, DateTime lastDate) {
+  static DateTime _getInitialDate(DateTime? fieldValue, DateTime lastDate) {
     if (fieldValue != null) {
-      return fieldValue as DateTime;
+      return fieldValue;
     }
 
     final now = DateTime.now();
