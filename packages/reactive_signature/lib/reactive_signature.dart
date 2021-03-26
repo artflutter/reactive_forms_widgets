@@ -19,7 +19,7 @@ typedef Widget SignatureBuilder(
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveSignature extends ReactiveFormField<Uint8List> {
+class ReactiveSignature extends ReactiveFormField<Uint8List, Uint8List> {
   /// Creates a [ReactiveSignature] that contains a [TextField].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -84,18 +84,18 @@ class ReactiveSignature extends ReactiveFormField<Uint8List> {
   /// For documentation about the various parameters, see the [TextField] class
   /// and [new TextField], the constructor.
   ReactiveSignature({
-    Key key,
-    String formControlName,
-    FormControl formControl,
-    ValidationMessagesFunction validationMessages,
-    ControlValueAccessor valueAccessor,
-    ShowErrorsFunction showErrors,
-    InputDecoration decoration = const InputDecoration(),
-    SignatureController controller,
-    SignatureBuilder signatureBuilder,
+    Key? key,
+    String? formControlName,
+    FormControl<Uint8List>? formControl,
+    ValidationMessagesFunction? validationMessages,
+    ControlValueAccessor<Uint8List, Uint8List>? valueAccessor,
+    ShowErrorsFunction? showErrors,
+    InputDecoration? decoration,
+    SignatureController? controller,
+    SignatureBuilder? signatureBuilder,
     Color backgroundColor = Colors.grey,
-    double width,
-    double height,
+    double? width,
+    double? height,
     this.penColor = Colors.black,
     this.exportBackgroundColor = Colors.blue,
     this.penStrokeWidth = 3.0,
@@ -146,14 +146,16 @@ class ReactiveSignature extends ReactiveFormField<Uint8List> {
 
   final Color exportBackgroundColor;
 
-  final List<Point> points;
+  final List<Point>? points;
 
   @override
-  ReactiveFormFieldState<Uint8List> createState() => _ReactiveTextFieldState();
+  ReactiveFormFieldState<Uint8List, Uint8List> createState() =>
+      _ReactiveTextFieldState();
 }
 
-class _ReactiveTextFieldState extends ReactiveFormFieldState<Uint8List> {
-  SignatureController _signatureController;
+class _ReactiveTextFieldState
+    extends ReactiveFormFieldState<Uint8List, Uint8List> {
+  late SignatureController _signatureController;
 
   @override
   void initState() {
