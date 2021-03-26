@@ -25,7 +25,8 @@ typedef Widget FilePickerBuilder<T>(
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveFilePicker<T> extends ReactiveFormField<MultiFile<T>> {
+class ReactiveFilePicker<T>
+    extends ReactiveFormField<MultiFile<T>, MultiFile<T>> {
   /// Creates a [ReactiveFilePicker] that contains a [TouchSpin].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -89,40 +90,41 @@ class ReactiveFilePicker<T> extends ReactiveFormField<MultiFile<T>> {
   ///
   /// For documentation about the various parameters, see the [TouchSpin] class
   /// and [new TouchSpin], the constructor.
-  ReactiveFilePicker({
-    Key key,
-    String formControlName,
-    InputDecoration decoration,
-    FormControl formControl,
-    ValidationMessagesFunction validationMessages,
-    ControlValueAccessor valueAccessor,
-    ShowErrorsFunction showErrors,
-    //
-    FilePickerBuilder<T> filePickerBuilder,
-    bool allowMultiple = false,
-    FileType type = FileType.any,
-    List<String> allowedExtensions,
-    Function(FilePickerStatus) onFileLoading,
-    bool allowCompression,
-    bool withData,
-    bool withReadStream,
-  }) : super(
+  ReactiveFilePicker(
+      {Key? key,
+      String? formControlName,
+      InputDecoration? decoration,
+      FormControl<MultiFile<T>>? formControl,
+      ValidationMessagesFunction? validationMessages,
+      ControlValueAccessor<MultiFile<T>, MultiFile<T>>? valueAccessor,
+      ShowErrorsFunction? showErrors,
+      //
+      FilePickerBuilder<T>? filePickerBuilder,
+      bool allowMultiple = false,
+      FileType type = FileType.any,
+      List<String>? allowedExtensions,
+      Function(FilePickerStatus)? onFileLoading,
+      bool allowCompression = false,
+      bool withData = false,
+      bool withReadStream = false,
+      double disabledOpacity = 0.5})
+      : super(
           key: key,
           formControl: formControl,
           formControlName: formControlName,
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState field) {
-            final value = field.value as MultiFile<T> ?? MultiFile<T>();
+          builder: (field) {
+            final value = field.value ?? MultiFile<T>();
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
-            String pickerError;
+            String? pickerError;
 
             final pickFile = () async {
-              List<PlatformFile> platformFiles;
+              List<PlatformFile>? platformFiles;
               try {
                 platformFiles = (await FilePicker.platform.pickFiles(
                   allowMultiple: allowMultiple,
@@ -141,7 +143,8 @@ class ReactiveFilePicker<T> extends ReactiveFormField<MultiFile<T>> {
               }
 
               field.control.markAsTouched();
-              field.didChange(value.copyWith(platformFiles: platformFiles));
+              field.didChange(
+                  value.copyWith(platformFiles: platformFiles ?? []));
             };
 
             return InputDecorator(
@@ -149,10 +152,16 @@ class ReactiveFilePicker<T> extends ReactiveFormField<MultiFile<T>> {
                 errorText: field.errorText ?? pickerError,
                 enabled: field.control.enabled,
               ),
-              child: filePickerBuilder?.call(pickFile, value, (files) {
-                field.control.markAsTouched();
-                field.didChange(files);
-              }),
+              child: IgnorePointer(
+                ignoring: !field.control.enabled,
+                child: Opacity(
+                  opacity: field.control.enabled ? 1 : disabledOpacity,
+                  child: filePickerBuilder?.call(pickFile, value, (files) {
+                    field.control.markAsTouched();
+                    field.didChange(files);
+                  }),
+                ),
+              ),
             );
           },
         );

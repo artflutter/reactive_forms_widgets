@@ -92,7 +92,7 @@ packages:
       name: freezed_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.0"
+    version: "0.14.1"
   intl:
     dependency: transitive
     description:
@@ -113,7 +113,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.1"
+    version: "4.0.1"
   matcher:
     dependency: transitive
     description:
@@ -148,14 +148,14 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.1.0"
   reactive_forms:
     dependency: "direct main"
     description:
       name: reactive_forms
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "9.1.0"
+    version: "10.0.2"
   sky_engine:
     dependency: transitive
     description: flutter

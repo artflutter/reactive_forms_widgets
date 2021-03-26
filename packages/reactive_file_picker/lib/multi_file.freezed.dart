@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'multi_file.dart';
 
@@ -9,11 +9,13 @@ part of 'multi_file.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$MultiFileTearOff {
   const _$MultiFileTearOff();
 
-// ignore: unused_element
   _MultiFile<T> call<T>(
       {List<T> files = const [], List<PlatformFile> platformFiles = const []}) {
     return _MultiFile<T>(
@@ -24,16 +26,16 @@ class _$MultiFileTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $MultiFile = _$MultiFileTearOff();
 
 /// @nodoc
 mixin _$MultiFile<T> {
-  List<T> get files;
-  List<PlatformFile> get platformFiles;
+  List<T> get files => throw _privateConstructorUsedError;
+  List<PlatformFile> get platformFiles => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MultiFileCopyWith<T, MultiFile<T>> get copyWith;
+  $MultiFileCopyWith<T, MultiFile<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -54,14 +56,18 @@ class _$MultiFileCopyWithImpl<T, $Res> implements $MultiFileCopyWith<T, $Res> {
 
   @override
   $Res call({
-    Object files = freezed,
-    Object platformFiles = freezed,
+    Object? files = freezed,
+    Object? platformFiles = freezed,
   }) {
     return _then(_value.copyWith(
-      files: files == freezed ? _value.files : files as List<T>,
+      files: files == freezed
+          ? _value.files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<T>,
       platformFiles: platformFiles == freezed
           ? _value.platformFiles
-          : platformFiles as List<PlatformFile>,
+          : platformFiles // ignore: cast_nullable_to_non_nullable
+              as List<PlatformFile>,
     ));
   }
 }
@@ -88,14 +94,18 @@ class __$MultiFileCopyWithImpl<T, $Res> extends _$MultiFileCopyWithImpl<T, $Res>
 
   @override
   $Res call({
-    Object files = freezed,
-    Object platformFiles = freezed,
+    Object? files = freezed,
+    Object? platformFiles = freezed,
   }) {
     return _then(_MultiFile<T>(
-      files: files == freezed ? _value.files : files as List<T>,
+      files: files == freezed
+          ? _value.files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<T>,
       platformFiles: platformFiles == freezed
           ? _value.platformFiles
-          : platformFiles as List<PlatformFile>,
+          : platformFiles // ignore: cast_nullable_to_non_nullable
+              as List<PlatformFile>,
     ));
   }
 }
@@ -103,9 +113,7 @@ class __$MultiFileCopyWithImpl<T, $Res> extends _$MultiFileCopyWithImpl<T, $Res>
 /// @nodoc
 class _$_MultiFile<T> extends _MultiFile<T> {
   const _$_MultiFile({this.files = const [], this.platformFiles = const []})
-      : assert(files != null),
-        assert(platformFiles != null),
-        super._();
+      : super._();
 
   @JsonKey(defaultValue: const [])
   @override
@@ -143,15 +151,16 @@ class _$_MultiFile<T> extends _MultiFile<T> {
 }
 
 abstract class _MultiFile<T> extends MultiFile<T> {
-  const _MultiFile._() : super._();
   const factory _MultiFile({List<T> files, List<PlatformFile> platformFiles}) =
       _$_MultiFile<T>;
+  const _MultiFile._() : super._();
 
   @override
-  List<T> get files;
+  List<T> get files => throw _privateConstructorUsedError;
   @override
-  List<PlatformFile> get platformFiles;
+  List<PlatformFile> get platformFiles => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MultiFileCopyWith<T, _MultiFile<T>> get copyWith;
+  _$MultiFileCopyWith<T, _MultiFile<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }
