@@ -22,7 +22,7 @@ class DateTimeRangeValueAccessor
 
   @override
   DateTimeRange? viewToModelValue(String? viewValue) {
-    final dateRange = viewValue?.trim()?.split(delimiter);
+    final dateRange = viewValue?.trim().split(delimiter);
 
     return dateRange == null || dateRange.isEmpty
         ? null
