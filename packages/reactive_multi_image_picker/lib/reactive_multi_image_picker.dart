@@ -24,7 +24,8 @@ typedef Widget ImagePickerBuilder<T>(
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveMultiImagePicker<T> extends ReactiveFormField<MultiImage<T>> {
+class ReactiveMultiImagePicker<T>
+    extends ReactiveFormField<MultiImage<T>, MultiImage<T>> {
   /// Creates a [ReactiveMultiImagePicker] that contains a [CupertinoSegmentedControl].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -89,18 +90,19 @@ class ReactiveMultiImagePicker<T> extends ReactiveFormField<MultiImage<T>> {
   /// For documentation about the various parameters, see the [CupertinoSegmentedControl] class
   /// and [new CupertinoSegmentedControl], the constructor.
   ReactiveMultiImagePicker({
-    Key key,
-    String formControlName,
-    InputDecoration decoration,
-    FormControl formControl,
-    ValidationMessagesFunction validationMessages,
-    ControlValueAccessor valueAccessor,
-    ShowErrorsFunction showErrors,
-    @required ImagePickerBuilder<T> imagePickerBuilder,
+    Key? key,
+    String? formControlName,
+    InputDecoration? decoration,
+    FormControl<MultiImage<T>>? formControl,
+    ValidationMessagesFunction? validationMessages,
+    ControlValueAccessor<MultiImage<T>, MultiImage<T>>? valueAccessor,
+    ShowErrorsFunction? showErrors,
+    required ImagePickerBuilder<T> imagePickerBuilder,
     int maxImages = 300,
     bool enableCamera = false,
     CupertinoOptions cupertinoOptions = const CupertinoOptions(),
     MaterialOptions materialOptions = const MaterialOptions(),
+    double disabledOpacity = 0.5,
   }) : super(
           key: key,
           formControl: formControl,
@@ -108,13 +110,14 @@ class ReactiveMultiImagePicker<T> extends ReactiveFormField<MultiImage<T>> {
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState field) {
-            final value = field.value as MultiImage<T> ?? MultiImage<T>();
+          builder: (field) {
+            final value = field.value ?? MultiImage<T>();
+
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
-            String pickerError;
+            String? pickerError;
 
             final pickImage = () async {
               try {
@@ -138,10 +141,16 @@ class ReactiveMultiImagePicker<T> extends ReactiveFormField<MultiImage<T>> {
                 errorText: field.errorText ?? pickerError,
                 enabled: field.control.enabled,
               ),
-              child: imagePickerBuilder?.call(pickImage, value, (images) {
-                field.control.markAsTouched();
-                field.didChange(images);
-              }),
+              child: IgnorePointer(
+                ignoring: !field.control.enabled,
+                child: Opacity(
+                  opacity: field.control.enabled ? 1 : disabledOpacity,
+                  child: imagePickerBuilder.call(pickImage, value, (images) {
+                    field.control.markAsTouched();
+                    field.didChange(images);
+                  }),
+                ),
+              ),
             );
           },
         );

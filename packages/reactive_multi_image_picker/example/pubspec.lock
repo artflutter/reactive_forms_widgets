@@ -73,7 +73,7 @@ packages:
       name: freezed_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.0"
+    version: "0.14.1"
   intl:
     dependency: transitive
     description:
@@ -87,7 +87,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.1"
+    version: "4.0.1"
   matcher:
     dependency: transitive
     description:
@@ -122,14 +122,14 @@ packages:
       name: reactive_forms
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "9.1.0"
+    version: "10.0.2"
   reactive_multi_image_picker:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.1.1"
+    version: "0.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -193,4 +193,4 @@ packages:
     version: "2.1.0"
 sdks:
   dart: ">=2.12.0 <3.0.0"
-  flutter: ">=1.17.0"
+  flutter: ">=1.20.0"

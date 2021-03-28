@@ -18,8 +18,6 @@ typedef Widget FilePickerBuilder<T>(
   FilePickerChangeCallback<T> onChange,
 );
 
-typedef Widget Test<T>(T data);
-
 /// A [ReactiveFilePicker] that contains a [TouchSpin].
 ///
 /// This is a convenience widget that wraps a [TouchSpin] widget in a
@@ -92,30 +90,25 @@ class ReactiveFilePicker<T>
   ///
   /// For documentation about the various parameters, see the [TouchSpin] class
   /// and [new TouchSpin], the constructor.
-
-  final Test<T>? b;
-
-  ReactiveFilePicker(
-      {Key? key,
-      String? formControlName,
-      InputDecoration? decoration,
-      FormControl<MultiFile<T>>? formControl,
-      ValidationMessagesFunction? validationMessages,
-      ControlValueAccessor<MultiFile<T>, MultiFile<T>>? valueAccessor,
-      ShowErrorsFunction? showErrors,
-      //
-      this.b,
-      FilePickerBuilder<T>? filePickerBuilder,
-      bool allowMultiple = false,
-      required Test<T> test,
-      FileType type = FileType.any,
-      List<String>? allowedExtensions,
-      Function(FilePickerStatus)? onFileLoading,
-      bool allowCompression = false,
-      bool withData = false,
-      bool withReadStream = false,
-      double disabledOpacity = 0.5})
-      : super(
+  ReactiveFilePicker({
+    Key? key,
+    String? formControlName,
+    InputDecoration? decoration,
+    FormControl<MultiFile<T>>? formControl,
+    ValidationMessagesFunction? validationMessages,
+    ControlValueAccessor<MultiFile<T>, MultiFile<T>>? valueAccessor,
+    ShowErrorsFunction? showErrors,
+    //
+    FilePickerBuilder<T>? filePickerBuilder,
+    bool allowMultiple = false,
+    FileType type = FileType.any,
+    List<String>? allowedExtensions,
+    Function(FilePickerStatus)? onFileLoading,
+    bool allowCompression = false,
+    bool withData = false,
+    bool withReadStream = false,
+    double disabledOpacity = 0.5,
+  }) : super(
           key: key,
           formControl: formControl,
           formControlName: formControlName,
@@ -127,9 +120,6 @@ class ReactiveFilePicker<T>
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
-
-            final a = test(null);
-            final c = b?.call(null);
 
             String? pickerError;
 

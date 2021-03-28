@@ -1,4 +1,8 @@
 
+## [0.2.0]
+
+* null safety
+
 ## [0.1.1]
 
 * excluded pubspec.lock from package

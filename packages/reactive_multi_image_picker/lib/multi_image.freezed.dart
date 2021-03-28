@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'multi_image.dart';
 
@@ -9,11 +9,13 @@ part of 'multi_image.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$MultiImageTearOff {
   const _$MultiImageTearOff();
 
-// ignore: unused_element
   _MultiImage<T> call<T>(
       {List<T> images = const [], List<Asset> assets = const []}) {
     return _MultiImage<T>(
@@ -24,16 +26,16 @@ class _$MultiImageTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $MultiImage = _$MultiImageTearOff();
 
 /// @nodoc
 mixin _$MultiImage<T> {
-  List<T> get images;
-  List<Asset> get assets;
+  List<T> get images => throw _privateConstructorUsedError;
+  List<Asset> get assets => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MultiImageCopyWith<T, MultiImage<T>> get copyWith;
+  $MultiImageCopyWith<T, MultiImage<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -55,12 +57,18 @@ class _$MultiImageCopyWithImpl<T, $Res>
 
   @override
   $Res call({
-    Object images = freezed,
-    Object assets = freezed,
+    Object? images = freezed,
+    Object? assets = freezed,
   }) {
     return _then(_value.copyWith(
-      images: images == freezed ? _value.images : images as List<T>,
-      assets: assets == freezed ? _value.assets : assets as List<Asset>,
+      images: images == freezed
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<T>,
+      assets: assets == freezed
+          ? _value.assets
+          : assets // ignore: cast_nullable_to_non_nullable
+              as List<Asset>,
     ));
   }
 }
@@ -88,12 +96,18 @@ class __$MultiImageCopyWithImpl<T, $Res>
 
   @override
   $Res call({
-    Object images = freezed,
-    Object assets = freezed,
+    Object? images = freezed,
+    Object? assets = freezed,
   }) {
     return _then(_MultiImage<T>(
-      images: images == freezed ? _value.images : images as List<T>,
-      assets: assets == freezed ? _value.assets : assets as List<Asset>,
+      images: images == freezed
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<T>,
+      assets: assets == freezed
+          ? _value.assets
+          : assets // ignore: cast_nullable_to_non_nullable
+              as List<Asset>,
     ));
   }
 }
@@ -101,9 +115,7 @@ class __$MultiImageCopyWithImpl<T, $Res>
 /// @nodoc
 class _$_MultiImage<T> extends _MultiImage<T> {
   const _$_MultiImage({this.images = const [], this.assets = const []})
-      : assert(images != null),
-        assert(assets != null),
-        super._();
+      : super._();
 
   @JsonKey(defaultValue: const [])
   @override
@@ -140,15 +152,16 @@ class _$_MultiImage<T> extends _MultiImage<T> {
 }
 
 abstract class _MultiImage<T> extends MultiImage<T> {
-  const _MultiImage._() : super._();
   const factory _MultiImage({List<T> images, List<Asset> assets}) =
       _$_MultiImage<T>;
+  const _MultiImage._() : super._();
 
   @override
-  List<T> get images;
+  List<T> get images => throw _privateConstructorUsedError;
   @override
-  List<Asset> get assets;
+  List<Asset> get assets => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MultiImageCopyWith<T, _MultiImage<T>> get copyWith;
+  _$MultiImageCopyWith<T, _MultiImage<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }
