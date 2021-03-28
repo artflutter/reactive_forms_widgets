@@ -12,7 +12,6 @@ class Widgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SampleScreen(
-      title: Text('Dropdown sample'),
       body: ReactiveFormBuilder(
         form: buildForm,
         builder: (context, form, child) {
@@ -27,18 +26,8 @@ class Widgets extends StatelessWidget {
                     enabledBorder: InputBorder.none,
                     disabledBorder: InputBorder.none,
                     helperText: ''),
-                inputBuilder: (onPressed) => FlatButton.icon(
-                  height: 50,
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: Color(0xFF00A7E1),
-                      width: 1,
-                      style: BorderStyle.solid,
-                    ),
-                  ),
+                inputBuilder: (onPressed) => TextButton.icon(
                   onPressed: onPressed,
-                  padding: const EdgeInsets.symmetric(vertical: 8),
                   icon: Icon(Icons.add),
                   label: Text('Add an image'),
                 ),

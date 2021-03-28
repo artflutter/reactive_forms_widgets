@@ -5,13 +5,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'image_file.freezed.dart';
 
 @freezed
-abstract class ImageFile implements _$ImageFile {
+class ImageFile with _$ImageFile {
   const ImageFile._();
 
   const factory ImageFile({
-    String imageUrl,
-    String localImage,
-    File image,
+    String? imageUrl,
+    String? localImage,
+    File? image,
   }) = _ImageFile;
 
   bool get isEmpty {

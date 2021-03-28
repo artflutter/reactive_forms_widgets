@@ -18,25 +18,29 @@ class Widgets extends StatelessWidget {
         builder: (context, form, child) {
           return Column(
             children: [
-              ReactiveDropdownSearch(
+              ReactiveDropdownSearch<String>(
                 formControlName: 'menu',
                 decoration: InputDecoration(
                   helperText: '',
                   contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                   border: OutlineInputBorder(),
                 ),
-                mode: ReactiveDropdownSearchMode.MENU,
+                mode: Mode.MENU,
                 hint: "Select a country",
                 showSelectedItem: true,
                 items: ["Brazil", "Italia (Disabled)", "Tunisia", 'Canada'],
                 label: "Menu mode *",
                 showClearButton: true,
-                popupItemDisabled: (String s) => s.startsWith('I'),
+                popupItemDisabled: (s) {
+                  print(s);
+                  return true;
+                  return s.startsWith('I');
+                },
               ),
               SizedBox(height: 8),
               ReactiveDropdownSearch<String>(
                 formControlName: 'bottomSheet',
-                mode: ReactiveDropdownSearchMode.BOTTOM_SHEET,
+                mode: Mode.BOTTOM_SHEET,
                 decoration: InputDecoration(
                   helperText: '',
                   contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),

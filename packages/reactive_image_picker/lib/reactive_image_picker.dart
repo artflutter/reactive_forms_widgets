@@ -34,7 +34,7 @@ typedef void ImagePickCallback(BuildContext context, ImageSource source);
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveImagePicker extends ReactiveFormField<ImageFile> {
+class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
   /// Creates a [ReactiveImagePicker] that contains a [DropdownSearch].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -98,22 +98,22 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile> {
   /// For documentation about the various parameters, see the [ImagePicker] class
   /// and [new ImagePicker], the constructor.
   ReactiveImagePicker({
-    Key key,
-    String formControlName,
-    InputDecoration decoration,
-    InputButtonBuilder inputBuilder,
-    ImageViewBuilder imageViewBuilder,
-    DeleteDialogBuilder deleteDialogBuilder,
-    ErrorPickBuilder errorPickBuilder,
-    PopupDialogBuilder popupDialogBuilder,
-    BoxDecoration imageContainerDecoration,
-    OnBeforeChangeCallback onBeforeChange,
-    Widget editIcon,
-    Widget deleteIcon,
-    FormControl formControl,
-    ValidationMessagesFunction validationMessages,
-    ControlValueAccessor valueAccessor,
-    ShowErrorsFunction showErrors,
+    Key? key,
+    String? formControlName,
+    InputDecoration? decoration,
+    InputButtonBuilder? inputBuilder,
+    ImageViewBuilder? imageViewBuilder,
+    DeleteDialogBuilder? deleteDialogBuilder,
+    ErrorPickBuilder? errorPickBuilder,
+    PopupDialogBuilder? popupDialogBuilder,
+    BoxDecoration? imageContainerDecoration,
+    OnBeforeChangeCallback? onBeforeChange,
+    Widget? editIcon,
+    Widget? deleteIcon,
+    FormControl<ImageFile>? formControl,
+    ValidationMessagesFunction? validationMessages,
+    ControlValueAccessor<ImageFile, ImageFile>? valueAccessor,
+    ShowErrorsFunction? showErrors,
     bool enabled = true,
   }) : super(
           key: key,
@@ -123,14 +123,14 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile> {
           validationMessages: (control) {
             final error = validationMessages?.call(control) ?? {};
 
-            if (error?.containsKey(ImageSource.camera.toString()) != true) {
+            if (error.containsKey(ImageSource.camera.toString()) != true) {
               error.addEntries([
                 MapEntry(ImageSource.camera.toString(),
                     'Error while taking image from camera')
               ]);
             }
 
-            if (error?.containsKey(ImageSource.gallery.toString()) != true) {
+            if (error.containsKey(ImageSource.gallery.toString()) != true) {
               error.addEntries([
                 MapEntry(ImageSource.gallery.toString(),
                     'Error while taking image from gallery')
@@ -140,7 +140,7 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile> {
             return error;
           },
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState field) {
+          builder: (field) {
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
@@ -152,15 +152,15 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile> {
                 popupDialogBuilder: popupDialogBuilder,
                 onBeforeChange: onBeforeChange,
                 errorPickBuilder: errorPickBuilder ??
-                    (ImageSource source, {BuildContext context}) {
+                    (source, {BuildContext? context}) {
                       if (source == ImageSource.camera) {
-                        field.control.setErrors(<String, dynamic>{
+                        field.control.setErrors(<String, Object>{
                           ImageSource.camera.toString(): true,
                         });
                       }
 
                       if (source == ImageSource.gallery) {
-                        field.control.setErrors(<String, dynamic>{
+                        field.control.setErrors(<String, Object>{
                           ImageSource.gallery.toString(): true,
                         });
                       }
@@ -173,7 +173,7 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile> {
                 decoration:
                     effectiveDecoration.copyWith(errorText: field.errorText),
                 onChanged: field.didChange,
-                value: field.value as ImageFile,
+                value: field.value ?? ImageFile(),
               ),
             );
           },
@@ -182,25 +182,25 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile> {
 
 class ImagePickerWidget extends StatelessWidget {
   final InputDecoration decoration;
-  final OnBeforeChangeCallback onBeforeChange;
-  final BoxDecoration imageContainerDecoration;
-  final Widget editIcon;
-  final Widget deleteIcon;
-  final InputButtonBuilder inputBuilder;
-  final ImageViewBuilder imageViewBuilder;
-  final DeleteDialogBuilder deleteDialogBuilder;
-  final ErrorPickBuilder errorPickBuilder;
-  final PopupDialogBuilder popupDialogBuilder;
+  final OnBeforeChangeCallback? onBeforeChange;
+  final BoxDecoration? imageContainerDecoration;
+  final Widget? editIcon;
+  final Widget? deleteIcon;
+  final InputButtonBuilder? inputBuilder;
+  final ImageViewBuilder? imageViewBuilder;
+  final DeleteDialogBuilder? deleteDialogBuilder;
+  final ErrorPickBuilder? errorPickBuilder;
+  final PopupDialogBuilder? popupDialogBuilder;
   final ImageFile value;
   final bool enabled;
-  final ValueChanged<ImageFile> onChanged;
+  final ValueChanged<ImageFile?> onChanged;
 
   const ImagePickerWidget({
-    Key key,
-    this.value,
+    Key? key,
+    required this.value,
     this.enabled = true,
-    this.onChanged,
-    this.decoration,
+    required this.onChanged,
+    required this.decoration,
     this.imageViewBuilder,
     this.inputBuilder,
     this.imageContainerDecoration,
@@ -219,11 +219,10 @@ class ImagePickerWidget extends StatelessWidget {
       final pickedFile = await picker.getImage(source: source);
 
       if (pickedFile != null) {
-        final imageFile =
-            (value ?? ImageFile()).copyWith(image: File(pickedFile.path));
+        final imageFile = value.copyWith(image: File(pickedFile.path));
 
         onChanged(await onBeforeChange?.call(context, imageFile) ??
-            _onBeforeChange(imageFile));
+            await _onBeforeChange(imageFile));
       }
     } catch (e) {
       errorPickBuilder?.call(source, context: context);
@@ -234,7 +233,7 @@ class ImagePickerWidget extends StatelessWidget {
 
   void _buildPopupMenu(BuildContext context) {
     if (popupDialogBuilder != null) {
-      popupDialogBuilder(context, _onImageButtonPressed);
+      popupDialogBuilder?.call(context, _onImageButtonPressed);
       return;
     }
 
@@ -293,7 +292,7 @@ class ImagePickerWidget extends StatelessWidget {
         );
 
     if (deleteDialogBuilder != null) {
-      deleteDialogBuilder(context, onConfirm);
+      deleteDialogBuilder?.call(context, onConfirm);
       return;
     }
 
@@ -370,7 +369,7 @@ class ImagePickerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InputDecorator(
       decoration: decoration,
-      child: value?.isNotEmpty == true
+      child: value.isNotEmpty == true
           ? _buildImage(context)
           : inputBuilder?.call(() => _buildPopupMenu(context)) ??
               _buildInput(context),
@@ -381,27 +380,24 @@ class ImagePickerWidget extends StatelessWidget {
 class _ImageView extends StatelessWidget {
   final ImageFile image;
 
-  const _ImageView({Key key, this.image}) : super(key: key);
+  const _ImageView({Key? key, required this.image}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (image.image != null) {
-      return Image.file(
-        image.image,
-        fit: BoxFit.cover,
-      );
+    final imageFile = image.image;
+    if (imageFile != null) {
+      return Image.file(imageFile, fit: BoxFit.cover);
     }
 
-    if (image.localImage != null) {
-      final file = File(image.localImage);
-      return Image.memory(
-        file.readAsBytesSync(),
-        fit: BoxFit.cover,
-      );
+    final localImage = image.localImage;
+    if (localImage != null) {
+      final file = File(localImage);
+      return Image.memory(file.readAsBytesSync(), fit: BoxFit.cover);
     }
 
-    if (image.imageUrl != null) {
-      return Image.network(image.imageUrl);
+    final imageUrl = image.imageUrl;
+    if (imageUrl != null) {
+      return Image.network(imageUrl);
     }
 
     return Container();

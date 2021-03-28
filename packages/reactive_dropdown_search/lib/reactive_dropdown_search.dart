@@ -7,22 +7,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-enum ReactiveDropdownSearchMode { DIALOG, BOTTOM_SHEET, MENU }
-
-extension ReactiveDropdownSearchModeExt on ReactiveDropdownSearchMode {
-  Mode get dropdownMode {
-    switch (this) {
-      case ReactiveDropdownSearchMode.DIALOG:
-        return Mode.DIALOG;
-      case ReactiveDropdownSearchMode.BOTTOM_SHEET:
-        return Mode.BOTTOM_SHEET;
-      case ReactiveDropdownSearchMode.MENU:
-        return Mode.MENU;
-    }
-
-    return Mode.MENU;
-  }
-}
+export 'package:dropdown_search/dropdown_search.dart';
 
 /// A [ReactiveDropdownSearch] that contains a [DropdownSearch].
 ///
@@ -31,7 +16,7 @@ extension ReactiveDropdownSearchModeExt on ReactiveDropdownSearchMode {
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveDropdownSearch<T> extends ReactiveFormField<T> {
+class ReactiveDropdownSearch<T> extends ReactiveFormField<T, T> {
   /// Creates a [ReactiveDropdownSearch] that contains a [DropdownSearch].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -96,49 +81,49 @@ class ReactiveDropdownSearch<T> extends ReactiveFormField<T> {
   /// For documentation about the various parameters, see the [DropdownSearch] class
   /// and [new DropdownSearch], the constructor.
   ReactiveDropdownSearch({
-    Key key,
-    String formControlName,
-    FormControl formControl,
-    ValidationMessagesFunction validationMessages,
-    ControlValueAccessor valueAccessor,
-    ShowErrorsFunction showErrors,
-    ReactiveDropdownSearchMode mode = ReactiveDropdownSearchMode.DIALOG,
-    String label,
-    String hint,
+    Key? key,
+    String? formControlName,
+    FormControl<T>? formControl,
+    ValidationMessagesFunction? validationMessages,
+    ControlValueAccessor<T, T>? valueAccessor,
+    ShowErrorsFunction? showErrors,
+    Mode mode = Mode.DIALOG,
+    String? label,
+    String? hint,
     bool isFilteredOnline = false,
-    Widget popupTitle,
-    List<T> items,
-    DropdownSearchOnFind<T> onFind,
-    DropdownSearchBuilder<T> dropdownBuilder,
-    DropdownSearchPopupItemBuilder<T> popupItemBuilder,
+    Widget? popupTitle,
+    List<T>? items,
+    DropdownSearchOnFind<T>? onFind,
+    DropdownSearchBuilder<T>? dropdownBuilder,
+    DropdownSearchPopupItemBuilder<T>? popupItemBuilder,
     bool showSearchBox = false,
     bool showClearButton = false,
-    InputDecoration searchBoxDecoration,
-    Color popupBackgroundColor,
-    double maxHeight,
-    DropdownSearchFilterFn<T> filterFn,
-    DropdownSearchItemAsString<T> itemAsString,
+    InputDecoration? searchBoxDecoration,
+    Color? popupBackgroundColor,
+    double? maxHeight,
+    DropdownSearchFilterFn<T>? filterFn,
+    DropdownSearchItemAsString<T>? itemAsString,
     bool showSelectedItem = false,
-    DropdownSearchCompareFn<T> compareFn,
-    InputDecoration decoration,
-    EmptyBuilder emptyBuilder,
-    LoadingBuilder loadingBuilder,
-    ErrorBuilder errorBuilder,
+    DropdownSearchCompareFn<T>? compareFn,
+    InputDecoration? decoration,
+    EmptyBuilder? emptyBuilder,
+    LoadingBuilder? loadingBuilder,
+    ErrorBuilder? errorBuilder,
     bool showAsSuffixIcons = false,
     bool autoFocusSearchBox = false,
-    double dialogMaxWidth,
-    Widget clearButton,
-    IconButtonBuilder clearButtonBuilder,
-    Widget dropDownButton,
-    IconButtonBuilder dropdownButtonBuilder,
+    double? dialogMaxWidth,
+    Widget? clearButton,
+    IconButtonBuilder? clearButtonBuilder,
+    Widget? dropDownButton,
+    IconButtonBuilder? dropdownButtonBuilder,
     bool dropdownBuilderSupportsNullItem = false,
-    ShapeBorder popupShape,
-    VoidCallback onPopupDismissed,
-    DropdownSearchPopupItemEnabled<T> popupItemDisabled,
-    Color popupBarrierColor,
-    TextEditingController searchBoxController,
-    Duration searchDelay,
-    BeforeChange<T> onBeforeChange,
+    ShapeBorder? popupShape,
+    VoidCallback? onPopupDismissed,
+    DropdownSearchPopupItemEnabled<T>? popupItemDisabled,
+    Color? popupBarrierColor,
+    TextEditingController? searchBoxController,
+    Duration? searchDelay,
+    BeforeChange<T>? onBeforeChange,
   }) : super(
           key: key,
           formControl: formControl,
@@ -153,7 +138,7 @@ class ReactiveDropdownSearch<T> extends ReactiveFormField<T> {
 
             return DropdownSearch<T>(
               onChanged: field.didChange,
-              mode: mode.dropdownMode,
+              mode: mode,
               label: label,
               hint: hint,
               isFilteredOnline: isFilteredOnline,
