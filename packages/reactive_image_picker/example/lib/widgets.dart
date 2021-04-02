@@ -6,7 +6,10 @@ import 'package:reactive_image_picker/reactive_image_picker.dart';
 
 class Widgets extends StatelessWidget {
   FormGroup buildForm() => fb.group({
-        'image': FormControl<ImageFile>(),
+        'image': FormControl<ImageFile>(
+            value: ImageFile(
+                imageUrl:
+                    'https://media.gettyimages.com/photos/urban-landscape-picture-id1019005768?s=612x612')),
       });
 
   @override

@@ -1,4 +1,7 @@
 
+## [0.1.3-beta]
+* beta do not use
+
 ## [0.1.0]
 * onBefore change callback to allow image pre-processing
 

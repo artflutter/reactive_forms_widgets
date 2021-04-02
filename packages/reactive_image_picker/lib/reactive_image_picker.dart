@@ -123,14 +123,14 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile> {
           validationMessages: (control) {
             final error = validationMessages?.call(control) ?? {};
 
-            if (error?.containsKey(ImageSource.camera.toString()) != true) {
+            if (error?.containsKey(ImageSource.camera.toString()) == true) {
               error.addEntries([
                 MapEntry(ImageSource.camera.toString(),
                     'Error while taking image from camera')
               ]);
             }
 
-            if (error?.containsKey(ImageSource.gallery.toString()) != true) {
+            if (error?.containsKey(ImageSource.gallery.toString()) == true) {
               error.addEntries([
                 MapEntry(ImageSource.gallery.toString(),
                     'Error while taking image from gallery')
@@ -223,7 +223,7 @@ class ImagePickerWidget extends StatelessWidget {
             (value ?? ImageFile()).copyWith(image: File(pickedFile.path));
 
         onChanged(await onBeforeChange?.call(context, imageFile) ??
-            _onBeforeChange(imageFile));
+            await _onBeforeChange(imageFile));
       }
     } catch (e) {
       errorPickBuilder?.call(source, context: context);
@@ -288,9 +288,7 @@ class ImagePickerWidget extends StatelessWidget {
   }
 
   void _handleDelete(BuildContext context) {
-    final onConfirm = () => onChanged(
-          value.copyWith(image: null, localImage: null),
-        );
+    final onConfirm = () => onChanged(null);
 
     if (deleteDialogBuilder != null) {
       deleteDialogBuilder(context, onConfirm);
@@ -344,13 +342,11 @@ class ImagePickerWidget extends StatelessWidget {
                   onPressed: () => _buildPopupMenu(context),
                   icon: editIcon ?? Icon(Icons.edit),
                 ),
-                if (value.image != null || value.localImage != null)
-                  SizedBox(width: 8),
-                if (value.image != null || value.localImage != null)
-                  IconButton(
-                    onPressed: () => _handleDelete(context),
-                    icon: deleteIcon ?? Icon(Icons.delete),
-                  )
+                SizedBox(width: 8),
+                IconButton(
+                  onPressed: () => _handleDelete(context),
+                  icon: deleteIcon ?? Icon(Icons.delete),
+                )
               ],
             )
         ],
