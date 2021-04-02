@@ -287,9 +287,7 @@ class ImagePickerWidget extends StatelessWidget {
   }
 
   void _handleDelete(BuildContext context) {
-    final onConfirm = () => onChanged(
-          value.copyWith(image: null, localImage: null),
-        );
+    final onConfirm = () => onChanged(null);
 
     if (deleteDialogBuilder != null) {
       deleteDialogBuilder?.call(context, onConfirm);
@@ -343,13 +341,11 @@ class ImagePickerWidget extends StatelessWidget {
                   onPressed: () => _buildPopupMenu(context),
                   icon: editIcon ?? Icon(Icons.edit),
                 ),
-                if (value.image != null || value.localImage != null)
-                  SizedBox(width: 8),
-                if (value.image != null || value.localImage != null)
-                  IconButton(
-                    onPressed: () => _handleDelete(context),
-                    icon: deleteIcon ?? Icon(Icons.delete),
-                  )
+                SizedBox(width: 8),
+                IconButton(
+                  onPressed: () => _handleDelete(context),
+                  icon: deleteIcon ?? Icon(Icons.delete),
+                )
               ],
             )
         ],

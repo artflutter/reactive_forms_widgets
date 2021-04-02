@@ -1,4 +1,7 @@
 
+## [0.2.1]
+* bugfix - unable to delete existing image
+
 ## [0.2.0]
 * null safety
 
