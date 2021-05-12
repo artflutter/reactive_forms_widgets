@@ -123,7 +123,12 @@ class ReactiveDropdownSearch<T> extends ReactiveFormField<T, T> {
     Color? popupBarrierColor,
     TextEditingController? searchBoxController,
     Duration? searchDelay,
-    BeforeChange<T>? onBeforeChange,
+    BeforeChange<T?>? onBeforeChange,
+    bool showFavoriteItems = false,
+    FavoriteItemsBuilder<T>? favoriteItemBuilder,
+    FavoriteItems<T>? favoriteItems,
+    MainAxisAlignment? favoriteItemsAlignment,
+    PopupSafeArea popupSafeArea = const PopupSafeArea(),
   }) : super(
           key: key,
           formControl: formControl,
@@ -181,6 +186,11 @@ class ReactiveDropdownSearch<T> extends ReactiveFormField<T, T> {
               searchBoxController: searchBoxController,
               searchDelay: searchDelay,
               onBeforeChange: onBeforeChange,
+              showFavoriteItems: showFavoriteItems,
+              favoriteItemBuilder: favoriteItemBuilder,
+              favoriteItems: favoriteItems,
+              favoriteItemsAlignment: favoriteItemsAlignment,
+              popupSafeArea: popupSafeArea,
             );
           },
         );
