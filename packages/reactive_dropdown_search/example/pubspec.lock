@@ -49,14 +49,14 @@ packages:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   dropdown_search:
     dependency: transitive
     description:
       name: dropdown_search
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.0"
+    version: "0.6.1"
   fake_async:
     dependency: transitive
     description:
@@ -115,7 +115,7 @@ packages:
       name: reactive_forms
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "10.0.2"
+    version: "10.2.0"
   sky_engine:
     dependency: transitive
     description: flutter

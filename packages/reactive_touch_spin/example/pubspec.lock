@@ -49,7 +49,7 @@ packages:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   fake_async:
     dependency: transitive
     description:
@@ -108,14 +108,14 @@ packages:
       name: reactive_forms
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "10.0.2"
+    version: "10.2.0"
   reactive_touch_spin:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.1.0-nullsafety.0"
+    version: "0.1.0-nullsafety.1"
   sky_engine:
     dependency: transitive
     description: flutter

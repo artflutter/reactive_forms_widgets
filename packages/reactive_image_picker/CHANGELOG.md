@@ -1,3 +1,6 @@
+## [0.2.2]
+
+* package update
 
 ## [0.2.1]
 * bugfix - unable to delete existing image

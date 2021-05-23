@@ -32,8 +32,6 @@ class Widgets extends StatelessWidget {
                 label: "Menu mode *",
                 showClearButton: true,
                 popupItemDisabled: (s) {
-                  print(s);
-                  return true;
                   return s.startsWith('I');
                 },
               ),

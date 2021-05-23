@@ -43,6 +43,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
+  cupertino_icons:
+    dependency: "direct main"
+    description:
+      name: cupertino_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   fake_async:
     dependency: transitive
     description:
@@ -55,13 +62,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_advanced_switch:
-    dependency: "direct main"
+  flutter_advanced_segment:
+    dependency: transitive
     description:
-      name: flutter_advanced_switch
+      name: flutter_advanced_segment
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2+2"
+    version: "2.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -95,13 +102,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+  reactive_advanced_segment:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.0.1"
   reactive_forms:
     dependency: "direct main"
     description:
       name: reactive_forms
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "10.2.0"
+    version: "10.0.2"
   sky_engine:
     dependency: transitive
     description: flutter
