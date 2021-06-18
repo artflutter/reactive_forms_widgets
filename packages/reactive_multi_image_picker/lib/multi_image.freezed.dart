@@ -113,6 +113,7 @@ class __$MultiImageCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$_MultiImage<T> extends _MultiImage<T> {
   const _$_MultiImage({this.images = const [], this.assets = const []})
       : super._();

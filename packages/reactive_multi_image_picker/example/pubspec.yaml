@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^10.2.0
+  reactive_forms: ^10.4.1
   reactive_multi_image_picker:
     path: ../
 
