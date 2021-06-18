@@ -1,4 +1,8 @@
 
+## [0.1.1]
+
+* package updates
+
 ## [0.1.0]
 
 * null safety

@@ -111,6 +111,7 @@ class __$MultiFileCopyWithImpl<T, $Res> extends _$MultiFileCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$_MultiFile<T> extends _MultiFile<T> {
   const _$_MultiFile({this.files = const [], this.platformFiles = const []})
       : super._();
