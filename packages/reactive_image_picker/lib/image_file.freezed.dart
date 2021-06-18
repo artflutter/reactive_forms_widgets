@@ -119,6 +119,7 @@ class __$ImageFileCopyWithImpl<$Res> extends _$ImageFileCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_ImageFile extends _ImageFile {
   const _$_ImageFile({this.imageUrl, this.localImage, this.image}) : super._();
 
