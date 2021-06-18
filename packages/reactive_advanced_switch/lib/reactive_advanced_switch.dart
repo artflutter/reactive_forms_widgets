@@ -94,6 +94,7 @@ class ReactiveAdvancedSwitch<T> extends ReactiveFormField<T, bool> {
         const BorderRadius.all(const Radius.circular(15)),
     double width = 50.0,
     double height = 30.0,
+    Widget? thumb,
   }) : super(
           key: key,
           formControl: formControl,
@@ -119,6 +120,7 @@ class ReactiveAdvancedSwitch<T> extends ReactiveFormField<T, bool> {
               width: width,
               height: height,
               enabled: field.control.enabled,
+              thumb: thumb,
             );
 
             return InputDecorator(
