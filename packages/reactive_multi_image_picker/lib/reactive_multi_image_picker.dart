@@ -94,7 +94,7 @@ class ReactiveMultiImagePicker<T>
     String? formControlName,
     InputDecoration? decoration,
     FormControl<MultiImage<T>>? formControl,
-    ValidationMessagesFunction? validationMessages,
+    ValidationMessagesFunction<MultiImage<T>>? validationMessages,
     ControlValueAccessor<MultiImage<T>, MultiImage<T>>? valueAccessor,
     ShowErrorsFunction? showErrors,
     required ImagePickerBuilder<T> imagePickerBuilder,

@@ -1,6 +1,6 @@
 name: reactive_multi_image_picker
 description: Wrapper around multi_image_picker to use with reactive_forms
-version: 0.2.2
+version: 0.2.3
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:

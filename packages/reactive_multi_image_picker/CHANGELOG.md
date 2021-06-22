@@ -1,3 +1,7 @@
+## [0.2.3]
+
+* validation messages function type
+
 ## [0.2.2]
 
 * package update
