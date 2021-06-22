@@ -28,6 +28,9 @@ class ReactiveRangeSlider extends ReactiveFormField<RangeValues, RangeValues> {
     String? formControlName,
     FormControl<RangeValues>? formControl,
     InputDecoration? decoration,
+    ValidationMessagesFunction<RangeValues>? validationMessages,
+    ControlValueAccessor<RangeValues, RangeValues>? valueAccessor,
+    ShowErrorsFunction? showErrors,
     ReactiveRangeSliderLabelBuilder? labelBuilder,
     ValueChanged<RangeValues>? onChanged,
     ValueChanged<RangeValues>? onChangeStart,
@@ -43,6 +46,9 @@ class ReactiveRangeSlider extends ReactiveFormField<RangeValues, RangeValues> {
           key: key,
           formControl: formControl,
           formControlName: formControlName,
+          validationMessages: validationMessages,
+          valueAccessor: valueAccessor,
+          showErrors: showErrors,
           builder: (field) {
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
