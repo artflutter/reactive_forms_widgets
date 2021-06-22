@@ -80,7 +80,7 @@ class ReactiveAdvancedSwitch<T> extends ReactiveFormField<T, bool> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction? validationMessages,
+    ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, bool>? valueAccessor,
     ShowErrorsFunction? showErrors,
     InputDecoration? decoration = const InputDecoration(),
