@@ -84,7 +84,7 @@ class ReactiveSegmentedControl<T extends Object, K extends Object>
     String? formControlName,
     InputDecoration? decoration,
     FormControl<T>? formControl,
-    ValidationMessagesFunction? validationMessages,
+    ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, K>? valueAccessor,
     ShowErrorsFunction? showErrors,
     required Map<T, Widget> children,
