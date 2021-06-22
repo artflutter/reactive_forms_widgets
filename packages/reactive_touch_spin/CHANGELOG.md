@@ -1,3 +1,7 @@
+## [0.1.2-nullsafety.1]
+
+* validation messages type
+
 ## [0.1.1-nullsafety.1]
 
 * package update
