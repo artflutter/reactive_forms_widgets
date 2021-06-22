@@ -111,7 +111,7 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
     Widget? editIcon,
     Widget? deleteIcon,
     FormControl<ImageFile>? formControl,
-    ValidationMessagesFunction? validationMessages,
+    ValidationMessagesFunction<ImageFile>? validationMessages,
     ControlValueAccessor<ImageFile, ImageFile>? valueAccessor,
     ShowErrorsFunction? showErrors,
     bool enabled = true,
