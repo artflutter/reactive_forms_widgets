@@ -49,7 +49,7 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
     FormControl<DateTimeRange>? formControl,
     TextStyle? style,
     ControlValueAccessor<DateTimeRange, String>? valueAccessor,
-    ValidationMessagesFunction? validationMessages,
+    ValidationMessagesFunction<DateTimeRange>? validationMessages,
     InputDecoration? decoration,
     bool showClearIcon = true,
     Widget clearIcon = const Icon(Icons.clear),
