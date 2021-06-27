@@ -18,3 +18,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveTouchSpin](https://pub.dev/packages/reactive_touch_spin)** - wrapper around [`flutter_touch_spin`](https://pub.dev/packages/flutter_touch_spin)
 - **[ReactiveRangeSlider](https://pub.dev/packages/reactive_range_slider)** - wrapper around [`RangeSlider`](https://api.flutter.dev/flutter/material/RangeSlider-class.html)
 - **[ReactiveRangeSlider](https://pub.dev/packages/reactive_sleek_circular_slider)** - wrapper around [`sleek_circular_slider`](https://pub.dev/packages/sleek_circular_slider)
+- **[ReactiveCupertinoTextField](https://pub.dev/packages/reactive_cupertino_text_field)** - wrapper around [`CupertinoTextField`](https://api.flutter.dev/flutter/cupertino/CupertinoTextField-class.html)
