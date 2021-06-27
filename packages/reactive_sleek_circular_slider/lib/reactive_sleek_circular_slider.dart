@@ -6,6 +6,12 @@ import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 export 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
+enum OnChangeMode {
+  onChangeStart,
+  onChange,
+  onChangeEnd,
+}
+
 /// A [ReactiveSleekCircularSlider] that contains a [TouchSpin].
 ///
 /// This is a convenience widget that wraps a [TouchSpin] widget in a
@@ -82,14 +88,16 @@ class ReactiveSleekCircularSlider extends ReactiveFormField<double, double> {
     String? formControlName,
     InputDecoration? decoration,
     FormControl<double>? formControl,
-    ValidationMessagesFunction? validationMessages,
+    ValidationMessagesFunction<double>? validationMessages,
     ControlValueAccessor<double, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
     double min = 0,
     double max = 100,
     CircularSliderAppearance appearance = SleekCircularSlider.defaultAppearance,
     OnChange? onChangeStart,
+    OnChange? onChange,
     OnChange? onChangeEnd,
+    OnChangeMode onChangeMode = OnChangeMode.onChange,
     InnerWidget? innerWidget,
     Alignment alignment = Alignment.topCenter,
     double widthFactor = 1,
@@ -136,9 +144,16 @@ class ReactiveSleekCircularSlider extends ReactiveFormField<double, double> {
                         min: min,
                         max: max,
                         appearance: appearance,
-                        // onChange: field.didChange,
-                        onChangeStart: onChangeStart,
-                        onChangeEnd: field.didChange,
+                        onChange: onChangeMode == OnChangeMode.onChange
+                            ? field.didChange
+                            : onChange,
+                        onChangeStart:
+                            onChangeMode == OnChangeMode.onChangeStart
+                                ? field.didChange
+                                : onChangeStart,
+                        onChangeEnd: onChangeMode == OnChangeMode.onChangeEnd
+                            ? field.didChange
+                            : onChangeEnd,
                         innerWidget: innerWidget,
                       ),
                     ),
