@@ -120,7 +120,11 @@ class ReactiveCupertinoTextField<T> extends ReactiveFormField<T, String> {
     ControlValueAccessor<T, String>? valueAccessor,
     ShowErrorsFunction? showErrors,
     BoxDecoration decoration = _kDefaultRoundedBorderDecoration,
-    InputDecoration inputDecoration = const InputDecoration(),
+    InputDecoration inputDecoration = const InputDecoration(
+      border: InputBorder.none,
+      contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      isDense: true,
+    ),
     padding = const EdgeInsets.all(6.0),
     String? placeholder,
     TextInputType? keyboardType,

@@ -19,11 +19,6 @@ class Widgets extends StatelessWidget {
             children: [
               ReactiveCupertinoTextField(
                 formControlName: 'input',
-                inputDecoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  helperText: '',
-                ),
               ),
               SizedBox(height: 16),
               ElevatedButton(
