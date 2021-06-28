@@ -19,3 +19,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveRangeSlider](https://pub.dev/packages/reactive_range_slider)** - wrapper around [`RangeSlider`](https://api.flutter.dev/flutter/material/RangeSlider-class.html)
 - **[ReactiveRangeSlider](https://pub.dev/packages/reactive_sleek_circular_slider)** - wrapper around [`sleek_circular_slider`](https://pub.dev/packages/sleek_circular_slider)
 - **[ReactiveCupertinoTextField](https://pub.dev/packages/reactive_cupertino_text_field)** - wrapper around [`CupertinoTextField`](https://api.flutter.dev/flutter/cupertino/CupertinoTextField-class.html)
+- **[ReactiveRatingBar](https://pub.dev/packages/reactive_flutter_rating_bar)** - wrapper around [`flutter_rating_bar`](https://pub.dev/packages/flutter_rating_bar)
