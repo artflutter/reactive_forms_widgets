@@ -1,5 +1,5 @@
-name: reactive_flutter_rating_bar
-description: Wrapper around flutter_rating_bar to use with reactive_forms
+name: reactive_macos_ui
+description: Wrapper around macos_ui to use with reactive_forms
 version: 0.0.1
 repository: https://github.com/artflutter/reactive_forms_widgets
 
@@ -10,9 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   reactive_forms: ^10.4.1
-  flutter_rating_bar: ^4.0.0
+  macos_ui: ^0.6.0
 
 dev_dependencies:
   flutter_test:
