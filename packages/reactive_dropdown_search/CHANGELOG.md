@@ -1,3 +1,6 @@
+## [0.2.0]
+
+* internal package update
 
 ## [0.1.0]
 

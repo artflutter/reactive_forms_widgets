@@ -11,6 +11,7 @@ class Widgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final test = PopupSafeArea();
     return SampleScreen(
       title: Text('Dropdown sample'),
       body: ReactiveFormBuilder(

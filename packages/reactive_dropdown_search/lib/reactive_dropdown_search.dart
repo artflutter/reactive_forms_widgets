@@ -3,11 +3,11 @@ library reactive_dropdown_search;
 // Use of this source code is governed by the MIT license that can be
 // found in the LICENSE file.
 
-import 'package:dropdown_search/dropdown_search.dart';
+import 'package:dropdown_search2/dropdown_search2.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-export 'package:dropdown_search/dropdown_search.dart';
+export 'package:dropdown_search2/dropdown_search2.dart';
 
 /// A [ReactiveDropdownSearch] that contains a [DropdownSearch].
 ///
@@ -129,6 +129,16 @@ class ReactiveDropdownSearch<T> extends ReactiveFormField<T, T> {
     FavoriteItems<T>? favoriteItems,
     MainAxisAlignment? favoriteItemsAlignment,
     PopupSafeArea popupSafeArea = const PopupSafeArea(),
+    double? clearButtonSplashRadius,
+    double? dropdownButtonSplashRadius,
+    TextStyle? searchBoxStyle,
+    TextFieldProps? searchFieldProps,
+    ScrollbarProps? scrollbarProps,
+    bool popupBarrierDismissible = false,
+    TextStyle? dropdownSearchBaseStyle,
+    TextAlign? dropdownSearchTextAlign,
+    TextAlignVertical? dropdownSearchTextAlignVertical,
+    bool stickMenuToBorder = false,
   }) : super(
           key: key,
           formControl: formControl,
@@ -172,8 +182,10 @@ class ReactiveDropdownSearch<T> extends ReactiveFormField<T, T> {
               dialogMaxWidth: dialogMaxWidth,
               clearButton: clearButton,
               clearButtonBuilder: clearButtonBuilder,
+              clearButtonSplashRadius: clearButtonSplashRadius,
               dropDownButton: dropDownButton,
               dropdownButtonBuilder: dropdownButtonBuilder,
+              dropdownButtonSplashRadius: dropdownButtonSplashRadius,
               dropdownBuilderSupportsNullItem: dropdownBuilderSupportsNullItem,
               popupShape: popupShape,
               showAsSuffixIcons: showAsSuffixIcons,
@@ -190,7 +202,15 @@ class ReactiveDropdownSearch<T> extends ReactiveFormField<T, T> {
               favoriteItemBuilder: favoriteItemBuilder,
               favoriteItems: favoriteItems,
               favoriteItemsAlignment: favoriteItemsAlignment,
+              searchBoxStyle: searchBoxStyle,
               popupSafeArea: popupSafeArea,
+              searchFieldProps: searchFieldProps,
+              scrollbarProps: scrollbarProps,
+              popupBarrierDismissible: popupBarrierDismissible,
+              dropdownSearchBaseStyle: dropdownSearchBaseStyle,
+              dropdownSearchTextAlign: dropdownSearchTextAlign,
+              dropdownSearchTextAlignVertical: dropdownSearchTextAlignVertical,
+              stickMenuToBorder: stickMenuToBorder,
             );
           },
         );
