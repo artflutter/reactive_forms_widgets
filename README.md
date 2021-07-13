@@ -21,3 +21,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveCupertinoTextField](https://pub.dev/packages/reactive_cupertino_text_field)** - wrapper around [`CupertinoTextField`](https://api.flutter.dev/flutter/cupertino/CupertinoTextField-class.html)
 - **[ReactiveRatingBar](https://pub.dev/packages/reactive_flutter_rating_bar)** - wrapper around [`flutter_rating_bar`](https://pub.dev/packages/flutter_rating_bar)
 - **[ReactiveMacosUi](https://pub.dev/packages/reactive_macos_ui)** - wrapper around [`macos_ui`](https://pub.dev/packages/macos_ui)
+- **[ReactivePinPut](https://pub.dev/packages/reactive_pinput)** - wrapper around [`pinput`](https://pub.dev/packages/pinput)
