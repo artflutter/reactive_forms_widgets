@@ -1,3 +1,7 @@
+## [0.0.4]
+
+* package update
+
 ## [0.0.3]
 
 * updated default input decoration
