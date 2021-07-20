@@ -1,6 +1,6 @@
 name: reactive_cupertino_slider
 description: Wrapper around CupertinoSlider to use with reactive_forms.
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^10.4.1
+  reactive_forms: ^10.5.0
 
 dev_dependencies:
   flutter_test:
