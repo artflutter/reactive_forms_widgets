@@ -1,3 +1,7 @@
+## [0.1.4]
+
+* validation messages function type
+
 ## [0.1.3]
 
 * validation messages function type
