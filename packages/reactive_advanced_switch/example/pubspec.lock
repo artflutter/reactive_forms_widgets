@@ -115,7 +115,7 @@ packages:
       name: reactive_forms
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "10.4.1"
+    version: "10.5.0"
   sky_engine:
     dependency: transitive
     description: flutter
