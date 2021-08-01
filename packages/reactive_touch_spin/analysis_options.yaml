@@ -1,0 +1,8 @@
+linter:
+  rules:
+    close_sink: false
+
+analyzer:
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false

@@ -75,7 +75,7 @@ packages:
     source: hosted
     version: "2.0.0-nullsafety.1"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
@@ -108,14 +108,14 @@ packages:
       name: reactive_forms
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "10.4.1"
+    version: "10.5.0"
   reactive_touch_spin:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.1.2-nullsafety.1"
+    version: "0.2.0-nullsafety.1"
   sky_engine:
     dependency: transitive
     description: flutter

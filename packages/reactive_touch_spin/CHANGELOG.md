@@ -1,3 +1,8 @@
+## [0.2.0-nullsafety.1]
+
+* valueAccessor support
+* strong-mode
+
 ## [0.1.2-nullsafety.1]
 
 * validation messages type

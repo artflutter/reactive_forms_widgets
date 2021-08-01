@@ -12,7 +12,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveTouchSpin extends ReactiveFormField<num, num> {
+class ReactiveTouchSpin<T> extends ReactiveFormField<T, num> {
   /// Creates a [ReactiveTouchSpin] that contains a [TouchSpin].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -80,9 +80,9 @@ class ReactiveTouchSpin extends ReactiveFormField<num, num> {
     Key? key,
     String? formControlName,
     InputDecoration? decoration,
-    FormControl<num>? formControl,
-    ValidationMessagesFunction<num>? validationMessages,
-    ControlValueAccessor<num, num>? valueAccessor,
+    FormControl<T>? formControl,
+    ValidationMessagesFunction<T>? validationMessages,
+    ControlValueAccessor<T, num>? valueAccessor,
     ShowErrorsFunction? showErrors,
     num min = 1.0,
     num max = 9999999.0,

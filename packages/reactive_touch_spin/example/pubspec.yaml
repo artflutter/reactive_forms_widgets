@@ -23,7 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^10.4.1
+  reactive_forms: ^10.5.0
+  intl: ^0.17.0
   reactive_touch_spin:
     path: ../
 
