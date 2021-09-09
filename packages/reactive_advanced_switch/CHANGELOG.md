@@ -1,3 +1,7 @@
+## [0.0.6]
+
+* reactive_forms update
+
 ## [0.0.5]
 
 * example and package updates
