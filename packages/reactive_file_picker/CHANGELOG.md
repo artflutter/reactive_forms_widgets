@@ -1,3 +1,6 @@
+## [0.2.0]
+
+* update file_picker to 4.0.2
 
 ## [0.1.2]
 

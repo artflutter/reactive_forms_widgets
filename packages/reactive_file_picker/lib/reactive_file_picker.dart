@@ -100,6 +100,7 @@ class ReactiveFilePicker<T>
     ShowErrorsFunction? showErrors,
     //
     FilePickerBuilder<T>? filePickerBuilder,
+    String? dialogTitle,
     bool allowMultiple = false,
     FileType type = FileType.any,
     List<String>? allowedExtensions,
@@ -127,6 +128,7 @@ class ReactiveFilePicker<T>
               List<PlatformFile>? platformFiles;
               try {
                 platformFiles = (await FilePicker.platform.pickFiles(
+                  dialogTitle: dialogTitle,
                   allowMultiple: allowMultiple,
                   type: type,
                   allowedExtensions: allowedExtensions,

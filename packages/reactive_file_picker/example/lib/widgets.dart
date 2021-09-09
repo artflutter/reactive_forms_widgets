@@ -145,6 +145,6 @@ class PlatformFileListItem extends ListItem {
 
   @override
   Widget build(context) {
-    return Text(platformFile.path ?? '');
+    return Text(platformFile.path);
   }
 }
