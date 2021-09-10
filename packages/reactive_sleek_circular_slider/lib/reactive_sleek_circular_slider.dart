@@ -19,7 +19,7 @@ enum OnChangeMode {
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveSleekCircularSlider extends ReactiveFormField<double, double> {
+class ReactiveSleekCircularSlider<T> extends ReactiveFormField<T, double> {
   /// Creates a [ReactiveSleekCircularSlider] that contains a [TouchSpin].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -87,9 +87,9 @@ class ReactiveSleekCircularSlider extends ReactiveFormField<double, double> {
     Key? key,
     String? formControlName,
     InputDecoration? decoration,
-    FormControl<double>? formControl,
-    ValidationMessagesFunction<double>? validationMessages,
-    ControlValueAccessor<double, double>? valueAccessor,
+    FormControl<T>? formControl,
+    ValidationMessagesFunction<T>? validationMessages,
+    ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
     double min = 0,
     double max = 100,

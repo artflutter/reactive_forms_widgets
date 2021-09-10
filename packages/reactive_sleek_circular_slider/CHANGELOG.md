@@ -1,3 +1,7 @@
+## 0.0.3
+
+* improve valueAccessor support
+
 ## 0.0.2
 
 * Readme update
