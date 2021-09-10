@@ -1,3 +1,7 @@
+## [0.2.0]
+
+* improve valueAccessor support
+
 ## [0.1.3]
 
 * validation messages function type

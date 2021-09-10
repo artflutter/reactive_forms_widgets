@@ -12,15 +12,15 @@ typedef Widget SignatureBuilder(
   SignatureController controller,
 );
 
-/// A [ReactiveSignature] that contains a [TextField].
+/// A [ReactiveSignature] that contains a [Signature].
 ///
-/// This is a convenience widget that wraps a [TextField] widget in a
+/// This is a convenience widget that wraps a [Signature] widget in a
 /// [ReactiveSignature].
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveSignature extends ReactiveFormField<Uint8List, Uint8List> {
-  /// Creates a [ReactiveSignature] that contains a [TextField].
+class ReactiveSignature<T> extends ReactiveFormField<T, Uint8List> {
+  /// Creates a [ReactiveSignature] that contains a [Signature].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
   ///
@@ -46,7 +46,7 @@ class ReactiveSignature extends ReactiveFormField<Uint8List, Uint8List> {
   /// ```
   /// final form = fb.group({'email': Validators.required});
   ///
-  /// ReactiveTextField(
+  /// ReactiveSignature(
   ///   formControlName: 'email',
   /// ),
   ///
@@ -56,7 +56,7 @@ class ReactiveSignature extends ReactiveFormField<Uint8List, Uint8List> {
   /// ```
   /// final form = fb.group({'email': Validators.required});
   ///
-  /// ReactiveTextField(
+  /// ReactiveSignature(
   ///   formControl: form.control('email'),
   /// ),
   ///
@@ -64,7 +64,7 @@ class ReactiveSignature extends ReactiveFormField<Uint8List, Uint8List> {
   ///
   /// Customize validation messages
   /// ```dart
-  /// ReactiveTextField(
+  /// ReactiveSignature(
   ///   formControlName: 'email',
   ///   validationMessages: {
   ///     ValidationMessage.required: 'The email must not be empty',
@@ -75,20 +75,20 @@ class ReactiveSignature extends ReactiveFormField<Uint8List, Uint8List> {
   ///
   /// Customize when to show up validation messages.
   /// ```dart
-  /// ReactiveTextField(
+  /// ReactiveSignature(
   ///   formControlName: 'email',
   ///   showErrors: (control) => control.invalid && control.touched && control.dirty,
   /// ),
   /// ```
   ///
-  /// For documentation about the various parameters, see the [TextField] class
-  /// and [new TextField], the constructor.
+  /// For documentation about the various parameters, see the [Signature] class
+  /// and [new Signature], the constructor.
   ReactiveSignature({
     Key? key,
     String? formControlName,
-    FormControl<Uint8List>? formControl,
-    ValidationMessagesFunction<Uint8List>? validationMessages,
-    ControlValueAccessor<Uint8List, Uint8List>? valueAccessor,
+    FormControl<T>? formControl,
+    ValidationMessagesFunction<T>? validationMessages,
+    ControlValueAccessor<T, Uint8List>? valueAccessor,
     ShowErrorsFunction? showErrors,
     InputDecoration? decoration,
     SignatureController? controller,
@@ -108,7 +108,7 @@ class ReactiveSignature extends ReactiveFormField<Uint8List, Uint8List> {
           validationMessages: validationMessages,
           showErrors: showErrors,
           builder: (ReactiveFormFieldState field) {
-            final state = field as _ReactiveTextFieldState;
+            final state = field as _ReactiveSignatureState;
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);
@@ -149,12 +149,11 @@ class ReactiveSignature extends ReactiveFormField<Uint8List, Uint8List> {
   final List<Point>? points;
 
   @override
-  ReactiveFormFieldState<Uint8List, Uint8List> createState() =>
-      _ReactiveTextFieldState();
+  ReactiveFormFieldState<T, Uint8List> createState() =>
+      _ReactiveSignatureState();
 }
 
-class _ReactiveTextFieldState
-    extends ReactiveFormFieldState<Uint8List, Uint8List> {
+class _ReactiveSignatureState<T> extends ReactiveFormFieldState<T, Uint8List> {
   late SignatureController _signatureController;
 
   @override
