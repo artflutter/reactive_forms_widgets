@@ -25,6 +25,8 @@ typedef void PopupDialogBuilder(
 typedef Future<ImageFile> OnBeforeChangeCallback(
     BuildContext context, ImageFile image);
 
+enum ImagePickerMode { image, video, multiImage }
+
 typedef void ImagePickCallback(BuildContext context, ImageSource source);
 
 /// A [ReactiveImagePicker] that contains a [DropdownSearch].
@@ -115,6 +117,12 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
     ControlValueAccessor<ImageFile, ImageFile>? valueAccessor,
     ShowErrorsFunction? showErrors,
     bool enabled = true,
+    double? maxWidth,
+    double? maxHeight,
+    int? imageQuality,
+    CameraDevice preferredCameraDevice = CameraDevice.rear,
+    Duration? maxDuration,
+    // ImagePickerMode mode = ImagePickerMode.image,
   }) : super(
           key: key,
           formControl: formControl,
@@ -174,6 +182,11 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
                     effectiveDecoration.copyWith(errorText: field.errorText),
                 onChanged: field.didChange,
                 value: field.value ?? ImageFile(),
+                maxHeight: maxHeight,
+                maxWidth: maxWidth,
+                imageQuality: imageQuality,
+                preferredCameraDevice: preferredCameraDevice,
+                maxDuration: maxDuration,
               ),
             );
           },
@@ -193,7 +206,13 @@ class ImagePickerWidget extends StatelessWidget {
   final PopupDialogBuilder? popupDialogBuilder;
   final ImageFile value;
   final bool enabled;
+  final double? maxWidth;
+  final double? maxHeight;
+  final int? imageQuality;
+  final CameraDevice preferredCameraDevice;
   final ValueChanged<ImageFile?> onChanged;
+  final Duration? maxDuration;
+  // final ImagePickerMode mode;
 
   const ImagePickerWidget({
     Key? key,
@@ -210,13 +229,24 @@ class ImagePickerWidget extends StatelessWidget {
     this.errorPickBuilder,
     this.popupDialogBuilder,
     this.onBeforeChange,
+    this.maxWidth,
+    this.maxHeight,
+    this.imageQuality,
+    this.preferredCameraDevice = CameraDevice.rear,
+    this.maxDuration,
   }) : super(key: key);
 
   void _onImageButtonPressed(BuildContext context, ImageSource source) async {
     final picker = ImagePicker();
 
     try {
-      final pickedFile = await picker.getImage(source: source);
+      final pickedFile = await picker.pickImage(
+        source: source,
+        maxHeight: maxHeight,
+        maxWidth: maxWidth,
+        imageQuality: imageQuality,
+        preferredCameraDevice: preferredCameraDevice,
+      );
 
       if (pickedFile != null) {
         final imageFile = value.copyWith(image: File(pickedFile.path));
@@ -228,6 +258,27 @@ class ImagePickerWidget extends StatelessWidget {
       errorPickBuilder?.call(source, context: context);
     }
   }
+
+  // void _onVideoButtonPressed(BuildContext context, ImageSource source) async {
+  //   final picker = ImagePicker();
+  //
+  //   try {
+  //     final pickedFile = await picker.pickVideo(
+  //       source: source,
+  //       maxDuration: maxDuration,
+  //       preferredCameraDevice: preferredCameraDevice,
+  //     );
+  //
+  //     if (pickedFile != null) {
+  //       final imageFile = value.copyWith(image: File(pickedFile.path));
+  //
+  //       onChanged(await onBeforeChange?.call(context, imageFile) ??
+  //           await _onBeforeChange(imageFile));
+  //     }
+  //   } catch (e) {
+  //     errorPickBuilder?.call(source, context: context);
+  //   }
+  // }
 
   Future<ImageFile> _onBeforeChange(ImageFile image) => Future.value(image);
 
@@ -272,6 +323,28 @@ class ImagePickerWidget extends StatelessWidget {
                           );
                         },
                       ),
+                      // ListTile(
+                      //   leading: Icon(Icons.video_call),
+                      //   title: Text('Take video'),
+                      //   onTap: () {
+                      //     Navigator.of(context).pop();
+                      //     _onVideoButtonPressed(
+                      //       context,
+                      //       ImageSource.camera,
+                      //     );
+                      //   },
+                      // ),
+                      // ListTile(
+                      //   leading: Icon(Icons.video_call),
+                      //   title: Text('Choose video from library'),
+                      //   onTap: () {
+                      //     Navigator.of(context).pop();
+                      //     _onVideoButtonPressed(
+                      //       context,
+                      //       ImageSource.gallery,
+                      //     );
+                      //   },
+                      // ),
                       ListTile(
                         leading: Icon(Icons.clear),
                         title: Text('Cancel'),

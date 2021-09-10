@@ -1,3 +1,7 @@
+## [0.3.2]
+
+* image_picker update
+
 ## [0.3.1]
 
 * validation messages type
