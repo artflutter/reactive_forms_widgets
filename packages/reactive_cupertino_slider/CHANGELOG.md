@@ -1,3 +1,7 @@
+## 0.0.4
+
+* fix valueAccessor support
+
 ## 0.0.3
 
 * reactive_forms update

@@ -14,7 +14,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// For documentation about the various parameters, see the [CupertinoSlider] class
 /// and [new CupertinoSlider], the constructor.
-class ReactiveCupertinoSlider extends ReactiveFormField<double, double> {
+class ReactiveCupertinoSlider<T> extends ReactiveFormField<T, double> {
   /// Creates an instance os a [ReactiveCupertinoSlider].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -27,9 +27,9 @@ class ReactiveCupertinoSlider extends ReactiveFormField<double, double> {
   ReactiveCupertinoSlider({
     Key? key,
     String? formControlName,
-    FormControl<double>? formControl,
-    ValidationMessagesFunction<double>? validationMessages,
-    ControlValueAccessor<double, double>? valueAccessor,
+    FormControl<T>? formControl,
+    ValidationMessagesFunction<T>? validationMessages,
+    ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
     //////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(

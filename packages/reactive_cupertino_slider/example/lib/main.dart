@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
               builder: (context, form, child) {
                 return Column(
                   children: [
-                    ReactiveCupertinoSlider(
+                    ReactiveCupertinoSlider<double>(
                       formControlName: 'switch',
                     ),
                     SizedBox(height: 16),
