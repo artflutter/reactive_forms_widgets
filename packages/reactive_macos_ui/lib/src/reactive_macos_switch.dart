@@ -11,7 +11,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveMacosSwitch extends ReactiveFormField<bool, bool> {
+class ReactiveMacosSwitch<T> extends ReactiveFormField<T, bool> {
   /// Creates a [ReactiveMacosSwitch] that contains a [MacosSwitch].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -84,9 +84,9 @@ class ReactiveMacosSwitch extends ReactiveFormField<bool, bool> {
       isDense: true,
       isCollapsed: true,
     ),
-    FormControl<bool>? formControl,
-    ValidationMessagesFunction<bool>? validationMessages,
-    ControlValueAccessor<bool, bool>? valueAccessor,
+    FormControl<T>? formControl,
+    ValidationMessagesFunction<T>? validationMessages,
+    ControlValueAccessor<T, bool>? valueAccessor,
     ShowErrorsFunction? showErrors,
     //////
     DragStartBehavior dragStartBehavior = DragStartBehavior.start,

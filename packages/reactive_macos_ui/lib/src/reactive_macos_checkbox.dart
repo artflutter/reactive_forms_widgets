@@ -10,7 +10,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveMacosCheckbox extends ReactiveFormField<bool, bool> {
+class ReactiveMacosCheckbox<T> extends ReactiveFormField<T, bool> {
   /// Creates a [ReactiveMacosCheckbox] that contains a [MacosCheckbox].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -83,9 +83,9 @@ class ReactiveMacosCheckbox extends ReactiveFormField<bool, bool> {
       isDense: true,
       isCollapsed: true,
     ),
-    FormControl<bool>? formControl,
-    ValidationMessagesFunction<bool>? validationMessages,
-    ControlValueAccessor<bool, bool>? valueAccessor,
+    FormControl<T>? formControl,
+    ValidationMessagesFunction<T>? validationMessages,
+    ControlValueAccessor<T, bool>? valueAccessor,
     ShowErrorsFunction? showErrors,
     //////
     Color? activeColor,

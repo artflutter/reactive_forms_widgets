@@ -10,7 +10,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveRatingIndicator extends ReactiveFormField<double, double> {
+class ReactiveRatingIndicator<T> extends ReactiveFormField<T, double> {
   /// Creates a [ReactiveRatingIndicator] that contains a [TouchSpin].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -83,9 +83,9 @@ class ReactiveRatingIndicator extends ReactiveFormField<double, double> {
         isDense: true,
         isCollapsed: true,
       ),
-      FormControl<double>? formControl,
-      ValidationMessagesFunction<double>? validationMessages,
-      ControlValueAccessor<double, double>? valueAccessor,
+      FormControl<T>? formControl,
+      ValidationMessagesFunction<T>? validationMessages,
+      ControlValueAccessor<T, double>? valueAccessor,
       ShowErrorsFunction? showErrors,
       //////
       IconData ratedIcon = CupertinoIcons.star_fill,
