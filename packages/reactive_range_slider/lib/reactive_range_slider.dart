@@ -13,7 +13,7 @@ typedef ReactiveRangeSliderLabelBuilder = RangeLabels Function(RangeValues);
 ///
 /// For documentation about the various parameters, see the [Slider] class
 /// and [new Slider], the constructor.
-class ReactiveRangeSlider extends ReactiveFormField<RangeValues, RangeValues> {
+class ReactiveRangeSlider<T> extends ReactiveFormField<T, RangeValues> {
   /// Creates an instance os a [ReactiveRangeSlider].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -26,10 +26,10 @@ class ReactiveRangeSlider extends ReactiveFormField<RangeValues, RangeValues> {
   ReactiveRangeSlider({
     Key? key,
     String? formControlName,
-    FormControl<RangeValues>? formControl,
+    FormControl<T>? formControl,
     InputDecoration? decoration,
-    ValidationMessagesFunction<RangeValues>? validationMessages,
-    ControlValueAccessor<RangeValues, RangeValues>? valueAccessor,
+    ValidationMessagesFunction<T>? validationMessages,
+    ControlValueAccessor<T, RangeValues>? valueAccessor,
     ShowErrorsFunction? showErrors,
     ReactiveRangeSliderLabelBuilder? labelBuilder,
     ValueChanged<RangeValues>? onChanged,
