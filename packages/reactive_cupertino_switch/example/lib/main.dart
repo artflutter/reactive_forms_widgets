@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
               builder: (context, form, child) {
                 return Column(
                   children: [
-                    ReactiveCupertinoSwitch(
+                    ReactiveCupertinoSwitch<bool>(
                       formControlName: 'switch',
                     ),
                     SizedBox(height: 16),
