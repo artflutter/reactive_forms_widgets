@@ -13,7 +13,7 @@ export 'package:flutter_rating_bar/flutter_rating_bar.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveRatingBar extends ReactiveFormField<double, double> {
+class ReactiveRatingBar<T> extends ReactiveFormField<T, double> {
   /// Creates a [ReactiveRatingBar] that contains a [TouchSpin].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -86,9 +86,9 @@ class ReactiveRatingBar extends ReactiveFormField<double, double> {
       isDense: true,
       isCollapsed: true,
     ),
-    FormControl<double>? formControl,
-    ValidationMessagesFunction<double>? validationMessages,
-    ControlValueAccessor<double, double>? valueAccessor,
+    FormControl<T>? formControl,
+    ValidationMessagesFunction<T>? validationMessages,
+    ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
     required RatingWidget ratingWidget,
     Color? glowColor,
