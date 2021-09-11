@@ -171,7 +171,7 @@ class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState<T, String> field) {
+          builder: (field) {
             final state = field as _ReactiveTypeaheadState<T>;
             final effectiveDecoration = textFieldConfiguration.decoration
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);
@@ -182,14 +182,14 @@ class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
               onSuggestionSelected: onSuggestionSelected,
-              textFieldConfiguration: textFieldConfiguration.copyWith(
+              textFieldConfiguration: (textFieldConfiguration.copyWith(
                 focusNode: state.focusNode,
                 controller: state._textController,
                 decoration: effectiveDecoration.copyWith(
                   errorText: state.errorText,
                 ),
                 onChanged: field.didChange,
-              ),
+              )) as TextFieldConfiguration,
               suggestionsBoxDecoration: suggestionsBoxDecoration,
               debounceDuration: debounceDuration,
               suggestionsBoxController: suggestionsBoxController,

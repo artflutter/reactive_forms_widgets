@@ -153,7 +153,7 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState<T, String> field) {
+          builder: (field) {
             final state = field as _ReactivePinCodeTextFieldState<T>;
             // final effectiveDecoration = inputDecoration
             //     .applyDefaults(Theme.of(state.context).inputDecorationTheme);

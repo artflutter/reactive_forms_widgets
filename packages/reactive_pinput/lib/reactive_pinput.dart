@@ -109,7 +109,7 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
     Widget? preFilledWidget,
     ValueChanged<String?>? onClipboardFound,
     List<int> separatorPositions = const [],
-    separator = const SizedBox(width: 15.0),
+    SizedBox separator = const SizedBox(width: 15.0),
     TextStyle? textStyle,
     BoxDecoration? submittedFieldDecoration,
     BoxDecoration? selectedFieldDecoration,
@@ -144,7 +144,7 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState<T, String> field) {
+          builder: (field) {
             final state = field as _ReactiveMacosTextFieldState<T>;
             final effectiveDecoration = inputDecoration
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);

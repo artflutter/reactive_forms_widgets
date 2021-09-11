@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
               builder: (context, form, child) {
                 return Column(
                   children: [
-                    ReactiveCupertinoTextField(
+                    ReactiveCupertinoTextField<String>(
                       formControlName: 'input',
                     ),
                     SizedBox(height: 16),

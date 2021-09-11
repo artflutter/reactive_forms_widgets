@@ -146,7 +146,7 @@ class ReactiveDropdownSearch<T> extends ReactiveFormField<T, T> {
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState field) {
+          builder: (field) {
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);

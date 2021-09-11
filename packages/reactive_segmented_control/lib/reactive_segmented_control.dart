@@ -87,7 +87,7 @@ class ReactiveSegmentedControl<T extends Object, K extends Object>
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, K>? valueAccessor,
     ShowErrorsFunction? showErrors,
-    required Map<T, Widget> children,
+    required Map<K, Widget> children,
     Color? unselectedColor,
     Color? selectedColor,
     Color? borderColor,
@@ -100,7 +100,7 @@ class ReactiveSegmentedControl<T extends Object, K extends Object>
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState field) {
+          builder: (field) {
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
@@ -114,7 +114,7 @@ class ReactiveSegmentedControl<T extends Object, K extends Object>
                     errorText: field.errorText,
                     enabled: field.control.enabled,
                   ),
-                  child: CupertinoSegmentedControl<T>(
+                  child: CupertinoSegmentedControl<K>(
                     children: children,
                     onValueChanged: field.didChange,
                     groupValue: field.value,

@@ -1,4 +1,5 @@
 analyzer:
+  exclude: [lib/multi_file.*]
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false

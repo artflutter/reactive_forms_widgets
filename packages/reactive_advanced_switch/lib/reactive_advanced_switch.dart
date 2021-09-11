@@ -102,7 +102,7 @@ class ReactiveAdvancedSwitch<T> extends ReactiveFormField<T, bool> {
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState field) {
+          builder: (field) {
             final state = field as _ReactiveAdvancedSwitchState;
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())

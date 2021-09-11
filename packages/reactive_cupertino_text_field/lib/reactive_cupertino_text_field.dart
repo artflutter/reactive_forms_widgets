@@ -125,7 +125,7 @@ class ReactiveCupertinoTextField<T> extends ReactiveFormField<T, String> {
       contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
       isDense: true,
     ),
-    padding = const EdgeInsets.all(6.0),
+    EdgeInsets padding = const EdgeInsets.all(6.0),
     String? placeholder,
     TextInputType? keyboardType,
     TextCapitalization textCapitalization = TextCapitalization.none,
@@ -186,7 +186,7 @@ class ReactiveCupertinoTextField<T> extends ReactiveFormField<T, String> {
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState<T, String> field) {
+          builder: (field) {
             final state = field as _ReactiveCupertinoTextFieldState<T>;
             final effectiveDecoration = inputDecoration
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);

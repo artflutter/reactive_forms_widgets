@@ -209,7 +209,7 @@ class ReactiveMacosTextField<T> extends ReactiveFormField<T, String> {
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState<T, String> field) {
+          builder: (field) {
             final state = field as _ReactiveMacosTextFieldState<T>;
             final effectiveDecoration = inputDecoration
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);

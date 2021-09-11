@@ -213,7 +213,8 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
           },
         );
 
-  static _effectiveValueAccessor(ReactiveDatePickerFieldType fieldType) {
+  static DateTimeValueAccessor _effectiveValueAccessor(
+      ReactiveDatePickerFieldType fieldType) {
     switch (fieldType) {
       case ReactiveDatePickerFieldType.date:
         return DateTimeValueAccessor(

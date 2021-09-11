@@ -95,14 +95,13 @@ class ReactiveCupertinoSwitch<T> extends ReactiveFormField<T, bool> {
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState field) {
-            final value = (field as ReactiveFormFieldState<T, bool>).value;
+          builder: (field) {
             // final InputDecoration effectiveDecoration = (decoration ??
             //         const InputDecoration())
             //     .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
             return CupertinoSwitch(
-              value: value ?? false,
+              value: field.value ?? false,
               onChanged: field.didChange,
               activeColor: activeColor,
               trackColor: trackColor,

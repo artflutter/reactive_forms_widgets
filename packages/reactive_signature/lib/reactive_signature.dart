@@ -107,7 +107,7 @@ class ReactiveSignature<T> extends ReactiveFormField<T, Uint8List> {
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState field) {
+          builder: (field) {
             final state = field as _ReactiveSignatureState;
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())

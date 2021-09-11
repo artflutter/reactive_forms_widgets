@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
               builder: (context, form, child) {
                 return Column(
                   children: [
-                    ReactivePinPut(
+                    ReactivePinPut<String>(
                       formControlName: 'input',
                       fieldsCount: 5,
                       submittedFieldDecoration: _pinPutDecoration.copyWith(

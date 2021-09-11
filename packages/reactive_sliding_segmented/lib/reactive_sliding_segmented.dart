@@ -98,7 +98,7 @@ class ReactiveSlidingSegmentedControl<T extends Object, K extends Object>
     ControlValueAccessor<T, K>? valueAccessor,
     ShowErrorsFunction? showErrors,
     ////////////////////////////////////////////////////////
-    required Map<T, Widget> children,
+    required Map<K, Widget> children,
     Color thumbColor = _kThumbColor,
     Color backgroundColor = CupertinoColors.tertiarySystemFill,
     EdgeInsetsGeometry padding = _kHorizontalItemPadding,
@@ -109,7 +109,7 @@ class ReactiveSlidingSegmentedControl<T extends Object, K extends Object>
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
-          builder: (ReactiveFormFieldState field) {
+          builder: (field) {
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
@@ -123,7 +123,7 @@ class ReactiveSlidingSegmentedControl<T extends Object, K extends Object>
                     errorText: field.errorText,
                     enabled: field.control.enabled,
                   ),
-                  child: CupertinoSlidingSegmentedControl<T>(
+                  child: CupertinoSlidingSegmentedControl<K>(
                     children: children,
                     onValueChanged: field.didChange,
                     groupValue: field.value,
