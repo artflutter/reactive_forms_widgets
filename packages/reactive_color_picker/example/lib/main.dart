@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-// import 'package:reactive_color_picker/reactive_color_picker.dart';
+import 'package:reactive_color_picker/reactive_color_picker.dart';
 
 import 'package:reactive_forms/reactive_forms.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   FormGroup buildForm() => fb.group({
         'input': FormControl<Color>(),
+        'inputList': FormControl<List<Color>>(),
+        'material': FormControl<Color>(value: Colors.amber),
+        'colorPicker': FormControl<Color>(value: Colors.red),
+        'sliderColorPicker': FormControl<Color>(value: Colors.lime),
       });
 
   @override
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(),
         body: SafeArea(
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: BouncingScrollPhysics(),
             padding: const EdgeInsets.symmetric(
               horizontal: 20.0,
               vertical: 20.0,
@@ -32,12 +34,29 @@ class MyApp extends StatelessWidget {
               builder: (context, form, child) {
                 return Column(
                   children: [
-                    // ReactiveBlockColorPicker<double>(
-                    //   formControlName: 'input',
-                    // ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
+                    ReactiveBlockColorPicker<Color>(
+                      formControlName: 'input',
+                    ),
+                    SizedBox(height: 16),
+                    ReactiveMultipleBlockColorPicker<List<Color>>(
+                      formControlName: 'inputList',
+                    ),
+                    SizedBox(height: 16),
+                    ReactiveMaterialColorPicker<Color>(
+                      formControlName: 'material',
+                    ),
+                    SizedBox(height: 16),
+                    ReactiveColorPicker<Color>(
+                      formControlName: 'colorPicker',
+                    ),
+                    SizedBox(height: 16),
+                    ReactiveSliderColorPicker<Color>(
+                      formControlName: 'sliderColorPicker',
+                    ),
+                    SizedBox(height: 16),
                     ElevatedButton(
-                      child: const Text('Sign Up'),
+                      child: Text('Sign Up'),
                       onPressed: () {
                         if (form.valid) {
                           print(form.value);

@@ -26,3 +26,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactivePinCodeTextField](https://pub.dev/packages/reactive_pin_code_fields)** - wrapper around [`pin_code_fields`](https://pub.dev/packages/pin_code_fields)
 - **[ReactiveSlidingSegmentedControl](https://pub.dev/packages/reactive_sliding_segmented)** - wrapper around [`CupertinoSlidingSegmentedControl`](https://api.flutter.dev/flutter/cupertino/CupertinoSlidingSegmentedControl-class.html)
 - **[ReactiveCupertinoSlider](https://pub.dev/packages/reactive_cupertino_slider)** - wrapper around [`CupertinoSlider`](https://api.flutter.dev/flutter/cupertino/CupertinoSlider-class.html)
+- **[ReactiveColorPicker](https://pub.dev/packages/reactive_color_picker)** - wrapper around [`flutter_colorpicker`](https://pub.dev/packages/flutter_colorpicker)
