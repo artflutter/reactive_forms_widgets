@@ -9,6 +9,7 @@ void main() {
 class MyApp extends StatelessWidget {
   FormGroup buildForm() => fb.group({
         'menu': FormControl<String>(value: 'Tunisia'),
+        'menuMultiple': FormControl<List<String>>(value: ['Tunisia', 'Brazil']),
         'bottomSheet': FormControl<String>(value: 'Brazil'),
       });
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
               builder: (context, form, child) {
                 return Column(
                   children: [
-                    ReactiveDropdownSearch<String>(
+                    ReactiveDropdownSearch<String, String>(
                       formControlName: 'menu',
                       decoration: InputDecoration(
                         helperText: '',
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
                       ),
                       mode: Mode.MENU,
                       hint: "Select a country",
-                      showSelectedItem: true,
+                      showSelectedItems: true,
                       items: [
                         "Brazil",
                         "Italia (Disabled)",
@@ -57,7 +58,30 @@ class MyApp extends StatelessWidget {
                       },
                     ),
                     SizedBox(height: 8),
-                    ReactiveDropdownSearch<String>(
+                    ReactiveDropdownSearchMultiSelection<String, String>(
+                      formControlName: 'menuMultiple',
+                      decoration: InputDecoration(
+                        helperText: '',
+                        contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                        border: OutlineInputBorder(),
+                      ),
+                      mode: Mode.MENU,
+                      hint: "Select a country",
+                      showSelectedItems: true,
+                      items: [
+                        "Brazil",
+                        "Italia (Disabled)",
+                        "Tunisia",
+                        'Canada'
+                      ],
+                      label: "Menu mode *",
+                      showClearButton: true,
+                      popupItemDisabled: (s) {
+                        return s.startsWith('I');
+                      },
+                    ),
+                    SizedBox(height: 8),
+                    ReactiveDropdownSearch<String, String>(
                       formControlName: 'bottomSheet',
                       mode: Mode.BOTTOM_SHEET,
                       decoration: InputDecoration(
