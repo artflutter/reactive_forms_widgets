@@ -28,3 +28,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveCupertinoSlider](https://pub.dev/packages/reactive_cupertino_slider)** - wrapper around [`CupertinoSlider`](https://api.flutter.dev/flutter/cupertino/CupertinoSlider-class.html)
 - **[ReactiveColorPicker](https://pub.dev/packages/reactive_color_picker)** - wrapper around [`flutter_colorpicker`](https://pub.dev/packages/flutter_colorpicker)
 - **[ReactiveMonthPickerDialog](https://pub.dev/packages/reactive_month_picker_dialog)** - wrapper around [`month_picker_dialog`](https://pub.dev/packages/month_picker_dialog)
+- **[ReactiveRawAutocomplete](https://pub.dev/packages/reactive_raw_autocomplete)** - wrapper around [`RawAutocomplete`](https://api.flutter.dev/flutter/widgets/RawAutocomplete-class.html)
