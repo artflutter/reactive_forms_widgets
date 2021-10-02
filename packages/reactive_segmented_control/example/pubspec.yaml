@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^10.4.1
+  reactive_forms: ^10.6.2
   reactive_segmented_control:
     path: ../
 

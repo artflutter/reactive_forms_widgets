@@ -1,6 +1,6 @@
 name: reactive_cupertino_text_field
 description: Wrapper around flutter CupertinoTextField to use with reactive_forms
-version: 0.0.4
+version: 0.0.5
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  reactive_forms: ^10.5.0
+  reactive_forms: ^10.6.2
 
 dev_dependencies:
   flutter_test:

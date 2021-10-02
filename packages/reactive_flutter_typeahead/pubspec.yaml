@@ -14,7 +14,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  reactive_forms: ^10.4.1
+  reactive_forms: ^10.6.2
   flutter_typeahead: 3.2.0
 
 # For information on the generic Dart part of this file, see the

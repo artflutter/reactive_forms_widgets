@@ -146,6 +146,9 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
     bool useExternalAutoFillGroup = false,
     String? hintCharacter,
     TextStyle? hintStyle,
+    bool readOnly = false,
+    Gradient? textGradient,
+    EdgeInsets scrollPadding = const EdgeInsets.all(20),
   }) : super(
           key: key,
           formControl: formControl,
@@ -209,6 +212,9 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
               hintStyle: hintStyle,
               onAutoFillDisposeAction: onAutoFillDisposeAction,
               useExternalAutoFillGroup: useExternalAutoFillGroup,
+              readOnly: readOnly,
+              textGradient: textGradient,
+              scrollPadding: scrollPadding,
             );
           },
         );
