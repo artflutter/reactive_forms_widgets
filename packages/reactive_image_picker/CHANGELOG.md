@@ -1,3 +1,6 @@
+## [0.4.0]
+* package updates
+
 ## [0.3.4]
 * showErrors api
 
