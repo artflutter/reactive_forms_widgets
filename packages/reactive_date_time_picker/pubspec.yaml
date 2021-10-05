@@ -1,6 +1,6 @@
 name: reactive_date_time_picker
 description: Wrapper around showDatePicker and showTimePicker to work with reactive_forms
-version: 0.1.5
+version: 0.1.6
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:

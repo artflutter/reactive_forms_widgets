@@ -52,9 +52,12 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
     Key? key,
     String? formControlName,
     FormControl<DateTime>? formControl,
-    TextStyle? style,
     ControlValueAccessor<DateTime, String>? valueAccessor,
     ValidationMessagesFunction<DateTime>? validationMessages,
+    ShowErrorsFunction? showErrors,
+
+    ////////////////////////////////////////////////////////////////////////////
+    TextStyle? style,
     ReactiveDatePickerFieldType type = ReactiveDatePickerFieldType.date,
     InputDecoration? decoration,
     bool showClearIcon = true,
@@ -90,6 +93,7 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
           formControlName: formControlName,
           validationMessages: validationMessages,
           valueAccessor: valueAccessor ?? _effectiveValueAccessor(type),
+          showErrors: showErrors,
           builder: (field) {
             Widget? suffixIcon = decoration?.suffixIcon;
             final isEmptyValue =
