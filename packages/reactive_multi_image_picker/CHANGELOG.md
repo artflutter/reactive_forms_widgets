@@ -1,5 +1,5 @@
-## [0.2.4]
-* reactive_forms update
+## [0.3.0]
+* freezed update
 
 ## [0.2.3]
 * validation messages function type
