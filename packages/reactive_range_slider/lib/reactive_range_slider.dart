@@ -27,10 +27,12 @@ class ReactiveRangeSlider<T> extends ReactiveFormField<T, RangeValues> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    InputDecoration? decoration,
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, RangeValues>? valueAccessor,
     ShowErrorsFunction? showErrors,
+
+    ////////////////////////////////////////////////////////////////////////////
+    InputDecoration? decoration,
     ReactiveRangeSliderLabelBuilder? labelBuilder,
     ValueChanged<RangeValues>? onChanged,
     ValueChanged<RangeValues>? onChangeStart,

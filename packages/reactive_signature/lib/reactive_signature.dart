@@ -90,6 +90,8 @@ class ReactiveSignature<T> extends ReactiveFormField<T, Uint8List> {
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, Uint8List>? valueAccessor,
     ShowErrorsFunction? showErrors,
+
+    ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,
     SignatureController? controller,
     SignatureBuilder? signatureBuilder,

@@ -119,6 +119,8 @@ class ReactiveCupertinoTextField<T> extends ReactiveFormField<T, String> {
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
     ShowErrorsFunction? showErrors,
+
+    ////////////////////////////////////////////////////////////////////////////
     BoxDecoration decoration = _kDefaultRoundedBorderDecoration,
     InputDecoration inputDecoration = const InputDecoration(
       border: InputBorder.none,

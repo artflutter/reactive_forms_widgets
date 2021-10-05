@@ -31,7 +31,8 @@ class ReactiveCupertinoSlider<T> extends ReactiveFormField<T, double> {
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
-    //////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(
       isCollapsed: true,
       contentPadding: EdgeInsets.zero,

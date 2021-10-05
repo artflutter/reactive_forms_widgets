@@ -77,17 +77,18 @@ class ReactiveMacosCheckbox<T> extends ReactiveFormField<T, bool> {
   ReactiveMacosCheckbox({
     Key? key,
     String? formControlName,
+    FormControl<T>? formControl,
+    ValidationMessagesFunction<T>? validationMessages,
+    ControlValueAccessor<T, bool>? valueAccessor,
+    ShowErrorsFunction? showErrors,
+
+    ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(
       border: InputBorder.none,
       contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
       isDense: true,
       isCollapsed: true,
     ),
-    FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
-    ControlValueAccessor<T, bool>? valueAccessor,
-    ShowErrorsFunction? showErrors,
-    //////
     Color? activeColor,
     double size = 16.0,
     Color disabledColor = CupertinoColors.quaternaryLabel,

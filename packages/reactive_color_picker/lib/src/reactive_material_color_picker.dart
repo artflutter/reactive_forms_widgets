@@ -37,7 +37,8 @@ class ReactiveMaterialColorPicker<T> extends ReactiveFormField<T, Color> {
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
-    //////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,
     Color? pickerColor,
     Color? contrastIconColorLight,

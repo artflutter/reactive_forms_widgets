@@ -92,12 +92,13 @@ class ReactiveSlidingSegmentedControl<T extends Object, K extends Object>
   ReactiveSlidingSegmentedControl({
     Key? key,
     String? formControlName,
-    InputDecoration? decoration,
     FormControl<T>? formControl,
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, K>? valueAccessor,
     ShowErrorsFunction? showErrors,
-    ////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////
+    InputDecoration? decoration,
     required Map<K, Widget> children,
     Color thumbColor = _kThumbColor,
     Color backgroundColor = CupertinoColors.tertiarySystemFill,

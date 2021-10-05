@@ -37,7 +37,8 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
-    //////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////
     Color? contrastIconColorLight,
     Color contrastIconColorDark = Colors.white,
     InputDecoration? decoration,

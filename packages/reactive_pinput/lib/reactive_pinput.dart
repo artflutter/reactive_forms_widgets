@@ -95,7 +95,8 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
     ShowErrorsFunction? showErrors,
-    /////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////
     required int fieldsCount,
     TextInputType keyboardType = TextInputType.number,
     TextCapitalization textCapitalization = TextCapitalization.none,

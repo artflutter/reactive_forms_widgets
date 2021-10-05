@@ -87,6 +87,8 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
     ValidationMessagesFunction? validationMessages,
     ControlValueAccessor<T, V>? valueAccessor,
     ShowErrorsFunction? showErrors,
+
+    ////////////////////////////////////////////////////////////////////////////
     Mode mode = Mode.DIALOG,
     String? label,
     String? hint,

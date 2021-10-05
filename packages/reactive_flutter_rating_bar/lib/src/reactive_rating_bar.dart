@@ -80,16 +80,18 @@ class ReactiveRatingBar<T> extends ReactiveFormField<T, double> {
   ReactiveRatingBar({
     Key? key,
     String? formControlName,
+    FormControl<T>? formControl,
+    ValidationMessagesFunction<T>? validationMessages,
+    ControlValueAccessor<T, double>? valueAccessor,
+    ShowErrorsFunction? showErrors,
+
+    ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(
       border: InputBorder.none,
       contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
       isDense: true,
       isCollapsed: true,
     ),
-    FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
-    ControlValueAccessor<T, double>? valueAccessor,
-    ShowErrorsFunction? showErrors,
     required RatingWidget ratingWidget,
     Color? glowColor,
     double? maxRating,

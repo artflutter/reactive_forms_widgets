@@ -63,7 +63,8 @@ class ReactiveMultipleBlockColorPicker<T>
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
-    //////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,
     Color? pickerColor,
     List<Color> availableColors = _defaultColors,

@@ -83,7 +83,8 @@ class ReactiveCupertinoSwitch<T> extends ReactiveFormField<T, bool> {
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, bool>? valueAccessor,
     ShowErrorsFunction? showErrors,
-    /////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////
     // InputDecoration? decoration = const InputDecoration(),
     DragStartBehavior dragStartBehavior = DragStartBehavior.start,
     Color? activeColor,

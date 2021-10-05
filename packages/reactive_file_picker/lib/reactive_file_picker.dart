@@ -93,12 +93,13 @@ class ReactiveFilePicker<T>
   ReactiveFilePicker({
     Key? key,
     String? formControlName,
-    InputDecoration? decoration,
     FormControl<MultiFile<T>>? formControl,
     ValidationMessagesFunction<MultiFile<T>>? validationMessages,
     ControlValueAccessor<MultiFile<T>, MultiFile<T>>? valueAccessor,
     ShowErrorsFunction? showErrors,
-    //
+
+    ////////////////////////////////////////////////////////////////////////////
+    InputDecoration? decoration,
     FilePickerBuilder<T>? filePickerBuilder,
     String? dialogTitle,
     bool allowMultiple = false,

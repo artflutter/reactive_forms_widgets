@@ -83,6 +83,8 @@ class ReactiveAdvancedSwitch<T> extends ReactiveFormField<T, bool> {
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, bool>? valueAccessor,
     ShowErrorsFunction? showErrors,
+
+    ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration = const InputDecoration(),
     Color activeColor = Colors.green,
     Color inactiveColor = Colors.grey,

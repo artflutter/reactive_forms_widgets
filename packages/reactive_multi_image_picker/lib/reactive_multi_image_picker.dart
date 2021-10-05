@@ -17,16 +17,16 @@ typedef Widget ImagePickerBuilder<T>(
   ImagePickerChangeCallback<T> onChange,
 );
 
-/// A [ReactiveMultiImagePicker] that contains a [CupertinoSegmentedControl].
+/// A [ReactiveMultiImagePicker] that contains a [ReactiveMultiImagePicker].
 ///
-/// This is a convenience widget that wraps a [CupertinoSegmentedControl] widget in a
+/// This is a convenience widget that wraps a [ReactiveMultiImagePicker] widget in a
 /// [ReactiveMultiImagePicker].
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
 class ReactiveMultiImagePicker<T>
     extends ReactiveFormField<MultiImage<T>, MultiImage<T>> {
-  /// Creates a [ReactiveMultiImagePicker] that contains a [CupertinoSegmentedControl].
+  /// Creates a [ReactiveMultiImagePicker] that contains a [ReactiveMultiImagePicker].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
   ///
@@ -87,16 +87,18 @@ class ReactiveMultiImagePicker<T>
   /// ),
   /// ```
   ///
-  /// For documentation about the various parameters, see the [CupertinoSegmentedControl] class
-  /// and [new CupertinoSegmentedControl], the constructor.
+  /// For documentation about the various parameters, see the [ReactiveMultiImagePicker] class
+  /// and [new ReactiveMultiImagePicker], the constructor.
   ReactiveMultiImagePicker({
     Key? key,
     String? formControlName,
-    InputDecoration? decoration,
     FormControl<MultiImage<T>>? formControl,
     ValidationMessagesFunction<MultiImage<T>>? validationMessages,
     ControlValueAccessor<MultiImage<T>, MultiImage<T>>? valueAccessor,
     ShowErrorsFunction? showErrors,
+
+    ////////////////////////////////////////////////////////////////////////////
+    InputDecoration? decoration,
     required ImagePickerBuilder<T> imagePickerBuilder,
     int maxImages = 300,
     bool enableCamera = false,

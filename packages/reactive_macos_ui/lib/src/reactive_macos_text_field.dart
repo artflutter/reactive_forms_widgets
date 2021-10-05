@@ -49,16 +49,6 @@ const BoxDecoration _kDefaultFocusedBorderDecoration = BoxDecoration(
   borderRadius: BorderRadius.all(Radius.circular(7.0)),
 );
 
-const Color _kDisabledBackground = CupertinoDynamicColor.withBrightness(
-  color: Color(0xFFFAFAFA),
-  darkColor: Color(0xFF050505),
-);
-
-const _kClearButtonColor = CupertinoDynamicColor.withBrightness(
-  color: Color(0x33000000),
-  darkColor: Color(0x33FFFFFF),
-);
-
 /// A [ReactiveMacosTextField] that contains a [MacosTextField].
 ///
 /// This is a convenience widget that wraps a [MacosTextField] widget in a
@@ -137,6 +127,8 @@ class ReactiveMacosTextField<T> extends ReactiveFormField<T, String> {
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
     ShowErrorsFunction? showErrors,
+
+    ////////////////////////////////////////////////////////////////////////////
     BoxDecoration decoration = _kDefaultRoundedBorderDecoration,
     InputDecoration inputDecoration = const InputDecoration(
       border: InputBorder.none,

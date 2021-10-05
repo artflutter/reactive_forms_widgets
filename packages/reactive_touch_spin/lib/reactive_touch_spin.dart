@@ -79,11 +79,13 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T, num> {
   ReactiveTouchSpin({
     Key? key,
     String? formControlName,
-    InputDecoration? decoration,
     FormControl<T>? formControl,
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, num>? valueAccessor,
     ShowErrorsFunction? showErrors,
+
+    ////////////////////////////////////////////////////////////////////////////
+    InputDecoration? decoration,
     num min = 1.0,
     num max = 9999999.0,
     num step = 1.0,

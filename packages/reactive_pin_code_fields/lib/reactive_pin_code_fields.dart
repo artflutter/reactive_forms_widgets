@@ -97,7 +97,8 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
     ShowErrorsFunction? showErrors,
-    /////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////
     bool obscureText = false,
     List<BoxShadow>? boxShadows,
     required int length,

@@ -82,11 +82,13 @@ class ReactiveSegmentedControl<T extends Object, K extends Object>
   ReactiveSegmentedControl({
     Key? key,
     String? formControlName,
-    InputDecoration? decoration,
     FormControl<T>? formControl,
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, K>? valueAccessor,
     ShowErrorsFunction? showErrors,
+
+    ////////////////////////////////////////////////////////////////////////////
+    InputDecoration? decoration,
     required Map<K, Widget> children,
     Color? unselectedColor,
     Color? selectedColor,
