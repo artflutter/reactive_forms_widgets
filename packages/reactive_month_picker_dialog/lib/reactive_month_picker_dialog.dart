@@ -51,11 +51,12 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
     Key? key,
     String? formControlName,
     FormControl<DateTime>? formControl,
-    InputDecoration? decoration,
     ValidationMessagesFunction<DateTime>? validationMessages,
     ControlValueAccessor<DateTime, String>? valueAccessor,
+    ShowErrorsFunction? showErrors,
 
-    //////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    InputDecoration? decoration,
     bool showClearIcon = true,
     Widget clearIcon = const Icon(Icons.clear),
     TextStyle? style,
@@ -67,6 +68,7 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
           formControl: formControl,
           formControlName: formControlName,
           validationMessages: validationMessages,
+          showErrors: showErrors,
           valueAccessor: valueAccessor ?? _effectiveValueAccessor,
           builder: (field) {
             Widget? suffixIcon = decoration?.suffixIcon;

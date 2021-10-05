@@ -1,3 +1,6 @@
+## [0.3.4]
+* showErrors api
+
 ## [0.3.3]
 * reactive_forms update
 

@@ -102,6 +102,10 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
   ReactiveImagePicker({
     Key? key,
     String? formControlName,
+    FormControl<ImageFile>? formControl,
+    ValidationMessagesFunction<ImageFile>? validationMessages,
+    ControlValueAccessor<ImageFile, ImageFile>? valueAccessor,
+    ShowErrorsFunction? showErrors,
     InputDecoration? decoration,
     InputButtonBuilder? inputBuilder,
     ImageViewBuilder? imageViewBuilder,
@@ -112,10 +116,6 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
     OnBeforeChangeCallback? onBeforeChange,
     Widget? editIcon,
     Widget? deleteIcon,
-    FormControl<ImageFile>? formControl,
-    ValidationMessagesFunction<ImageFile>? validationMessages,
-    ControlValueAccessor<ImageFile, ImageFile>? valueAccessor,
-    ShowErrorsFunction? showErrors,
     bool enabled = true,
     double? maxWidth,
     double? maxHeight,
@@ -128,6 +128,7 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
           formControl: formControl,
           formControlName: formControlName,
           valueAccessor: valueAccessor,
+          showErrors: showErrors,
           validationMessages: (control) {
             final error = validationMessages?.call(control) ?? {};
 
@@ -147,7 +148,6 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
 
             return error;
           },
-          showErrors: showErrors,
           builder: (field) {
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
