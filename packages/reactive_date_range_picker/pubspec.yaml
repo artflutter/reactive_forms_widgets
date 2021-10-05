@@ -1,6 +1,6 @@
 name: reactive_date_range_picker
 description: Wrapper around flutter showDateRangePicker to use with reactive_forms
-version: 0.1.5
+version: 0.1.6
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
