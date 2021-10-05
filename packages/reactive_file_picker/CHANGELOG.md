@@ -1,3 +1,6 @@
+## [0.3.0]
+* package updates
+
 ## [0.2.1]
 * reactive_forms update
 
