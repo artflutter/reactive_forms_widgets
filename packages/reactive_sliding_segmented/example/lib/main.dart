@@ -11,13 +11,6 @@ class MyApp extends StatelessWidget {
         'input': FormControl<String>(value: null),
       });
 
-  BoxDecoration get _pinPutDecoration {
-    return BoxDecoration(
-      border: Border.all(color: Colors.deepPurpleAccent),
-      borderRadius: BorderRadius.circular(15.0),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:example/sample_screen.dart';
 import 'package:flutter/material.dart' hide ProgressIndicator;
 import 'package:reactive_date_time_picker/reactive_date_time_picker.dart';
@@ -7,17 +5,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class Widgets extends StatelessWidget {
   FormGroup buildForm() => fb.group({
-        // 'menu': FormControl<String>(value: 'Tunisia'),
-        // 'bottomSheet': FormControl<String>(value: 'Brazil'),
-        // 'touchSpin': FormControl<double>(value: 10),
-        // 'rate': FormControl<String>(value: 'a'),
         'date': FormControl<DateTime>(value: DateTime.now()),
-        // 'time': FormControl<DateTime>(value: DateTime.now()),
-        // 'dateTime': FormControl<DateTime>(value: DateTime.now()),
-        // 'dateRange': FormControl<DateTimeRange>(),
-        // 'signature': FormControl<Uint8List>(),
-        // 'image': FormControl<ImageFile>(),
-        // 'blockColor': FormControl<Color>(),
       });
 
   @override
@@ -239,7 +227,7 @@ class Widgets extends StatelessWidget {
               //   formControlName: 'image',
               // ),
               SizedBox(height: 16),
-              RaisedButton(
+              ElevatedButton(
                 child: Text('Sign Up'),
                 onPressed: () {
                   if (form.valid) {

@@ -11,15 +11,15 @@ import 'package:reactive_forms/src/value_accessors/control_value_accessor.dart';
 import 'package:reactive_forms/src/value_accessors/double_value_accessor.dart';
 import 'package:reactive_forms/src/value_accessors/int_value_accessor.dart';
 
-/// A [ReactiveTypeAhead] that contains a [TextField].
+/// A [ReactiveCupertinoTypeAhead] that contains a [TextField].
 ///
 /// This is a convenience widget that wraps a [TextField] widget in a
-/// [ReactiveTypeAhead].
+/// [ReactiveCupertinoTypeAhead].
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
-  /// Creates a [ReactiveTypeAhead] that contains a [TextField].
+class ReactiveCupertinoTypeAhead<T> extends ReactiveFormField<T, String> {
+  /// Creates a [ReactiveCupertinoTypeAhead] that contains a [TextField].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
   ///
@@ -45,7 +45,7 @@ class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
   /// ```
   /// final form = fb.group({'email': Validators.required});
   ///
-  /// ReactiveTypeAhead(
+  /// ReactiveCupertinoTypeAhead(
   ///   formControlName: 'email',
   /// ),
   ///
@@ -55,7 +55,7 @@ class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
   /// ```
   /// final form = fb.group({'email': Validators.required});
   ///
-  /// ReactiveTypeAhead(
+  /// ReactiveCupertinoTypeAhead(
   ///   formControl: form.control('email'),
   /// ),
   ///
@@ -63,7 +63,7 @@ class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
   ///
   /// Customize validation messages
   /// ```dart
-  /// ReactiveTypeAhead(
+  /// ReactiveCupertinoTypeAhead(
   ///   formControlName: 'email',
   ///   validationMessages: {
   ///     ValidationMessage.required: 'The email must not be empty',
@@ -74,7 +74,7 @@ class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
   ///
   /// Customize when to show up validation messages.
   /// ```dart
-  /// ReactiveTypeAhead(
+  /// ReactiveCupertinoTypeAhead(
   ///   formControlName: 'email',
   ///   showErrors: (control) => control.invalid && control.touched && control.dirty,
   /// ),
@@ -82,7 +82,7 @@ class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
   ///
   /// For documentation about the various parameters, see the [TextField] class
   /// and [new TextField], the constructor.
-  ReactiveTypeAhead({
+  ReactiveCupertinoTypeAhead({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
@@ -94,8 +94,8 @@ class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
     required SuggestionsCallback<String> suggestionsCallback,
     required ItemBuilder<String> itemBuilder,
     SuggestionSelectionCallback<String>? onSuggestionSelected,
-    SuggestionsBoxDecoration suggestionsBoxDecoration =
-        const SuggestionsBoxDecoration(),
+    CupertinoSuggestionsBoxDecoration suggestionsBoxDecoration =
+        const CupertinoSuggestionsBoxDecoration(),
     Duration debounceDuration = const Duration(milliseconds: 300),
     WidgetBuilder? loadingBuilder,
     WidgetBuilder? noItemsFoundBuilder,
@@ -114,9 +114,9 @@ class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
     bool keepSuggestionsOnSuggestionSelected = false,
     bool autoFlipDirection = false,
     bool hideKeyboard = false,
-    TextFieldConfiguration textFieldConfiguration =
-        const TextFieldConfiguration(),
-    SuggestionsBoxController? suggestionsBoxController,
+    CupertinoTextFieldConfiguration textFieldConfiguration =
+        const CupertinoTextFieldConfiguration(),
+    CupertinoSuggestionsBoxController? suggestionsBoxController,
     InputDecoration decoration = const InputDecoration(),
     TextInputType? keyboardType,
     TextCapitalization textCapitalization = TextCapitalization.none,
@@ -133,6 +133,7 @@ class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
     bool obscureText = false,
     String obscuringCharacter = '•',
     bool autocorrect = true,
+    bool enabled = true,
   }) : super(
           key: key,
           formControl: formControl,
@@ -141,15 +142,16 @@ class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
           validationMessages: validationMessages,
           showErrors: showErrors,
           builder: (field) {
-            final state = field as _ReactiveTypeaheadState<T>;
-            final effectiveDecoration = textFieldConfiguration.decoration
-                .applyDefaults(Theme.of(state.context).inputDecorationTheme);
+            final state = field as _ReactiveCupertinoTypeAheadState<T>;
+            final effectiveDecoration = textFieldConfiguration.decoration;
 
             state._setFocusNode(textFieldConfiguration.focusNode);
             final controller =
                 textFieldConfiguration.controller ?? state._textController;
 
-            return TypeAheadField<String>(
+            return CupertinoTypeAheadFormField<String>(
+              // initialValue: field.value,
+              enabled: enabled,
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
               onSuggestionSelected: onSuggestionSelected ??
@@ -160,9 +162,7 @@ class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
               textFieldConfiguration: textFieldConfiguration.copyWith(
                 focusNode: textFieldConfiguration.focusNode ?? state.focusNode,
                 controller: controller,
-                decoration: effectiveDecoration.copyWith(
-                  errorText: state.errorText,
-                ),
+                decoration: effectiveDecoration,
               ),
               suggestionsBoxDecoration: suggestionsBoxDecoration,
               debounceDuration: debounceDuration,
@@ -184,17 +184,17 @@ class ReactiveTypeAhead<T> extends ReactiveFormField<T, String> {
               keepSuggestionsOnSuggestionSelected:
                   keepSuggestionsOnSuggestionSelected,
               autoFlipDirection: autoFlipDirection,
-              hideKeyboard: hideKeyboard,
             );
           },
         );
 
   @override
   ReactiveFormFieldState<T, String> createState() =>
-      _ReactiveTypeaheadState<T>();
+      _ReactiveCupertinoTypeAheadState<T>();
 }
 
-class _ReactiveTypeaheadState<T> extends ReactiveFormFieldState<T, String> {
+class _ReactiveCupertinoTypeAheadState<T>
+    extends ReactiveFormFieldState<T, String> {
   late TextEditingController _textController;
   FocusNode? _focusNode;
   late FocusController _focusController;

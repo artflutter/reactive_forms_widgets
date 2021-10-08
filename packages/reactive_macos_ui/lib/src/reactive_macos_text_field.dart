@@ -15,11 +15,6 @@ import 'package:reactive_forms/src/value_accessors/control_value_accessor.dart';
 import 'package:reactive_forms/src/value_accessors/double_value_accessor.dart';
 import 'package:reactive_forms/src/value_accessors/int_value_accessor.dart';
 
-const TextStyle _kDefaultPlaceholderStyle = TextStyle(
-  fontWeight: FontWeight.w400,
-  color: CupertinoColors.placeholderText,
-);
-
 const BorderSide _kDefaultRoundedBorderSide = BorderSide(
   color: CupertinoDynamicColor.withBrightness(
     color: Color(0x33000000),

@@ -4,8 +4,6 @@ library reactive_pinput;
 // Use of this source code is governed by the MIT license that can be
 // found in the LICENSE file.
 
-import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
-
 import 'package:flutter/cupertino.dart' hide OverlayVisibilityMode;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
