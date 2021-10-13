@@ -3,11 +3,10 @@ library reactive_dropdown_search;
 // Use of this source code is governed by the MIT license that can be
 // found in the LICENSE file.
 
-import 'package:dropdown_search2/dropdown_search2.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-
-export 'package:dropdown_search2/dropdown_search2.dart';
+import 'package:dropdown_search/src/selection_list_view_props.dart';
 
 /// A [ReactiveDropdownSearchMultiSelection] that contains a [DropdownSearch].
 ///
@@ -139,6 +138,8 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     SelectionListViewProps selectionListViewProps =
         const SelectionListViewProps(),
     bool stickMenuToBorder = false,
+    FocusNode? focusNode,
+    PositionCallback? positionCallback,
   }) : super(
           key: key,
           formControl: formControl,
@@ -150,6 +151,11 @@ class ReactiveDropdownSearchMultiSelection<T, V>
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+
+            final state = field
+                as _ReactiveDropdownSearchMultiSelectionState<List<T>, List<V>>;
+
+            state._setFocusNode(focusNode);
 
             return DropdownSearch<V>.multiSelection(
               onChange: field.didChange,
@@ -208,8 +214,51 @@ class ReactiveDropdownSearchMultiSelection<T, V>
               dropdownSearchTextAlignVertical: dropdownSearchTextAlignVertical,
               popupElevation: popupElevation,
               selectionListViewProps: selectionListViewProps,
-              stickMenuToBorder: stickMenuToBorder,
+              focusNode: state.focusNode,
+              positionCallback: positionCallback,
             );
           },
         );
+
+  @override
+  ReactiveFormFieldState<List<T>, List<V>> createState() =>
+      _ReactiveDropdownSearchMultiSelectionState<List<T>, List<V>>();
+}
+
+class _ReactiveDropdownSearchMultiSelectionState<T, V>
+    extends ReactiveFormFieldState<T, V> {
+  FocusNode? _focusNode;
+  late FocusController _focusController;
+
+  FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
+
+  @override
+  void subscribeControl() {
+    _registerFocusController(FocusController());
+    super.subscribeControl();
+  }
+
+  @override
+  void unsubscribeControl() {
+    _unregisterFocusController();
+    super.unsubscribeControl();
+  }
+
+  void _registerFocusController(FocusController focusController) {
+    _focusController = focusController;
+    control.registerFocusController(focusController);
+  }
+
+  void _unregisterFocusController() {
+    control.unregisterFocusController(_focusController);
+    _focusController.dispose();
+  }
+
+  void _setFocusNode(FocusNode? focusNode) {
+    if (_focusNode != focusNode) {
+      _focusNode = focusNode;
+      _unregisterFocusController();
+      _registerFocusController(FocusController(focusNode: _focusNode));
+    }
+  }
 }

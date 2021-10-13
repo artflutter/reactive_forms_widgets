@@ -3,11 +3,10 @@ library reactive_dropdown_search;
 // Use of this source code is governed by the MIT license that can be
 // found in the LICENSE file.
 
-import 'package:dropdown_search2/dropdown_search2.dart';
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:dropdown_search/src/selection_list_view_props.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-
-export 'package:dropdown_search2/dropdown_search2.dart';
 
 /// A [ReactiveDropdownSearch] that contains a [DropdownSearch].
 ///
@@ -130,7 +129,6 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
     PopupSafeArea popupSafeArea = const PopupSafeArea(),
     double? clearButtonSplashRadius,
     double? dropdownButtonSplashRadius,
-    // TextStyle? searchBoxStyle,
     TextFieldProps? searchFieldProps,
     ScrollbarProps? scrollbarProps,
     bool popupBarrierDismissible = true,
@@ -140,7 +138,8 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
     double popupElevation = 8,
     SelectionListViewProps selectionListViewProps =
         const SelectionListViewProps(),
-    bool stickMenuToBorder = false,
+    FocusNode? focusNode,
+    PositionCallback? positionCallback,
   }) : super(
           key: key,
           formControl: formControl,
@@ -152,6 +151,10 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+
+            final state = field as _ReactiveDropdownSearchState<T, V>;
+
+            state._setFocusNode(focusNode);
 
             return DropdownSearch<V>(
               onChanged: field.didChange,
@@ -210,8 +213,50 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
               dropdownSearchTextAlignVertical: dropdownSearchTextAlignVertical,
               popupElevation: popupElevation,
               selectionListViewProps: selectionListViewProps,
-              stickMenuToBorder: stickMenuToBorder,
+              focusNode: state.focusNode,
+              positionCallback: positionCallback,
             );
           },
         );
+
+  @override
+  ReactiveFormFieldState<T, V> createState() =>
+      _ReactiveDropdownSearchState<T, V>();
+}
+
+class _ReactiveDropdownSearchState<T, V> extends ReactiveFormFieldState<T, V> {
+  FocusNode? _focusNode;
+  late FocusController _focusController;
+
+  FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
+
+  @override
+  void subscribeControl() {
+    _registerFocusController(FocusController());
+    super.subscribeControl();
+  }
+
+  @override
+  void unsubscribeControl() {
+    _unregisterFocusController();
+    super.unsubscribeControl();
+  }
+
+  void _registerFocusController(FocusController focusController) {
+    _focusController = focusController;
+    control.registerFocusController(focusController);
+  }
+
+  void _unregisterFocusController() {
+    control.unregisterFocusController(_focusController);
+    _focusController.dispose();
+  }
+
+  void _setFocusNode(FocusNode? focusNode) {
+    if (_focusNode != focusNode) {
+      _focusNode = focusNode;
+      _unregisterFocusController();
+      _registerFocusController(FocusController(focusNode: _focusNode));
+    }
+  }
 }
