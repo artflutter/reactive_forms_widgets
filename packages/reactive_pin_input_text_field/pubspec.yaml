@@ -1,6 +1,6 @@
 name: reactive_pin_input_text_field
 description: Wrapper around pin_input_text_field to use with reactive_forms.
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
