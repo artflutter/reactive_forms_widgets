@@ -1,6 +1,6 @@
-name: reactive_direct_select
-description: Wrapper around direct_select to work with reactive_forms
-version: 0.0.3
+name: reactive_md_editable_textinput
+description: Wrapper around markdown_editable_textinput to use with reactive_forms.
+version: 0.0.1
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  markdown_editable_textinput: ^2.0.1
   reactive_forms: ^10.6.2
-  direct_select: ^2.0.0
 
 dev_dependencies:
   flutter_test:

@@ -32,3 +32,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveFlutterTypeahead](https://pub.dev/packages/reactive_flutter_typeahead)** - wrapper around [`flutter_typeahead`](https://pub.dev/packages/flutter_typeahead)
 - **[ReactivePinInputTextField](https://pub.dev/packages/reactive_pin_input_text_field)** - wrapper around [`pin_input_text_field`](https://pub.dev/packages/pin_input_text_field)
 - **[ReactiveDirectSelect](https://pub.dev/packages/reactive_direct_select)** - wrapper around [`direct_select`](https://pub.dev/packages/direct_select)
+- **[ReactiveMarkdownEditableTextInput](https://pub.dev/packages/reactive_md_editable_textinput)** - wrapper around [`markdown_editable_textinput`](https://pub.dev/packages/markdown_editable_textinput)
