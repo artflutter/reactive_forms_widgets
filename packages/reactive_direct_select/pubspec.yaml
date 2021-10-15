@@ -1,6 +1,6 @@
 name: reactive_direct_select
 description: Wrapper around direct_select to work with reactive_forms
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
