@@ -1,6 +1,6 @@
-name: reactive_month_picker_dialog
-description: Wrapper around month_picker_dialog to use with reactive_forms.
-version: 0.0.3
+name: reactive_code_text_field
+description: Wrapper around code_text_field to work with reactive_forms
+version: 0.0.1
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -10,14 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  month_picker_dialog: ^0.4.0
   reactive_forms: ^10.6.2
-  intl: ^0.17.0
-
+  code_text_field: ^1.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.4
+  flutter_lints: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
