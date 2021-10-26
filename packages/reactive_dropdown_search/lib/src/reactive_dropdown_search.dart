@@ -4,7 +4,6 @@ library reactive_dropdown_search;
 // found in the LICENSE file.
 
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:dropdown_search/src/selection_list_view_props.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -126,7 +125,7 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
     FavoriteItemsBuilder<V>? favoriteItemBuilder,
     FavoriteItems<V>? favoriteItems,
     MainAxisAlignment? favoriteItemsAlignment,
-    PopupSafeArea popupSafeArea = const PopupSafeArea(),
+    PopupSafeAreaProps popupSafeArea = const PopupSafeAreaProps(),
     double? clearButtonSplashRadius,
     double? dropdownButtonSplashRadius,
     TextFieldProps? searchFieldProps,

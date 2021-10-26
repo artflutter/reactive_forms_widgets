@@ -6,7 +6,6 @@ library reactive_dropdown_search;
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:dropdown_search/src/selection_list_view_props.dart';
 
 /// A [ReactiveDropdownSearchMultiSelection] that contains a [DropdownSearch].
 ///
@@ -125,7 +124,7 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     FavoriteItemsBuilder<V>? favoriteItemBuilder,
     FavoriteItems<V>? favoriteItems,
     MainAxisAlignment? favoriteItemsAlignment,
-    PopupSafeArea popupSafeArea = const PopupSafeArea(),
+    PopupSafeAreaProps popupSafeArea = const PopupSafeAreaProps(),
     double? clearButtonSplashRadius,
     double? dropdownButtonSplashRadius,
     TextFieldProps? searchFieldProps,
@@ -140,6 +139,11 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     bool stickMenuToBorder = false,
     FocusNode? focusNode,
     PositionCallback? positionCallback,
+    ValidationMultiSelectionBuilder<V?>? popupValidationMultiSelectionWidget,
+    DropdownSearchPopupItemBuilder<V>? popupSelectionWidget,
+    OnItemRemoved<V>? popupOnItemRemoved,
+    OnItemAdded<V>? popupOnItemAdded,
+    FormFieldSetter<List<V>>? onSaved,
   }) : super(
           key: key,
           formControl: formControl,
@@ -158,7 +162,7 @@ class ReactiveDropdownSearchMultiSelection<T, V>
             state._setFocusNode(focusNode);
 
             return DropdownSearch<V>.multiSelection(
-              onChange: field.didChange,
+              onChanged: field.didChange,
               mode: mode,
               label: label,
               hint: hint,
@@ -216,6 +220,12 @@ class ReactiveDropdownSearchMultiSelection<T, V>
               selectionListViewProps: selectionListViewProps,
               focusNode: state.focusNode,
               positionCallback: positionCallback,
+              popupValidationMultiSelectionWidget:
+                  popupValidationMultiSelectionWidget,
+              popupSelectionWidget: popupSelectionWidget,
+              popupOnItemRemoved: popupOnItemRemoved,
+              popupOnItemAdded: popupOnItemAdded,
+              onSaved: onSaved,
             );
           },
         );
