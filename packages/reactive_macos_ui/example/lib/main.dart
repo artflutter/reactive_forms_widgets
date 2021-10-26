@@ -92,8 +92,13 @@ class MyApp extends StatelessWidget {
                       formControlName: 'checkbox',
                     ),
                     SizedBox(height: 16),
-                    ReactiveMacosRadioButton<bool>(
+                    ReactiveMacosRadioButton<bool, bool>(
                       formControlName: 'radio',
+                      value: true,
+                    ),
+                    ReactiveMacosRadioButton<bool, bool>(
+                      formControlName: 'radio',
+                      value: false,
                     ),
                     SizedBox(height: 16),
                     ReactiveMacosSwitch<bool>(

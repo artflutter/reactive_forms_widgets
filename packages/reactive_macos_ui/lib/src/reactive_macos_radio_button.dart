@@ -10,7 +10,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveMacosRadioButton<T> extends ReactiveFormField<T, bool> {
+class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
   /// Creates a [ReactiveMacosRadioButton] that contains a [MacosRadioButton].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -79,7 +79,7 @@ class ReactiveMacosRadioButton<T> extends ReactiveFormField<T, bool> {
     String? formControlName,
     FormControl<T>? formControl,
     ValidationMessagesFunction<T>? validationMessages,
-    ControlValueAccessor<T, bool>? valueAccessor,
+    ControlValueAccessor<T, V>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
@@ -89,6 +89,7 @@ class ReactiveMacosRadioButton<T> extends ReactiveFormField<T, bool> {
       isDense: true,
       isCollapsed: true,
     ),
+    required V value,
     Color? innerColor,
     Color? onColor,
     double size = 16.0,
@@ -111,8 +112,9 @@ class ReactiveMacosRadioButton<T> extends ReactiveFormField<T, bool> {
                     field.control.markAsTouched();
                   }
                 },
-                child: MacosRadioButton(
-                  value: field.value ?? false,
+                child: MacosRadioButton<V>(
+                  groupValue: field.value,
+                  value: value,
                   onChanged: field.control.enabled ? field.didChange : null,
                   size: size = 16.0,
                   onColor: onColor,
