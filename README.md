@@ -35,3 +35,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveMarkdownEditableTextInput](https://pub.dev/packages/reactive_md_editable_textinput)** - wrapper around [`markdown_editable_textinput`](https://pub.dev/packages/markdown_editable_textinput)
 - **[ReactiveCodeTextField](https://pub.dev/packages/reactive_code_text_field)** - wrapper around [`code_text_field`](https://pub.dev/packages/code_text_field)
 - **[ReactivePhoneFormField](https://pub.dev/packages/reactive_phone_form_field)** - wrapper around [`phone_form_field`](https://pub.dev/packages/phone_form_field)
+- **[ReactiveExtendedTextField](https://pub.dev/packages/reactive_extended_text_field)** - wrapper around [`extended_text_field`](https://pub.dev/packages/extended_text_field)
