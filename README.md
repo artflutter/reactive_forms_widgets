@@ -36,3 +36,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveCodeTextField](https://pub.dev/packages/reactive_code_text_field)** - wrapper around [`code_text_field`](https://pub.dev/packages/code_text_field)
 - **[ReactivePhoneFormField](https://pub.dev/packages/reactive_phone_form_field)** - wrapper around [`phone_form_field`](https://pub.dev/packages/phone_form_field)
 - **[ReactiveExtendedTextField](https://pub.dev/packages/reactive_extended_text_field)** - wrapper around [`extended_text_field`](https://pub.dev/packages/extended_text_field)
+- **[ReactiveCupertinoSlidingSegmentedControl](https://pub.dev/packages/reactive_cup_slide_segmented)** - wrapper around [`CupertinoSlidingSegmentedControl`](https://api.flutter.dev/flutter/cupertino/CupertinoSlidingSegmentedControl-class.html)
