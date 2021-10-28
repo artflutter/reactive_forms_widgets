@@ -1,3 +1,6 @@
+## [0.0.5]
+* fix export
+ 
 ## [0.0.4]
 * rating bar builder
  
