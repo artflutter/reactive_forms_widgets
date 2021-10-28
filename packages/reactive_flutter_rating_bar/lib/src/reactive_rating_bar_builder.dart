@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import 'typedef.dart';
+
 export 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 /// A [ReactiveRatingBarBuilder] that contains a [TouchSpin].
@@ -93,6 +95,7 @@ class ReactiveRatingBarBuilder<T> extends ReactiveFormField<T, double> {
       isCollapsed: true,
     ),
     required IndexedWidgetBuilder itemBuilder,
+    RatingBarBuilder? ratingBarBuilder,
     Color? glowColor,
     double? maxRating,
     TextDirection? textDirection,
@@ -120,6 +123,28 @@ class ReactiveRatingBarBuilder<T> extends ReactiveFormField<T, double> {
             final InputDecoration effectiveDecoration = decoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
+            final child = RatingBar.builder(
+              itemBuilder: itemBuilder,
+              onRatingUpdate: field.didChange,
+              glowColor: glowColor,
+              maxRating: maxRating,
+              textDirection: textDirection,
+              unratedColor: unratedColor,
+              allowHalfRating: allowHalfRating,
+              direction: direction,
+              glow: glow,
+              glowRadius: glowRadius,
+              ignoreGestures: ignoreGestures,
+              initialRating: field.value ?? 0,
+              itemCount: itemCount,
+              itemPadding: itemPadding,
+              itemSize: itemSize,
+              minRating: minRating,
+              tapOnlyMode: tapOnlyMode,
+              updateOnDrag: updateOnDrag,
+              wrapAlignment: wrapAlignment,
+            );
+
             return Listener(
               onPointerDown: (_) {
                 if (field.control.enabled) {
@@ -131,27 +156,7 @@ class ReactiveRatingBarBuilder<T> extends ReactiveFormField<T, double> {
                   errorText: field.errorText,
                   enabled: field.control.enabled,
                 ),
-                child: RatingBar.builder(
-                  itemBuilder: itemBuilder,
-                  onRatingUpdate: field.didChange,
-                  glowColor: glowColor,
-                  maxRating: maxRating,
-                  textDirection: textDirection,
-                  unratedColor: unratedColor,
-                  allowHalfRating: allowHalfRating,
-                  direction: direction,
-                  glow: glow,
-                  glowRadius: glowRadius,
-                  ignoreGestures: ignoreGestures,
-                  initialRating: field.value ?? 0,
-                  itemCount: itemCount,
-                  itemPadding: itemPadding,
-                  itemSize: itemSize,
-                  minRating: minRating,
-                  tapOnlyMode: tapOnlyMode,
-                  updateOnDrag: updateOnDrag,
-                  wrapAlignment: wrapAlignment,
-                ),
+                child: ratingBarBuilder?.call(field.context, child) ?? child,
               ),
             );
           },

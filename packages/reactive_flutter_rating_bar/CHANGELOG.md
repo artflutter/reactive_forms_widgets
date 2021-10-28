@@ -1,3 +1,6 @@
+## [0.0.4]
+* rating bar builder
+ 
 ## [0.0.3]
 * reactive_forms update
 
