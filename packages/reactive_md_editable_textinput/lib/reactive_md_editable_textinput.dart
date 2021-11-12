@@ -10,7 +10,6 @@ import 'package:flutter/rendering.dart';
 import 'package:markdown_editable_textinput/format_markdown.dart';
 import 'package:markdown_editable_textinput/markdown_text_input.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_forms/src/value_accessors/control_value_accessor.dart';
 
 export 'package:markdown_editable_textinput/format_markdown.dart';
 export 'package:markdown_editable_textinput/markdown_text_input.dart';
@@ -105,7 +104,7 @@ class ReactiveMarkdownEditableTextInput<T>
     String label = '',
     TextDirection textDirection = TextDirection.ltr,
     int maxLines = 10,
-    actions = const [
+    List<MarkdownType> actions = const [
       MarkdownType.bold,
       MarkdownType.italic,
       MarkdownType.title,

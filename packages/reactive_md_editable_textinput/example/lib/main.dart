@@ -3,10 +3,12 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_md_editable_textinput/reactive_md_editable_textinput.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   FormGroup buildForm() => fb.group({
         'input': FormControl<String>(value: null),
       });
