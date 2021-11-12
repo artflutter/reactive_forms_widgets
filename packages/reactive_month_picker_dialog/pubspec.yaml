@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   month_picker_dialog: ^0.4.0
-  reactive_forms: ^10.6.2
+  reactive_forms: ^10.6.4
   intl: ^0.17.0
 
 dev_dependencies:
