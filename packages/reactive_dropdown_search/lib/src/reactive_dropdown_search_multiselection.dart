@@ -144,6 +144,7 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     OnItemRemoved<V>? popupOnItemRemoved,
     OnItemAdded<V>? popupOnItemAdded,
     FormFieldSetter<List<V>>? onSaved,
+    ValidationMultiSelectionBuilder<V>? popupCustomMultiSelectionWidget,
   }) : super(
           key: key,
           formControl: formControl,
@@ -226,6 +227,7 @@ class ReactiveDropdownSearchMultiSelection<T, V>
               popupOnItemRemoved: popupOnItemRemoved,
               popupOnItemAdded: popupOnItemAdded,
               onSaved: onSaved,
+              popupCustomMultiSelectionWidget: popupCustomMultiSelectionWidget,
             );
           },
         );
