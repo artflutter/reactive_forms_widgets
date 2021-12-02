@@ -122,6 +122,7 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
     int? imageQuality,
     CameraDevice preferredCameraDevice = CameraDevice.rear,
     Duration? maxDuration,
+    double disabledOpacity = 0.5,
     // ImagePickerMode mode = ImagePickerMode.image,
   }) : super(
           key: key,
@@ -155,38 +156,44 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
 
             return Listener(
               onPointerDown: (_) => field.control.markAsTouched(),
-              child: ImagePickerWidget(
-                imageViewBuilder: imageViewBuilder,
-                popupDialogBuilder: popupDialogBuilder,
-                onBeforeChange: onBeforeChange,
-                errorPickBuilder: errorPickBuilder ??
-                    (source, {BuildContext? context}) {
-                      if (source == ImageSource.camera) {
-                        field.control.setErrors(<String, Object>{
-                          ImageSource.camera.toString(): true,
-                        });
-                      }
+              child: IgnorePointer(
+                ignoring: !field.control.enabled,
+                child: Opacity(
+                  opacity: field.control.enabled ? 1 : disabledOpacity,
+                  child: ImagePickerWidget(
+                    imageViewBuilder: imageViewBuilder,
+                    popupDialogBuilder: popupDialogBuilder,
+                    onBeforeChange: onBeforeChange,
+                    errorPickBuilder: errorPickBuilder ??
+                        (source, {BuildContext? context}) {
+                          if (source == ImageSource.camera) {
+                            field.control.setErrors(<String, Object>{
+                              ImageSource.camera.toString(): true,
+                            });
+                          }
 
-                      if (source == ImageSource.gallery) {
-                        field.control.setErrors(<String, Object>{
-                          ImageSource.gallery.toString(): true,
-                        });
-                      }
-                    },
-                inputBuilder: inputBuilder,
-                imageContainerDecoration: imageContainerDecoration,
-                deleteDialogBuilder: deleteDialogBuilder,
-                editIcon: editIcon,
-                deleteIcon: deleteIcon,
-                decoration:
-                    effectiveDecoration.copyWith(errorText: field.errorText),
-                onChanged: field.didChange,
-                value: field.value ?? ImageFile(),
-                maxHeight: maxHeight,
-                maxWidth: maxWidth,
-                imageQuality: imageQuality,
-                preferredCameraDevice: preferredCameraDevice,
-                maxDuration: maxDuration,
+                          if (source == ImageSource.gallery) {
+                            field.control.setErrors(<String, Object>{
+                              ImageSource.gallery.toString(): true,
+                            });
+                          }
+                        },
+                    inputBuilder: inputBuilder,
+                    imageContainerDecoration: imageContainerDecoration,
+                    deleteDialogBuilder: deleteDialogBuilder,
+                    editIcon: editIcon,
+                    deleteIcon: deleteIcon,
+                    decoration: effectiveDecoration.copyWith(
+                        errorText: field.errorText),
+                    onChanged: field.didChange,
+                    value: field.value ?? ImageFile(),
+                    maxHeight: maxHeight,
+                    maxWidth: maxWidth,
+                    imageQuality: imageQuality,
+                    preferredCameraDevice: preferredCameraDevice,
+                    maxDuration: maxDuration,
+                  ),
+                ),
               ),
             );
           },

@@ -1,6 +1,6 @@
 name: reactive_image_picker
 description: Wrapper around image_picker to work with reactive_forms
-version: 0.4.0
+version: 0.5.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -11,14 +11,14 @@ dependencies:
   flutter:
     sdk: flutter
   reactive_forms: ^10.6.5
-  freezed_annotation: ^0.14.3
-  image_picker: ^0.8.4+2
+  freezed_annotation: ^1.0.0
+  image_picker: ^0.8.4+4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  freezed: ^0.14.5
-  build_runner: 2.1.4
+  freezed: ^1.0.0
+  build_runner: 2.1.5
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -139,23 +139,17 @@ class _$_ImageFile extends _ImageFile {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ImageFile &&
+        (other.runtimeType == runtimeType &&
+            other is _ImageFile &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
+                other.imageUrl == imageUrl) &&
             (identical(other.localImage, localImage) ||
-                const DeepCollectionEquality()
-                    .equals(other.localImage, localImage)) &&
-            (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)));
+                other.localImage == localImage) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(localImage) ^
-      const DeepCollectionEquality().hash(image);
+  int get hashCode => Object.hash(runtimeType, imageUrl, localImage, image);
 
   @JsonKey(ignore: true)
   @override
@@ -169,11 +163,11 @@ abstract class _ImageFile extends ImageFile {
   const _ImageFile._() : super._();
 
   @override
-  String? get imageUrl => throw _privateConstructorUsedError;
+  String? get imageUrl;
   @override
-  String? get localImage => throw _privateConstructorUsedError;
+  String? get localImage;
   @override
-  File? get image => throw _privateConstructorUsedError;
+  File? get image;
   @override
   @JsonKey(ignore: true)
   _$ImageFileCopyWith<_ImageFile> get copyWith =>
