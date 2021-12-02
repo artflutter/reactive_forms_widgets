@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
                       ),
                     ),
                     ElevatedButton(
-                      child: Text('Sign Up'),
+                      child: const Text('Sign Up'),
                       onPressed: () {
                         if (form.valid) {
                           print(form.value);

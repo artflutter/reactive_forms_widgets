@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^10.6.4
+  reactive_forms: ^10.6.5
   macos_ui: ^0.10.0
 
 dev_dependencies:

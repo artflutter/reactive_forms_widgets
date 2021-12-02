@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^10.6.4
+  reactive_forms: ^10.6.5
   flutter_advanced_switch: ^2.1.0
 
 dev_dependencies:

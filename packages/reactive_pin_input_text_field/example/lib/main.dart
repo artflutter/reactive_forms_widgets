@@ -3,7 +3,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_pin_input_text_field/reactive_pin_input_text_field.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,12 +13,12 @@ class MyApp extends StatelessWidget {
         'input': FormControl<String>(value: null),
       });
 
-  BoxDecoration get _pinPutDecoration {
-    return BoxDecoration(
-      border: Border.all(color: Colors.deepPurpleAccent),
-      borderRadius: BorderRadius.circular(15.0),
-    );
-  }
+  // BoxDecoration get _pinPutDecoration {
+  //   return BoxDecoration(
+  //     border: Border.all(color: Colors.deepPurpleAccent),
+  //     borderRadius: BorderRadius.circular(15.0),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

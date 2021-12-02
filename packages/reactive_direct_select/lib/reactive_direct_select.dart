@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_forms/src/value_accessors/control_value_accessor.dart';
 
 export 'package:direct_select/direct_select.dart';
 

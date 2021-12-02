@@ -12,7 +12,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:extended_text_field/extended_text_field.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_forms/src/value_accessors/control_value_accessor.dart';
 
 export 'package:extended_text_field/extended_text_field.dart';
 

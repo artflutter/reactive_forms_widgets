@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
                           item == null ? const SizedBox.shrink() : Text(item),
                     ),
                     ElevatedButton(
-                      child: Text('Sign Up'),
+                      child: const Text('Sign Up'),
                       onPressed: () {
                         if (form.valid) {
                           print(form.value);

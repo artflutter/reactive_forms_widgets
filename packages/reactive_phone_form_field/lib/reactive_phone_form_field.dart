@@ -12,7 +12,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_forms/src/value_accessors/control_value_accessor.dart';
 
 export 'package:phone_form_field/phone_form_field.dart';
 

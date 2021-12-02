@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  reactive_forms: ^10.6.4
+  reactive_forms: ^10.6.5
   flutter_rating_bar: ^4.0.0
 
 dev_dependencies:
