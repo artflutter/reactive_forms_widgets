@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^10.6.5
+  reactive_forms: ^10.6.6
   getwidget: ^2.0.3
 
 dev_dependencies:

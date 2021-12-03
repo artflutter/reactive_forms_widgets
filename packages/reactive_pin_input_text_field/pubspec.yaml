@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^10.6.5
+  reactive_forms: ^10.6.6
   pin_input_text_field: ^4.1.1
 
 dev_dependencies:

@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^10.6.5
+  reactive_forms: ^10.6.6
   reactive_phone_form_field:
     path: ../
 
