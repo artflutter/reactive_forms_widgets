@@ -39,3 +39,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveCupertinoSlidingSegmentedControl](https://pub.dev/packages/reactive_cup_slide_segmented)** - wrapper around [`CupertinoSlidingSegmentedControl`](https://api.flutter.dev/flutter/cupertino/CupertinoSlidingSegmentedControl-class.html)
 - **[ReactiveDropdownField](https://pub.dev/packages/reactive_dropdown_field)** - wrapper around [`DropdownButton`](https://api.flutter.dev/flutter/material/DropdownButton-class.html)
 - **[ReactiveCheckbox](https://pub.dev/packages/reactive_checkbox)** - wrapper around [`Checkbox`](https://api.flutter.dev/flutter/material/Checkbox-class.html)
+- **[ReactiveTextField](https://pub.dev/packages/reactive_text_field)** - wrapper around [`TextField`](https://api.flutter.dev/flutter/material/TextField-class.html)
