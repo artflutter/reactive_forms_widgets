@@ -93,7 +93,7 @@ class ReactiveRawAutocomplete<T, V extends Object>
     ShowErrorsFunction? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
-    required List<V> options,
+    // required List<V> options,
     required AutocompleteOptionsBuilder<V> optionsBuilder,
     AutocompleteFieldViewBuilder? fieldViewBuilder,
     required AutocompleteOptionsViewBuilder<V> optionsViewBuilder,

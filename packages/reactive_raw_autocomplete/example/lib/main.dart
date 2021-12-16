@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
                   children: [
                     ReactiveRawAutocomplete<String, String>(
                       formControlName: 'input',
-                      options: _options,
+                      // options: _options,
                       optionsBuilder: (TextEditingValue textEditingValue) {
                         return _options.where((String option) {
                           return option
