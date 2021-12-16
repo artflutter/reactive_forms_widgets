@@ -1,4 +1,4 @@
-# reactive_touch_spin
+# reactive_text_field
 
 Wrapper around [`TextField`](https://api.flutter.dev/flutter/material/TextField-class.html) to use with [`reactive_forms`](https://pub.dev/packages/reactive_forms)
 
