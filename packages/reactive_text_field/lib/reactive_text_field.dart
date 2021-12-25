@@ -144,6 +144,8 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
     ui.BoxHeightStyle selectionHeightStyle = ui.BoxHeightStyle.tight,
     ui.BoxWidthStyle selectionWidthStyle = ui.BoxWidthStyle.tight,
     this.onControllerInit,
+    Clip clipBehavior = Clip.hardEdge,
+    bool enableIMEPersonalizedLearning = true,
   }) : super(
           key: key,
           formControl: formControl,
@@ -216,6 +218,8 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
               selectionControls: selectionControls,
               selectionHeightStyle: selectionHeightStyle,
               selectionWidthStyle: selectionWidthStyle,
+              clipBehavior: clipBehavior,
+              enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
             );
           },
         );
