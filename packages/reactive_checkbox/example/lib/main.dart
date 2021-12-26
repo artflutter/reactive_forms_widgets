@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
                       child: const Text('Sign Up'),
                       onPressed: () {
                         if (form.valid) {
+                          // ignore: avoid_print
                           print(form.value);
                         } else {
                           form.markAllAsTouched();
