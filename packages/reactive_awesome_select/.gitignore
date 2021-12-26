@@ -8,11 +8,14 @@
 .buildlog/
 .history
 .svn/
+pubspec.lock
 
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
+.fvm
+example/ios/.symlinks
 .idea/
 
 # The .vscode folder contains launch configuration and tasks you configure in
@@ -60,7 +63,6 @@ build/
 **/ios/Flutter/Flutter.framework
 **/ios/Flutter/Flutter.podspec
 **/ios/Flutter/Generated.xcconfig
-**/ios/Flutter/ephemeral
 **/ios/Flutter/app.flx
 **/ios/Flutter/app.zip
 **/ios/Flutter/flutter_assets/

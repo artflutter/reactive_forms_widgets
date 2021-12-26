@@ -1,8 +1,8 @@
 library reactive_awesome_select;
 
-import 'package:awesome_select/awesome_select.dart';
-import 'package:awesome_select/src/model/chosen.dart';
-import 'package:awesome_select/src/model/choice_loader.dart';
+import 'package:flutter_awesome_select/flutter_awesome_select.dart';
+import 'package:flutter_awesome_select/src/model/chosen.dart';
+import 'package:flutter_awesome_select/src/model/choice_loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -16,7 +16,7 @@ import '/src/decoration.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveSmartSelectSingle<T, V> extends ReactiveFormField<T, V> {
+class ReactiveSmartSelectSingle<T, V> extends ReactiveFormField<T, V?> {
   /// Creates a [ReactiveSmartSelectSingle] that contains a [AdvancedSwitch].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -91,39 +91,37 @@ class ReactiveSmartSelectSingle<T, V> extends ReactiveFormField<T, V> {
     InputDecoration decoration = decorationInvisible,
     String? title,
     String placeholder = 'Select one',
-    // V? selectedValue,
-    S2Choice<V>? selectedChoice,
+    S2Choice<V?>? selectedChoice,
     S2SingleSelectedResolver<V?>? selectedResolver,
-    // ValueChanged<S2SingleSelected<V>>? onChange,
-    S2ChoiceSelect<S2SingleState<V>, S2Choice<V>>? onSelect,
-    S2ModalOpen<S2SingleState<V>>? onModalOpen,
-    S2ModalClose<S2SingleState<V>>? onModalClose,
-    S2ModalWillOpen<S2SingleState<V>>? onModalWillOpen,
-    S2ModalWillClose<S2SingleState<V>>? onModalWillClose,
-    S2Validation<S2SingleChosen<V?>>? validation,
-    S2Validation<S2SingleChosen<V>>? modalValidation,
-    List<S2Choice<V>>? choiceItems,
-    S2ChoiceLoader<V>? choiceLoader,
-    S2SingleBuilder<V>? builder,
-    S2WidgetBuilder<S2SingleState<V>>? tileBuilder,
-    S2WidgetBuilder<S2SingleState<V>>? modalBuilder,
-    S2WidgetBuilder<S2SingleState<V>>? modalHeaderBuilder,
-    S2ListWidgetBuilder<S2SingleState<V>>? modalActionsBuilder,
-    S2WidgetBuilder<S2SingleState<V>>? modalConfirmBuilder,
-    S2WidgetBuilder<S2SingleState<V>>? modalDividerBuilder,
-    S2WidgetBuilder<S2SingleState<V>>? modalFooterBuilder,
-    S2WidgetBuilder<S2SingleState<V>>? modalFilterBuilder,
-    S2WidgetBuilder<S2SingleState<V>>? modalFilterToggleBuilder,
-    S2ComplexWidgetBuilder<S2SingleState<V>, S2Choice<V>>? choiceBuilder,
-    S2ComplexWidgetBuilder<S2SingleState<V>, S2Choice<V>>? choiceTitleBuilder,
-    S2ComplexWidgetBuilder<S2SingleState<V>, S2Choice<V>>?
+    S2ChoiceSelect<S2SingleState<V?>, S2Choice<V?>>? onSelect,
+    S2ModalOpen<S2SingleState<V?>>? onModalOpen,
+    S2ModalClose<S2SingleState<V?>>? onModalClose,
+    S2ModalWillOpen<S2SingleState<V?>>? onModalWillOpen,
+    S2ModalWillClose<S2SingleState<V?>>? onModalWillClose,
+    // S2Validation<S2SingleChosen<V?>>? validation,
+    S2Validation<S2SingleChosen<V?>>? modalValidation,
+    List<S2Choice<V?>>? choiceItems,
+    S2ChoiceLoader<V?>? choiceLoader,
+    S2SingleBuilder<V?>? builder,
+    S2WidgetBuilder<S2SingleState<V?>>? tileBuilder,
+    S2WidgetBuilder<S2SingleState<V?>>? modalBuilder,
+    S2WidgetBuilder<S2SingleState<V?>>? modalHeaderBuilder,
+    S2ListWidgetBuilder<S2SingleState<V?>>? modalActionsBuilder,
+    S2WidgetBuilder<S2SingleState<V?>>? modalConfirmBuilder,
+    S2WidgetBuilder<S2SingleState<V?>>? modalDividerBuilder,
+    S2WidgetBuilder<S2SingleState<V?>>? modalFooterBuilder,
+    S2WidgetBuilder<S2SingleState<V?>>? modalFilterBuilder,
+    S2WidgetBuilder<S2SingleState<V?>>? modalFilterToggleBuilder,
+    S2ComplexWidgetBuilder<S2SingleState<V?>, S2Choice<V?>>? choiceBuilder,
+    S2ComplexWidgetBuilder<S2SingleState<V?>, S2Choice<V?>>? choiceTitleBuilder,
+    S2ComplexWidgetBuilder<S2SingleState<V?>, S2Choice<V?>>?
         choiceSubtitleBuilder,
-    S2ComplexWidgetBuilder<S2SingleState<V>, S2Choice<V>>?
+    S2ComplexWidgetBuilder<S2SingleState<V?>, S2Choice<V?>>?
         choiceSecondaryBuilder,
     IndexedWidgetBuilder? choiceDividerBuilder,
-    S2WidgetBuilder<S2SingleState<V>>? choiceEmptyBuilder,
-    S2ComplexWidgetBuilder<S2SingleState<V>, S2Group<V>>? groupBuilder,
-    S2ComplexWidgetBuilder<S2SingleState<V>, S2Group<V>>? groupHeaderBuilder,
+    S2WidgetBuilder<S2SingleState<V?>>? choiceEmptyBuilder,
+    S2ComplexWidgetBuilder<S2SingleState<V?>, S2Group<V?>>? groupBuilder,
+    S2ComplexWidgetBuilder<S2SingleState<V?>, S2Group<V?>>? groupHeaderBuilder,
     S2ChoiceConfig? choiceConfig,
     S2ChoiceStyle? choiceStyle,
     S2ChoiceStyle? choiceActiveStyle,
@@ -153,6 +151,10 @@ class ReactiveSmartSelectSingle<T, V> extends ReactiveFormField<T, V> {
     bool? modalFilter,
     bool? modalFilterAuto,
     String? modalFilterHint,
+    double disabledOpacity = 0.5,
+    bool decorationError = true,
+    bool fieldError = false,
+    bool modalError = false,
   }) : super(
           key: key,
           formControl: formControl,
@@ -166,76 +168,80 @@ class ReactiveSmartSelectSingle<T, V> extends ReactiveFormField<T, V> {
 
             return InputDecorator(
               decoration: effectiveDecoration.copyWith(
-                errorText: field.errorText,
+                errorText: decorationError ? field.errorText : null,
                 enabled: field.control.enabled,
               ),
-              child: SmartSelect<String>.single(
-                title: title,
-                /*placeholder: placeholder,*/
-                selectedValue: null,
-                // S2Choice<V>? selectedChoice,
-                // S2SingleSelectedResolver<V?>? selectedResolver,
-                onChange: (value) {
-                  //   field.didChange(value.value);
-                },
-                // S2ChoiceSelect<S2SingleState<V>, S2Choice<V>>? onSelect,
-                // S2ModalOpen<S2SingleState<V>>? onModalOpen,
-                // S2ModalClose<S2SingleState<V>>? onModalClose,
-                // S2ModalWillOpen<S2SingleState<V>>? onModalWillOpen,
-                // S2ModalWillClose<S2SingleState<V>>? onModalWillClose,
-                // S2Validation<S2SingleChosen<V?>>? validation,
-                // S2Validation<S2SingleChosen<V>>? modalValidation,
-                choiceItems: choiceItems as List<S2Choice<String>>,
-                // S2ChoiceLoader<V>? choiceLoader,
-                // S2SingleBuilder<V>? builder,
-                // S2WidgetBuilder<S2SingleState<V>>? tileBuilder,
-                // S2WidgetBuilder<S2SingleState<V>>? modalBuilder,
-                // S2WidgetBuilder<S2SingleState<V>>? modalHeaderBuilder,
-                // S2ListWidgetBuilder<S2SingleState<V>>? modalActionsBuilder,
-                // S2WidgetBuilder<S2SingleState<V>>? modalConfirmBuilder,
-                // S2WidgetBuilder<S2SingleState<V>>? modalDividerBuilder,
-                // S2WidgetBuilder<S2SingleState<V>>? modalFooterBuilder,
-                // S2WidgetBuilder<S2SingleState<V>>? modalFilterBuilder,
-                // S2WidgetBuilder<S2SingleState<V>>? modalFilterToggleBuilder,
-                // S2ComplexWidgetBuilder<S2SingleState<V>, S2Choice<V>>? choiceBuilder,
-                // S2ComplexWidgetBuilder<S2SingleState<V>, S2Choice<V>>? choiceTitleBuilder,
-                // S2ComplexWidgetBuilder<S2SingleState<V>, S2Choice<V>>?
-                // choiceSubtitleBuilder,
-                // S2ComplexWidgetBuilder<S2SingleState<V>, S2Choice<V>>?
-                // choiceSecondaryBuilder,
-                // IndexedWidgetBuilder? choiceDividerBuilder,
-                // S2WidgetBuilder<S2SingleState<V>>? choiceEmptyBuilder,
-                // S2ComplexWidgetBuilder<S2SingleState<V>, S2Group<V>>? groupBuilder,
-                // S2ComplexWidgetBuilder<S2SingleState<V>, S2Group<V>>? groupHeaderBuilder,
-                // S2ChoiceConfig? choiceConfig,
-                // S2ChoiceStyle? choiceStyle,
-                // S2ChoiceStyle? choiceActiveStyle,
-                // S2ChoiceType? choiceType,
-                // S2ChoiceLayout? choiceLayout,
-                /*choiceDirection: choiceDirection,
-                choiceGrouped: choiceGrouped,
-                choiceDivider: choiceDivider,
-                choiceGrid: choiceGrid,
-                choiceGridCount: choiceGridCount,
-                choiceGridSpacing: choiceGridSpacing,
-                choicePageLimit: choicePageLimit,
-                choiceDelay: choiceDelay,
-                groupConfig: groupConfig,
-                groupEnabled: groupEnabled,
-                groupSelector: groupSelector,
-                groupCounter: groupCounter,
-                groupSortBy: groupSortBy,
-                groupHeaderStyle: groupHeaderStyle,
-                modalConfig: modalConfig,
-                modalStyle: modalStyle,
-                modalHeaderStyle: modalHeaderStyle,
-                modalType: modalType,
-                modalTitle: modalTitle,
-                modalConfirm: modalConfirm,
-                modalHeader: modalHeader,
-                modalFilter: modalFilter,
-                modalFilterAuto: modalFilterAuto,
-                modalFilterHint: modalFilterHint,*/
+              child: Opacity(
+                opacity: field.control.enabled ? 1 : disabledOpacity,
+                child: IgnorePointer(
+                  ignoring: !field.control.enabled,
+                  child: SmartSelect<V?>.single(
+                    title: title,
+                    placeholder: placeholder,
+                    selectedValue: field.value,
+                    selectedChoice: selectedChoice,
+                    selectedResolver: selectedResolver,
+                    onChange: (value) => field.didChange(value.value),
+                    onSelect: onSelect,
+                    onModalOpen: onModalOpen,
+                    onModalClose: onModalClose,
+                    onModalWillOpen: onModalWillOpen,
+                    onModalWillClose: onModalWillClose,
+                    validation:
+                        fieldError ? (_) => field.errorText ?? '' : null,
+                    modalValidation:
+                        modalError ? (_) => field.errorText ?? '' : null,
+                    choiceItems: choiceItems as List<S2Choice<V?>>,
+                    choiceLoader: choiceLoader,
+                    builder: builder,
+                    tileBuilder: tileBuilder,
+                    modalBuilder: modalBuilder,
+                    modalHeaderBuilder: modalHeaderBuilder,
+                    modalActionsBuilder: modalActionsBuilder,
+                    modalConfirmBuilder: modalConfirmBuilder,
+                    modalDividerBuilder: modalDividerBuilder,
+                    modalFooterBuilder: modalFooterBuilder,
+                    modalFilterBuilder: modalFilterBuilder,
+                    modalFilterToggleBuilder: modalFilterToggleBuilder,
+                    choiceBuilder: choiceBuilder,
+                    choiceTitleBuilder: choiceTitleBuilder,
+                    choiceSubtitleBuilder: choiceSubtitleBuilder,
+                    choiceSecondaryBuilder: choiceSecondaryBuilder,
+                    choiceDividerBuilder: choiceDividerBuilder,
+                    choiceEmptyBuilder: choiceEmptyBuilder,
+                    groupBuilder: groupBuilder,
+                    groupHeaderBuilder: groupHeaderBuilder,
+                    choiceConfig: choiceConfig,
+                    choiceStyle: choiceStyle,
+                    choiceActiveStyle: choiceActiveStyle,
+                    choiceType: choiceType,
+                    choiceLayout: choiceLayout,
+                    choiceDirection: choiceDirection,
+                    choiceGrouped: choiceGrouped,
+                    choiceDivider: choiceDivider,
+                    choiceGrid: choiceGrid,
+                    choiceGridCount: choiceGridCount,
+                    choiceGridSpacing: choiceGridSpacing,
+                    choicePageLimit: choicePageLimit,
+                    choiceDelay: choiceDelay,
+                    groupConfig: groupConfig,
+                    groupEnabled: field.control.enabled,
+                    groupSelector: groupSelector,
+                    groupCounter: groupCounter,
+                    groupSortBy: groupSortBy,
+                    groupHeaderStyle: groupHeaderStyle,
+                    modalConfig: modalConfig,
+                    modalStyle: modalStyle,
+                    modalHeaderStyle: modalHeaderStyle,
+                    modalType: modalType,
+                    modalTitle: modalTitle,
+                    modalConfirm: modalConfirm,
+                    modalHeader: modalHeader,
+                    modalFilter: modalFilter,
+                    modalFilterAuto: modalFilterAuto,
+                    modalFilterHint: modalFilterHint,
+                  ),
+                ),
               ),
             );
           },
@@ -243,10 +249,10 @@ class ReactiveSmartSelectSingle<T, V> extends ReactiveFormField<T, V> {
 
   // @override
   // ReactiveFormFieldState<T, bool> createState() =>
-  //     _ReactiveSmartSelectSingleState<V>();
+  //     _ReactiveSmartSelectSingleState<V?>();
 }
 
-// class _ReactiveSmartSelectSingleState<V>
+// class _ReactiveSmartSelectSingleState<V?>
 //     extends ReactiveFormFieldState<T, bool> {
 //   late AdvancedSwitchController _advancedSwitchController;
 //

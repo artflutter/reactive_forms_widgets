@@ -10,7 +10,11 @@ void main() {
 
 class MyApp extends StatelessWidget {
   FormGroup buildForm() => fb.group({
-        'input': FormControl<String>(value: null),
+        'input': FormControl<String>(
+          value: null,
+          validators: [Validators.required],
+        ),
+        'inputMultiple': FormControl<List<String>>(value: null),
       });
 
   @override
@@ -38,6 +42,12 @@ class MyApp extends StatelessWidget {
                       formControlName: 'input',
                       title: 'Day selector',
                       choiceItems: days,
+                    ),
+                    Text('data'),
+                    ReactiveSmartSelectMultiple<String, String>(
+                      formControlName: 'inputMultiple',
+                      title: 'Fruit',
+                      choiceItems: fruits,
                     ),
                     SizedBox(height: 16),
                     ElevatedButton(

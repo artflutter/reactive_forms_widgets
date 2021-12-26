@@ -1,4 +1,5 @@
-import 'package:reactive_awesome_select/reactive_awesome_select.dart';
+import 'package:flutter_awesome_select/flutter_awesome_select.dart'
+    show S2Choice;
 
 List<S2Choice<String>> days = [
   S2Choice<String>(value: 'mon', title: 'Monday'),
@@ -73,7 +74,7 @@ List<S2Choice<String>> sorts = [
   S2Choice<String>(value: 'pricey', title: 'High Price'),
 ];
 
-List<Map<String, dynamic>> cars = [
+List<Map<String, String>> cars = [
   {'value': 'bmw-x1', 'title': 'BMW X1', 'brand': 'BMW', 'body': 'SUV'},
   {'value': 'bmw-x7', 'title': 'BMW X7', 'brand': 'BMW', 'body': 'SUV'},
   {'value': 'bmw-x2', 'title': 'BMW X2', 'brand': 'BMW', 'body': 'SUV'},
@@ -219,7 +220,7 @@ List<Map<String, dynamic>> cars = [
   },
 ];
 
-List<Map<String, dynamic>> smartphones = [
+List<Map<String, String>> smartphones = [
   {
     'id': 'sk3',
     'name': 'Samsung Keystone 3',
@@ -342,7 +343,7 @@ List<Map<String, dynamic>> smartphones = [
   },
 ];
 
-List<Map<String, dynamic>> transports = [
+List<Map<String, String>> transports = [
   {
     'title': 'Plane',
     'image': 'https://source.unsplash.com/Eu1xLlWuTWY/100x100',
