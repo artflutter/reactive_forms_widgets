@@ -4,10 +4,7 @@ library reactive_pinput;
 // Use of this source code is governed by the MIT license that can be
 // found in the LICENSE file.
 
-import 'package:flutter/cupertino.dart' hide OverlayVisibilityMode;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:pinput/pin_put/pin_put.dart';

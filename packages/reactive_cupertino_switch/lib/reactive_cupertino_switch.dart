@@ -2,7 +2,6 @@ library reactive_cupertino_switch;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 /// A [ReactiveCupertinoSwitch] that contains a [CupertinoSwitch].

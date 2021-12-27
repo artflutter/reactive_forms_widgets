@@ -6,9 +6,7 @@ library reactive_pin_code_fields;
 
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart' hide OverlayVisibilityMode;
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:reactive_forms/reactive_forms.dart';

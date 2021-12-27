@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^10.6.8
+  reactive_forms: ^11.0.0
   reactive_direct_select:
     path: ../
 

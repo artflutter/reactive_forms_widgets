@@ -5,10 +5,7 @@ library reactive_direct_select;
 // found in the LICENSE file.
 
 import 'package:direct_select/direct_select.dart';
-import 'package:flutter/cupertino.dart' hide OverlayVisibilityMode;
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 export 'package:direct_select/direct_select.dart';

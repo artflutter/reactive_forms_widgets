@@ -5,9 +5,7 @@ library reactive_code_text_field;
 // found in the LICENSE file.
 
 import 'package:code_text_field/code_text_field.dart';
-import 'package:flutter/cupertino.dart' hide OverlayVisibilityMode;
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 export 'package:code_text_field/code_text_field.dart';

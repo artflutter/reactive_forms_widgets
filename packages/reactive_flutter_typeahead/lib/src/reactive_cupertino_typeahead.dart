@@ -3,8 +3,6 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_typeahead2/flutter_typeahead2.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 

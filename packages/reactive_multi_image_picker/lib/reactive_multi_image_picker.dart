@@ -1,6 +1,5 @@
 library reactive_multi_image_picker;
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
