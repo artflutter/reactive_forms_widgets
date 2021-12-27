@@ -15,10 +15,24 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   TextEditingController? _controller;
+  FocusNode _focusNode = FocusNode();
 
   FormGroup buildForm() => fb.group({
         'input': FormControl<String>(value: 'some value'),
       });
+
+  @override
+  void initState() {
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        _controller?.selection = TextSelection(
+          baseOffset: 0,
+          extentOffset: _controller?.text.length ?? 0,
+        );
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +60,7 @@ class _MyAppState extends State<MyApp> {
                       onControllerInit: (controller) {
                         _controller = controller;
                       },
+                      focusNode: _focusNode,
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(
