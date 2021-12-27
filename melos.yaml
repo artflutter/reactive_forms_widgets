@@ -2,3 +2,5 @@
 name: reactive_forms_widgets
 packages:
   - packages/**
+ignore:
+  - "packages/**/example"

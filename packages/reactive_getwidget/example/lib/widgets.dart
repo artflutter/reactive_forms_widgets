@@ -1,35 +1,12 @@
-import 'package:example/sample_screen.dart';
-import 'package:flutter/material.dart' hide ProgressIndicator;
-import 'package:reactive_forms/reactive_forms.dart';
+// This is a basic Flutter widget test.
+//
+// To perform an interaction with a widget in your test, use the WidgetTester
+// utility that Flutter provides. For example, you can send tap and scroll
+// gestures. You can also use WidgetTester to find child widgets in the widget
+// tree, read text, and verify that the values of widget properties are correct.
 
-class Widgets extends StatelessWidget {
-  FormGroup buildForm() => fb.group({
-        // 'image': FormControl<ImageFile>(),
-      });
+import 'package:flutter_test/flutter_test.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return SampleScreen(
-      body: ReactiveFormBuilder(
-        form: buildForm,
-        builder: (context, form, child) {
-          return Column(
-            children: [
-              SizedBox(height: 16),
-              ElevatedButton(
-                child: Text('Sign Up'),
-                onPressed: () {
-                  if (form.valid) {
-                    print(form.value);
-                  } else {
-                    form.markAllAsTouched();
-                  }
-                },
-              ),
-            ],
-          );
-        },
-      ),
-    );
-  }
+void main() {
+  testWidgets('Counter increments smoke test', (WidgetTester tester) async {});
 }
