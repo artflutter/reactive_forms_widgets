@@ -5,10 +5,12 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'choices.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   FormGroup buildForm() => fb.group({
         'input': FormControl<String>(
           value: null,
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.symmetric(
               horizontal: 20.0,
               vertical: 20.0,
@@ -43,17 +45,18 @@ class MyApp extends StatelessWidget {
                       title: 'Day selector',
                       choiceItems: days,
                     ),
-                    Text('data'),
+                    const Text('data'),
                     ReactiveSmartSelectMultiple<String, String>(
                       formControlName: 'inputMultiple',
                       title: 'Fruit',
                       choiceItems: fruits,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ElevatedButton(
-                      child: Text('Sign Up'),
+                      child: const Text('Sign Up'),
                       onPressed: () {
                         if (form.valid) {
+                          // ignore: avoid_print
                           print(form.value);
                         } else {
                           form.markAllAsTouched();

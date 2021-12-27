@@ -115,7 +115,7 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
                       children: [
                         IconButton(
                           color: iconColor,
-                          icon: Icon(Icons.edit),
+                          icon: const Icon(Icons.edit),
                           onPressed: () {
                             _showDialog(
                               field.context,
@@ -128,7 +128,7 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
                         if (field.value != null)
                           IconButton(
                             color: iconColor,
-                            icon: Icon(Icons.clear),
+                            icon: const Icon(Icons.clear),
                             onPressed: () {
                               field.didChange(null);
                             },

@@ -3,10 +3,12 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_month_picker_dialog/reactive_month_picker_dialog.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   FormGroup buildForm() => fb.group({
         'input': FormControl<DateTime>(value: DateTime.now()),
       });
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(),
         body: SafeArea(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.symmetric(
               horizontal: 20.0,
               vertical: 20.0,
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
               builder: (context, form, child) {
                 return Column(
                   children: [
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     ReactiveMonthPickerDialog(
                       formControlName: 'input',
                       decoration: const InputDecoration(
@@ -42,11 +44,12 @@ class MyApp extends StatelessWidget {
                         suffixIcon: Icon(Icons.calendar_today),
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ElevatedButton(
-                      child: Text('Sign Up'),
+                      child: const Text('Sign Up'),
                       onPressed: () {
                         if (form.valid) {
+                          // ignore: avoid_print
                           print(form.value);
                         } else {
                           form.markAllAsTouched();

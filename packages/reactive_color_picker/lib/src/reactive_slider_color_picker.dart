@@ -54,7 +54,7 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
     bool showIndicator = true,
     Alignment indicatorAlignmentBegin = const Alignment(-1.0, -3.0),
     Alignment indicatorAlignmentEnd = const Alignment(1.0, 3.0),
-    BorderRadius indicatorBorderRadius: const BorderRadius.all(Radius.zero),
+    BorderRadius indicatorBorderRadius = const BorderRadius.all(Radius.zero),
   }) : super(
           key: key,
           formControl: formControl,
@@ -123,7 +123,7 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
                       children: [
                         IconButton(
                           color: iconColor,
-                          icon: Icon(Icons.edit),
+                          icon: const Icon(Icons.edit),
                           onPressed: () {
                             _showDialog(
                               field.context,
@@ -136,7 +136,7 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
                         if (field.value != null)
                           IconButton(
                             color: iconColor,
-                            icon: Icon(Icons.clear),
+                            icon: const Icon(Icons.clear),
                             onPressed: () {
                               field.didChange(null);
                             },

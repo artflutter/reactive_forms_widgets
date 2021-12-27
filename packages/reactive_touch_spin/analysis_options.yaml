@@ -1,6 +1,4 @@
-linter:
-  rules:
-    close_sink: false
+include: package:flutter_lints/flutter.yaml
 
 analyzer:
   strong-mode:

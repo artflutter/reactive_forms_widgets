@@ -3,10 +3,12 @@ import 'package:reactive_date_range_picker/reactive_date_range_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   FormGroup buildForm() => fb.group({
         'dateRange': FormControl<DateTimeRange>(),
       });
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(),
         body: SafeArea(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.symmetric(
               horizontal: 20.0,
               vertical: 20.0,
@@ -42,9 +44,10 @@ class MyApp extends StatelessWidget {
                       ),
                     ),
                     ElevatedButton(
-                      child: Text('Sign Up'),
+                      child: const Text('Sign Up'),
                       onPressed: () {
                         if (form.valid) {
+                          // ignore: avoid_print
                           print(form.value);
                         } else {
                           form.markAllAsTouched();

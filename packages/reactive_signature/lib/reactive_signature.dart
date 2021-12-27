@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:signature/signature.dart';
 
-typedef Widget SignatureBuilder(
+typedef SignatureBuilder = Widget Function(
   BuildContext context,
   Widget signaturePad,
   SignatureController controller,
@@ -133,7 +133,7 @@ class ReactiveSignature<T> extends ReactiveFormField<T, Uint8List> {
                     children: [
                       Expanded(child: child),
                       IconButton(
-                        icon: Icon(Icons.clear),
+                        icon: const Icon(Icons.clear),
                         onPressed: () => state._signatureController.clear(),
                       )
                     ],
@@ -171,7 +171,7 @@ class _ReactiveSignatureState<T> extends ReactiveFormFieldState<T, Uint8List> {
     );
 
     _signatureController.addListener(() async {
-      this.control.focus();
+      control.focus();
       didChange(await _signatureController.toPngBytes());
     });
   }

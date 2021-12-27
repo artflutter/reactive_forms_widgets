@@ -3,12 +3,14 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_range_slider/reactive_range_slider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   FormGroup buildForm() => fb.group({
-        'input': FormControl<RangeValues>(value: RangeValues(0, 10)),
+        'input': FormControl<RangeValues>(value: const RangeValues(0, 10)),
       });
 
   @override
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.symmetric(
               horizontal: 20.0,
               vertical: 20.0,
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
                         values.start.round().toString(),
                         values.end.round().toString(),
                       ),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                       ),
@@ -54,11 +56,12 @@ class MyApp extends StatelessWidget {
                       //   helperText: '',
                       // ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ElevatedButton(
-                      child: Text('Sign Up'),
+                      child: const Text('Sign Up'),
                       onPressed: () {
                         if (form.valid) {
+                          // ignore: avoid_print
                           print(form.value);
                         } else {
                           form.markAllAsTouched();

@@ -3,10 +3,12 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_macos_ui/reactive_macos_ui.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   FormGroup buildForm() => fb.group({
         'ratingIndicator': FormControl<double>(
           value: 0,
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.symmetric(
               horizontal: 20.0,
               vertical: 20.0,
@@ -64,7 +66,7 @@ class MyApp extends StatelessWidget {
                         };
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ReactiveCapacityIndicator<double>(
                       formControlName: 'capacityIndicator',
                       validationMessages: (_) {
@@ -73,7 +75,7 @@ class MyApp extends StatelessWidget {
                         };
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ReactiveCapacityIndicator<double>(
                       formControlName: 'capacityIndicator',
                       discrete: true,
@@ -83,15 +85,15 @@ class MyApp extends StatelessWidget {
                         };
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ReactiveMacosTextField<String>(
                       formControlName: 'textField',
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ReactiveMacosCheckbox<bool>(
                       formControlName: 'checkbox',
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ReactiveMacosRadioButton<bool, bool>(
                       formControlName: 'radio',
                       value: true,
@@ -100,15 +102,16 @@ class MyApp extends StatelessWidget {
                       formControlName: 'radio',
                       value: false,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ReactiveMacosSwitch<bool>(
                       formControlName: 'switch',
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ElevatedButton(
-                      child: Text('Sign Up'),
+                      child: const Text('Sign Up'),
                       onPressed: () {
                         if (form.valid) {
+                          // ignore: avoid_print
                           print(form.value);
                         } else {
                           form.markAllAsTouched();

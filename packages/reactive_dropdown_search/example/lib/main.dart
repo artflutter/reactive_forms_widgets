@@ -3,10 +3,12 @@ import 'package:reactive_dropdown_search/reactive_dropdown_search.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   FormGroup buildForm() => fb.group({
         'menu': FormControl<String>(value: 'Tunisia'),
         'menuMultiple': FormControl<List<String>>(value: ['Tunisia', 'Brazil']),
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(),
         body: SafeArea(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.symmetric(
               horizontal: 20.0,
               vertical: 20.0,
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
                   children: [
                     ReactiveDropdownSearch<String, String>(
                       formControlName: 'menu',
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         helperText: '',
                         contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                         border: OutlineInputBorder(),
@@ -45,7 +47,7 @@ class MyApp extends StatelessWidget {
                       mode: Mode.MENU,
                       hint: "Select a country",
                       showSelectedItems: true,
-                      items: [
+                      items: const [
                         "Brazil",
                         "Italia (Disabled)",
                         "Tunisia",
@@ -57,10 +59,10 @@ class MyApp extends StatelessWidget {
                         return s.startsWith('I');
                       },
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     ReactiveDropdownSearchMultiSelection<String, String>(
                       formControlName: 'menuMultiple',
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         helperText: '',
                         contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                         border: OutlineInputBorder(),
@@ -68,7 +70,7 @@ class MyApp extends StatelessWidget {
                       mode: Mode.MENU,
                       hint: "Select a country",
                       showSelectedItems: true,
-                      items: [
+                      items: const [
                         "Brazil",
                         "Italia (Disabled)",
                         "Tunisia",
@@ -80,29 +82,29 @@ class MyApp extends StatelessWidget {
                         return s.startsWith('I');
                       },
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     ReactiveDropdownSearch<String, String>(
                       formControlName: 'bottomSheet',
                       mode: Mode.BOTTOM_SHEET,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         helperText: '',
                         contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                         border: OutlineInputBorder(),
                       ),
                       maxHeight: 300,
-                      items: ["Brazil", "Italia", "Tunisia", 'Canada'],
+                      items: const ["Brazil", "Italia", "Tunisia", 'Canada'],
                       label: "Custom BottomSheet mode",
                       showSearchBox: true,
                       popupTitle: Container(
                         height: 50,
                         decoration: BoxDecoration(
                           color: Theme.of(context).primaryColorDark,
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Country',
                             style: TextStyle(
@@ -113,18 +115,19 @@ class MyApp extends StatelessWidget {
                           ),
                         ),
                       ),
-                      popupShape: RoundedRectangleBorder(
+                      popupShape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(24),
                           topRight: Radius.circular(24),
                         ),
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ElevatedButton(
-                      child: Text('Sign Up'),
+                      child: const Text('Sign Up'),
                       onPressed: () {
                         if (form.valid) {
+                          // ignore: avoid_print
                           print(form.value);
                         } else {
                           form.markAllAsTouched();

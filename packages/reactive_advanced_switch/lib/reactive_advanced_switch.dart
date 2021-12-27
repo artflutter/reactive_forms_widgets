@@ -92,8 +92,7 @@ class ReactiveAdvancedSwitch<T> extends ReactiveFormField<T, bool> {
     Widget? inactiveChild,
     ImageProvider? activeImage,
     ImageProvider? inactiveImage,
-    BorderRadius borderRadius =
-        const BorderRadius.all(const Radius.circular(15)),
+    BorderRadius borderRadius = const BorderRadius.all(Radius.circular(15)),
     double width = 50.0,
     double height = 30.0,
     Widget? thumb,
@@ -148,11 +147,11 @@ class _ReactiveAdvancedSwitchState<T> extends ReactiveFormFieldState<T, bool> {
     super.initState();
 
     _advancedSwitchController = AdvancedSwitchController(
-      this.valueAccessor.modelToViewValue(this.control.value) ?? false,
+      valueAccessor.modelToViewValue(control.value) ?? false,
     )..addListener(
         () {
-          this.control.markAsTouched();
-          this.didChange(_advancedSwitchController.value);
+          control.markAsTouched();
+          didChange(_advancedSwitchController.value);
         },
       );
   }

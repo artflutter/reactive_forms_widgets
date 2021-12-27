@@ -9,25 +9,28 @@ export 'package:image_picker/image_picker.dart';
 
 import 'image_file.dart';
 
-typedef Widget ImageViewBuilder(ImageFile image);
+typedef ImageViewBuilder = Widget Function(ImageFile image);
 
-typedef Widget InputButtonBuilder(VoidCallback onPressed);
+typedef InputButtonBuilder = Widget Function(VoidCallback onPressed);
 
-typedef void ErrorPickBuilder(ImageSource source, {BuildContext context});
+typedef ErrorPickBuilder = void Function(ImageSource source,
+    {BuildContext context});
 
-typedef void DeleteDialogBuilder(BuildContext context, VoidCallback onConfirm);
+typedef DeleteDialogBuilder = void Function(
+    BuildContext context, VoidCallback onConfirm);
 
-typedef void PopupDialogBuilder(
+typedef PopupDialogBuilder = void Function(
   BuildContext context,
   ImagePickCallback pickImage,
 );
 
-typedef Future<ImageFile> OnBeforeChangeCallback(
+typedef OnBeforeChangeCallback = Future<ImageFile> Function(
     BuildContext context, ImageFile image);
 
 enum ImagePickerMode { image, video, multiImage }
 
-typedef void ImagePickCallback(BuildContext context, ImageSource source);
+typedef ImagePickCallback = void Function(
+    BuildContext context, ImageSource source);
 
 /// A [ReactiveImagePicker] that contains a [DropdownSearch].
 ///
@@ -186,7 +189,7 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
                     decoration: effectiveDecoration.copyWith(
                         errorText: field.errorText),
                     onChanged: field.didChange,
-                    value: field.value ?? ImageFile(),
+                    value: field.value ?? const ImageFile(),
                     maxHeight: maxHeight,
                     maxWidth: maxWidth,
                     imageQuality: imageQuality,
@@ -302,63 +305,61 @@ class ImagePickerWidget extends StatelessWidget {
         children: <Widget>[
           Expanded(
               flex: 3,
-              child: Container(
-                child: SafeArea(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      ListTile(
-                        leading: Icon(Icons.photo_camera),
-                        title: Text('Take photo'),
-                        onTap: () {
-                          Navigator.of(context).pop();
-                          _onImageButtonPressed(
-                            context,
-                            ImageSource.camera,
-                          );
-                        },
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.photo),
-                        title: Text('Choose from library'),
-                        onTap: () {
-                          Navigator.of(context).pop();
-                          _onImageButtonPressed(
-                            context,
-                            ImageSource.gallery,
-                          );
-                        },
-                      ),
-                      // ListTile(
-                      //   leading: Icon(Icons.video_call),
-                      //   title: Text('Take video'),
-                      //   onTap: () {
-                      //     Navigator.of(context).pop();
-                      //     _onVideoButtonPressed(
-                      //       context,
-                      //       ImageSource.camera,
-                      //     );
-                      //   },
-                      // ),
-                      // ListTile(
-                      //   leading: Icon(Icons.video_call),
-                      //   title: Text('Choose video from library'),
-                      //   onTap: () {
-                      //     Navigator.of(context).pop();
-                      //     _onVideoButtonPressed(
-                      //       context,
-                      //       ImageSource.gallery,
-                      //     );
-                      //   },
-                      // ),
-                      ListTile(
-                        leading: Icon(Icons.clear),
-                        title: Text('Cancel'),
-                        onTap: Navigator.of(context).pop,
-                      )
-                    ],
-                  ),
+              child: SafeArea(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    ListTile(
+                      leading: const Icon(Icons.photo_camera),
+                      title: const Text('Take photo'),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        _onImageButtonPressed(
+                          context,
+                          ImageSource.camera,
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.photo),
+                      title: const Text('Choose from library'),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        _onImageButtonPressed(
+                          context,
+                          ImageSource.gallery,
+                        );
+                      },
+                    ),
+                    // ListTile(
+                    //   leading: Icon(Icons.video_call),
+                    //   title: Text('Take video'),
+                    //   onTap: () {
+                    //     Navigator.of(context).pop();
+                    //     _onVideoButtonPressed(
+                    //       context,
+                    //       ImageSource.camera,
+                    //     );
+                    //   },
+                    // ),
+                    // ListTile(
+                    //   leading: Icon(Icons.video_call),
+                    //   title: Text('Choose video from library'),
+                    //   onTap: () {
+                    //     Navigator.of(context).pop();
+                    //     _onVideoButtonPressed(
+                    //       context,
+                    //       ImageSource.gallery,
+                    //     );
+                    //   },
+                    // ),
+                    ListTile(
+                      leading: const Icon(Icons.clear),
+                      title: const Text('Cancel'),
+                      onTap: Navigator.of(context).pop,
+                    )
+                  ],
                 ),
               )),
         ],
@@ -378,15 +379,15 @@ class ImagePickerWidget extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Delete image"),
-          content: Text("This action could not be undone"),
+          title: const Text("Delete image"),
+          content: const Text("This action could not be undone"),
           actions: [
             TextButton(
-              child: Text("CLOSE"),
+              child: const Text("CLOSE"),
               onPressed: () => Navigator.of(context).pop(),
             ),
             TextButton(
-              child: Text("CONFIRM"),
+              child: const Text("CONFIRM"),
               onPressed: () {
                 onConfirm();
                 Navigator.of(context).pop();
@@ -409,7 +410,7 @@ class ImagePickerWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           imageViewBuilder?.call(value) ??
-              Container(
+              SizedBox(
                 height: 250,
                 child: _ImageView(image: value),
               ),
@@ -419,12 +420,12 @@ class ImagePickerWidget extends StatelessWidget {
               children: <Widget>[
                 IconButton(
                   onPressed: () => _buildPopupMenu(context),
-                  icon: editIcon ?? Icon(Icons.edit),
+                  icon: editIcon ?? const Icon(Icons.edit),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 IconButton(
                   onPressed: () => _handleDelete(context),
-                  icon: deleteIcon ?? Icon(Icons.delete),
+                  icon: deleteIcon ?? const Icon(Icons.delete),
                 )
               ],
             )
@@ -436,8 +437,8 @@ class ImagePickerWidget extends StatelessWidget {
   Widget _buildInput(BuildContext context) {
     return OutlinedButton.icon(
       onPressed: () => _buildPopupMenu(context),
-      icon: Icon(Icons.add, color: Color(0xFF00A7E1)),
-      label: Text('Pick image'),
+      icon: const Icon(Icons.add, color: Color(0xFF00A7E1)),
+      label: const Text('Pick image'),
     );
   }
 

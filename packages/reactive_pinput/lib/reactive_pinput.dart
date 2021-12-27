@@ -11,9 +11,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:pinput/pin_put/pin_put.dart';
-import 'package:reactive_forms/src/value_accessors/control_value_accessor.dart';
-import 'package:reactive_forms/src/value_accessors/double_value_accessor.dart';
-import 'package:reactive_forms/src/value_accessors/int_value_accessor.dart';
 
 /// A [ReactivePinPut] that contains a [PinPut].
 ///

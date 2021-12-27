@@ -9,10 +9,10 @@ import 'package:reactive_forms/reactive_forms.dart';
 export 'package:reactive_file_picker/multi_file.dart';
 export 'package:file_picker/file_picker.dart';
 
-typedef Future<void> PickFileCallback();
-typedef void FilePickerChangeCallback<T>(MultiFile<T> files);
+typedef PickFileCallback = Future<void> Function();
+typedef FilePickerChangeCallback<T> = void Function(MultiFile<T> files);
 
-typedef Widget FilePickerBuilder<T>(
+typedef FilePickerBuilder<T> = Widget Function(
   PickFileCallback pickImage,
   MultiFile<T> files,
   FilePickerChangeCallback<T> onChange,

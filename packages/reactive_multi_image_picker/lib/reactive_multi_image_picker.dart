@@ -8,10 +8,10 @@ import 'package:reactive_multi_image_picker/multi_image.dart';
 
 export 'package:multi_image_picker/multi_image_picker.dart';
 
-typedef Future<void> PickImageCallback();
-typedef void ImagePickerChangeCallback<T>(MultiImage<T> images);
+typedef PickImageCallback = Future<void> Function();
+typedef ImagePickerChangeCallback<T> = void Function(MultiImage<T> images);
 
-typedef Widget ImagePickerBuilder<T>(
+typedef ImagePickerBuilder<T> = Widget Function(
   PickImageCallback pickImage,
   MultiImage<T> images,
   ImagePickerChangeCallback<T> onChange,

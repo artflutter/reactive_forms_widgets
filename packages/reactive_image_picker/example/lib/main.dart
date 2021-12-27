@@ -4,10 +4,12 @@ import 'package:reactive_image_picker/image_file.dart';
 import 'package:reactive_image_picker/reactive_image_picker.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -24,14 +26,14 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(),
           body: SafeArea(
             child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
                 vertical: 20.0,
               ),
               child: SafeArea(
                 child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 20.0,
                     vertical: 20.0,
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
                         children: [
                           ReactiveImagePicker(
                             formControlName: 'input',
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 contentPadding: EdgeInsets.zero,
                                 labelText: 'Image',
                                 filled: false,
@@ -53,15 +55,16 @@ class MyApp extends StatelessWidget {
                                 helperText: ''),
                             inputBuilder: (onPressed) => TextButton.icon(
                               onPressed: onPressed,
-                              icon: Icon(Icons.add),
-                              label: Text('Add an image'),
+                              icon: const Icon(Icons.add),
+                              label: const Text('Add an image'),
                             ),
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           ElevatedButton(
-                            child: Text('Sign Up'),
+                            child: const Text('Sign Up'),
                             onPressed: () {
                               if (form.valid) {
+                                // ignore: avoid_print
                                 print(form.value);
                               } else {
                                 form.markAllAsTouched();

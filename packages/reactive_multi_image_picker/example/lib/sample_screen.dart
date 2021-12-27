@@ -13,12 +13,12 @@ class SampleScreen extends StatelessWidget {
       appBar: AppBar(title: title),
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(
             horizontal: 20.0,
             vertical: 20.0,
           ),
-          child: this.body,
+          child: body,
         ),
       ),
     );

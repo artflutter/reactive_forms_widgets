@@ -165,7 +165,9 @@ class ReactiveDropdownSearchMultiSelection<T, V>
             return DropdownSearch<V>.multiSelection(
               onChanged: field.didChange,
               mode: mode,
+              // ignore: deprecated_member_use
               label: label,
+              // ignore: deprecated_member_use
               hint: hint,
               isFilteredOnline: isFilteredOnline,
               popupTitle: popupTitle,
