@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_awesome_select: ^6.1.0-beta
-  reactive_forms: ^10.6.6
+  reactive_forms: ^10.6.8
 
 dev_dependencies:
   flutter_test:

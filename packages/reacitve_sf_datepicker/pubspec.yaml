@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   syncfusion_flutter_datepicker: ^19.4.38
-  reactive_forms: ^10.6.6
+  reactive_forms: ^10.6.8
 
 dev_dependencies:
   flutter_test:
