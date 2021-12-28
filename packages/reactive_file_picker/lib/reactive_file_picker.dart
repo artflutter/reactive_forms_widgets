@@ -125,7 +125,7 @@ class ReactiveFilePicker<T>
 
             String? pickerError;
 
-            final pickFile = () async {
+            pickFile() async {
               List<PlatformFile>? platformFiles;
               try {
                 platformFiles = (await FilePicker.platform.pickFiles(
@@ -148,7 +148,7 @@ class ReactiveFilePicker<T>
               field.control.markAsTouched();
               field.didChange(
                   value.copyWith(platformFiles: platformFiles ?? []));
-            };
+            }
 
             return InputDecorator(
               decoration: effectiveDecoration.copyWith(

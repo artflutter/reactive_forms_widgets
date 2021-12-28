@@ -1,8 +1,6 @@
 library reactive_awesome_select;
 
 import 'package:flutter_awesome_select/flutter_awesome_select.dart';
-import 'package:flutter_awesome_select/src/model/chosen.dart';
-import 'package:flutter_awesome_select/src/model/choice_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 

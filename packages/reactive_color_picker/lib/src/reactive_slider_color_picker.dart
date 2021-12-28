@@ -64,7 +64,7 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
               BuildContext context, {
               required Color pickerColor,
               required ValueChanged<Color> onColorChanged,
-              bool enableLabel = false,
+              // bool enableLabel = false,
             }) {
               showDialog<Color>(
                 context: context,

@@ -120,7 +120,7 @@ class ReactiveMultiImagePicker<T>
 
             String? pickerError;
 
-            final pickImage = () async {
+            pickImage() async {
               try {
                 final resultList = await MultiImagePicker.pickImages(
                   maxImages: maxImages,
@@ -135,7 +135,7 @@ class ReactiveMultiImagePicker<T>
               } on Exception catch (e) {
                 pickerError = e.toString();
               }
-            };
+            }
 
             return InputDecorator(
               decoration: effectiveDecoration.copyWith(

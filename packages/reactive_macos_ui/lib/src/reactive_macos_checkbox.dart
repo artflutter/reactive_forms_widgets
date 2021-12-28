@@ -102,8 +102,8 @@ class ReactiveMacosCheckbox<T> extends ReactiveFormField<T, bool> {
           validationMessages: validationMessages,
           showErrors: showErrors,
           builder: (field) {
-            final InputDecoration effectiveDecoration = decoration
-                .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+            // final InputDecoration effectiveDecoration = decoration
+            //     .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
             return Listener(
                 onPointerDown: (_) {

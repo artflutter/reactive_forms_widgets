@@ -367,11 +367,11 @@ class ImagePickerWidget extends StatelessWidget {
     );
   }
 
-  void _handleDelete(BuildContext context) {
-    final onConfirm = () => onChanged(null);
+  void _onConfirm() => onChanged(null);
 
+  void _handleDelete(BuildContext context) {
     if (deleteDialogBuilder != null) {
-      deleteDialogBuilder?.call(context, onConfirm);
+      deleteDialogBuilder?.call(context, _onConfirm);
       return;
     }
 
@@ -389,7 +389,7 @@ class ImagePickerWidget extends StatelessWidget {
             TextButton(
               child: const Text("CONFIRM"),
               onPressed: () {
-                onConfirm();
+                _onConfirm();
                 Navigator.of(context).pop();
               },
             ),
