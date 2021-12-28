@@ -1,18 +1,15 @@
-library reactive_text_field;
-
-// Copyright 2020 Joan Pablo Jimenez Milian. All rights reserved.
-// Use of this source code is governed by the MIT license that can be
-// found in the LICENSE file.
+library reactive_fancy_password_field;
 
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
+import 'package:fancy_password_field/fancy_password_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 typedef ControllerInitCallback = void Function(
-    TextEditingController controller);
+    FancyPasswordController controller);
 
 /// A [ReactiveTextField] that contains a [TextField].
 ///
@@ -94,6 +91,8 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
     ShowErrorsFunction? showErrors,
+
+    ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(),
     TextInputType? keyboardType,
     TextCapitalization textCapitalization = TextCapitalization.none,
@@ -144,6 +143,12 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
     this.onControllerInit,
     Clip clipBehavior = Clip.hardEdge,
     bool enableIMEPersonalizedLearning = true,
+    Set<ValidationRule> validationRules = const {},
+    bool hasShowHidePassword = true,
+    bool hasStrengthIndicator = true,
+    bool hasValidationRules = true,
+    IconData? showPasswordIcon,
+    IconData? hidePasswordIcon,
   }) : super(
           key: key,
           formControl: formControl,
@@ -158,8 +163,16 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
 
             state._setFocusNode(focusNode);
 
-            return TextField(
-              controller: state._textController,
+            return FancyPasswordField(
+              validationRules: validationRules,
+              hasShowHidePassword: hasShowHidePassword,
+              showPasswordIcon: showPasswordIcon,
+              hidePasswordIcon: hidePasswordIcon,
+              hasStrengthIndicator: hasStrengthIndicator,
+              // this.strengthIndicatorBuilder,
+              // this.validationRuleBuilder,
+              // this.passwordController,
+              passwordController: state._passwordController,
               focusNode: state.focusNode,
               decoration:
                   effectiveDecoration.copyWith(errorText: state.errorText),
@@ -175,7 +188,7 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
               toolbarOptions: toolbarOptions,
               readOnly: readOnly,
               showCursor: showCursor,
-              obscureText: obscureText,
+              // obscureText: obscureText,
               autocorrect: autocorrect,
               smartDashesType: smartDashesType ??
                   (obscureText
@@ -193,7 +206,7 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
               maxLength: maxLength,
               onChanged: field.didChange,
               onTap: onTap,
-              onSubmitted: onSubmitted != null ? (_) => onSubmitted() : null,
+              // onSubmitted: onSubmitted != null ? (_) => onSubmitted() : null,
               onEditingComplete: onEditingComplete,
               inputFormatters: inputFormatters,
               enabled: field.control.enabled,
@@ -207,16 +220,16 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
               enableInteractiveSelection: enableInteractiveSelection,
               buildCounter: buildCounter,
               autofillHints: autofillHints,
-              mouseCursor: mouseCursor,
+              // mouseCursor: mouseCursor,
               obscuringCharacter: obscuringCharacter,
-              dragStartBehavior: dragStartBehavior,
-              onAppPrivateCommand: onAppPrivateCommand,
+              // dragStartBehavior: dragStartBehavior,
+              // onAppPrivateCommand: onAppPrivateCommand,
               restorationId: restorationId,
               scrollController: scrollController,
               selectionControls: selectionControls,
-              selectionHeightStyle: selectionHeightStyle,
-              selectionWidthStyle: selectionWidthStyle,
-              clipBehavior: clipBehavior,
+              // selectionHeightStyle: selectionHeightStyle,
+              // selectionWidthStyle: selectionWidthStyle,
+              // clipBehavior: clipBehavior,
               enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
             );
           },
@@ -228,7 +241,7 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
 }
 
 class _ReactiveTextFieldState<T> extends ReactiveFormFieldState<T, String> {
-  late TextEditingController _textController;
+  late FancyPasswordController _passwordController;
   FocusNode? _focusNode;
   late FocusController _focusController;
 
@@ -239,10 +252,12 @@ class _ReactiveTextFieldState<T> extends ReactiveFormFieldState<T, String> {
     super.initState();
 
     final initialValue = value;
-    _textController = TextEditingController(
+    _passwordController = FancyPasswordController(
         text: initialValue == null ? '' : initialValue.toString());
 
-    (widget as ReactiveTextField<T>).onControllerInit?.call(_textController);
+    (widget as ReactiveTextField<T>)
+        .onControllerInit
+        ?.call(_passwordController);
   }
 
   @override
@@ -254,14 +269,14 @@ class _ReactiveTextFieldState<T> extends ReactiveFormFieldState<T, String> {
   @override
   void unsubscribeControl() {
     _unregisterFocusController();
-    _textController.dispose();
+    _passwordController.dispose();
     super.unsubscribeControl();
   }
 
   @override
   void onControlValueChanged(dynamic value) {
     final effectiveValue = (value == null) ? '' : value.toString();
-    _textController.value = _textController.value.copyWith(
+    _passwordController.value = _passwordController.value.copyWith(
       text: effectiveValue,
       selection: TextSelection.collapsed(offset: effectiveValue.length),
       composing: TextRange.empty,
