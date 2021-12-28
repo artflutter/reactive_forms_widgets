@@ -109,6 +109,7 @@ class ReactiveFilePicker<T>
     bool allowCompression = false,
     bool withData = false,
     bool withReadStream = false,
+    bool lockParentWindow = false,
     double disabledOpacity = 0.5,
   }) : super(
           key: key,
@@ -137,6 +138,7 @@ class ReactiveFilePicker<T>
                   allowCompression: allowCompression,
                   withData: withData,
                   withReadStream: withReadStream,
+                  lockParentWindow: lockParentWindow,
                 ))
                     ?.files;
               } on PlatformException catch (e) {
@@ -147,7 +149,8 @@ class ReactiveFilePicker<T>
 
               field.control.markAsTouched();
               field.didChange(
-                  value.copyWith(platformFiles: platformFiles ?? []));
+                value.copyWith(platformFiles: platformFiles ?? []),
+              );
             }
 
             return InputDecorator(

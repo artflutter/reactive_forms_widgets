@@ -117,10 +117,10 @@ class _$_MultiFile<T> extends _MultiFile<T> {
   const _$_MultiFile({this.files = const [], this.platformFiles = const []})
       : super._();
 
-  @JsonKey(defaultValue: const [])
+  @JsonKey()
   @override
   final List<T> files;
-  @JsonKey(defaultValue: const [])
+  @JsonKey()
   @override
   final List<PlatformFile> platformFiles;
 
@@ -132,19 +132,18 @@ class _$_MultiFile<T> extends _MultiFile<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MultiFile<T> &&
-            (identical(other.files, files) ||
-                const DeepCollectionEquality().equals(other.files, files)) &&
-            (identical(other.platformFiles, platformFiles) ||
-                const DeepCollectionEquality()
-                    .equals(other.platformFiles, platformFiles)));
+        (other.runtimeType == runtimeType &&
+            other is _MultiFile<T> &&
+            const DeepCollectionEquality().equals(other.files, files) &&
+            const DeepCollectionEquality()
+                .equals(other.platformFiles, platformFiles));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(files) ^
-      const DeepCollectionEquality().hash(platformFiles);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(files),
+      const DeepCollectionEquality().hash(platformFiles));
 
   @JsonKey(ignore: true)
   @override
@@ -158,9 +157,9 @@ abstract class _MultiFile<T> extends MultiFile<T> {
   const _MultiFile._() : super._();
 
   @override
-  List<T> get files => throw _privateConstructorUsedError;
+  List<T> get files;
   @override
-  List<PlatformFile> get platformFiles => throw _privateConstructorUsedError;
+  List<PlatformFile> get platformFiles;
   @override
   @JsonKey(ignore: true)
   _$MultiFileCopyWith<T, _MultiFile<T>> get copyWith =>
