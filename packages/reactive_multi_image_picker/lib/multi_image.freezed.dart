@@ -119,10 +119,10 @@ class _$_MultiImage<T> extends _MultiImage<T> {
   const _$_MultiImage({this.images = const [], this.assets = const []})
       : super._();
 
-  @JsonKey(defaultValue: const [])
+  @JsonKey()
   @override
   final List<T> images;
-  @JsonKey(defaultValue: const [])
+  @JsonKey()
   @override
   final List<Asset> assets;
 
@@ -134,18 +134,17 @@ class _$_MultiImage<T> extends _MultiImage<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MultiImage<T> &&
-            (identical(other.images, images) ||
-                const DeepCollectionEquality().equals(other.images, images)) &&
-            (identical(other.assets, assets) ||
-                const DeepCollectionEquality().equals(other.assets, assets)));
+        (other.runtimeType == runtimeType &&
+            other is _MultiImage<T> &&
+            const DeepCollectionEquality().equals(other.images, images) &&
+            const DeepCollectionEquality().equals(other.assets, assets));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(images) ^
-      const DeepCollectionEquality().hash(assets);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(images),
+      const DeepCollectionEquality().hash(assets));
 
   @JsonKey(ignore: true)
   @override
@@ -159,9 +158,9 @@ abstract class _MultiImage<T> extends MultiImage<T> {
   const _MultiImage._() : super._();
 
   @override
-  List<T> get images => throw _privateConstructorUsedError;
+  List<T> get images;
   @override
-  List<Asset> get assets => throw _privateConstructorUsedError;
+  List<Asset> get assets;
   @override
   @JsonKey(ignore: true)
   _$MultiImageCopyWith<T, _MultiImage<T>> get copyWith =>
