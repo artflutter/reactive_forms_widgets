@@ -1,3 +1,6 @@
+## [0.3.0-nullsafety.2]
+* package version bump
+
 ## [0.2.0-nullsafety.2]
 * reactive_forms update
 

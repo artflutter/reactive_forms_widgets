@@ -1,6 +1,6 @@
 name: reactive_cupertino_switch
 description: Wrapper around CupertinoSwitch to use with reactive_forms.
-version: 0.0.4
+version: 0.1.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:

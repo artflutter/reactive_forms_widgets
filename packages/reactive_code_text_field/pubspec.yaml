@@ -1,6 +1,6 @@
 name: reactive_code_text_field
 description: Wrapper around code_text_field to work with reactive_forms
-version: 0.0.1
+version: 0.1.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:

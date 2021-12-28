@@ -1,6 +1,6 @@
 name: reactive_touch_spin
 description: Wrapper around flutter_touch_spin to use with reactive_forms
-version: 0.2.0-nullsafety.2
+version: 0.3.0-nullsafety.2
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:

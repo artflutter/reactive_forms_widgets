@@ -1,6 +1,6 @@
 name: reactive_advanced_switch
 description: Wrapper around advanced_switch to use with reactive_forms.
-version: 0.0.7
+version: 0.1.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:

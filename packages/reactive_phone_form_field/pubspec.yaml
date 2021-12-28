@@ -1,6 +1,6 @@
 name: reactive_phone_form_field
 description: A new Flutter project.
-version: 0.0.1
+version: 0.1.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:

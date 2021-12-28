@@ -1,6 +1,6 @@
 name: reactive_text_field
 description: Wrapper around TextField to use with reactive_forms
-version: 0.0.3
+version: 0.1.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
