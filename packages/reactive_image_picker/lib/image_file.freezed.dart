@@ -141,15 +141,18 @@ class _$_ImageFile extends _ImageFile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ImageFile &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
-            (identical(other.localImage, localImage) ||
-                other.localImage == localImage) &&
-            (identical(other.image, image) || other.image == image));
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality()
+                .equals(other.localImage, localImage) &&
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, imageUrl, localImage, image);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(localImage),
+      const DeepCollectionEquality().hash(image));
 
   @JsonKey(ignore: true)
   @override
