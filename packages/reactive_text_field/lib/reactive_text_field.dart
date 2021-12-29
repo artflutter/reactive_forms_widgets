@@ -254,8 +254,13 @@ class _ReactiveTextFieldState<T> extends ReactiveFormFieldState<T, String> {
   @override
   void unsubscribeControl() {
     _unregisterFocusController();
-    _textController.dispose();
     super.unsubscribeControl();
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
   }
 
   @override
