@@ -3,25 +3,29 @@ library reactive_fancy_password_field;
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
 import 'package:fancy_password_field/fancy_password_field.dart';
+import 'package:fancy_password_field/src/widget/strength_indicator_widget.dart';
+import 'package:fancy_password_field/src/widget/validation_rules_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-typedef ControllerInitCallback = void Function(
-    FancyPasswordController controller);
+export 'package:fancy_password_field/fancy_password_field.dart';
 
-/// A [ReactiveTextField] that contains a [TextField].
+typedef ControllerInitCallback = void Function(
+    TextEditingController controller);
+
+/// A [ReactiveFancyPasswordField] that contains a [FancyPasswordField].
 ///
-/// This is a convenience widget that wraps a [TextField] widget in a
-/// [ReactiveTextField].
+/// This is a convenience widget that wraps a [FancyPasswordField] widget in a
+/// [ReactiveFancyPasswordField].
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveTextField<T> extends ReactiveFormField<T, String> {
+class ReactiveFancyPasswordField<T> extends ReactiveFormField<T, String> {
   final ControllerInitCallback? onControllerInit;
 
-  /// Creates a [ReactiveTextField] that contains a [TextField].
+  /// Creates a [ReactiveFancyPasswordField] that contains a [FancyPasswordField].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
   ///
@@ -47,7 +51,7 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
   /// ```
   /// final form = fb.group({'email': Validators.required});
   ///
-  /// ReactiveTextField(
+  /// ReactiveFancyPasswordField(
   ///   formControlName: 'email',
   /// ),
   ///
@@ -57,7 +61,7 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
   /// ```
   /// final form = fb.group({'email': Validators.required});
   ///
-  /// ReactiveTextField(
+  /// ReactiveFancyPasswordField(
   ///   formControl: form.control('email'),
   /// ),
   ///
@@ -65,7 +69,7 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
   ///
   /// Customize validation messages
   /// ```dart
-  /// ReactiveTextField(
+  /// ReactiveFancyPasswordField(
   ///   formControlName: 'email',
   ///   validationMessages: {
   ///     ValidationMessage.required: 'The email must not be empty',
@@ -76,15 +80,15 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
   ///
   /// Customize when to show up validation messages.
   /// ```dart
-  /// ReactiveTextField(
+  /// ReactiveFancyPasswordField(
   ///   formControlName: 'email',
   ///   showErrors: (control) => control.invalid && control.touched && control.dirty,
   /// ),
   /// ```
   ///
-  /// For documentation about the various parameters, see the [TextField] class
-  /// and [new TextField], the constructor.
-  ReactiveTextField({
+  /// For documentation about the various parameters, see the [FancyPasswordField] class
+  /// and [new FancyPasswordField], the constructor.
+  ReactiveFancyPasswordField({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
@@ -149,6 +153,9 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
     bool hasValidationRules = true,
     IconData? showPasswordIcon,
     IconData? hidePasswordIcon,
+    FancyPasswordController? passwordController,
+    StrengthIndicatorBuilder? strengthIndicatorBuilder,
+    ValidationRulesBuilder? validationRuleBuilder,
   }) : super(
           key: key,
           formControl: formControl,
@@ -157,7 +164,7 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
           validationMessages: validationMessages,
           showErrors: showErrors,
           builder: (ReactiveFormFieldState<T, String> field) {
-            final state = field as _ReactiveTextFieldState<T>;
+            final state = field as _ReactiveFancyPasswordFieldState<T>;
             final effectiveDecoration = decoration
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);
 
@@ -169,10 +176,10 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
               showPasswordIcon: showPasswordIcon,
               hidePasswordIcon: hidePasswordIcon,
               hasStrengthIndicator: hasStrengthIndicator,
-              // this.strengthIndicatorBuilder,
-              // this.validationRuleBuilder,
-              // this.passwordController,
-              passwordController: state._passwordController,
+              strengthIndicatorBuilder: strengthIndicatorBuilder,
+              validationRuleBuilder: validationRuleBuilder,
+              controller: state._controller,
+              passwordController: passwordController,
               focusNode: state.focusNode,
               decoration:
                   effectiveDecoration.copyWith(errorText: state.errorText),
@@ -188,7 +195,6 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
               toolbarOptions: toolbarOptions,
               readOnly: readOnly,
               showCursor: showCursor,
-              // obscureText: obscureText,
               autocorrect: autocorrect,
               smartDashesType: smartDashesType ??
                   (obscureText
@@ -206,7 +212,6 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
               maxLength: maxLength,
               onChanged: field.didChange,
               onTap: onTap,
-              // onSubmitted: onSubmitted != null ? (_) => onSubmitted() : null,
               onEditingComplete: onEditingComplete,
               inputFormatters: inputFormatters,
               enabled: field.control.enabled,
@@ -220,16 +225,10 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
               enableInteractiveSelection: enableInteractiveSelection,
               buildCounter: buildCounter,
               autofillHints: autofillHints,
-              // mouseCursor: mouseCursor,
               obscuringCharacter: obscuringCharacter,
-              // dragStartBehavior: dragStartBehavior,
-              // onAppPrivateCommand: onAppPrivateCommand,
               restorationId: restorationId,
               scrollController: scrollController,
               selectionControls: selectionControls,
-              // selectionHeightStyle: selectionHeightStyle,
-              // selectionWidthStyle: selectionWidthStyle,
-              // clipBehavior: clipBehavior,
               enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
             );
           },
@@ -237,11 +236,12 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
 
   @override
   ReactiveFormFieldState<T, String> createState() =>
-      _ReactiveTextFieldState<T>();
+      _ReactiveFancyPasswordFieldState<T>();
 }
 
-class _ReactiveTextFieldState<T> extends ReactiveFormFieldState<T, String> {
-  late FancyPasswordController _passwordController;
+class _ReactiveFancyPasswordFieldState<T>
+    extends ReactiveFormFieldState<T, String> {
+  late TextEditingController _controller;
   FocusNode? _focusNode;
   late FocusController _focusController;
 
@@ -252,12 +252,12 @@ class _ReactiveTextFieldState<T> extends ReactiveFormFieldState<T, String> {
     super.initState();
 
     final initialValue = value;
-    _passwordController = FancyPasswordController(
+    _controller = TextEditingController(
         text: initialValue == null ? '' : initialValue.toString());
 
-    (widget as ReactiveTextField<T>)
+    (widget as ReactiveFancyPasswordField<T>)
         .onControllerInit
-        ?.call(_passwordController);
+        ?.call(_controller);
   }
 
   @override
@@ -269,14 +269,14 @@ class _ReactiveTextFieldState<T> extends ReactiveFormFieldState<T, String> {
   @override
   void unsubscribeControl() {
     _unregisterFocusController();
-    _passwordController.dispose();
+    _controller.dispose();
     super.unsubscribeControl();
   }
 
   @override
   void onControlValueChanged(dynamic value) {
     final effectiveValue = (value == null) ? '' : value.toString();
-    _passwordController.value = _passwordController.value.copyWith(
+    _controller.value = _controller.value.copyWith(
       text: effectiveValue,
       selection: TextSelection.collapsed(offset: effectiveValue.length),
       composing: TextRange.empty,
