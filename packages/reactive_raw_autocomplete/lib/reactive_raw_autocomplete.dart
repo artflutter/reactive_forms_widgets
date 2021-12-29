@@ -10,6 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+typedef ControllerInitCallback = void Function(
+    TextEditingController controller);
+
 /// A [ReactiveRawAutocomplete] that contains a [TextField].
 ///
 /// This is a convenience widget that wraps a [TextField] widget in a
@@ -19,6 +22,8 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 class ReactiveRawAutocomplete<T, V extends Object>
     extends ReactiveFormField<T, V> {
+  final ControllerInitCallback? onControllerInit;
+
   /// Creates a [ReactiveRawAutocomplete] that contains a [TextField].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -146,6 +151,7 @@ class ReactiveRawAutocomplete<T, V extends Object>
     TextSelectionControls? selectionControls,
     ui.BoxHeightStyle selectionHeightStyle = ui.BoxHeightStyle.tight,
     ui.BoxWidthStyle selectionWidthStyle = ui.BoxWidthStyle.tight,
+    this.onControllerInit,
   }) : super(
           key: key,
           formControl: formControl,
@@ -244,7 +250,8 @@ class ReactiveRawAutocomplete<T, V extends Object>
       _ReactiveRawAutocompleteState<T, V>();
 }
 
-class _ReactiveRawAutocompleteState<T, V> extends ReactiveFormFieldState<T, V> {
+class _ReactiveRawAutocompleteState<T, V extends Object>
+    extends ReactiveFormFieldState<T, V> {
   late TextEditingController _textController;
   FocusNode? _focusNode;
   late FocusController _focusController;
@@ -258,6 +265,10 @@ class _ReactiveRawAutocompleteState<T, V> extends ReactiveFormFieldState<T, V> {
     final initialValue = value;
     _textController = TextEditingController(
         text: initialValue == null ? '' : initialValue.toString());
+
+    (widget as ReactiveRawAutocomplete<T, V>)
+        .onControllerInit
+        ?.call(_textController);
   }
 
   @override
