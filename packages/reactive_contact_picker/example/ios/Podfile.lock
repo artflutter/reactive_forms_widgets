@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - fluttercontactpicker (4.6.0):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - fluttercontactpicker (from `.symlinks/plugins/fluttercontactpicker/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  fluttercontactpicker:
+    :path: ".symlinks/plugins/fluttercontactpicker/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  fluttercontactpicker: d582836dea6b5d489f3d259f35d7817ae82ee5e6
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.11.2
