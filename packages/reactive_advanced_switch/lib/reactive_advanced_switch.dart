@@ -139,13 +139,13 @@ class ReactiveAdvancedSwitch<T> extends ReactiveFormField<T, bool> {
 }
 
 class _ReactiveAdvancedSwitchState<T> extends ReactiveFormFieldState<T, bool> {
-  late AdvancedSwitchController _advancedSwitchController;
+  late ValueNotifier<bool> _advancedSwitchController;
 
   @override
   void initState() {
     super.initState();
 
-    _advancedSwitchController = AdvancedSwitchController(
+    _advancedSwitchController = ValueNotifier<bool>(
       valueAccessor.modelToViewValue(control.value) ?? false,
     )..addListener(
         () {
