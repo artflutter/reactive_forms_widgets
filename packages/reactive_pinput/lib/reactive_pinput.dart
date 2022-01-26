@@ -134,6 +134,7 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     ValueChanged<String>? onSubmit,
     FormFieldSetter<String>? onSaved,
+    bool enableInteractiveSelection = true,
   }) : super(
           key: key,
           formControl: formControl,
@@ -192,6 +193,7 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
               withCursor: withCursor,
               cursor: cursor,
               mainAxisSize: mainAxisSize,
+              enableInteractiveSelection: enableInteractiveSelection,
             );
           },
         );
