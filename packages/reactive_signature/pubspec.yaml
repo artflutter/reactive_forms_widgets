@@ -1,6 +1,6 @@
 name: reactive_signature
 description: Wrapper around signature to use with reactive_forms
-version: 0.2.1
+version: 0.3.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   reactive_forms: ^11.0.0
-  signature: ^4.1.1
+  signature: ^5.0.0
 
 dev_dependencies:
   flutter_test:

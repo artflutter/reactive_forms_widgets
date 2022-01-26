@@ -102,6 +102,9 @@ class ReactiveSignature<T> extends ReactiveFormField<T, Uint8List> {
     this.exportBackgroundColor = Colors.blue,
     this.penStrokeWidth = 3.0,
     this.points,
+    this.onDrawStart,
+    this.onDrawMove,
+    this.onDrawEnd,
   }) : super(
           key: key,
           formControl: formControl,
@@ -150,6 +153,12 @@ class ReactiveSignature<T> extends ReactiveFormField<T, Uint8List> {
 
   final List<Point>? points;
 
+  VoidCallback? onDrawStart;
+
+  VoidCallback? onDrawMove;
+
+  VoidCallback? onDrawEnd;
+
   @override
   ReactiveFormFieldState<T, Uint8List> createState() =>
       _ReactiveSignatureState();
@@ -168,6 +177,9 @@ class _ReactiveSignatureState<T> extends ReactiveFormFieldState<T, Uint8List> {
       penStrokeWidth: reactiveSignature.penStrokeWidth,
       penColor: reactiveSignature.penColor,
       exportBackgroundColor: reactiveSignature.exportBackgroundColor,
+      onDrawStart: reactiveSignature.onDrawStart,
+      onDrawMove: reactiveSignature.onDrawMove,
+      onDrawEnd: reactiveSignature.onDrawEnd,
     );
 
     _signatureController.addListener(() async {
