@@ -282,7 +282,7 @@ class _ReactivePinCodeTextFieldState<T>
 
   void _unregisterFocusController() {
     control.unregisterFocusController(_focusController);
-    _focusController.dispose();
+    // _focusController.dispose();
   }
 
   void _setFocusNode(FocusNode? focusNode) {
