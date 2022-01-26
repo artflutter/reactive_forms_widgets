@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead2/flutter_typeahead2.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 /// A [ReactiveTypeAhead] that contains a [TextField].
