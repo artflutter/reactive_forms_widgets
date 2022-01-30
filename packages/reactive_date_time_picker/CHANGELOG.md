@@ -1,3 +1,6 @@
+## [0.2.1]
+* ability to override get initial date
+
 ## [0.2.0]
 * package version bump
 

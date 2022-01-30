@@ -10,6 +10,9 @@ enum ReactiveDatePickerFieldType {
   dateTime,
 }
 
+typedef GetInitialDate = DateTime Function(
+    DateTime? fieldValue, DateTime lastDate);
+
 /// A builder that builds a widget responsible to decide when to show
 /// the picker dialog.
 ///
@@ -69,6 +72,7 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
     String? cancelText,
     String? confirmText,
     String? helpText,
+    GetInitialDate? getInitialDate,
 
     // date picker params
     DateTime? firstDate,
@@ -131,7 +135,7 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
                       type == ReactiveDatePickerFieldType.dateTime) {
                     date = await showDatePicker(
                       context: field.context,
-                      initialDate: _getInitialDate(
+                      initialDate: (getInitialDate ?? _getInitialDate)(
                         field.control.value,
                         effectiveLastDate,
                       ),
