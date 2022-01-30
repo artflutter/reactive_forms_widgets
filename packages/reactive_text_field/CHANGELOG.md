@@ -1,3 +1,6 @@
+## 0.2.0
+* fix https://github.com/joanpablo/reactive_forms/issues/262
+
 ## 0.1.1
 * fix controller dispose
 

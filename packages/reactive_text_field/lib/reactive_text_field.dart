@@ -246,19 +246,48 @@ class _ReactiveTextFieldState<T> extends ReactiveFormFieldState<T, String> {
   }
 
   @override
+  void didUpdateWidget(ReactiveFormField<T, String> oldWidget) {
+    final newControl = _resolveFormControl();
+    if (control != newControl) {
+      unsubscribeControl();
+      control = newControl;
+      subscribeControl();
+      final initialValue = value;
+      _textController.text =
+          initialValue == null ? '' : initialValue.toString();
+    }
+
+    super.didUpdateWidget(oldWidget);
+  }
+
+  FormControl<T> _resolveFormControl() {
+    if (widget.formControl != null) {
+      return widget.formControl!;
+    }
+
+    final parent = ReactiveForm.of(context, listen: false);
+    if (parent == null || parent is! FormControlCollection) {
+      throw FormControlParentNotFoundException(widget);
+    }
+
+    final collection = parent as FormControlCollection;
+    final control = collection.control(widget.formControlName!);
+    if (control is! FormControl<T>) {
+      throw BindingCastException<T, String>(widget, control);
+    }
+
+    return control;
+  }
+
+  @override
   void subscribeControl() {
     _registerFocusController(FocusController());
     super.subscribeControl();
   }
 
   @override
-  void unsubscribeControl() {
-    _unregisterFocusController();
-    super.unsubscribeControl();
-  }
-
-  @override
   void dispose() {
+    _unregisterFocusController();
     _textController.dispose();
     super.dispose();
   }
