@@ -1,3 +1,7 @@
+## [0.2.2]
+* ability to override get initial time
+* ability to override date formatter
+
 ## [0.2.1]
 * ability to override get initial date
 

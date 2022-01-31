@@ -13,6 +13,8 @@ enum ReactiveDatePickerFieldType {
 typedef GetInitialDate = DateTime Function(
     DateTime? fieldValue, DateTime lastDate);
 
+typedef GetInitialTime = TimeOfDay Function(DateTime? fieldValue);
+
 /// A builder that builds a widget responsible to decide when to show
 /// the picker dialog.
 ///
@@ -73,6 +75,8 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
     String? confirmText,
     String? helpText,
     GetInitialDate? getInitialDate,
+    GetInitialTime? getInitialTime,
+    DateFormat? dateFormat,
 
     // date picker params
     DateTime? firstDate,
@@ -96,7 +100,8 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
           formControl: formControl,
           formControlName: formControlName,
           validationMessages: validationMessages,
-          valueAccessor: valueAccessor ?? _effectiveValueAccessor(type),
+          valueAccessor:
+              valueAccessor ?? _effectiveValueAccessor(type, dateFormat),
           showErrors: showErrors,
           builder: (field) {
             Widget? suffixIcon = decoration?.suffixIcon;
@@ -120,7 +125,7 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
                     .copyWith(suffixIcon: suffixIcon);
 
             final effectiveValueAccessor =
-                valueAccessor ?? _effectiveValueAccessor(type);
+                valueAccessor ?? _effectiveValueAccessor(type, dateFormat);
 
             final effectiveLastDate = lastDate ?? DateTime(2100);
 
@@ -165,7 +170,8 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
                           date != null)) {
                     time = await showTimePicker(
                       context: field.context,
-                      initialTime: _getInitialTime(field.control.value),
+                      initialTime: (getInitialTime ??
+                          _getInitialTime)(field.control.value),
                       builder: builder,
                       useRootNavigator: useRootNavigator,
                       initialEntryMode: timePickerEntryMode,
@@ -222,19 +228,19 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
         );
 
   static DateTimeValueAccessor _effectiveValueAccessor(
-      ReactiveDatePickerFieldType fieldType) {
+      ReactiveDatePickerFieldType fieldType, DateFormat? dateFormat) {
     switch (fieldType) {
       case ReactiveDatePickerFieldType.date:
         return DateTimeValueAccessor(
-          dateTimeFormat: DateFormat('yyyy/MM/dd'),
+          dateTimeFormat: dateFormat ?? DateFormat('yyyy/MM/dd'),
         );
       case ReactiveDatePickerFieldType.time:
         return DateTimeValueAccessor(
-          dateTimeFormat: DateFormat('HH:mm'),
+          dateTimeFormat: dateFormat ?? DateFormat('HH:mm'),
         );
       case ReactiveDatePickerFieldType.dateTime:
         return DateTimeValueAccessor(
-          dateTimeFormat: DateFormat('yyyy/MM/dd HH:mm'),
+          dateTimeFormat: dateFormat ?? DateFormat('yyyy/MM/dd HH:mm'),
         );
     }
   }
