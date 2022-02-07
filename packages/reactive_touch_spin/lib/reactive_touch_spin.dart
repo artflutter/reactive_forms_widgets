@@ -122,7 +122,11 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T, num> {
                 ),
                 child: TouchSpin(
                   value: field.value ?? min,
-                  onChanged: field.didChange,
+                  onChanged: (value) {
+                    if (field.value != value) {
+                      field.didChange(value);
+                    }
+                  },
                   min: min,
                   max: max,
                   step: step,
