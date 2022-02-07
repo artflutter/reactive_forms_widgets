@@ -118,7 +118,7 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
     TextEditingController? controller,
     bool enableActiveFill = false,
     bool autoDismissKeyboard = true,
-    bool autoDisposeControllers = true,
+    // bool autoDisposeControllers = true,
     TextCapitalization textCapitalization = TextCapitalization.none,
     TextInputAction textInputAction = TextInputAction.done,
     StreamController<ErrorAnimationType>? errorAnimationController,
@@ -188,7 +188,7 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
               textCapitalization: textCapitalization,
               textInputAction: textInputAction,
               autoDismissKeyboard: autoDismissKeyboard,
-              autoDisposeControllers: autoDisposeControllers,
+              autoDisposeControllers: false,
               onSubmitted: onSubmitted,
               errorAnimationController: errorAnimationController,
               beforeTextPaste: beforeTextPaste,
@@ -283,6 +283,12 @@ class _ReactivePinCodeTextFieldState<T>
   void _unregisterFocusController() {
     control.unregisterFocusController(_focusController);
     _focusController.dispose();
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
   }
 
   void _setFocusNode(FocusNode? focusNode) {

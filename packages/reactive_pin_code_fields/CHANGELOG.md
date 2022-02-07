@@ -1,3 +1,6 @@
+## 0.1.1
+* bugfix
+
 ## 0.1.0
 * package version bump
 

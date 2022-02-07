@@ -1,6 +1,6 @@
 name: reactive_pin_code_fields
 description: Wrapper around pin_code_fields to use with reactive_forms.
-version: 0.1.0
+version: 0.1.1
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^11.0.0
+  reactive_forms: ^11.0.1
   pin_code_fields: ^7.3.0
 
 dev_dependencies:
