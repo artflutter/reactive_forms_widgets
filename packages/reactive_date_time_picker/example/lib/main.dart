@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
         'date': FormControl<DateTime>(value: DateTime.now()),
         'time': FormControl<DateTime>(value: DateTime.now()),
         'dateTime': FormControl<DateTime>(value: DateTime.now()),
+        'dateTimeNullable': FormControl<DateTime>(value: null),
       });
 
   @override
@@ -60,6 +61,17 @@ class MyApp extends StatelessWidget {
                     const SizedBox(height: 8),
                     ReactiveDateTimePicker(
                       formControlName: 'dateTime',
+                      type: ReactiveDatePickerFieldType.dateTime,
+                      decoration: const InputDecoration(
+                        labelText: 'Date & Time',
+                        border: OutlineInputBorder(),
+                        helperText: '',
+                        suffixIcon: Icon(Icons.calendar_today),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    ReactiveDateTimePicker(
+                      formControlName: 'dateTimeNullable',
                       type: ReactiveDatePickerFieldType.dateTime,
                       decoration: const InputDecoration(
                         labelText: 'Date & Time',
