@@ -181,6 +181,7 @@ class ReactiveFancyPasswordField<T> extends ReactiveFormField<T, String> {
               controller: state._controller,
               passwordController: passwordController,
               focusNode: state.focusNode,
+              obscureText: obscureText,
               decoration:
                   effectiveDecoration.copyWith(errorText: state.errorText),
               keyboardType: keyboardType,
