@@ -1,15 +1,17 @@
 library reactive_image_picker;
 
 import 'dart:io';
+import 'image_file.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 export 'package:image_picker/image_picker.dart';
 
-import 'image_file.dart';
-
 typedef ImageViewBuilder = Widget Function(ImageFile image);
+
+typedef ImageBuilder = Widget Function(
+    ImageFile image, VoidCallback handleDelete, VoidCallback selectImage);
 
 typedef InputButtonBuilder = Widget Function(VoidCallback onPressed);
 
@@ -101,7 +103,7 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [ImagePicker] class
-  /// and [new ImagePicker], the constructor.
+  /// and [ImagePicker], the constructor.
   ReactiveImagePicker({
     Key? key,
     String? formControlName,
@@ -112,6 +114,7 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
     InputDecoration? decoration,
     InputButtonBuilder? inputBuilder,
     ImageViewBuilder? imageViewBuilder,
+    ImageBuilder? imageBuilder,
     DeleteDialogBuilder? deleteDialogBuilder,
     ErrorPickBuilder? errorPickBuilder,
     PopupDialogBuilder? popupDialogBuilder,
@@ -165,6 +168,7 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
                   opacity: field.control.enabled ? 1 : disabledOpacity,
                   child: ImagePickerWidget(
                     imageViewBuilder: imageViewBuilder,
+                    imageBuilder: imageBuilder,
                     popupDialogBuilder: popupDialogBuilder,
                     onBeforeChange: onBeforeChange,
                     errorPickBuilder: errorPickBuilder ??
@@ -211,6 +215,7 @@ class ImagePickerWidget extends StatelessWidget {
   final Widget? deleteIcon;
   final InputButtonBuilder? inputBuilder;
   final ImageViewBuilder? imageViewBuilder;
+  final ImageBuilder? imageBuilder;
   final DeleteDialogBuilder? deleteDialogBuilder;
   final ErrorPickBuilder? errorPickBuilder;
   final PopupDialogBuilder? popupDialogBuilder;
@@ -222,6 +227,7 @@ class ImagePickerWidget extends StatelessWidget {
   final CameraDevice preferredCameraDevice;
   final ValueChanged<ImageFile?> onChanged;
   final Duration? maxDuration;
+
   // final ImagePickerMode mode;
 
   const ImagePickerWidget({
@@ -231,6 +237,7 @@ class ImagePickerWidget extends StatelessWidget {
     required this.onChanged,
     required this.decoration,
     this.imageViewBuilder,
+    this.imageBuilder,
     this.inputBuilder,
     this.imageContainerDecoration,
     this.editIcon,
@@ -406,50 +413,50 @@ class ImagePickerWidget extends StatelessWidget {
           BoxDecoration(
             borderRadius: BorderRadius.circular(6),
           ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          imageViewBuilder?.call(value) ??
-              SizedBox(
-                height: 250,
-                child: _ImageView(image: value),
-              ),
-          if (enabled)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                IconButton(
-                  onPressed: () => _buildPopupMenu(context),
-                  icon: editIcon ?? const Icon(Icons.edit),
-                ),
-                const SizedBox(width: 8),
-                IconButton(
-                  onPressed: () => _handleDelete(context),
-                  icon: deleteIcon ?? const Icon(Icons.delete),
+      child: imageBuilder?.call(value, () => _handleDelete(context),
+              () => _buildPopupMenu(context)) ??
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              imageViewBuilder?.call(value) ??
+                  SizedBox(
+                    height: 250,
+                    child: _ImageView(image: value),
+                  ),
+              if (enabled)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    IconButton(
+                      onPressed: () => _buildPopupMenu(context),
+                      icon: editIcon ?? const Icon(Icons.edit),
+                    ),
+                    const SizedBox(width: 8),
+                    IconButton(
+                      onPressed: () => _handleDelete(context),
+                      icon: deleteIcon ?? const Icon(Icons.delete),
+                    )
+                  ],
                 )
-              ],
-            )
-        ],
-      ),
+            ],
+          ),
     );
   }
 
   Widget _buildInput(BuildContext context) {
-    return OutlinedButton.icon(
-      onPressed: () => _buildPopupMenu(context),
-      icon: const Icon(Icons.add, color: Color(0xFF00A7E1)),
-      label: const Text('Pick image'),
-    );
+    return inputBuilder?.call(() => _buildPopupMenu(context)) ??
+        OutlinedButton.icon(
+          onPressed: () => _buildPopupMenu(context),
+          icon: const Icon(Icons.add, color: Color(0xFF00A7E1)),
+          label: const Text('Pick image'),
+        );
   }
 
   @override
   Widget build(BuildContext context) {
     return InputDecorator(
       decoration: decoration,
-      child: value.isNotEmpty == true
-          ? _buildImage(context)
-          : inputBuilder?.call(() => _buildPopupMenu(context)) ??
-              _buildInput(context),
+      child: value.isNotEmpty ? _buildImage(context) : _buildInput(context),
     );
   }
 }
