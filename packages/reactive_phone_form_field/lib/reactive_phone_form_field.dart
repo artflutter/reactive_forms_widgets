@@ -83,7 +83,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [PhoneFormField] class
-  /// and [new PhoneFormField], the constructor.
+  /// and [PhoneFormField], the constructor.
   ReactivePhoneFormField({
     Key? key,
     String? formControlName,
@@ -148,6 +148,8 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     TextSelectionControls? selectionControls,
     ui.BoxHeightStyle selectionHeightStyle = ui.BoxHeightStyle.tight,
     ui.BoxWidthStyle selectionWidthStyle = ui.BoxWidthStyle.tight,
+    TextStyle? countryCodeStyle,
+    bool enableIMEPersonalizedLearning = true,
   }) : super(
           key: key,
           formControl: formControl,
@@ -163,6 +165,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
             state._setFocusNode(focusNode);
 
             return PhoneFormField(
+              countryCodeStyle: countryCodeStyle,
               focusNode: state.focusNode,
               controller: state._textController,
               shouldFormat: shouldFormat,
@@ -219,6 +222,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
               selectionControls: selectionControls,
               selectionHeightStyle: selectionHeightStyle,
               selectionWidthStyle: selectionWidthStyle,
+              enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
             );
           },
         );
@@ -277,7 +281,12 @@ class _ReactivePhoneFormFieldState<T>
   void _unregisterFocusController() {
     control.unregisterFocusController(_focusController);
     _focusController.dispose();
+  }
+
+  @override
+  void dispose() {
     _textController.dispose();
+    super.dispose();
   }
 
   void _setFocusNode(FocusNode? focusNode) {
