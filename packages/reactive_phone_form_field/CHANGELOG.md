@@ -1,3 +1,7 @@
+## [0.2.1]
+* package version bump
+* focusNode bugfix
+
 ## [0.2.0]
 * package version bump
 
