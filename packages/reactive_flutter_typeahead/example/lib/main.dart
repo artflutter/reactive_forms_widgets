@@ -35,8 +35,34 @@ class MyApp extends StatelessWidget {
               builder: (context, form, child) {
                 return Column(
                   children: [
-                    ReactiveTypeAhead<String>(
+                    // ReactiveTypeAhead(
+                    //   formControlName: 'phone',
+                    //   textFieldConfiguration: TextFieldConfiguration(
+                    //     keyboardType: TextInputType.phone,
+                    //     decoration: InputDecoration(
+                    //       labelText: 'Phone Number',
+                    //       icon: Icon(Icons.email),
+                    //     ),
+                    //     // inputFormatters: [
+                    //     //   phoneNumberMask,
+                    //     // ],
+                    //     controller: _typeAheadController1,
+                    //   ),
+                    //   suggestionsCallback: (pattern) =>
+                    //       queryMemberPhoneData1(pattern),
+                    //   itemBuilder: (context, Member suggestion) {
+                    //     return ListTile(
+                    //       title: Text(suggestion.phone),
+                    //       subtitle: Text('${suggestion.firstName}'),
+                    //     );
+                    //   },
+                    //   onSuggestionSelected: (Member suggestion) {
+                    //     form.control('phone').value(suggestion.phone);
+                    //   },
+                    // ),
+                    ReactiveTypeAhead<String, String>(
                       formControlName: 'input',
+                      stringify: (_) => _,
                       textFieldConfiguration: TextFieldConfiguration(
                         autofocus: false,
                         style: DefaultTextStyle.of(context)
@@ -57,8 +83,9 @@ class MyApp extends StatelessWidget {
                       },
                     ),
                     const SizedBox(height: 16),
-                    ReactiveCupertinoTypeAhead<String>(
+                    ReactiveCupertinoTypeAhead<String, String>(
                       formControlName: 'input2',
+                      stringify: (_) => _,
                       getImmediateSuggestions: true,
                       suggestionsCallback: (pattern) {
                         return Future.delayed(

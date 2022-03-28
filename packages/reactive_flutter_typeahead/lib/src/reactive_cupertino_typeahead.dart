@@ -13,7 +13,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveCupertinoTypeAhead<T> extends ReactiveFormField<T, String> {
+class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
   /// Creates a [ReactiveCupertinoTypeAhead] that contains a [TextField].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -76,19 +76,20 @@ class ReactiveCupertinoTypeAhead<T> extends ReactiveFormField<T, String> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [TextField] class
-  /// and [new TextField], the constructor.
+  /// and [TextField], the constructor.
   ReactiveCupertinoTypeAhead({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
     ValidationMessagesFunction<T>? validationMessages,
-    ControlValueAccessor<T, String>? valueAccessor,
+    ControlValueAccessor<T, V>? valueAccessor,
     ShowErrorsFunction? showErrors,
+    required String Function(V value) stringify,
 
     ////////////////////////////////////////////////////////////////////////////
-    required SuggestionsCallback<String> suggestionsCallback,
-    required ItemBuilder<String> itemBuilder,
-    SuggestionSelectionCallback<String>? onSuggestionSelected,
+    required SuggestionsCallback<V> suggestionsCallback,
+    required ItemBuilder<V> itemBuilder,
+    SuggestionSelectionCallback<V>? onSuggestionSelected,
     CupertinoSuggestionsBoxDecoration suggestionsBoxDecoration =
         const CupertinoSuggestionsBoxDecoration(),
     Duration debounceDuration = const Duration(milliseconds: 300),
@@ -137,21 +138,21 @@ class ReactiveCupertinoTypeAhead<T> extends ReactiveFormField<T, String> {
           validationMessages: validationMessages,
           showErrors: showErrors,
           builder: (field) {
-            final state = field as _ReactiveCupertinoTypeAheadState<T>;
+            final state = field as _ReactiveCupertinoTypeAheadState<T, V>;
             final effectiveDecoration = textFieldConfiguration.decoration;
 
             state._setFocusNode(textFieldConfiguration.focusNode);
             final controller =
                 textFieldConfiguration.controller ?? state._textController;
 
-            return CupertinoTypeAheadFormField<String>(
+            return CupertinoTypeAheadFormField<V>(
               // initialValue: field.value,
               enabled: enabled,
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
               onSuggestionSelected: onSuggestionSelected ??
                   (value) {
-                    controller.text = value;
+                    controller.text = stringify(value);
                     field.didChange(value);
                   },
               textFieldConfiguration: textFieldConfiguration.copyWith(
@@ -184,12 +185,12 @@ class ReactiveCupertinoTypeAhead<T> extends ReactiveFormField<T, String> {
         );
 
   @override
-  ReactiveFormFieldState<T, String> createState() =>
-      _ReactiveCupertinoTypeAheadState<T>();
+  ReactiveFormFieldState<T, V> createState() =>
+      _ReactiveCupertinoTypeAheadState<T, V>();
 }
 
-class _ReactiveCupertinoTypeAheadState<T>
-    extends ReactiveFormFieldState<T, String> {
+class _ReactiveCupertinoTypeAheadState<T, V>
+    extends ReactiveFormFieldState<T, V> {
   late TextEditingController _textController;
   FocusNode? _focusNode;
   late FocusController _focusController;
@@ -230,15 +231,15 @@ class _ReactiveCupertinoTypeAheadState<T>
   }
 
   @override
-  ControlValueAccessor<T, String> selectValueAccessor() {
+  ControlValueAccessor<T, V> selectValueAccessor() {
     if (control is FormControl<int>) {
-      return IntValueAccessor() as ControlValueAccessor<T, String>;
+      return IntValueAccessor() as ControlValueAccessor<T, V>;
     } else if (control is FormControl<double>) {
-      return DoubleValueAccessor() as ControlValueAccessor<T, String>;
+      return DoubleValueAccessor() as ControlValueAccessor<T, V>;
     } else if (control is FormControl<DateTime>) {
-      return DateTimeValueAccessor() as ControlValueAccessor<T, String>;
+      return DateTimeValueAccessor() as ControlValueAccessor<T, V>;
     } else if (control is FormControl<TimeOfDay>) {
-      return TimeOfDayValueAccessor() as ControlValueAccessor<T, String>;
+      return TimeOfDayValueAccessor() as ControlValueAccessor<T, V>;
     }
 
     return super.selectValueAccessor();

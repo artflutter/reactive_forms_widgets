@@ -1,6 +1,6 @@
 name: reactive_flutter_typeahead
 description: Wrapper around flutter_typeahead to use with reactive_forms.
-version: 0.2.0
+version: 0.3.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_typeahead: ^3.2.4
-  reactive_forms: ^11.0.0
+  reactive_forms: ^11.0.1
 
 dev_dependencies:
   flutter_test:
