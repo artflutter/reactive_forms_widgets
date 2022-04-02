@@ -96,7 +96,8 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     bool shouldFormat = true,
     bool enabled = true,
     bool showFlagInInput = true,
-    CountrySelectorNavigator selectorNavigator = const BottomSheetNavigator(),
+    CountrySelectorNavigator countrySelectorNavigator =
+        const CountrySelectorNavigator.bottomSheet(),
     Function(PhoneNumber?)? onSaved,
     String defaultCountry = 'US',
     // AutovalidateMode autovalidateMode = AutovalidateMode.onUserInteraction,
@@ -174,7 +175,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
               autofocus: autofocus,
               enabled: field.control.enabled,
               showFlagInInput: showFlagInInput,
-              selectorNavigator: selectorNavigator,
+              countrySelectorNavigator: countrySelectorNavigator,
               onSaved: onSaved,
               defaultCountry: defaultCountry,
               decoration: effectiveDecoration.copyWith(
