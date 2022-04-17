@@ -1,3 +1,6 @@
+## 0.3.0
+* reactive_forms bump
+
 ## 0.2.0
 * fix https://github.com/joanpablo/reactive_forms/issues/262
 
