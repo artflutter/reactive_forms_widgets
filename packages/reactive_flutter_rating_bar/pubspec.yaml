@@ -1,6 +1,6 @@
 name: reactive_flutter_rating_bar
 description: Wrapper around flutter_rating_bar to use with reactive_forms
-version: 0.1.0
+version: 0.2.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  reactive_forms: ^11.0.0
+  reactive_forms: ^12.0.0
   flutter_rating_bar: ^4.0.0
 
 dev_dependencies:
