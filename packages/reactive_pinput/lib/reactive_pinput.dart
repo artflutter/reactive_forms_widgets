@@ -79,7 +79,7 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [PinPut] class
-  /// and [new PinPut], the constructor.
+  /// and [PinPut], the constructor.
   ReactivePinPut({
     Key? key,
     String? formControlName,

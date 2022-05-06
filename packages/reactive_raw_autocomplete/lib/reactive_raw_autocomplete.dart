@@ -86,7 +86,7 @@ class ReactiveRawAutocomplete<T, V extends Object>
   /// ```
   ///
   /// For documentation about the various parameters, see the [RawAutocomplete] class
-  /// and [new RawAutocomplete], the constructor.
+  /// and [RawAutocomplete], the constructor.
   ReactiveRawAutocomplete({
     Key? key,
     String? formControlName,

@@ -73,7 +73,7 @@ class ReactiveMacosSwitch<T> extends ReactiveFormField<T, bool> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [MacosSwitch] class
-  /// and [new MacosSwitch], the constructor.
+  /// and [MacosSwitch], the constructor.
   ReactiveMacosSwitch({
     Key? key,
     String? formControlName,

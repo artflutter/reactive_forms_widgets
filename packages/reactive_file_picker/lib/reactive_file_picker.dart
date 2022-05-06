@@ -89,7 +89,7 @@ class ReactiveFilePicker<T>
   /// ```
   ///
   /// For documentation about the various parameters, see the [TouchSpin] class
-  /// and [new TouchSpin], the constructor.
+  /// and [TouchSpin], the constructor.
   ReactiveFilePicker({
     Key? key,
     String? formControlName,

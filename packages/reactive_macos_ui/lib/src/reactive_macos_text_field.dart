@@ -110,7 +110,7 @@ class ReactiveMacosTextField<T> extends ReactiveFormField<T, String> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [MacosTextField] class
-  /// and [new MacosTextField], the constructor.
+  /// and [MacosTextField], the constructor.
   ReactiveMacosTextField({
     Key? key,
     String? formControlName,

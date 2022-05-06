@@ -83,7 +83,7 @@ class ReactiveExtendedTextField<T> extends ReactiveFormField<T, String> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [PhoneFormField] class
-  /// and [new PhoneFormField], the constructor.
+  /// and [PhoneFormField], the constructor.
   ReactiveExtendedTextField(
       {Key? key,
       String? formControlName,

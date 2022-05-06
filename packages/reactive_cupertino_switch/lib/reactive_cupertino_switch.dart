@@ -74,7 +74,7 @@ class ReactiveCupertinoSwitch<T> extends ReactiveFormField<T, bool> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [CupertinoSwitch] class
-  /// and [new CupertinoSwitch], the constructor.
+  /// and [CupertinoSwitch], the constructor.
   ReactiveCupertinoSwitch({
     Key? key,
     String? formControlName,

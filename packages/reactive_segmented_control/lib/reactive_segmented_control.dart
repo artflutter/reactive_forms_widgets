@@ -78,7 +78,7 @@ class ReactiveSegmentedControl<T extends Object, K extends Object>
   /// ```
   ///
   /// For documentation about the various parameters, see the [CupertinoSegmentedControl] class
-  /// and [new CupertinoSegmentedControl], the constructor.
+  /// and [CupertinoSegmentedControl], the constructor.
   ReactiveSegmentedControl({
     Key? key,
     String? formControlName,

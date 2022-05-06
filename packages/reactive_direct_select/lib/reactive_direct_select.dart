@@ -82,7 +82,7 @@ class ReactiveDirectSelect<T, V> extends ReactiveFormField<T, V> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [DirectSelect] class
-  /// and [new DirectSelect], the constructor.
+  /// and [DirectSelect], the constructor.
   ReactiveDirectSelect({
     Key? key,
     String? formControlName,

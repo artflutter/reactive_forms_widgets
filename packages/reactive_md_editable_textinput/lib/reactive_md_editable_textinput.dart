@@ -83,7 +83,7 @@ class ReactiveMarkdownEditableTextInput<T>
   /// ```
   ///
   /// For documentation about the various parameters, see the [MarkdownTextInput] class
-  /// and [new MarkdownTextInput], the constructor.
+  /// and [MarkdownTextInput], the constructor.
   ReactiveMarkdownEditableTextInput({
     Key? key,
     String? formControlName,

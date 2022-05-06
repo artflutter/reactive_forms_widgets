@@ -82,7 +82,7 @@ class ReactiveSignature<T> extends ReactiveFormField<T, Uint8List> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [Signature] class
-  /// and [new Signature], the constructor.
+  /// and [Signature], the constructor.
   ReactiveSignature({
     Key? key,
     String? formControlName,
@@ -153,11 +153,11 @@ class ReactiveSignature<T> extends ReactiveFormField<T, Uint8List> {
 
   final List<Point>? points;
 
-  VoidCallback? onDrawStart;
+  final VoidCallback? onDrawStart;
 
-  VoidCallback? onDrawMove;
+  final VoidCallback? onDrawMove;
 
-  VoidCallback? onDrawEnd;
+  final VoidCallback? onDrawEnd;
 
   @override
   ReactiveFormFieldState<T, Uint8List> createState() =>

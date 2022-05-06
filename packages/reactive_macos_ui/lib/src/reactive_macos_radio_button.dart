@@ -73,7 +73,7 @@ class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [MacosRadioButton] class
-  /// and [new MacosRadioButton], the constructor.
+  /// and [MacosRadioButton], the constructor.
   ReactiveMacosRadioButton({
     Key? key,
     String? formControlName,

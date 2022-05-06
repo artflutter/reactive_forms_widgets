@@ -13,7 +13,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 /// to a [FormControl].
 ///
 /// For documentation about the various parameters, see the [CupertinoSlider] class
-/// and [new CupertinoSlider], the constructor.
+/// and [CupertinoSlider], the constructor.
 class ReactiveCupertinoSlider<T> extends ReactiveFormField<T, double> {
   /// Creates an instance os a [ReactiveCupertinoSlider].
   ///

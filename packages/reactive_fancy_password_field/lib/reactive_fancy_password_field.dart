@@ -3,7 +3,9 @@ library reactive_fancy_password_field;
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
 import 'package:fancy_password_field/fancy_password_field.dart';
+// ignore: implementation_imports
 import 'package:fancy_password_field/src/widget/strength_indicator_widget.dart';
+// ignore: implementation_imports
 import 'package:fancy_password_field/src/widget/validation_rules_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +89,7 @@ class ReactiveFancyPasswordField<T> extends ReactiveFormField<T, String> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [FancyPasswordField] class
-  /// and [new FancyPasswordField], the constructor.
+  /// and [FancyPasswordField], the constructor.
   ReactiveFancyPasswordField({
     Key? key,
     String? formControlName,

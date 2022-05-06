@@ -75,7 +75,7 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T, num> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [TouchSpin] class
-  /// and [new TouchSpin], the constructor.
+  /// and [TouchSpin], the constructor.
   ReactiveTouchSpin({
     Key? key,
     String? formControlName,

@@ -107,7 +107,7 @@ class ReactiveCupertinoTextField<T> extends ReactiveFormField<T, String> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [TextField] class
-  /// and [new TextField], the constructor.
+  /// and [TextField], the constructor.
   ReactiveCupertinoTextField({
     Key? key,
     String? formControlName,

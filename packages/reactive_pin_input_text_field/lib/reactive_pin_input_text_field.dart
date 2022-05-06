@@ -81,7 +81,7 @@ class ReactivePinInputTextField<T> extends ReactiveFormField<T, String> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [PinInputTextField] class
-  /// and [new PinInputTextField], the constructor.
+  /// and [PinInputTextField], the constructor.
   ReactivePinInputTextField({
     Key? key,
     String? formControlName,

@@ -80,7 +80,7 @@ class ReactiveCodeTextField<T> extends ReactiveFormField<T, String> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [CodeTextField] class
-  /// and [new CodeTextField], the constructor.
+  /// and [CodeTextField], the constructor.
   ReactiveCodeTextField({
     Key? key,
     String? formControlName,

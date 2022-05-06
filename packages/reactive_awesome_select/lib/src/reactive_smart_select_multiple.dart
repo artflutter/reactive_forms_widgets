@@ -77,7 +77,7 @@ class ReactiveSmartSelectMultiple<T, V>
   /// ```
   ///
   /// For documentation about the various parameters, see the [AwesomeSelect] class
-  /// and [new AwesomeSelect], the constructor.
+  /// and [AwesomeSelect], the constructor.
   ReactiveSmartSelectMultiple({
     Key? key,
     String? formControlName,

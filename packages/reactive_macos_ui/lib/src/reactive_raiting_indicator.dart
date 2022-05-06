@@ -73,7 +73,7 @@ class ReactiveRatingIndicator<T> extends ReactiveFormField<T, double> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [TouchSpin] class
-  /// and [new TouchSpin], the constructor.
+  /// and [TouchSpin], the constructor.
   ReactiveRatingIndicator(
       {Key? key,
       String? formControlName,

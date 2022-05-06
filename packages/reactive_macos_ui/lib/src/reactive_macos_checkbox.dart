@@ -73,7 +73,7 @@ class ReactiveMacosCheckbox<T> extends ReactiveFormField<T, bool> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [MacosCheckbox] class
-  /// and [new MacosCheckbox], the constructor.
+  /// and [MacosCheckbox], the constructor.
   ReactiveMacosCheckbox({
     Key? key,
     String? formControlName,
