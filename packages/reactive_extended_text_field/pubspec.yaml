@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^11.0.0
+  reactive_forms: ^12.0.0
   extended_text_field: ^9.0.3
 
 dev_dependencies:

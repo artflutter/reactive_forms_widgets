@@ -1,3 +1,6 @@
+## [0.3.0]
+* package version bump
+
 ## [0.2.2]
 * ability to override get initial time
 * ability to override date formatter

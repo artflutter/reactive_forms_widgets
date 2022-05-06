@@ -1,6 +1,6 @@
 name: reactive_contact_picker
 description: Wrapper around `fluttercontactpicker` to use with `reactive_forms`.
-version: 0.0.2
+version: 0.1.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^11.0.0
+  reactive_forms: ^12.0.0
   fluttercontactpicker: ^4.6.0
 
 dev_dependencies:

@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  reactive_forms: ^11.0.0
+  reactive_forms: ^12.0.0
   reactive_cart_stepper:
     path: ../
 

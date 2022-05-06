@@ -1,3 +1,6 @@
+## [0.2.0-beta]
+* package version bump
+
 ## [0.1.0-beta]
 * package version bump
 
