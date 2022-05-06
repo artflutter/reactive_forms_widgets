@@ -111,6 +111,7 @@ class ReactiveFilePicker<T>
     bool withReadStream = false,
     bool lockParentWindow = false,
     double disabledOpacity = 0.5,
+    String? initialDirectory,
   }) : super(
           key: key,
           formControl: formControl,
@@ -130,6 +131,7 @@ class ReactiveFilePicker<T>
               List<PlatformFile>? platformFiles;
               try {
                 platformFiles = (await FilePicker.platform.pickFiles(
+                  initialDirectory: initialDirectory,
                   dialogTitle: dialogTitle,
                   allowMultiple: allowMultiple,
                   type: type,
