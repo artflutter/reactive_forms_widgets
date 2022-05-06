@@ -78,7 +78,7 @@ class ReactiveDropdownSearchMultiSelection<T, V>
   /// ```
   ///
   /// For documentation about the various parameters, see the [DropdownSearch] class
-  /// and [new DropdownSearch], the constructor.
+  /// and [DropdownSearch], the constructor.
   ReactiveDropdownSearchMultiSelection({
     Key? key,
     String? formControlName,
@@ -110,9 +110,9 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     bool showAsSuffixIcons = false,
     double? dialogMaxWidth,
     Widget? clearButton,
-    IconButtonBuilder? clearButtonBuilder,
+    IconButtonProps? clearButtonProps,
+    IconButtonProps? dropdownButtonProps,
     Widget? dropDownButton,
-    IconButtonBuilder? dropdownButtonBuilder,
     bool dropdownBuilderSupportsNullItem = false,
     ShapeBorder? popupShape,
     VoidCallback? onPopupDismissed,
@@ -165,10 +165,6 @@ class ReactiveDropdownSearchMultiSelection<T, V>
             return DropdownSearch<V>.multiSelection(
               onChanged: field.didChange,
               mode: mode,
-              // ignore: deprecated_member_use
-              label: label,
-              // ignore: deprecated_member_use
-              hint: hint,
               isFilteredOnline: isFilteredOnline,
               popupTitle: popupTitle,
               items: items,
@@ -191,15 +187,17 @@ class ReactiveDropdownSearchMultiSelection<T, V>
               loadingBuilder: loadingBuilder,
               errorBuilder: errorBuilder,
               dialogMaxWidth: dialogMaxWidth,
-              clearButton: clearButton,
-              clearButtonBuilder: clearButtonBuilder,
-              clearButtonSplashRadius: clearButtonSplashRadius,
-              dropDownButton: dropDownButton,
-              dropdownButtonBuilder: dropdownButtonBuilder,
-              dropdownButtonSplashRadius: dropdownButtonSplashRadius,
+              clearButtonProps: clearButtonProps,
+              dropdownButtonProps: dropdownButtonProps,
+              // clearButton: clearButton,
+              // clearButtonBuilder: clearButtonBuilder,
+              // clearButtonSplashRadius: clearButtonSplashRadius,
+              // dropDownButton: dropDownButton,
+              // dropdownButtonBuilder: dropdownButtonBuilder,
+              // dropdownButtonSplashRadius: dropdownButtonSplashRadius,
               dropdownBuilderSupportsNullItem: dropdownBuilderSupportsNullItem,
               popupShape: popupShape,
-              showAsSuffixIcons: showAsSuffixIcons,
+              // showAsSuffixIcons: showAsSuffixIcons,
               popupItemDisabled: popupItemDisabled,
               popupBarrierColor: popupBarrierColor,
               onPopupDismissed: () {

@@ -77,7 +77,7 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [DropdownSearch] class
-  /// and [new DropdownSearch], the constructor.
+  /// and [DropdownSearch], the constructor.
   ReactiveDropdownSearch({
     Key? key,
     String? formControlName,
@@ -108,12 +108,11 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
     EmptyBuilder? emptyBuilder,
     LoadingBuilder? loadingBuilder,
     ErrorBuilder? errorBuilder,
-    bool showAsSuffixIcons = false,
     double? dialogMaxWidth,
     Widget? clearButton,
-    IconButtonBuilder? clearButtonBuilder,
+    IconButtonProps? clearButtonProps,
+    IconButtonProps? dropdownButtonProps,
     Widget? dropDownButton,
-    IconButtonBuilder? dropdownButtonBuilder,
     bool dropdownBuilderSupportsNullItem = false,
     ShapeBorder? popupShape,
     VoidCallback? onPopupDismissed,
@@ -158,10 +157,6 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
             return DropdownSearch<V>(
               onChanged: field.didChange,
               mode: mode,
-              // ignore: deprecated_member_use
-              label: label,
-              // ignore: deprecated_member_use
-              hint: hint,
               isFilteredOnline: isFilteredOnline,
               popupTitle: popupTitle,
               items: items,
@@ -184,15 +179,10 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
               loadingBuilder: loadingBuilder,
               errorBuilder: errorBuilder,
               dialogMaxWidth: dialogMaxWidth,
-              clearButton: clearButton,
-              clearButtonBuilder: clearButtonBuilder,
-              clearButtonSplashRadius: clearButtonSplashRadius,
-              dropDownButton: dropDownButton,
-              dropdownButtonBuilder: dropdownButtonBuilder,
-              dropdownButtonSplashRadius: dropdownButtonSplashRadius,
+              clearButtonProps:clearButtonProps,
+              dropdownButtonProps:dropdownButtonProps,
               dropdownBuilderSupportsNullItem: dropdownBuilderSupportsNullItem,
               popupShape: popupShape,
-              showAsSuffixIcons: showAsSuffixIcons,
               popupItemDisabled: popupItemDisabled,
               popupBarrierColor: popupBarrierColor,
               onPopupDismissed: () {

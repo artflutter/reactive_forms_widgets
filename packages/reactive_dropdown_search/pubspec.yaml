@@ -1,6 +1,6 @@
 name: reactive_dropdown_search
 description: Wrapper around searchable_dropdown to use with reactive_forms
-version: 0.7.0
+version: 0.8.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   reactive_forms: ^12.0.0
-  dropdown_search: ^2.0.1
+  dropdown_search: ^3.0.1
 
 dev_dependencies:
   flutter_test:
