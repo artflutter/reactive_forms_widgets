@@ -1,3 +1,6 @@
+## [0.9.0]
+* package version bump
+
 ## [0.8.1]
 * Customize image preview layout by adding imageBuilder
 
