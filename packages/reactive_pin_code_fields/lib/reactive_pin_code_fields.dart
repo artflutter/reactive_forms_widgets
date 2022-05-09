@@ -144,6 +144,9 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
     bool readOnly = false,
     Gradient? textGradient,
     EdgeInsets scrollPadding = const EdgeInsets.all(20),
+    TextDirection errorTextDirection = TextDirection.ltr,
+    EdgeInsets errorTextMargin = EdgeInsets.zero,
+    bool autoUnfocus = true,
   }) : super(
           key: key,
           formControl: formControl,
@@ -210,6 +213,9 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
               readOnly: readOnly,
               textGradient: textGradient,
               scrollPadding: scrollPadding,
+              errorTextDirection: errorTextDirection,
+              errorTextMargin: errorTextMargin,
+              autoUnfocus: autoUnfocus,
             );
           },
         );
