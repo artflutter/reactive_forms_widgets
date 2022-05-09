@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   FormGroup buildForm() => fb.group({
         'input': FormControl<PhoneNumber>(
           value: const PhoneNumber(
-            isoCode: 'UA',
+            isoCode: IsoCode.UA,
             nsn: '933456789',
           ),
         ),
