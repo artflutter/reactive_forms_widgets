@@ -88,6 +88,7 @@ class ReactiveCupertinoSwitch<T> extends ReactiveFormField<T, bool> {
     DragStartBehavior dragStartBehavior = DragStartBehavior.start,
     Color? activeColor,
     Color? trackColor,
+    double disabledOpacity = 0.5,
   }) : super(
           key: key,
           formControl: formControl,
@@ -96,25 +97,19 @@ class ReactiveCupertinoSwitch<T> extends ReactiveFormField<T, bool> {
           validationMessages: validationMessages,
           showErrors: showErrors,
           builder: (field) {
-            // final InputDecoration effectiveDecoration = (decoration ??
-            //         const InputDecoration())
-            //     .applyDefaults(Theme.of(field.context).inputDecorationTheme);
-
-            return CupertinoSwitch(
-              value: field.value ?? false,
-              onChanged: field.didChange,
-              activeColor: activeColor,
-              trackColor: trackColor,
-              dragStartBehavior: dragStartBehavior,
+            return IgnorePointer(
+              ignoring: !field.control.enabled,
+              child: Opacity(
+                opacity: field.control.enabled ? 1 : disabledOpacity,
+                child: CupertinoSwitch(
+                  value: field.value ?? false,
+                  onChanged: field.didChange,
+                  activeColor: activeColor,
+                  trackColor: trackColor,
+                  dragStartBehavior: dragStartBehavior,
+                ),
+              ),
             );
-
-            // return InputDecorator(
-            //   decoration: effectiveDecoration.copyWith(
-            //     errorText: field.errorText,
-            //     enabled: field.control.enabled,
-            //   ),
-            //   child: ,
-            // );
           },
         );
 }
