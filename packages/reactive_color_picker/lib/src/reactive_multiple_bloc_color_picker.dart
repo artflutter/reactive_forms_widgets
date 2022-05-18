@@ -67,6 +67,7 @@ class ReactiveMultipleBlockColorPicker<T>
     List<Color> availableColors = _defaultColors,
     PickerLayoutBuilder? layoutBuilder,
     PickerItemBuilder itemBuilder = BlockPicker.defaultItemBuilder,
+    double disabledOpacity = 0.5,
   }) : super(
           key: key,
           formControl: formControl,
@@ -82,28 +83,31 @@ class ReactiveMultipleBlockColorPicker<T>
 
             return IgnorePointer(
               ignoring: !field.control.enabled,
-              child: Listener(
-                onPointerDown: (_) => field.control.markAsTouched(),
-                child: InputDecorator(
-                  decoration: effectiveDecoration.copyWith(
-                    errorText: field.errorText,
-                    enabled: field.control.enabled,
-                  ),
-                  isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
-                  child: MultipleChoiceBlockPicker(
-                    pickerColors: field.value ?? [Colors.transparent],
-                    availableColors: availableColors,
-                    onColorsChanged: field.didChange,
-                    layoutBuilder: layoutBuilder ??
-                        (BuildContext context, List<Color> colors,
-                            PickerItem child) {
-                          return Wrap(
-                            children: colors
-                                .map((Color color) => child(color))
-                                .toList(),
-                          );
-                        },
-                    itemBuilder: itemBuilder,
+              child: Opacity(
+                opacity: field.control.enabled ? 1 : disabledOpacity,
+                child: Listener(
+                  onPointerDown: (_) => field.control.markAsTouched(),
+                  child: InputDecorator(
+                    decoration: effectiveDecoration.copyWith(
+                      errorText: field.errorText,
+                      enabled: field.control.enabled,
+                    ),
+                    isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
+                    child: MultipleChoiceBlockPicker(
+                      pickerColors: field.value ?? [Colors.transparent],
+                      availableColors: availableColors,
+                      onColorsChanged: field.didChange,
+                      layoutBuilder: layoutBuilder ??
+                          (BuildContext context, List<Color> colors,
+                              PickerItem child) {
+                            return Wrap(
+                              children: colors
+                                  .map((Color color) => child(color))
+                                  .toList(),
+                            );
+                          },
+                      itemBuilder: itemBuilder,
+                    ),
                   ),
                 ),
               ),
