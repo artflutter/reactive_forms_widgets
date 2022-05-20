@@ -144,6 +144,7 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
     this.onControllerInit,
     Clip clipBehavior = Clip.hardEdge,
     bool enableIMEPersonalizedLearning = true,
+    bool scribbleEnabled = true,
   }) : super(
           key: key,
           formControl: formControl,
@@ -218,6 +219,7 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
               selectionWidthStyle: selectionWidthStyle,
               clipBehavior: clipBehavior,
               enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+              scribbleEnabled: scribbleEnabled,
             );
           },
         );
