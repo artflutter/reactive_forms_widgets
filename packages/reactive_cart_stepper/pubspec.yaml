@@ -1,16 +1,16 @@
 name: reactive_cart_stepper
 description: Wrapper around cart_stepper to work with reactive_forms
-version: 0.2.0
+version: 0.3.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
-  sdk: ">=2.15.1 <3.0.0"
-  flutter: ">=2.8.0"
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^12.0.0
+  reactive_forms: ^13.0.0
   cart_stepper: ^2.0.2
 
 dev_dependencies:
