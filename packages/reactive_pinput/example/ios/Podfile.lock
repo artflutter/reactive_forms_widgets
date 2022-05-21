@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - smart_auth (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - smart_auth (from `.symlinks/plugins/smart_auth/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  smart_auth:
+    :path: ".symlinks/plugins/smart_auth/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  smart_auth: 4bedbc118723912d0e45a07e8ab34039c19e04f2
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.11.3
