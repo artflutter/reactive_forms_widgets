@@ -91,6 +91,8 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
     String? fieldHintText,
     String? fieldLabelText,
     RouteSettings? datePickerRouteSettings,
+    TextInputType? keyboardType,
+    Offset? anchorPoint,
 
     // time picker params
     TimePickerEntryMode timePickerEntryMode = TimePickerEntryMode.dial,
@@ -161,6 +163,8 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
                       errorInvalidText: errorInvalidText,
                       fieldHintText: fieldHintText,
                       fieldLabelText: fieldLabelText,
+                      keyboardType: keyboardType,
+                      anchorPoint: anchorPoint,
                     );
                   }
 
