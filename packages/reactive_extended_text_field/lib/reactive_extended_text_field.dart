@@ -84,68 +84,72 @@ class ReactiveExtendedTextField<T> extends ReactiveFormField<T, String> {
   ///
   /// For documentation about the various parameters, see the [PhoneFormField] class
   /// and [PhoneFormField], the constructor.
-  ReactiveExtendedTextField(
-      {Key? key,
-      String? formControlName,
-      FormControl<T>? formControl,
-      ValidationMessagesFunction<T>? validationMessages,
-      ControlValueAccessor<T, String>? valueAccessor,
-      ShowErrorsFunction? showErrors,
+  ReactiveExtendedTextField({
+    Key? key,
+    String? formControlName,
+    FormControl<T>? formControl,
+    ValidationMessagesFunction<T>? validationMessages,
+    ControlValueAccessor<T, String>? valueAccessor,
+    ShowErrorsFunction? showErrors,
 
-      ////////////////////////////////////////////////////////////////////////////
-      bool shouldFormat = true,
-      bool enabled = true,
-      bool showFlagInInput = true,
-      String defaultCountry = 'US',
-      double flagSize = 16,
-      InputDecoration decoration = const InputDecoration(),
-      TextInputType keyboardType = TextInputType.phone,
-      TextInputAction? textInputAction,
-      TextStyle? style,
-      StrutStyle? strutStyle,
-      TextDirection? textDirection,
-      TextAlign textAlign = TextAlign.start,
-      TextAlignVertical? textAlignVertical,
-      bool autofocus = false,
-      bool readOnly = false,
-      ToolbarOptions? toolbarOptions,
-      bool? showCursor,
-      bool obscureText = false,
-      String obscuringCharacter = '•',
-      bool autocorrect = true,
-      SmartDashesType? smartDashesType,
-      SmartQuotesType? smartQuotesType,
-      bool enableSuggestions = true,
-      MaxLengthEnforcement? maxLengthEnforcement,
-      int? maxLines = 1,
-      int? minLines,
-      bool expands = false,
-      int? maxLength,
-      GestureTapCallback? onTap,
-      VoidCallback? onEditingComplete,
-      List<TextInputFormatter>? inputFormatters,
-      double cursorWidth = 2.0,
-      double? cursorHeight,
-      Radius? cursorRadius,
-      Color? cursorColor,
-      Brightness? keyboardAppearance,
-      EdgeInsets scrollPadding = const EdgeInsets.all(20.0),
-      bool enableInteractiveSelection = true,
-      ScrollPhysics? scrollPhysics,
-      VoidCallback? onSubmitted,
-      FocusNode? focusNode,
-      Iterable<String>? autofillHints,
-      MouseCursor? mouseCursor,
-      DragStartBehavior dragStartBehavior = DragStartBehavior.start,
-      AppPrivateCommandCallback? onAppPrivateCommand,
-      String? restorationId,
-      ScrollController? scrollController,
-      TextSelectionControls? selectionControls,
-      ui.BoxHeightStyle selectionHeightStyle = ui.BoxHeightStyle.tight,
-      ui.BoxWidthStyle selectionWidthStyle = ui.BoxWidthStyle.tight,
-      SpecialTextSpanBuilder? specialTextSpanBuilder,
-      TextCapitalization textCapitalization = TextCapitalization.none})
-      : super(
+    ////////////////////////////////////////////////////////////////////////////
+    bool shouldFormat = true,
+    bool enabled = true,
+    bool showFlagInInput = true,
+    String defaultCountry = 'US',
+    double flagSize = 16,
+    InputDecoration decoration = const InputDecoration(),
+    TextInputType keyboardType = TextInputType.phone,
+    TextInputAction? textInputAction,
+    TextStyle? style,
+    StrutStyle? strutStyle,
+    TextDirection? textDirection,
+    TextAlign textAlign = TextAlign.start,
+    TextAlignVertical? textAlignVertical,
+    bool autofocus = false,
+    bool readOnly = false,
+    ToolbarOptions? toolbarOptions,
+    bool? showCursor,
+    bool obscureText = false,
+    String obscuringCharacter = '•',
+    bool autocorrect = true,
+    SmartDashesType? smartDashesType,
+    SmartQuotesType? smartQuotesType,
+    bool enableSuggestions = true,
+    MaxLengthEnforcement? maxLengthEnforcement,
+    int? maxLines = 1,
+    int? minLines,
+    bool expands = false,
+    int? maxLength,
+    GestureTapCallback? onTap,
+    VoidCallback? onEditingComplete,
+    List<TextInputFormatter>? inputFormatters,
+    double cursorWidth = 2.0,
+    double? cursorHeight,
+    Radius? cursorRadius,
+    Color? cursorColor,
+    Brightness? keyboardAppearance,
+    EdgeInsets scrollPadding = const EdgeInsets.all(20.0),
+    bool enableInteractiveSelection = true,
+    ScrollPhysics? scrollPhysics,
+    VoidCallback? onSubmitted,
+    FocusNode? focusNode,
+    Iterable<String>? autofillHints,
+    MouseCursor? mouseCursor,
+    DragStartBehavior dragStartBehavior = DragStartBehavior.start,
+    AppPrivateCommandCallback? onAppPrivateCommand,
+    String? restorationId,
+    ScrollController? scrollController,
+    TextSelectionControls? selectionControls,
+    ui.BoxHeightStyle selectionHeightStyle = ui.BoxHeightStyle.tight,
+    ui.BoxWidthStyle selectionWidthStyle = ui.BoxWidthStyle.tight,
+    SpecialTextSpanBuilder? specialTextSpanBuilder,
+    TextCapitalization textCapitalization = TextCapitalization.none,
+    bool scribbleEnabled = true,
+    bool enableIMEPersonalizedLearning = true,
+    ShouldShowSelectionHandlesCallback? shouldShowSelectionHandles,
+    TextSelectionGestureDetectorBuilderCallback? textSelectionGestureDetectorBuilder,
+  }) : super(
           key: key,
           formControl: formControl,
           formControlName: formControlName,
@@ -154,8 +158,7 @@ class ReactiveExtendedTextField<T> extends ReactiveFormField<T, String> {
           showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactivePhoneFormFieldState<T>;
-            final effectiveDecoration = decoration
-                .applyDefaults(Theme.of(state.context).inputDecorationTheme);
+            final effectiveDecoration = decoration.applyDefaults(Theme.of(state.context).inputDecorationTheme);
 
             state._setFocusNode(focusNode);
 
@@ -184,14 +187,8 @@ class ReactiveExtendedTextField<T> extends ReactiveFormField<T, String> {
               showCursor: showCursor,
               obscureText: obscureText,
               autocorrect: autocorrect,
-              smartDashesType: smartDashesType ??
-                  (obscureText
-                      ? SmartDashesType.disabled
-                      : SmartDashesType.enabled),
-              smartQuotesType: smartQuotesType ??
-                  (obscureText
-                      ? SmartQuotesType.disabled
-                      : SmartQuotesType.enabled),
+              smartDashesType: smartDashesType ?? (obscureText ? SmartDashesType.disabled : SmartDashesType.enabled),
+              smartQuotesType: smartQuotesType ?? (obscureText ? SmartQuotesType.disabled : SmartQuotesType.enabled),
               enableSuggestions: enableSuggestions,
               onSubmitted: onSubmitted != null ? (_) => onSubmitted() : null,
               inputFormatters: inputFormatters,
@@ -219,17 +216,19 @@ class ReactiveExtendedTextField<T> extends ReactiveFormField<T, String> {
               dragStartBehavior: dragStartBehavior,
               onTap: onTap,
               specialTextSpanBuilder: specialTextSpanBuilder,
+              scribbleEnabled: scribbleEnabled,
+              enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+              shouldShowSelectionHandles: shouldShowSelectionHandles,
+              textSelectionGestureDetectorBuilder: textSelectionGestureDetectorBuilder,
             );
           },
         );
 
   @override
-  ReactiveFormFieldState<T, String> createState() =>
-      _ReactivePhoneFormFieldState<T>();
+  ReactiveFormFieldState<T, String> createState() => _ReactivePhoneFormFieldState<T>();
 }
 
-class _ReactivePhoneFormFieldState<T>
-    extends ReactiveFormFieldState<T, String> {
+class _ReactivePhoneFormFieldState<T> extends ReactiveFormFieldState<T, String> {
   late TextEditingController _textController;
   FocusNode? _focusNode;
   late FocusController _focusController;
@@ -241,8 +240,7 @@ class _ReactivePhoneFormFieldState<T>
     super.initState();
 
     final initialValue = value;
-    _textController = TextEditingController(
-        text: initialValue == null ? '' : initialValue.toString());
+    _textController = TextEditingController(text: initialValue == null ? '' : initialValue.toString());
   }
 
   @override
