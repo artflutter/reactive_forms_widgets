@@ -1,17 +1,17 @@
 name: reactive_sleek_circular_slider
 description: Wrapper around sleek_circular_slider to use with reactive_forms
-version: 0.2.0
+version: 0.3.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
-  flutter: ">=2.8.0"
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  reactive_forms: ^12.0.0
+  reactive_forms: ^13.0.0
   sleek_circular_slider: ^2.0.1
 
 dev_dependencies:
