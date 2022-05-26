@@ -11,4 +11,5 @@
         "editor.tabCompletion": "onlySnippets",
         "editor.wordBasedSuggestions": false
     },
+    "dart.flutterSdkPath": "/Users/vasilich/fvm/versions/3.0.1",
 }
