@@ -1,3 +1,7 @@
+## [0.8.0]
+
+* package version bump
+
 ## [0.7.0]
 
 * package version bump
