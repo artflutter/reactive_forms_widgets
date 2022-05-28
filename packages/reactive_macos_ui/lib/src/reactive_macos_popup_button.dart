@@ -1,17 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-/// A [ReactiveMacosRadioButton] that contains a [MacosRadioButton].
+/// A [ReactiveMacosPopupButton] that contains a [MacosSwitch].
 ///
-/// This is a convenience widget that wraps a [MacosRadioButton] widget in a
-/// [ReactiveMacosRadioButton].
+/// This is a convenience widget that wraps a [MacosSwitch] widget in a
+/// [ReactiveMacosPopupButton].
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
-  /// Creates a [ReactiveMacosRadioButton] that contains a [MacosRadioButton].
+class ReactiveMacosPopupButton<T, V> extends ReactiveFormField<T, V> {
+  /// Creates a [ReactiveMacosPopupButton] that contains a [MacosSwitch].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
   ///
@@ -37,7 +36,7 @@ class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
   /// ```
   /// final form = fb.group({'email': Validators.required});
   ///
-  /// ReactiveMacosRadioButton(
+  /// ReactiveMacosPopupButton(
   ///   formControlName: 'email',
   /// ),
   ///
@@ -47,7 +46,7 @@ class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
   /// ```
   /// final form = fb.group({'email': Validators.required});
   ///
-  /// ReactiveMacosRadioButton(
+  /// ReactiveMacosPopupButton(
   ///   formControl: form.control('email'),
   /// ),
   ///
@@ -55,7 +54,7 @@ class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
   ///
   /// Customize validation messages
   /// ```dart
-  /// ReactiveMacosRadioButton(
+  /// ReactiveMacosPopupButton(
   ///   formControlName: 'email',
   ///   validationMessages: {
   ///     ValidationMessage.required: 'The email must not be empty',
@@ -66,15 +65,15 @@ class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
   ///
   /// Customize when to show up validation messages.
   /// ```dart
-  /// ReactiveMacosRadioButton(
+  /// ReactiveMacosPopupButton(
   ///   formControlName: 'email',
   ///   showErrors: (control) => control.invalid && control.touched && control.dirty,
   /// ),
   /// ```
   ///
-  /// For documentation about the various parameters, see the [MacosRadioButton] class
-  /// and [MacosRadioButton], the constructor.
-  ReactiveMacosRadioButton({
+  /// For documentation about the various parameters, see the [MacosSwitch] class
+  /// and [MacosSwitch], the constructor.
+  ReactiveMacosPopupButton({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
@@ -89,12 +88,18 @@ class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
       isDense: true,
       isCollapsed: true,
     ),
-    required V value,
-    Color? innerColor,
-    Color? onColor,
-    double size = 16.0,
-    Color offColor = CupertinoColors.tertiaryLabel,
-    String? semanticLabel,
+    List<MacosPopupMenuItem<V>>? items,
+    Widget? disabledHint,
+    Widget? hint,
+    double? itemHeight = 24.0,
+    TextStyle? style,
+    FocusNode? focusNode,
+    bool autofocus = false,
+    AlignmentDirectional alignment = AlignmentDirectional.centerStart,
+    double? menuMaxHeight,
+    Color? popupColor,
+    VoidCallback? onTap,
+    MacosPopupButtonBuilder? selectedItemBuilder,
   }) : super(
           key: key,
           formControl: formControl,
@@ -103,8 +108,9 @@ class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
           validationMessages: validationMessages,
           showErrors: showErrors,
           builder: (field) {
-            // final InputDecoration effectiveDecoration = decoration
-            //     .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+            final state = field as ReactiveMacosPopupButtonState<T, V>;
+
+            state._setFocusNode(focusNode);
 
             return Listener(
               onPointerDown: (_) {
@@ -112,17 +118,63 @@ class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
                   field.control.markAsTouched();
                 }
               },
-              child: MacosRadioButton<V>(
-                groupValue: field.value,
-                value: value,
+              child: MacosPopupButton<V>(
+                selectedItemBuilder: selectedItemBuilder,
+                value: field.value,
+                items: items,
+                hint: hint,
+                disabledHint: disabledHint,
                 onChanged: field.control.enabled ? field.didChange : null,
-                size: size = 16.0,
-                onColor: onColor,
-                offColor: offColor = CupertinoColors.tertiaryLabel,
-                innerColor: innerColor,
-                semanticLabel: semanticLabel,
+                onTap: onTap,
+                style: style,
+                itemHeight: itemHeight,
+                focusNode: state.focusNode,
+                popupColor: popupColor,
+                menuMaxHeight: menuMaxHeight,
+                alignment: alignment,
               ),
             );
           },
         );
+
+  @override
+  ReactiveMacosPopupButtonState<T, V> createState() =>
+      ReactiveMacosPopupButtonState<T, V>();
+}
+
+class ReactiveMacosPopupButtonState<T, V> extends ReactiveFormFieldState<T, V> {
+  FocusNode? _focusNode;
+  late FocusController _focusController;
+
+  FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
+
+  @override
+  void subscribeControl() {
+    _registerFocusController(FocusController());
+    super.subscribeControl();
+  }
+
+  @override
+  void unsubscribeControl() {
+    _unregisterFocusController();
+    super.unsubscribeControl();
+  }
+
+  void _registerFocusController(FocusController focusController) {
+    _focusController = focusController;
+    control.registerFocusController(focusController);
+  }
+
+  void _unregisterFocusController() {
+    control.unregisterFocusController(_focusController);
+    _focusController.dispose();
+  }
+
+  void _setFocusNode(FocusNode? focusNode) {
+    if (_focusNode != focusNode) {
+      _focusNode = focusNode;
+      _unregisterFocusController();
+      _registerFocusController(FocusController(focusNode: _focusNode));
+    }
+  }
 }

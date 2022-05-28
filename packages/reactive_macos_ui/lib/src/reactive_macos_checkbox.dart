@@ -106,29 +106,21 @@ class ReactiveMacosCheckbox<T> extends ReactiveFormField<T, bool> {
             //     .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
             return Listener(
-                onPointerDown: (_) {
-                  if (field.control.enabled) {
-                    field.control.markAsTouched();
-                  }
-                },
-                child: MacosCheckbox(
-                  value: field.value,
-                  onChanged: field.control.enabled ? field.didChange : null,
-                  size: size = 16.0,
-                  activeColor: activeColor,
-                  disabledColor: disabledColor,
-                  offBorderColor: offBorderColor,
-                  semanticLabel: semanticLabel,
-                )
-
-                // InputDecorator(
-                //   decoration: effectiveDecoration.copyWith(
-                //     errorText: field.errorText,
-                //     enabled: field.control.enabled,
-                //   ),
-                //   child: ,
-                // ),
-                );
+              onPointerDown: (_) {
+                if (field.control.enabled) {
+                  field.control.markAsTouched();
+                }
+              },
+              child: MacosCheckbox(
+                value: field.value,
+                onChanged: field.control.enabled ? field.didChange : null,
+                size: size = 16.0,
+                activeColor: activeColor,
+                disabledColor: disabledColor,
+                offBorderColor: offBorderColor,
+                semanticLabel: semanticLabel,
+              ),
+            );
           },
         );
 }

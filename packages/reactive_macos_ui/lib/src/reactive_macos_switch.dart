@@ -101,32 +101,21 @@ class ReactiveMacosSwitch<T> extends ReactiveFormField<T, bool> {
           validationMessages: validationMessages,
           showErrors: showErrors,
           builder: (field) {
-            // final InputDecoration effectiveDecoration = decoration
-            //     .applyDefaults(Theme.of(field.context).inputDecorationTheme);
-
             return Listener(
-                onPointerDown: (_) {
-                  if (field.control.enabled) {
-                    field.control.markAsTouched();
-                  }
-                },
-                child: MacosSwitch(
-                  value: field.value ?? false,
-                  onChanged: field.control.enabled ? field.didChange : null,
-                  dragStartBehavior: dragStartBehavior,
-                  activeColor: activeColor,
-                  trackColor: trackColor,
-                  semanticLabel: semanticLabel,
-                )
-
-                // InputDecorator(
-                //   decoration: effectiveDecoration.copyWith(
-                //     errorText: field.errorText,
-                //     enabled: field.control.enabled,
-                //   ),
-                //   child: ,
-                // ),
-                );
+              onPointerDown: (_) {
+                if (field.control.enabled) {
+                  field.control.markAsTouched();
+                }
+              },
+              child: MacosSwitch(
+                value: field.value ?? false,
+                onChanged: field.control.enabled ? field.didChange : null,
+                dragStartBehavior: dragStartBehavior,
+                activeColor: activeColor,
+                trackColor: trackColor,
+                semanticLabel: semanticLabel,
+              ),
+            );
           },
         );
 }
