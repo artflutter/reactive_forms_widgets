@@ -136,6 +136,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
           showErrors: showErrors,
+          stringify: stringify,
           builder: (field) {
             final state = field as _ReactiveTypeaheadState<T, V>;
             final effectiveDecoration = textFieldConfiguration.decoration
@@ -184,7 +185,6 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
             );
           },
         );
-
   @override
   ReactiveFormFieldState<T, V> createState() => _ReactiveTypeaheadState<T, V>();
 }
@@ -202,7 +202,11 @@ class _ReactiveTypeaheadState<T, V> extends ReactiveFormFieldState<T, V> {
 
     final initialValue = value;
     _textController = TextEditingController(
-        text: initialValue == null ? '' : initialValue.toString());
+        text: initialValue == null
+            ? ''
+            : widget.stringify == null
+                ? initialValue.toString()
+                : widget.stringify!(initialValue));
   }
 
   @override

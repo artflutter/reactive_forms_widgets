@@ -136,6 +136,7 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
           formControlName: formControlName,
           valueAccessor: valueAccessor,
           validationMessages: validationMessages,
+          stringify: stringify,
           showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveCupertinoTypeAheadState<T, V>;
@@ -203,7 +204,11 @@ class _ReactiveCupertinoTypeAheadState<T, V>
 
     final initialValue = value;
     _textController = TextEditingController(
-        text: initialValue == null ? '' : initialValue.toString());
+        text: initialValue == null
+            ? ''
+            : widget.stringify == null
+                ? initialValue.toString()
+                : widget.stringify!(initialValue));
   }
 
   @override
