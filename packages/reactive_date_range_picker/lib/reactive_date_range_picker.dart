@@ -138,6 +138,10 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
                     builder: builder,
                   );
 
+                  if (dateRange == null) {
+                    return;
+                  }
+
                   field.control.markAsTouched();
                   field.didChange(
                       effectiveValueAccessor.modelToViewValue(dateRange));
