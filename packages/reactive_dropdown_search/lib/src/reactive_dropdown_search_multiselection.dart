@@ -97,15 +97,17 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     DropdownSearchFilterFn<V>? filterFn,
     DropdownSearchItemAsString<V>? itemAsString,
     DropdownSearchCompareFn<V>? compareFn,
-    InputDecoration? decoration,
-    IconButtonProps? clearButtonProps,
-    IconButtonProps? dropdownButtonProps,
+    ClearButtonProps clearButtonProps = const ClearButtonProps(),
+    DropdownButtonProps dropdownButtonProps = const DropdownButtonProps(),
     BeforeChangeMultiSelection<V?>? onBeforeChange,
     TextAlign? dropdownSearchTextAlign,
     TextAlignVertical? dropdownSearchTextAlignVertical,
     FocusNode? focusNode,
     FormFieldSetter<List<V>>? onSaved,
     TextStyle? dropdownSearchTextStyle,
+    DropDownDecoratorProps dropdownDecoratorProps =
+        const DropDownDecoratorProps(),
+    BeforePopupOpeningMultiSelection<V>? onBeforePopupOpening,
   }) : super(
           key: key,
           formControl: formControl,
@@ -114,7 +116,8 @@ class ReactiveDropdownSearchMultiSelection<T, V>
           validationMessages: validationMessages,
           showErrors: showErrors,
           builder: (field) {
-            final InputDecoration effectiveDecoration = (decoration ??
+            final effectiveDecoration = (dropdownDecoratorProps
+                        .dropdownSearchDecoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
@@ -130,20 +133,22 @@ class ReactiveDropdownSearchMultiSelection<T, V>
               items: items,
               asyncItems: asyncItems,
               dropdownBuilder: dropdownBuilder,
-              showClearButton: showClearButton,
               enabled: field.control.enabled,
               filterFn: filterFn,
               itemAsString: itemAsString,
               compareFn: compareFn,
-              dropdownSearchDecoration:
-                  effectiveDecoration.copyWith(errorText: field.errorText),
+              dropdownDecoratorProps: DropDownDecoratorProps(
+                dropdownSearchDecoration:
+                    effectiveDecoration.copyWith(errorText: field.errorText),
+                baseStyle: dropdownDecoratorProps.baseStyle,
+                textAlign: dropdownDecoratorProps.textAlign,
+                textAlignVertical: dropdownDecoratorProps.textAlignVertical,
+              ),
               clearButtonProps: clearButtonProps,
               dropdownButtonProps: dropdownButtonProps,
               onBeforeChange: onBeforeChange,
-              dropdownSearchTextAlign: dropdownSearchTextAlign,
-              dropdownSearchTextAlignVertical: dropdownSearchTextAlignVertical,
               onSaved: onSaved,
-              dropdownSearchTextStyle: dropdownSearchTextStyle,
+              onBeforePopupOpening: onBeforePopupOpening,
             );
           },
         );

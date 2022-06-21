@@ -39,12 +39,14 @@ class MyApp extends StatelessWidget {
                   children: [
                     ReactiveDropdownSearch<String, String>(
                       formControlName: 'menu',
-                      decoration: const InputDecoration(
-                        hintText: "Select a country",
-                        helperText: '',
-                        labelText: "Menu mode *",
-                        contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                        border: OutlineInputBorder(),
+                      dropdownDecoratorProps: const DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
+                          hintText: "Select a country",
+                          helperText: '',
+                          labelText: "Menu mode *",
+                          contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                       popupProps: PopupProps.menu(
                         showSelectedItems: true,
@@ -63,12 +65,14 @@ class MyApp extends StatelessWidget {
                     const SizedBox(height: 8),
                     ReactiveDropdownSearchMultiSelection<String, String>(
                       formControlName: 'menuMultiple',
-                      decoration: const InputDecoration(
-                        hintText: "Select a country",
-                        labelText: "Menu mode *",
-                        helperText: '',
-                        contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                        border: OutlineInputBorder(),
+                      dropdownDecoratorProps: const DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
+                          hintText: "Select a country",
+                          labelText: "Menu mode *",
+                          helperText: '',
+                          contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                       popupProps: PopupPropsMultiSelection.menu(
                         showSelectedItems: true,
@@ -119,11 +123,13 @@ class MyApp extends StatelessWidget {
                           ),
                         ),
                       ),
-                      decoration: const InputDecoration(
-                        labelText: "Custom BottomSheet mode",
-                        helperText: '',
-                        contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                        border: OutlineInputBorder(),
+                      dropdownDecoratorProps: const DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
+                          labelText: "Custom BottomSheet mode",
+                          helperText: '',
+                          contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                       items: const ["Brazil", "Italia", "Tunisia", 'Canada'],
                     ),
