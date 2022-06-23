@@ -138,7 +138,7 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
     bool toolbarEnabled = true,
     bool readOnly = false,
     bool forceErrorState = false,
-    String? smsCodeMatcher = '\\d{4,7}',
+    String smsCodeMatcher = '\\d{4,7}',
     ValueChanged<String>? onCompleted,
     ValueChanged<String>? onSubmitted,
     VoidCallback? onLongPress,
