@@ -1,3 +1,6 @@
+## 0.3.0
+* package update
+
 ## 0.2.1
 * disabled opacity
 

@@ -26,6 +26,37 @@ const List<Color> _defaultColors = [
   Colors.black,
 ];
 
+// Provide a shape for [BlockPicker].
+Widget _defaultItemBuilder(
+    Color color, bool isCurrentColor, void Function() changeColor) {
+  return Container(
+    margin: const EdgeInsets.all(7),
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color: color,
+      boxShadow: [
+        BoxShadow(
+            color: color.withOpacity(0.8),
+            offset: const Offset(1, 2),
+            blurRadius: 5)
+      ],
+    ),
+    child: Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: changeColor,
+        borderRadius: BorderRadius.circular(50),
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 210),
+          opacity: isCurrentColor ? 1 : 0,
+          child: Icon(Icons.done,
+              color: useWhiteForeground(color) ? Colors.white : Colors.black),
+        ),
+      ),
+    ),
+  );
+}
+
 /// A builder that builds a widget responsible to decide when to show
 /// the picker dialog.
 ///
@@ -65,7 +96,8 @@ class ReactiveBlockColorPicker<T> extends ReactiveFormField<T, Color> {
     Color? pickerColor,
     List<Color> availableColors = _defaultColors,
     PickerLayoutBuilder? layoutBuilder,
-    PickerItemBuilder itemBuilder = BlockPicker.defaultItemBuilder,
+    bool useInShowDialog = true,
+    PickerItemBuilder itemBuilder = _defaultItemBuilder,
     double disabledOpacity = 0.5,
   }) : super(
           key: key,
@@ -91,10 +123,12 @@ class ReactiveBlockColorPicker<T> extends ReactiveFormField<T, Color> {
                       errorText: field.errorText,
                       enabled: field.control.enabled,
                     ),
-                    isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
+                    isEmpty:
+                        isEmptyValue && effectiveDecoration.hintText == null,
                     child: BlockPicker(
                       pickerColor: field.value ?? Colors.transparent,
                       availableColors: availableColors,
+                      useInShowDialog: useInShowDialog,
                       onColorChanged: field.didChange,
                       layoutBuilder: layoutBuilder ??
                           (BuildContext context, List<Color> colors,

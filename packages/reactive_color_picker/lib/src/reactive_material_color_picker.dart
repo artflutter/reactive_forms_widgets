@@ -43,8 +43,9 @@ class ReactiveMaterialColorPicker<T> extends ReactiveFormField<T, Color> {
     Color? contrastIconColorLight,
     Color contrastIconColorDark = Colors.white,
     PickerLayoutBuilder? layoutBuilder,
-    PickerItemBuilder itemBuilder = BlockPicker.defaultItemBuilder,
+    // PickerItemBuilder itemBuilder = BlockPicker.defaultItemBuilder,
     double disabledOpacity = 0.5,
+    bool portraitOnly = false,
   }) : super(
           key: key,
           formControl: formControl,
@@ -67,6 +68,7 @@ class ReactiveMaterialColorPicker<T> extends ReactiveFormField<T, Color> {
                       child: MaterialPicker(
                         pickerColor: pickerColor,
                         onColorChanged: onColorChanged,
+                        portraitOnly: portraitOnly,
                         enableLabel: enableLabel,
                       ),
                     ),
@@ -125,7 +127,8 @@ class ReactiveMaterialColorPicker<T> extends ReactiveFormField<T, Color> {
                         ],
                       ),
                     ),
-                    isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
+                    isEmpty:
+                        isEmptyValue && effectiveDecoration.hintText == null,
                     child: Container(
                       color: field.value,
                     ),

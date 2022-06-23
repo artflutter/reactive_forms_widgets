@@ -43,9 +43,12 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
     InputDecoration? decoration,
     PaletteType paletteType = PaletteType.hsv,
     bool enableAlpha = true,
-    bool showLabel = true,
-    TextStyle? labelTextStyle,
-    TextStyle? sliderTextStyle,
+    @Deprecated('Use empty list in [labelTypes] to disable label.')
+        bool showLabel = true,
+    @Deprecated('Use Theme.of(context).textTheme.bodyText1 & 2 to alter text style.')
+        TextStyle? labelTextStyle,
+    @Deprecated('Use Theme.of(context).textTheme.bodyText1 & 2 to alter text style.')
+        TextStyle? sliderTextStyle,
     bool displayThumbColor = false,
     Size sliderSize = const Size(260, 40),
     Size indicatorSize = const Size(280, 50),
@@ -55,6 +58,9 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
     Alignment indicatorAlignmentEnd = const Alignment(1.0, 3.0),
     BorderRadius indicatorBorderRadius = const BorderRadius.all(Radius.zero),
     double disabledOpacity = 0.5,
+    ColorModel colorModel = ColorModel.rgb,
+    bool showParams = true,
+    List<ColorLabelType> labelTypes = const [],
   }) : super(
           key: key,
           formControl: formControl,
@@ -77,7 +83,7 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
                       child: SlidePicker(
                         pickerColor: pickerColor,
                         onColorChanged: onColorChanged,
-                        paletteType: paletteType,
+                        // paletteType: paletteType,
                         enableAlpha: enableAlpha,
                         showLabel: showLabel,
                         labelTextStyle: labelTextStyle,
@@ -90,6 +96,9 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
                         indicatorAlignmentBegin: indicatorAlignmentBegin,
                         indicatorAlignmentEnd: indicatorAlignmentEnd,
                         indicatorBorderRadius: indicatorBorderRadius,
+                        colorModel: colorModel,
+                        showParams: showParams,
+                        labelTypes: labelTypes,
                       ),
                     ),
                   );
@@ -147,7 +156,8 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
                         ],
                       ),
                     ),
-                    isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
+                    isEmpty:
+                        isEmptyValue && effectiveDecoration.hintText == null,
                     child: Container(
                       color: field.value,
                     ),
