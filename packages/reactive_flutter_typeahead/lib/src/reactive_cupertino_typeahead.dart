@@ -84,7 +84,7 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
     ValidationMessagesFunction<T>? validationMessages,
     ControlValueAccessor<T, V>? valueAccessor,
     ShowErrorsFunction? showErrors,
-    required String Function(V value) stringify,
+    required this.stringify,
 
     ////////////////////////////////////////////////////////////////////////////
     required SuggestionsCallback<V> suggestionsCallback,
@@ -184,6 +184,8 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
           },
         );
 
+  final String Function(V value) stringify;
+
   @override
   ReactiveFormFieldState<T, V> createState() =>
       _ReactiveCupertinoTypeAheadState<T, V>();
@@ -203,7 +205,11 @@ class _ReactiveCupertinoTypeAheadState<T, V>
 
     final initialValue = value;
     _textController = TextEditingController(
-        text: initialValue == null ? '' : initialValue.toString());
+      text: initialValue == null
+          ? ''
+          : (widget as ReactiveCupertinoTypeAhead<T, V>)
+              .stringify(initialValue),
+    );
   }
 
   @override

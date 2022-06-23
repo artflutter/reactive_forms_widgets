@@ -1,3 +1,9 @@
+## 0.4.1
+* use stringify on initial value
+
+## 0.4.0
+* package version bump
+
 ## 0.3.0
 * fix https://github.com/artflutter/reactive_forms_widgets/issues/45
 
