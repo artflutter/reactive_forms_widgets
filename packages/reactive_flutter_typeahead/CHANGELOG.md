@@ -1,3 +1,6 @@
+## 0.4.2
+* use stringify on initial value
+
 ## 0.4.1
 * use stringify on initial value
 
