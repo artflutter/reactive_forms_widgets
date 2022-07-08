@@ -5,15 +5,16 @@ import 'package:nested/nested.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_lbc/src/typedef.dart';
 
-typedef ReactiveFormControlValueListenerCondition<T> = bool Function(AbstractControl<T> control, T? previousValue, T? currentValue);
 
-class ReactiveFormControlValueListener<T> extends ReactiveFormControlValueListenerBase<T> {
-  const ReactiveFormControlValueListener({
+typedef ReactiveFormControlTouchListenerCondition<T> = bool Function(AbstractControl<T> control, bool previousValue, bool currentValue);
+
+class ReactiveFormControlTouchListener<T> extends ReactiveFormControlTouchListenerBase<T> {
+  const ReactiveFormControlTouchListener({
     Key? key,
     required ReactiveFormControlWidgetListener listener,
     String? formControlName,
     AbstractControl<T>? formControl,
-    ReactiveFormControlValueListenerCondition? listenWhen,
+    ReactiveFormControlTouchListenerCondition? listenWhen,
     Widget? child,
   }) : assert(
   (formControlName != null && formControl == null) ||
@@ -28,9 +29,9 @@ class ReactiveFormControlValueListener<T> extends ReactiveFormControlValueListen
   );
 }
 
-abstract class ReactiveFormControlValueListenerBase<T>
+abstract class ReactiveFormControlTouchListenerBase<T>
     extends SingleChildStatefulWidget {
-  const ReactiveFormControlValueListenerBase({
+  const ReactiveFormControlTouchListenerBase({
     Key? key,
     required this.listener,
     this.formControl,
@@ -47,7 +48,7 @@ abstract class ReactiveFormControlValueListenerBase<T>
 
   final ReactiveFormControlWidgetListener<T> listener;
 
-  final ReactiveFormControlValueListenerCondition<T>? listenWhen;
+  final ReactiveFormControlTouchListenerCondition? listenWhen;
 
   AbstractControl<T> control(BuildContext context) {
     if (formControl != null) {
@@ -72,15 +73,15 @@ abstract class ReactiveFormControlValueListenerBase<T>
 
 
   @override
-  SingleChildState<ReactiveFormControlValueListenerBase<T>> createState() =>
-      ReactiveFormControlValueListenerBaseState<T>();
+  SingleChildState<ReactiveFormControlTouchListenerBase<T>> createState() =>
+      ReactiveFormControlTouchListenerBaseState<T>();
 }
 
-class ReactiveFormControlValueListenerBaseState<T>
-    extends SingleChildState<ReactiveFormControlValueListenerBase<T>> {
+class ReactiveFormControlTouchListenerBaseState<T>
+    extends SingleChildState<ReactiveFormControlTouchListenerBase<T>> {
   StreamSubscription? _subscription;
   late AbstractControl<T> _formControl;
-  late T? _previousState;
+  late bool _previousState;
 
   @override
   void initState() {
@@ -88,13 +89,13 @@ class ReactiveFormControlValueListenerBaseState<T>
 
     _formControl = widget.control(context);
 
-    _previousState = _formControl.value;
+    _previousState = _formControl.touched;
     _subscribe();
   }
 
 
   @override
-  void didUpdateWidget(ReactiveFormControlValueListenerBase<T> oldWidget) {
+  void didUpdateWidget(ReactiveFormControlTouchListenerBase<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     final oldControl = oldWidget.control(context);
     final currentControl = widget.control(context);
@@ -103,7 +104,7 @@ class ReactiveFormControlValueListenerBaseState<T>
       if (_subscription != null) {
         _unsubscribe();
         _formControl = currentControl;
-        _previousState = _formControl.value;
+        _previousState = _formControl.touched;
       }
       _subscribe();
     }
@@ -117,7 +118,7 @@ class ReactiveFormControlValueListenerBaseState<T>
       if (_subscription != null) {
         _unsubscribe();
         _formControl = widget.control(context);
-        _previousState = _formControl.value;
+        _previousState = _formControl.touched;
       }
       _subscribe();
     }
@@ -135,7 +136,7 @@ class ReactiveFormControlValueListenerBaseState<T>
   }
 
   void _subscribe() {
-    _subscription = _formControl.valueChanges.listen((state) {
+    _subscription = _formControl.touchChanges.listen((state) {
       if (widget.listenWhen?.call(_formControl, _previousState, state) ?? true) {
         widget.listener(context, _formControl);
       }

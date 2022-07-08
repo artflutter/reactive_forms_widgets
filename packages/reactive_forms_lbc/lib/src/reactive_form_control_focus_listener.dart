@@ -5,15 +5,16 @@ import 'package:nested/nested.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_lbc/src/typedef.dart';
 
-typedef ReactiveFormControlValueListenerCondition<T> = bool Function(AbstractControl<T> control, T? previousValue, T? currentValue);
 
-class ReactiveFormControlValueListener<T> extends ReactiveFormControlValueListenerBase<T> {
-  const ReactiveFormControlValueListener({
+typedef ReactiveFormControlFocusListenerCondition<T> = bool Function(FormControl<T> control, bool previousValue, bool currentValue);
+
+class ReactiveFormControlFocusListener<T> extends ReactiveFormControlFocusListenerBase<T> {
+  const ReactiveFormControlFocusListener({
     Key? key,
     required ReactiveFormControlWidgetListener listener,
     String? formControlName,
-    AbstractControl<T>? formControl,
-    ReactiveFormControlValueListenerCondition? listenWhen,
+    FormControl<T>? formControl,
+    ReactiveFormControlFocusListenerCondition? listenWhen,
     Widget? child,
   }) : assert(
   (formControlName != null && formControl == null) ||
@@ -28,9 +29,9 @@ class ReactiveFormControlValueListener<T> extends ReactiveFormControlValueListen
   );
 }
 
-abstract class ReactiveFormControlValueListenerBase<T>
+abstract class ReactiveFormControlFocusListenerBase<T>
     extends SingleChildStatefulWidget {
-  const ReactiveFormControlValueListenerBase({
+  const ReactiveFormControlFocusListenerBase({
     Key? key,
     required this.listener,
     this.formControl,
@@ -43,13 +44,13 @@ abstract class ReactiveFormControlValueListenerBase<T>
 
   final Widget? child;
 
-  final AbstractControl<T>? formControl;
+  final FormControl<T>? formControl;
 
   final ReactiveFormControlWidgetListener<T> listener;
 
-  final ReactiveFormControlValueListenerCondition<T>? listenWhen;
+  final ReactiveFormControlFocusListenerCondition? listenWhen;
 
-  AbstractControl<T> control(BuildContext context) {
+  FormControl<T> control(BuildContext context) {
     if (formControl != null) {
       return formControl!;
     }
@@ -63,7 +64,7 @@ abstract class ReactiveFormControlValueListenerBase<T>
     final collection = parent as FormControlCollection;
     final control = collection.control(formControlName!);
 
-    if (control is! AbstractControl<T>) {
+    if (control is! FormControl<T>) {
       throw FormControlNotFoundException(controlName: formControlName!);
     }
 
@@ -72,15 +73,15 @@ abstract class ReactiveFormControlValueListenerBase<T>
 
 
   @override
-  SingleChildState<ReactiveFormControlValueListenerBase<T>> createState() =>
-      ReactiveFormControlValueListenerBaseState<T>();
+  SingleChildState<ReactiveFormControlFocusListenerBase<T>> createState() =>
+      ReactiveFormControlFocusListenerBaseState<T>();
 }
 
-class ReactiveFormControlValueListenerBaseState<T>
-    extends SingleChildState<ReactiveFormControlValueListenerBase<T>> {
+class ReactiveFormControlFocusListenerBaseState<T>
+    extends SingleChildState<ReactiveFormControlFocusListenerBase<T>> {
   StreamSubscription? _subscription;
-  late AbstractControl<T> _formControl;
-  late T? _previousState;
+  late FormControl<T> _formControl;
+  late bool _previousState;
 
   @override
   void initState() {
@@ -88,13 +89,13 @@ class ReactiveFormControlValueListenerBaseState<T>
 
     _formControl = widget.control(context);
 
-    _previousState = _formControl.value;
+    _previousState = _formControl.touched;
     _subscribe();
   }
 
 
   @override
-  void didUpdateWidget(ReactiveFormControlValueListenerBase<T> oldWidget) {
+  void didUpdateWidget(ReactiveFormControlFocusListenerBase<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     final oldControl = oldWidget.control(context);
     final currentControl = widget.control(context);
@@ -103,7 +104,7 @@ class ReactiveFormControlValueListenerBaseState<T>
       if (_subscription != null) {
         _unsubscribe();
         _formControl = currentControl;
-        _previousState = _formControl.value;
+        _previousState = _formControl.touched;
       }
       _subscribe();
     }
@@ -117,7 +118,7 @@ class ReactiveFormControlValueListenerBaseState<T>
       if (_subscription != null) {
         _unsubscribe();
         _formControl = widget.control(context);
-        _previousState = _formControl.value;
+        _previousState = _formControl.touched;
       }
       _subscribe();
     }
@@ -135,7 +136,7 @@ class ReactiveFormControlValueListenerBaseState<T>
   }
 
   void _subscribe() {
-    _subscription = _formControl.valueChanges.listen((state) {
+    _subscription = _formControl.focusChanges.listen((state) {
       if (widget.listenWhen?.call(_formControl, _previousState, state) ?? true) {
         widget.listener(context, _formControl);
       }

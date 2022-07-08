@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
                     _counter++;
                   });
                 },
-                child: Text('Increment counter'),
+                child: const Text('Increment counter'),
               )
             ],
           ),
@@ -84,6 +84,7 @@ class MyApp1 extends StatelessWidget {
 
   FormGroup buildForm() => fb.group({
         'input': FormControl<String>(value: null),
+        'input2': FormControl<String>(value: null),
       });
 
   @override
@@ -94,14 +95,52 @@ class MyApp1 extends StatelessWidget {
         return Column(
           children: [
             ReactiveTextField(
+              decoration: const InputDecoration(labelText: 'Input'),
               formControlName: 'input',
+            ),
+            ReactiveTextField(
+              decoration: const InputDecoration(labelText: 'Input2'),
+              formControlName: 'input2',
+            ),
+            ReactiveFormControlFocusListener<String>(
+              listener: (context, control) {
+                // print(value);
+              },
+              listenWhen: (control, prev, curr) {
+                debugPrint('Focus => $prev -- c => $curr');
+                return true;
+              },
+              formControl: form.controls['input']! as FormControl<String>,
+              child: Text(c.toString()),
+            ),
+            ReactiveFormControlTouchListener<String>(
+              listener: (context, control) {
+                // print(value);
+              },
+              listenWhen: (control, prev, curr) {
+                debugPrint('Touch => $prev -- c => $curr');
+                return true;
+              },
+              formControl: form.controls['input']! as AbstractControl<String>,
+              child: Text(c.toString()),
+            ),
+            ReactiveFormControlStatusListener<String>(
+              listener: (context, control) {
+                // print(value);
+              },
+              listenWhen: (control, prev, curr) {
+                debugPrint('Status => $prev -- c => $curr');
+                return true;
+              },
+              formControl: form.controls['input']! as AbstractControl<String>,
+              child: Text(c.toString()),
             ),
             ReactiveFormControlValueListener<String>(
               listener: (context, control) {
                 // print(value);
               },
               listenWhen: (control, prev, curr) {
-                print('p => $prev -- c => $curr');
+                debugPrint('Value => $prev -- c => $curr');
                 return true;
               },
               formControl: form.controls['input']! as AbstractControl<String>,
@@ -112,12 +151,19 @@ class MyApp1 extends StatelessWidget {
                 // print(value);
               },
               listenWhen: (control, previousValue, currentValue) {
-                print('p ====> $previousValue -- c ====> $currentValue');
+                debugPrint('p ====> $previousValue -- c ====> $currentValue');
                 return true;
               },
               formControlName: 'input',
             ),
             const SizedBox(height: 16),
+            ElevatedButton(
+              child: const Text('Disable'),
+              onPressed: () {
+                (form.controls['input']! as AbstractControl<String>).markAsDisabled();
+                (form.controls['input']! as AbstractControl<String>).markAsEnabled();
+              },
+            ),
             ElevatedButton(
               child: const Text('Sign Up'),
               onPressed: () {

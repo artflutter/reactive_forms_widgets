@@ -1,3 +1,8 @@
+## [0.1.1]
+* added ReactiveFormControlFocusListener
+* added ReactiveFormControlStatusListener
+* added ReactiveFormControlTouchListener
+
 ## [0.1.0]
 * ReactiveFormControlListener => ReactiveFormControlValueListener
 * added control value to callbacks
