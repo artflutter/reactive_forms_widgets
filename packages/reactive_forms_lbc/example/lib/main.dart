@@ -96,23 +96,23 @@ class MyApp1 extends StatelessWidget {
             ReactiveTextField(
               formControlName: 'input',
             ),
-            ReactiveFormControlListener<String>(
-              listener: (context, value) {
+            ReactiveFormControlValueListener<String>(
+              listener: (context, control) {
                 // print(value);
               },
-              listenWhen: (prev, curr) {
-                print('p => ${prev} -- c => ${curr}');
+              listenWhen: (control, prev, curr) {
+                print('p => $prev -- c => $curr');
                 return true;
               },
               formControl: form.controls['input']! as AbstractControl<String>,
               child: Text(c.toString()),
             ),
-            ReactiveFormControlListener<String>(
-              listener: (context, value) {
+            ReactiveFormControlValueListener<String>(
+              listener: (context, control) {
                 // print(value);
               },
-              listenWhen: (prev, curr) {
-                print('p ====> ${prev} -- c ====> ${curr}');
+              listenWhen: (control, previousValue, currentValue) {
+                print('p ====> $previousValue -- c ====> $currentValue');
                 return true;
               },
               formControlName: 'input',

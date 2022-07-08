@@ -12,7 +12,7 @@ repository: https://github.com/artflutter/reactive_forms_widgets
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.0.1
+version: 0.1.0
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
@@ -28,6 +28,7 @@ dependencies:
     sdk: flutter
   reactive_forms: ^13.0.0
   nested: ^1.0.0
+  flash: ^2.0.3+2
 
 dev_dependencies:
   flutter_test:
