@@ -89,7 +89,6 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
     ////////////////////////////////////////////////////////////////////////////
     required SuggestionsCallback<V> suggestionsCallback,
     required ItemBuilder<V> itemBuilder,
-    SuggestionSelectionCallback<V>? onSuggestionSelected,
     CupertinoSuggestionsBoxDecoration suggestionsBoxDecoration =
         const CupertinoSuggestionsBoxDecoration(),
     Duration debounceDuration = const Duration(milliseconds: 300),
@@ -150,8 +149,7 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
               enabled: enabled,
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
-              onSuggestionSelected: onSuggestionSelected ??
-                  (value) {
+              onSuggestionSelected: (value) {
                     controller.text = stringify(value);
                     field.didChange(value);
                   },

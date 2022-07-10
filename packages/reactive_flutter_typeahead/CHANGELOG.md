@@ -1,3 +1,6 @@
+## 0.5.0
+* removed ability to pass `onSuggestionSelected`
+
 ## 0.4.2
 * use stringify on initial value
 

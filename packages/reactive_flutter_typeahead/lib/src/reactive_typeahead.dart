@@ -89,7 +89,6 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
     ////////////////////////////////////////////////////////////////////////////
     required SuggestionsCallback<V> suggestionsCallback,
     required ItemBuilder<V> itemBuilder,
-    SuggestionSelectionCallback<V>? onSuggestionSelected,
     SuggestionsBoxDecoration suggestionsBoxDecoration =
         const SuggestionsBoxDecoration(),
     Duration debounceDuration = const Duration(milliseconds: 300),
@@ -148,7 +147,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
             return TypeAheadField<V>(
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
-              onSuggestionSelected: onSuggestionSelected ??
+              onSuggestionSelected:
                   (value) {
                     controller.text = stringify(value);
                     field.didChange(value);
