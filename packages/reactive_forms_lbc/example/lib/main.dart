@@ -102,66 +102,78 @@ class MyApp1 extends StatelessWidget {
               decoration: const InputDecoration(labelText: 'Input2'),
               formControlName: 'input2',
             ),
-            ReactiveFormControlFocusListener<String>(
-              listener: (context, control) {
-                // print(value);
+            ReactiveFormControlValueBuilder<String>(
+              builder: (context, control) {
+                return Text(control.value ?? '');
               },
-              listenWhen: (control, prev, curr) {
+              buildWhen: (control, prev, curr) {
                 debugPrint('Focus => $prev -- c => $curr');
-                return true;
+                return (curr?.length ?? 0) <= 6;
               },
               formControl: form.controls['input']! as FormControl<String>,
-              child: Text(c.toString()),
             ),
-            ReactiveFormControlTouchListener<String>(
-              listener: (context, control) {
-                // print(value);
-              },
-              listenWhen: (control, prev, curr) {
-                debugPrint('Touch => $prev -- c => $curr');
-                return true;
-              },
-              formControl: form.controls['input']! as AbstractControl<String>,
-              child: Text(c.toString()),
-            ),
-            ReactiveFormControlStatusListener<String>(
-              listener: (context, control) {
-                // print(value);
-              },
-              listenWhen: (control, prev, curr) {
-                debugPrint('Status => $prev -- c => $curr');
-                return true;
-              },
-              formControl: form.controls['input']! as AbstractControl<String>,
-              child: Text(c.toString()),
-            ),
-            ReactiveFormControlValueListener<String>(
-              listener: (context, control) {
-                // print(value);
-              },
-              listenWhen: (control, prev, curr) {
-                debugPrint('Value => $prev -- c => $curr');
-                return true;
-              },
-              formControl: form.controls['input']! as AbstractControl<String>,
-              child: Text(c.toString()),
-            ),
-            ReactiveFormControlValueListener<String>(
-              listener: (context, control) {
-                // print(value);
-              },
-              listenWhen: (control, previousValue, currentValue) {
-                debugPrint('p ====> $previousValue -- c ====> $currentValue');
-                return true;
-              },
-              formControlName: 'input',
-            ),
+            // ReactiveFormControlFocusListener<String>(
+            //   listener: (context, control) {
+            //     // print(value);
+            //   },
+            //   listenWhen: (control, prev, curr) {
+            //     debugPrint('Focus => $prev -- c => $curr');
+            //     return true;
+            //   },
+            //   formControl: form.controls['input']! as FormControl<String>,
+            //   child: Text(c.toString()),
+            // ),
+            // ReactiveFormControlTouchListener<String>(
+            //   listener: (context, control) {
+            //     // print(value);
+            //   },
+            //   listenWhen: (control, prev, curr) {
+            //     debugPrint('Touch => $prev -- c => $curr');
+            //     return true;
+            //   },
+            //   formControl: form.controls['input']! as AbstractControl<String>,
+            //   child: Text(c.toString()),
+            // ),
+            // ReactiveFormControlStatusListener<String>(
+            //   listener: (context, control) {
+            //     // print(value);
+            //   },
+            //   listenWhen: (control, prev, curr) {
+            //     debugPrint('Status => $prev -- c => $curr');
+            //     return true;
+            //   },
+            //   formControl: form.controls['input']! as AbstractControl<String>,
+            //   child: Text(c.toString()),
+            // ),
+            // ReactiveFormControlValueListener<String>(
+            //   listener: (context, control) {
+            //     // print(value);
+            //   },
+            //   listenWhen: (control, prev, curr) {
+            //     debugPrint('Value => $prev -- c => $curr');
+            //     return true;
+            //   },
+            //   formControl: form.controls['input']! as AbstractControl<String>,
+            //   child: Text(c.toString()),
+            // ),
+            // ReactiveFormControlValueListener<String>(
+            //   listener: (context, control) {
+            //     // print(value);
+            //   },
+            //   listenWhen: (control, previousValue, currentValue) {
+            //     debugPrint('p ====> $previousValue -- c ====> $currentValue');
+            //     return true;
+            //   },
+            //   formControlName: 'input',
+            // ),
             const SizedBox(height: 16),
             ElevatedButton(
               child: const Text('Disable'),
               onPressed: () {
-                (form.controls['input']! as AbstractControl<String>).markAsDisabled();
-                (form.controls['input']! as AbstractControl<String>).markAsEnabled();
+                (form.controls['input']! as AbstractControl<String>)
+                    .markAsDisabled();
+                (form.controls['input']! as AbstractControl<String>)
+                    .markAsEnabled();
               },
             ),
             ElevatedButton(

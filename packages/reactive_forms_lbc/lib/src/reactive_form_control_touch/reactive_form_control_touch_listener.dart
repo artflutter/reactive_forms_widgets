@@ -5,10 +5,11 @@ import 'package:nested/nested.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_lbc/src/typedef.dart';
 
+typedef ReactiveFormControlTouchListenerCondition<T> = bool Function(
+    AbstractControl<T> control, bool previousValue, bool currentValue);
 
-typedef ReactiveFormControlTouchListenerCondition<T> = bool Function(AbstractControl<T> control, bool previousValue, bool currentValue);
-
-class ReactiveFormControlTouchListener<T> extends ReactiveFormControlTouchListenerBase<T> {
+class ReactiveFormControlTouchListener<T>
+    extends ReactiveFormControlTouchListenerBase<T> {
   const ReactiveFormControlTouchListener({
     Key? key,
     required ReactiveFormControlWidgetListener<T> listener,
@@ -16,17 +17,18 @@ class ReactiveFormControlTouchListener<T> extends ReactiveFormControlTouchListen
     AbstractControl<T>? formControl,
     ReactiveFormControlTouchListenerCondition? listenWhen,
     Widget? child,
-  }) : assert(
-  (formControlName != null && formControl == null) ||
-      (formControlName == null && formControl != null),
-  'Must provide a formControlName or a formControl, but not both at the same time.'),super(
-    key: key,
-    child: child,
-    listener: listener,
-    formControl: formControl,
-    formControlName: formControlName,
-    listenWhen: listenWhen,
-  );
+  })  : assert(
+            (formControlName != null && formControl == null) ||
+                (formControlName == null && formControl != null),
+            'Must provide a formControlName or a formControl, but not both at the same time.'),
+        super(
+          key: key,
+          child: child,
+          listener: listener,
+          formControl: formControl,
+          formControlName: formControlName,
+          listenWhen: listenWhen,
+        );
 }
 
 abstract class ReactiveFormControlTouchListenerBase<T>
@@ -71,7 +73,6 @@ abstract class ReactiveFormControlTouchListenerBase<T>
     return control;
   }
 
-
   @override
   SingleChildState<ReactiveFormControlTouchListenerBase<T>> createState() =>
       ReactiveFormControlTouchListenerBaseState<T>();
@@ -92,7 +93,6 @@ class ReactiveFormControlTouchListenerBaseState<T>
     _previousState = _formControl.touched;
     _subscribe();
   }
-
 
   @override
   void didUpdateWidget(ReactiveFormControlTouchListenerBase<T> oldWidget) {
@@ -137,7 +137,8 @@ class ReactiveFormControlTouchListenerBaseState<T>
 
   void _subscribe() {
     _subscription = _formControl.touchChanges.listen((state) {
-      if (widget.listenWhen?.call(_formControl, _previousState, state) ?? true) {
+      if (widget.listenWhen?.call(_formControl, _previousState, state) ??
+          true) {
         widget.listener(context, _formControl);
       }
       _previousState = state;

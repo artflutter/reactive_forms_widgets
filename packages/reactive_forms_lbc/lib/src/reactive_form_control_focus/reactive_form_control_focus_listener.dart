@@ -5,10 +5,11 @@ import 'package:nested/nested.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_lbc/src/typedef.dart';
 
+typedef ReactiveFormControlFocusListenerCondition<T> = bool Function(
+    FormControl<T> control, bool previousValue, bool currentValue);
 
-typedef ReactiveFormControlFocusListenerCondition<T> = bool Function(FormControl<T> control, bool previousValue, bool currentValue);
-
-class ReactiveFormControlFocusListener<T> extends ReactiveFormControlFocusListenerBase<T> {
+class ReactiveFormControlFocusListener<T>
+    extends ReactiveFormControlFocusListenerBase<T> {
   const ReactiveFormControlFocusListener({
     Key? key,
     required ReactiveFormControlWidgetListener<T> listener,
@@ -16,17 +17,18 @@ class ReactiveFormControlFocusListener<T> extends ReactiveFormControlFocusListen
     FormControl<T>? formControl,
     ReactiveFormControlFocusListenerCondition? listenWhen,
     Widget? child,
-  }) : assert(
-  (formControlName != null && formControl == null) ||
-      (formControlName == null && formControl != null),
-  'Must provide a formControlName or a formControl, but not both at the same time.'),super(
-    key: key,
-    child: child,
-    listener: listener,
-    formControl: formControl,
-    formControlName: formControlName,
-    listenWhen: listenWhen,
-  );
+  })  : assert(
+            (formControlName != null && formControl == null) ||
+                (formControlName == null && formControl != null),
+            'Must provide a formControlName or a formControl, but not both at the same time.'),
+        super(
+          key: key,
+          child: child,
+          listener: listener,
+          formControl: formControl,
+          formControlName: formControlName,
+          listenWhen: listenWhen,
+        );
 }
 
 abstract class ReactiveFormControlFocusListenerBase<T>
@@ -71,7 +73,6 @@ abstract class ReactiveFormControlFocusListenerBase<T>
     return control;
   }
 
-
   @override
   SingleChildState<ReactiveFormControlFocusListenerBase<T>> createState() =>
       ReactiveFormControlFocusListenerBaseState<T>();
@@ -92,7 +93,6 @@ class ReactiveFormControlFocusListenerBaseState<T>
     _previousState = _formControl.touched;
     _subscribe();
   }
-
 
   @override
   void didUpdateWidget(ReactiveFormControlFocusListenerBase<T> oldWidget) {
@@ -137,7 +137,8 @@ class ReactiveFormControlFocusListenerBaseState<T>
 
   void _subscribe() {
     _subscription = _formControl.focusChanges.listen((state) {
-      if (widget.listenWhen?.call(_formControl, _previousState, state) ?? true) {
+      if (widget.listenWhen?.call(_formControl, _previousState, state) ??
+          true) {
         widget.listener(context, _formControl);
       }
       _previousState = state;

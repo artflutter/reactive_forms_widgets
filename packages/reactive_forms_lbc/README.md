@@ -3,9 +3,18 @@
 This is a set of widgets for [`reactive_forms`](https://pub.dev/packages/reactive_forms) package in Listener/Builder/Consumer paradigm the same as bloc library does.
 
 Available widgets:
-- ReactiveFormControlListener
-- ReactiveFormControlBuilder => TBD
-- ReactiveFormControlConsumer => TBD
+
+### Listeners
+- ReactiveFormControlStatusListener
+- ReactiveFormControlFocusListener
+- ReactiveFormControlTouchListener
+- ReactiveFormControlValueListener
+
+### Builders
+- ReactiveFormControlValueBuilder
+
+### Consumers
+- TBD
 
 ## Getting Started
 

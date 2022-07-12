@@ -4,4 +4,5 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 mixin ReactiveFormControlListenerSingleChildWidget on SingleChildWidget {}
 
-typedef ReactiveFormControlWidgetListener<T> = void Function(BuildContext context, AbstractControl<T> control);
+typedef ReactiveFormControlWidgetListener<T> = void Function(
+    BuildContext context, AbstractControl<T> control);

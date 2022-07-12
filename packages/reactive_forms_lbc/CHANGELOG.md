@@ -1,3 +1,6 @@
+## [0.2.0]
+* added ReactiveFormControlValueBuilder
+
 ## [0.1.1]
 * added ReactiveFormControlFocusListener
 * added ReactiveFormControlStatusListener
