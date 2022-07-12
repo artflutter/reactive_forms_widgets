@@ -11,7 +11,7 @@ typedef ReactiveFormControlTouchListenerCondition<T> = bool Function(AbstractCon
 class ReactiveFormControlTouchListener<T> extends ReactiveFormControlTouchListenerBase<T> {
   const ReactiveFormControlTouchListener({
     Key? key,
-    required ReactiveFormControlWidgetListener listener,
+    required ReactiveFormControlWidgetListener<T> listener,
     String? formControlName,
     AbstractControl<T>? formControl,
     ReactiveFormControlTouchListenerCondition? listenWhen,

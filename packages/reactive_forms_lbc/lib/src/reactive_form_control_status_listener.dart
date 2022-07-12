@@ -11,7 +11,7 @@ typedef ReactiveFormControlStatusListenerCondition<T> = bool Function(AbstractCo
 class ReactiveFormControlStatusListener<T> extends ReactiveFormControlStatusListenerBase<T> {
   const ReactiveFormControlStatusListener({
     Key? key,
-    required ReactiveFormControlWidgetListener listener,
+    required ReactiveFormControlWidgetListener<T> listener,
     String? formControlName,
     AbstractControl<T>? formControl,
     ReactiveFormControlStatusListenerCondition? listenWhen,

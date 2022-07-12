@@ -11,7 +11,7 @@ typedef ReactiveFormControlFocusListenerCondition<T> = bool Function(FormControl
 class ReactiveFormControlFocusListener<T> extends ReactiveFormControlFocusListenerBase<T> {
   const ReactiveFormControlFocusListener({
     Key? key,
-    required ReactiveFormControlWidgetListener listener,
+    required ReactiveFormControlWidgetListener<T> listener,
     String? formControlName,
     FormControl<T>? formControl,
     ReactiveFormControlFocusListenerCondition? listenWhen,
