@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_forms_lbc/src/reactive_form_control_value/reactive_form_control_value_listener.dart';
-
-typedef ReactiveWidgetBuilder<T> = Widget Function(
-    BuildContext context, AbstractControl<T> control);
+import 'package:reactive_forms_lbc/reactive_forms_lbc.dart';
 
 typedef ReactiveBuilderCondition<T> = bool Function(
-    AbstractControl<T> control, T? previousValue, T? currentValue);
+  AbstractControl<T> control,
+  T? previousValue,
+  T? currentValue,
+);
 
 class ReactiveFormControlValueBuilder<T> extends BlocBuilderBase<T> {
   const ReactiveFormControlValueBuilder({
@@ -26,7 +26,7 @@ class ReactiveFormControlValueBuilder<T> extends BlocBuilderBase<T> {
           buildWhen: buildWhen,
         );
 
-  final ReactiveWidgetBuilder<T> builder;
+  final ReactiveFormControlWidgetBuilder<T> builder;
 
   @override
   Widget build(BuildContext context, AbstractControl<T> control) =>
@@ -34,7 +34,6 @@ class ReactiveFormControlValueBuilder<T> extends BlocBuilderBase<T> {
 }
 
 abstract class BlocBuilderBase<T> extends StatefulWidget {
-  /// {@macro bloc_builder_base}
   const BlocBuilderBase({
     Key? key,
     this.formControl,

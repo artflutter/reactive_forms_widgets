@@ -6,7 +6,10 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_lbc/src/typedef.dart';
 
 typedef ReactiveFormControlTouchListenerCondition<T> = bool Function(
-    AbstractControl<T> control, bool previousValue, bool currentValue);
+  AbstractControl<T> control,
+  bool previousValue,
+  bool currentValue,
+);
 
 class ReactiveFormControlTouchListener<T>
     extends ReactiveFormControlTouchListenerBase<T> {

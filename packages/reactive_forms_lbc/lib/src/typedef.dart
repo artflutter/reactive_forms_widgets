@@ -6,3 +6,6 @@ mixin ReactiveFormControlListenerSingleChildWidget on SingleChildWidget {}
 
 typedef ReactiveFormControlWidgetListener<T> = void Function(
     BuildContext context, AbstractControl<T> control);
+
+typedef ReactiveFormControlWidgetBuilder<T> = Widget Function(
+    BuildContext context, AbstractControl<T> control);

@@ -1,3 +1,6 @@
+## [0.2.1]
+* minor tweaks
+
 ## [0.2.0]
 * added ReactiveFormControlValueBuilder
 

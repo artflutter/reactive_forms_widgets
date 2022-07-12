@@ -1,6 +1,7 @@
 name: reactive_forms_lbc
 description: This is a set of widgets for reactive_forms package in Listener/Builder/Consumer paradigm the same as bloc library does.
 repository: https://github.com/artflutter/reactive_forms_widgets
+issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -12,7 +13,7 @@ repository: https://github.com/artflutter/reactive_forms_widgets
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.2.0
+version: 0.2.1
 
 environment:
   sdk: ">=2.17.3 <3.0.0"

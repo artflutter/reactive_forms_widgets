@@ -6,7 +6,10 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_lbc/src/typedef.dart';
 
 typedef ReactiveFormControlFocusListenerCondition<T> = bool Function(
-    FormControl<T> control, bool previousValue, bool currentValue);
+  FormControl<T> control,
+  bool previousValue,
+  bool currentValue,
+);
 
 class ReactiveFormControlFocusListener<T>
     extends ReactiveFormControlFocusListenerBase<T> {
