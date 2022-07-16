@@ -18,7 +18,7 @@ class ReactiveFormControlTouchListener<T>
     required ReactiveFormControlWidgetListener<T> listener,
     String? formControlName,
     AbstractControl<T>? formControl,
-    ReactiveFormControlTouchListenerCondition? listenWhen,
+    ReactiveFormControlTouchListenerCondition<T>? listenWhen,
     Widget? child,
   })  : assert(
             (formControlName != null && formControl == null) ||
@@ -53,7 +53,7 @@ abstract class ReactiveFormControlTouchListenerBase<T>
 
   final ReactiveFormControlWidgetListener<T> listener;
 
-  final ReactiveFormControlTouchListenerCondition? listenWhen;
+  final ReactiveFormControlTouchListenerCondition<T>? listenWhen;
 
   AbstractControl<T> control(BuildContext context) {
     if (formControl != null) {

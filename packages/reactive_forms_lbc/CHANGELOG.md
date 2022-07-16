@@ -1,3 +1,12 @@
+## [0.2.2]
+* ReactiveFormControlFocusBuilder
+* ReactiveFormControlFocusConsumer
+* ReactiveFormControlStatusBuilder
+* ReactiveFormControlStatusConsumer
+* ReactiveFormControlTouchBuilder
+* ReactiveFormControlTouchConsumer
+* ReactiveFormControlValueConsumer
+
 ## [0.2.1]
 * minor tweaks
 

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:nested/nested.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_forms_lbc/src/typedef.dart';
 
 typedef ReactiveFormControlFocusListenerCondition<T> = bool Function(
   FormControl<T> control,
@@ -11,14 +10,17 @@ typedef ReactiveFormControlFocusListenerCondition<T> = bool Function(
   bool currentValue,
 );
 
+typedef ReactiveFormControlFocusWidgetListener<T> = void Function(
+    BuildContext context, FormControl<T> control);
+
 class ReactiveFormControlFocusListener<T>
     extends ReactiveFormControlFocusListenerBase<T> {
   const ReactiveFormControlFocusListener({
     Key? key,
-    required ReactiveFormControlWidgetListener<T> listener,
+    required ReactiveFormControlFocusWidgetListener<T> listener,
     String? formControlName,
     FormControl<T>? formControl,
-    ReactiveFormControlFocusListenerCondition? listenWhen,
+    ReactiveFormControlFocusListenerCondition<T>? listenWhen,
     Widget? child,
   })  : assert(
             (formControlName != null && formControl == null) ||
@@ -51,9 +53,9 @@ abstract class ReactiveFormControlFocusListenerBase<T>
 
   final FormControl<T>? formControl;
 
-  final ReactiveFormControlWidgetListener<T> listener;
+  final ReactiveFormControlFocusWidgetListener<T> listener;
 
-  final ReactiveFormControlFocusListenerCondition? listenWhen;
+  final ReactiveFormControlFocusListenerCondition<T>? listenWhen;
 
   FormControl<T> control(BuildContext context) {
     if (formControl != null) {

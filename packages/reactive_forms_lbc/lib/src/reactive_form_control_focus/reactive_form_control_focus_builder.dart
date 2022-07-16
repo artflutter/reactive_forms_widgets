@@ -2,29 +2,29 @@ import 'package:flutter/widgets.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_lbc/reactive_forms_lbc.dart';
 
-typedef ReactiveBuilderCondition<T> = bool Function(
-  AbstractControl<T> control,
-  T? previousValue,
-  T? currentValue,
-);
+typedef ReactiveFormControlFocusBuilderCondition<T> = bool Function(
+    FormControl<T> control,
+    bool previousValue,
+    bool currentValue,
+    );
 
-class ReactiveFormControlValueBuilder<T> extends ReactiveFormControlValueBuilderBase<T> {
-  const ReactiveFormControlValueBuilder({
+class ReactiveFormControlFocusBuilder<T> extends ReactiveFormControlFocusBuilderBase<T> {
+  const ReactiveFormControlFocusBuilder({
     Key? key,
     required this.builder,
     String? formControlName,
-    AbstractControl<T>? formControl,
-    ReactiveBuilderCondition<T>? buildWhen,
+    FormControl<T>? formControl,
+    ReactiveFormControlFocusBuilderCondition<T>? buildWhen,
   })  : assert(
-            (formControlName != null && formControl == null) ||
-                (formControlName == null && formControl != null),
-            'Must provide a formControlName or a formControl, but not both at the same time.'),
+  (formControlName != null && formControl == null) ||
+      (formControlName == null && formControl != null),
+  'Must provide a formControlName or a formControl, but not both at the same time.'),
         super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          buildWhen: buildWhen,
-        );
+        key: key,
+        formControl: formControl,
+        formControlName: formControlName,
+        buildWhen: buildWhen,
+      );
 
   final ReactiveFormControlWidgetBuilder<T> builder;
 
@@ -33,8 +33,8 @@ class ReactiveFormControlValueBuilder<T> extends ReactiveFormControlValueBuilder
       builder(context, control);
 }
 
-abstract class ReactiveFormControlValueBuilderBase<T> extends StatefulWidget {
-  const ReactiveFormControlValueBuilderBase({
+abstract class ReactiveFormControlFocusBuilderBase<T> extends StatefulWidget {
+  const ReactiveFormControlFocusBuilderBase({
     Key? key,
     this.formControl,
     this.formControlName,
@@ -43,13 +43,13 @@ abstract class ReactiveFormControlValueBuilderBase<T> extends StatefulWidget {
 
   final String? formControlName;
 
-  final AbstractControl<T>? formControl;
+  final FormControl<T>? formControl;
 
-  final ReactiveBuilderCondition<T>? buildWhen;
+  final ReactiveFormControlFocusBuilderCondition<T>? buildWhen;
 
-  Widget build(BuildContext context, AbstractControl<T> control);
+  Widget build(BuildContext context, FormControl<T> control);
 
-  AbstractControl<T> control(BuildContext context) {
+  FormControl<T> control(BuildContext context) {
     if (formControl != null) {
       return formControl!;
     }
@@ -63,7 +63,7 @@ abstract class ReactiveFormControlValueBuilderBase<T> extends StatefulWidget {
     final collection = parent as FormControlCollection;
     final control = collection.control(formControlName!);
 
-    if (control is! AbstractControl<T>) {
+    if (control is! FormControl<T>) {
       throw FormControlNotFoundException(controlName: formControlName!);
     }
 
@@ -71,13 +71,13 @@ abstract class ReactiveFormControlValueBuilderBase<T> extends StatefulWidget {
   }
 
   @override
-  State<ReactiveFormControlValueBuilderBase<T>> createState() =>
-      ReactiveFormControlValueBuilderBaseState<T>();
+  State<ReactiveFormControlFocusBuilderBase<T>> createState() =>
+      ReactiveFormControlFocusBuilderBaseState<T>();
 }
 
-class ReactiveFormControlValueBuilderBaseState<T>
-    extends State<ReactiveFormControlValueBuilderBase<T>> {
-  late AbstractControl<T> _formControl;
+class ReactiveFormControlFocusBuilderBaseState<T>
+    extends State<ReactiveFormControlFocusBuilderBase<T>> {
+  late FormControl<T> _formControl;
 
   @override
   void initState() {
@@ -86,7 +86,7 @@ class ReactiveFormControlValueBuilderBaseState<T>
   }
 
   @override
-  void didUpdateWidget(ReactiveFormControlValueBuilderBase<T> oldWidget) {
+  void didUpdateWidget(ReactiveFormControlFocusBuilderBase<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     final oldControl = oldWidget.control(context);
     final currentControl = widget.control(context);
@@ -106,7 +106,7 @@ class ReactiveFormControlValueBuilderBaseState<T>
 
   @override
   Widget build(BuildContext context) {
-    return ReactiveFormControlValueListener<T>(
+    return ReactiveFormControlFocusListener<T>(
       listenWhen: widget.buildWhen,
       formControl: widget.control(context),
       listener: (context, control) => setState(() => _formControl = control),

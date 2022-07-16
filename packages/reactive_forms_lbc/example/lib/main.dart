@@ -102,9 +102,12 @@ class MyApp1 extends StatelessWidget {
               decoration: const InputDecoration(labelText: 'Input2'),
               formControlName: 'input2',
             ),
-            ReactiveFormControlValueBuilder<String>(
+            ReactiveFormControlValueConsumer<String>(
               builder: (context, control) {
                 return Text(control.value ?? '');
+              },
+              listener: (context, control) {
+                // print(control.value);
               },
               buildWhen: (control, prev, curr) {
                 debugPrint('Focus => $prev -- c => $curr');
@@ -112,6 +115,16 @@ class MyApp1 extends StatelessWidget {
               },
               formControl: form.controls['input']! as FormControl<String>,
             ),
+            // ReactiveFormControlValueBuilder<String>(
+            //   builder: (context, control) {
+            //     return Text(control.value ?? '');
+            //   },
+            //   buildWhen: (control, prev, curr) {
+            //     debugPrint('Focus => $prev -- c => $curr');
+            //     return (curr?.length ?? 0) <= 6;
+            //   },
+            //   formControl: form.controls['input']! as FormControl<String>,
+            // ),
             // ReactiveFormControlFocusListener<String>(
             //   listener: (context, control) {
             //     // print(value);

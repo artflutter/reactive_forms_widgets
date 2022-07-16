@@ -18,7 +18,7 @@ class ReactiveFormControlStatusListener<T>
     required ReactiveFormControlWidgetListener<T> listener,
     String? formControlName,
     AbstractControl<T>? formControl,
-    ReactiveFormControlStatusListenerCondition? listenWhen,
+    ReactiveFormControlStatusListenerCondition<T>? listenWhen,
     Widget? child,
   })  : assert(
             (formControlName != null && formControl == null) ||
@@ -53,7 +53,7 @@ abstract class ReactiveFormControlStatusListenerBase<T>
 
   final ReactiveFormControlWidgetListener<T> listener;
 
-  final ReactiveFormControlStatusListenerCondition? listenWhen;
+  final ReactiveFormControlStatusListenerCondition<T>? listenWhen;
 
   AbstractControl<T> control(BuildContext context) {
     if (formControl != null) {

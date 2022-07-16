@@ -12,9 +12,15 @@ Available widgets:
 
 ### Builders
 - ReactiveFormControlValueBuilder
+- ReactiveFormControlStatusBuilder
+- ReactiveFormControlTouchBuilder
+- ReactiveFormControlFocusBuilder
 
 ### Consumers
-- TBD
+- ReactiveFormControlValueConsumer
+- ReactiveFormControlStatusConsumer
+- ReactiveFormControlTouchConsumer
+- ReactiveFormControlFocusConsumer
 
 ## Getting Started
 

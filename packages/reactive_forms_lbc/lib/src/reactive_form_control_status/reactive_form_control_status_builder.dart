@@ -2,29 +2,29 @@ import 'package:flutter/widgets.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_lbc/reactive_forms_lbc.dart';
 
-typedef ReactiveBuilderCondition<T> = bool Function(
-  AbstractControl<T> control,
-  T? previousValue,
-  T? currentValue,
-);
+typedef ReactiveFormControlStatusBuilderCondition<T> = bool Function(
+    AbstractControl<T> control,
+    ControlStatus previousValue,
+    ControlStatus currentValue,
+    );
 
-class ReactiveFormControlValueBuilder<T> extends ReactiveFormControlValueBuilderBase<T> {
-  const ReactiveFormControlValueBuilder({
+class ReactiveFormControlStatusBuilder<T> extends ReactiveFormControlStatusBuilderBase<T> {
+  const ReactiveFormControlStatusBuilder({
     Key? key,
     required this.builder,
     String? formControlName,
     AbstractControl<T>? formControl,
-    ReactiveBuilderCondition<T>? buildWhen,
+    ReactiveFormControlStatusBuilderCondition<T>? buildWhen,
   })  : assert(
-            (formControlName != null && formControl == null) ||
-                (formControlName == null && formControl != null),
-            'Must provide a formControlName or a formControl, but not both at the same time.'),
+  (formControlName != null && formControl == null) ||
+      (formControlName == null && formControl != null),
+  'Must provide a formControlName or a formControl, but not both at the same time.'),
         super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          buildWhen: buildWhen,
-        );
+        key: key,
+        formControl: formControl,
+        formControlName: formControlName,
+        buildWhen: buildWhen,
+      );
 
   final ReactiveFormControlWidgetBuilder<T> builder;
 
@@ -33,8 +33,8 @@ class ReactiveFormControlValueBuilder<T> extends ReactiveFormControlValueBuilder
       builder(context, control);
 }
 
-abstract class ReactiveFormControlValueBuilderBase<T> extends StatefulWidget {
-  const ReactiveFormControlValueBuilderBase({
+abstract class ReactiveFormControlStatusBuilderBase<T> extends StatefulWidget {
+  const ReactiveFormControlStatusBuilderBase({
     Key? key,
     this.formControl,
     this.formControlName,
@@ -45,7 +45,7 @@ abstract class ReactiveFormControlValueBuilderBase<T> extends StatefulWidget {
 
   final AbstractControl<T>? formControl;
 
-  final ReactiveBuilderCondition<T>? buildWhen;
+  final ReactiveFormControlStatusBuilderCondition<T>? buildWhen;
 
   Widget build(BuildContext context, AbstractControl<T> control);
 
@@ -71,12 +71,12 @@ abstract class ReactiveFormControlValueBuilderBase<T> extends StatefulWidget {
   }
 
   @override
-  State<ReactiveFormControlValueBuilderBase<T>> createState() =>
-      ReactiveFormControlValueBuilderBaseState<T>();
+  State<ReactiveFormControlStatusBuilderBase<T>> createState() =>
+      ReactiveFormControlStatusBuilderBaseState<T>();
 }
 
-class ReactiveFormControlValueBuilderBaseState<T>
-    extends State<ReactiveFormControlValueBuilderBase<T>> {
+class ReactiveFormControlStatusBuilderBaseState<T>
+    extends State<ReactiveFormControlStatusBuilderBase<T>> {
   late AbstractControl<T> _formControl;
 
   @override
@@ -86,7 +86,7 @@ class ReactiveFormControlValueBuilderBaseState<T>
   }
 
   @override
-  void didUpdateWidget(ReactiveFormControlValueBuilderBase<T> oldWidget) {
+  void didUpdateWidget(ReactiveFormControlStatusBuilderBase<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     final oldControl = oldWidget.control(context);
     final currentControl = widget.control(context);
@@ -106,7 +106,7 @@ class ReactiveFormControlValueBuilderBaseState<T>
 
   @override
   Widget build(BuildContext context) {
-    return ReactiveFormControlValueListener<T>(
+    return ReactiveFormControlStatusListener<T>(
       listenWhen: widget.buildWhen,
       formControl: widget.control(context),
       listener: (context, control) => setState(() => _formControl = control),
