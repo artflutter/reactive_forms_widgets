@@ -24,4 +24,4 @@ vars:
   originalPackageName:
     type: string
     description: Name of the original package from pub.dev
-    prompt: Input the name of the package from pub.dev you are going to create an binding for
+    prompt: 'Input the name of the package from pub.dev you are going to create an binding for:'

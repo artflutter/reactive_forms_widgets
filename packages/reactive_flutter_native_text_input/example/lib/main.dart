@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reactive_{{originalPackageName.snakeCase()}}/reactive_{{originalPackageName.snakeCase()}}.dart';
+import 'package:reactive_flutter_native_text_input/reactive_flutter_native_text_input.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 void main() {
@@ -34,8 +34,14 @@ class MyApp extends StatelessWidget {
               builder: (context, form, child) {
                 return Column(
                   children: [
-                    Reactive{{originalPackageName.pascalCase()}}<String, String>(
+                    ReactiveFlutterNativeTextInput<String>(
                       formControlName: 'input',
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black87,
+                          width: 4,
+                        ),
+                      ),
                     ),
                     ElevatedButton(
                       child: const Text('Submit'),

@@ -44,3 +44,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveSmartSelect*](https://pub.dev/packages/reactive_awesome_select)** - wrapper around [`flutter_awesome_select`](https://pub.dev/packages/flutter_awesome_select)
 - **[ReactiveCartStepper](https://pub.dev/packages/reactive_cart_stepper)** - wrapper around [`cart_stepper`](https://pub.dev/packages/cart_stepper)
 - **[Reactive*ContactPicker](https://pub.dev/packages/reactive_contact_picker)** - wrapper around [`fluttercontactpicker`](https://pub.dev/packages/fluttercontactpicker)
+- **[ReactiveFlutterNativeTextInput](https://pub.dev/packages/reactive_flutter_native_text_input)** - wrapper around [`flutter_native_text_input`](https://pub.dev/packages/flutter_native_text_input)

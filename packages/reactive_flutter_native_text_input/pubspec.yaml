@@ -1,7 +1,7 @@
-name: reactive_{{originalPackageName.snakeCase()}}
-description: Wrapper around {{originalPackageName.snakeCase()}} to use with reactive_forms.
+name: reactive_flutter_native_text_input
+description: Wrapper around flutter_native_text_input to use with reactive_forms.
 version: 0.0.1
-repository: https://github.com/artflutter/reactive_{{originalPackageName.snakeCase()}}
+repository: https://github.com/artflutter/reactive_flutter_native_text_input
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
 environment:
@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  {{originalPackageName.snakeCase()}}:
+  flutter_native_text_input: ^2.4.0
   reactive_forms: ^13.0.0
 
 dev_dependencies:
