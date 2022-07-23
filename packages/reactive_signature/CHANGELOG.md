@@ -1,3 +1,6 @@
+## [0.6.0]
+* package update
+
 ## [0.5.0]
 * package update
 

@@ -1,6 +1,6 @@
 name: reactive_phone_form_field
 description: Wrapper around phone_form_field to use with reactive_forms
-version: 0.6.0
+version: 0.7.1
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   reactive_forms: ^13.0.0
-  phone_form_field: ^6.0.0
+  phone_form_field: ^6.1.1
 
 dev_dependencies:
   flutter_test:
