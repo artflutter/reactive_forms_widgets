@@ -128,6 +128,7 @@ class ReactiveMacosPopupButton<T, V> extends ReactiveFormField<T, V> {
                 onTap: onTap,
                 style: style,
                 itemHeight: itemHeight,
+                autofocus: autofocus,
                 focusNode: state.focusNode,
                 popupColor: popupColor,
                 menuMaxHeight: menuMaxHeight,

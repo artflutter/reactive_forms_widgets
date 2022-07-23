@@ -1,6 +1,6 @@
 name: reactive_macos_ui
 description: Wrapper around macos_ui to use with reactive_forms
-version: 0.5.0
+version: 0.6.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   reactive_forms: ^13.0.0
-  macos_ui: ^1.4.1+1
+  macos_ui: ^1.7.0
 
 dev_dependencies:
   flutter_test:
