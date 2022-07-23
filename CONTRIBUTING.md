@@ -24,18 +24,3 @@ mason get
 ```shell
 mason make reactive_forms_widget_package
 ```
-
-- switch to the project folder
-```shell
-cd reactive_[your_package_name] 
-```
-
-- generate flutter related stuff
-```shell
-flutter create .
-```
-
-- generate flutter related stuff in `example` folder
-```shell
-cd example && flutter create .
-```
