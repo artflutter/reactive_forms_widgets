@@ -157,9 +157,9 @@ abstract class _MultiFile<T> extends MultiFile<T> {
   const _MultiFile._() : super._();
 
   @override
-  List<T> get files => throw _privateConstructorUsedError;
+  List<T> get files;
   @override
-  List<PlatformFile> get platformFiles => throw _privateConstructorUsedError;
+  List<PlatformFile> get platformFiles;
   @override
   @JsonKey(ignore: true)
   _$$_MultiFileCopyWith<T, _$_MultiFile<T>> get copyWith =>

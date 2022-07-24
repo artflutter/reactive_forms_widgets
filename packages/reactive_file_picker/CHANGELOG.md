@@ -1,3 +1,7 @@
+## [0.9.0]
+
+* issue fixes
+
 ## [0.8.0]
 
 * package version bump
