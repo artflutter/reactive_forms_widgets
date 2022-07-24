@@ -97,7 +97,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     bool enabled = true,
     bool showFlagInInput = true,
     CountrySelectorNavigator countrySelectorNavigator =
-        const CountrySelectorNavigator.bottomSheet(),
+        const CountrySelectorNavigator.searchDelegate(),
     Function(PhoneNumber?)? onSaved,
     IsoCode defaultCountry = IsoCode.US,
     // AutovalidateMode autovalidateMode = AutovalidateMode.onUserInteraction,
