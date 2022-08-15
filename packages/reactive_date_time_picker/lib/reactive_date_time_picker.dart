@@ -58,7 +58,7 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
     String? formControlName,
     FormControl<DateTime>? formControl,
     ControlValueAccessor<DateTime, String>? valueAccessor,
-    ValidationMessagesFunction<DateTime>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ShowErrorsFunction? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
