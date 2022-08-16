@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^13.0.0
+  reactive_forms: ^14.0.1
   file_picker: ^4.6.1
   freezed_annotation: ^2.1.0
 
