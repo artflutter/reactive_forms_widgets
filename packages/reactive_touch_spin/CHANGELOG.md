@@ -1,3 +1,6 @@
+## [0.7.0]
+* reactive_forms bump
+
 ## [0.6.0]
 * reactive_forms bump
  

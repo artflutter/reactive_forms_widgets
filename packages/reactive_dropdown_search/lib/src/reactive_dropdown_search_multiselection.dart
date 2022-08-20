@@ -83,7 +83,7 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     Key? key,
     String? formControlName,
     FormControl<List<T>>? formControl,
-    ValidationMessagesFunction? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<List<T>, List<V>>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

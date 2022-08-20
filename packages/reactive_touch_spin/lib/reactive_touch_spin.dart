@@ -80,7 +80,7 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T, num> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, num>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
