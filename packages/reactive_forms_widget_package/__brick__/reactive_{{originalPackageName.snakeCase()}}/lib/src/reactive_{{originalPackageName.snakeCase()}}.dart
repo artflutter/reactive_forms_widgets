@@ -77,7 +77,7 @@ class Reactive{{originalPackageName.pascalCase()}}<T, V> extends ReactiveFormFie
       {Key? key,
         String? formControlName,
         FormControl<T>? formControl,
-        ValidationMessagesFunction<T>? validationMessages,
+        Map<String, ValidationMessageFunction>? validationMessages,
         ControlValueAccessor<T, V>? valueAccessor,
         ShowErrorsFunction? showErrors,
 

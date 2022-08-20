@@ -81,7 +81,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, V>? valueAccessor,
     ShowErrorsFunction? showErrors,
     required this.stringify,
@@ -195,6 +195,7 @@ class _ReactiveTypeaheadState<T, V> extends ReactiveFormFieldState<T, V> {
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override

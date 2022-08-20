@@ -108,7 +108,7 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
     Key? key,
     String? formControlName,
     FormControl<ImageFile>? formControl,
-    ValidationMessagesFunction<ImageFile>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<ImageFile, ImageFile>? valueAccessor,
     ShowErrorsFunction? showErrors,
     InputDecoration? decoration,
@@ -136,25 +136,7 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
           formControlName: formControlName,
           valueAccessor: valueAccessor,
           showErrors: showErrors,
-          validationMessages: (control) {
-            final error = validationMessages?.call(control) ?? {};
-
-            if (error.containsKey(ImageSource.camera.toString()) != true) {
-              error.addEntries([
-                MapEntry(ImageSource.camera.toString(),
-                    'Error while taking image from camera')
-              ]);
-            }
-
-            if (error.containsKey(ImageSource.gallery.toString()) != true) {
-              error.addEntries([
-                MapEntry(ImageSource.gallery.toString(),
-                    'Error while taking image from gallery')
-              ]);
-            }
-
-            return error;
-          },
+          validationMessages: _validationMessages(validationMessages),
           builder: (field) {
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
@@ -205,6 +187,28 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
             );
           },
         );
+
+  static Map<String, ValidationMessageFunction>? _validationMessages(
+    Map<String, ValidationMessageFunction>? validationMessages,
+  ) {
+    final error = validationMessages ?? {};
+
+    if (error.containsKey(ImageSource.camera.toString()) != true) {
+      error.addEntries([
+        MapEntry(ImageSource.camera.toString(),
+            (_) => 'Error while taking image from camera')
+      ]);
+    }
+
+    if (error.containsKey(ImageSource.gallery.toString()) != true) {
+      error.addEntries([
+        MapEntry(ImageSource.gallery.toString(),
+            (_) => 'Error while taking image from gallery')
+      ]);
+    }
+
+    return error;
+  }
 }
 
 class ImagePickerWidget extends StatelessWidget {

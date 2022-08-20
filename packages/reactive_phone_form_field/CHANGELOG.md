@@ -1,3 +1,6 @@
+## [0.9.0]
+* package version bump
+
 ## [0.8.0]
 
 * align default `countrySelectorNavigator` with main package

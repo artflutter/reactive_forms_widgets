@@ -81,7 +81,7 @@ class ReactiveEmailContactPicker<T> extends ReactiveFormField<T, EmailContact> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, EmailContact>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

@@ -28,7 +28,7 @@ class ReactiveCupertinoSlider<T> extends ReactiveFormField<T, double> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

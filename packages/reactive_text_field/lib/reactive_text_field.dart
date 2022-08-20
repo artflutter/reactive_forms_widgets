@@ -234,6 +234,7 @@ class _ReactiveTextFieldState<T> extends ReactiveFormFieldState<T, String> {
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override

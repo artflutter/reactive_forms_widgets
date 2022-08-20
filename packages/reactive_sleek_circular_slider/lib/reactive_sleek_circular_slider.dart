@@ -88,7 +88,7 @@ class ReactiveSleekCircularSlider<T> extends ReactiveFormField<T, double> {
     String? formControlName,
     InputDecoration? decoration,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

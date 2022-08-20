@@ -94,7 +94,7 @@ class ReactiveFancyPasswordField<T> extends ReactiveFormField<T, String> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -248,6 +248,7 @@ class _ReactiveFancyPasswordFieldState<T>
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override

@@ -28,7 +28,7 @@ class ReactiveCheckbox<T> extends ReactiveFormField<T, bool> {
     String? formControlName,
     FormControl<T>? formControl,
     ControlValueAccessor<T, bool>? valueAccessor,
-    // ValidationMessagesFunction<T>? validationMessages,
+    // Map<String, ValidationMessageFunction>? validationMessages,
     // ShowErrorsFunction? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
@@ -88,6 +88,7 @@ class _ReactiveCheckboxState<T, V> extends ReactiveFormFieldState<T, V> {
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override

@@ -92,7 +92,7 @@ class ReactiveMultiImagePicker<T>
     Key? key,
     String? formControlName,
     FormControl<MultiImage<T>>? formControl,
-    ValidationMessagesFunction<MultiImage<T>>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<MultiImage<T>, MultiImage<T>>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

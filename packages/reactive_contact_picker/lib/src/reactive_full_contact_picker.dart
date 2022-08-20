@@ -81,7 +81,7 @@ class ReactiveFullContactPicker<T> extends ReactiveFormField<T, FullContact> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, FullContact>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

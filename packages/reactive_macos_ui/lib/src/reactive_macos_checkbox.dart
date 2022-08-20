@@ -78,7 +78,7 @@ class ReactiveMacosCheckbox<T> extends ReactiveFormField<T, bool> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, bool>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

@@ -160,6 +160,7 @@ class _ReactiveDropdownSearchState<T, V> extends ReactiveFormFieldState<T, V> {
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override

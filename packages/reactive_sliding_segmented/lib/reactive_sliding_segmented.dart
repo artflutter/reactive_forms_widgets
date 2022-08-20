@@ -93,7 +93,7 @@ class ReactiveSlidingSegmentedControl<T extends Object, K extends Object>
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, K>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

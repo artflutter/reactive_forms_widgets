@@ -88,7 +88,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, PhoneNumber>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -237,6 +237,7 @@ class _ReactivePhoneFormFieldState<T>
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override

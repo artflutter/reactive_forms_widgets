@@ -85,7 +85,7 @@ class ReactiveCodeTextField<T> extends ReactiveFormField<T, String> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -163,6 +163,7 @@ class _ReactiveCodeTextFieldState<T> extends ReactiveFormFieldState<T, String> {
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override

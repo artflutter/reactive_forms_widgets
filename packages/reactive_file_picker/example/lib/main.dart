@@ -113,8 +113,8 @@ class MyApp extends StatelessWidget {
                                 // ),
                               ),
                               ElevatedButton(
-                                child: const Text("Pick images"),
                                 onPressed: pickImage,
+                                child: const Text("Pick images"),
                               ),
                             ],
                           );

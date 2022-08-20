@@ -91,7 +91,7 @@ class ReactiveRawAutocomplete<T, V extends Object>
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, V>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -261,6 +261,7 @@ class _ReactiveRawAutocompleteState<T, V extends Object>
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override

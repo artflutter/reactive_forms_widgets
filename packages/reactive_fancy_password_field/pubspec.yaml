@@ -1,6 +1,6 @@
 name: reactive_fancy_password_field
 description: Wrapper around fancy_password_field to use with reactive_forms.
-version: 0.2.1
+version: 0.3.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^13.0.0
+  reactive_forms: ^14.1.0
   fancy_password_field: ^1.0.4
 
 dev_dependencies:
