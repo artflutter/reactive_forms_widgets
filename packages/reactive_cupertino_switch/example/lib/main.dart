@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
 
   FormGroup buildForm() => fb.group({
         'switch': FormControl<bool>(value: false),
+        'switchDisabled': FormControl<bool>(value: true, disabled: true),
       });
 
   @override
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
                   children: [
                     ReactiveCupertinoSwitch<bool>(
                       formControlName: 'switch',
+                    ),
+                    ReactiveCupertinoSwitch<bool>(
+                      formControlName: 'switchDisabled',
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(

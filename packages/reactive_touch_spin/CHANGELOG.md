@@ -1,3 +1,18 @@
+## [0.7.0]
+* reactive_forms bump
+
+## [0.6.0]
+* reactive_forms bump
+ 
+## [0.5.0]
+* reactive_forms bump
+ 
+## [0.4.1]
+* bugfix
+ 
+## [0.4.0]
+* package version bump
+
 ## [0.3.0-nullsafety.2]
 * package version bump
 

@@ -1,3 +1,15 @@
+## 0.5.0
+* reactive_forms bump
+
+## 0.4.0
+* reactive_forms bump
+
+## 0.3.0
+* reactive_forms bump
+
+## 0.2.0
+* fix https://github.com/joanpablo/reactive_forms/issues/262
+
 ## 0.1.1
 * fix controller dispose
 

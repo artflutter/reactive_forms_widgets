@@ -33,7 +33,7 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -43,13 +43,26 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
     InputDecoration? decoration,
     PaletteType paletteType = PaletteType.hsv,
     bool enableAlpha = true,
-    bool showLabel = true,
-    TextStyle? labelTextStyle,
+    @Deprecated('Use empty list in [labelTypes] to disable label.')
+        bool showLabel = true,
+    @Deprecated('Use Theme.of(context).textTheme.bodyText1 & 2 to alter text style.')
+        TextStyle? labelTextStyle,
     bool displayThumbColor = false,
     bool portraitOnly = false,
+    bool hexInputBar = false,
     double colorPickerWidth = 300.0,
     double pickerAreaHeightPercent = 1.0,
     BorderRadius pickerAreaBorderRadius = const BorderRadius.all(Radius.zero),
+    double disabledOpacity = 0.5,
+    HSVColor? pickerHsvColor,
+    List<ColorLabelType> labelTypes = const [
+      ColorLabelType.rgb,
+      ColorLabelType.hsv,
+      ColorLabelType.hsl
+    ],
+    TextEditingController? hexInputController,
+    List<Color>? colorHistory,
+    ValueChanged<List<Color>>? onHistoryChanged,
   }) : super(
           key: key,
           formControl: formControl,
@@ -60,7 +73,6 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
               BuildContext context, {
               required Color pickerColor,
               required ValueChanged<Color> onColorChanged,
-              // bool enableLabel = false,
             }) {
               showDialog<Color>(
                 context: context,
@@ -74,6 +86,8 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
                         onColorChanged: onColorChanged,
                         paletteType: paletteType,
                         enableAlpha: enableAlpha,
+                        pickerHsvColor: pickerHsvColor,
+                        labelTypes: labelTypes,
                         showLabel: showLabel,
                         labelTextStyle: labelTextStyle,
                         displayThumbColor: displayThumbColor,
@@ -81,6 +95,10 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
                         colorPickerWidth: colorPickerWidth,
                         pickerAreaHeightPercent: pickerAreaHeightPercent,
                         pickerAreaBorderRadius: pickerAreaBorderRadius,
+                        hexInputBar: hexInputBar,
+                        hexInputController: hexInputController,
+                        colorHistory: colorHistory,
+                        onHistoryChanged: onHistoryChanged,
                       ),
                     ),
                   );
@@ -101,44 +119,48 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
 
             return IgnorePointer(
               ignoring: !field.control.enabled,
-              child: Listener(
-                onPointerDown: (_) => field.control.markAsTouched(),
-                child: InputDecorator(
-                  decoration: effectiveDecoration.copyWith(
-                    errorText: field.errorText,
-                    enabled: field.control.enabled,
-                    fillColor: field.value,
-                    filled: field.value != null,
-                    suffixIcon: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        IconButton(
-                          color: iconColor,
-                          icon: const Icon(Icons.edit),
-                          onPressed: () {
-                            _showDialog(
-                              field.context,
-                              pickerColor: field.value ?? Colors.transparent,
-                              onColorChanged: field.didChange,
-                            );
-                          },
-                          splashRadius: 0.01,
-                        ),
-                        if (field.value != null)
+              child: Opacity(
+                opacity: field.control.enabled ? 1 : disabledOpacity,
+                child: Listener(
+                  onPointerDown: (_) => field.control.markAsTouched(),
+                  child: InputDecorator(
+                    decoration: effectiveDecoration.copyWith(
+                      errorText: field.errorText,
+                      enabled: field.control.enabled,
+                      fillColor: field.value,
+                      filled: field.value != null,
+                      suffixIcon: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
                           IconButton(
                             color: iconColor,
-                            icon: const Icon(Icons.clear),
+                            icon: const Icon(Icons.edit),
                             onPressed: () {
-                              field.didChange(null);
+                              _showDialog(
+                                field.context,
+                                pickerColor: field.value ?? Colors.transparent,
+                                onColorChanged: field.didChange,
+                              );
                             },
                             splashRadius: 0.01,
                           ),
-                      ],
+                          if (field.value != null)
+                            IconButton(
+                              color: iconColor,
+                              icon: const Icon(Icons.clear),
+                              onPressed: () {
+                                field.didChange(null);
+                              },
+                              splashRadius: 0.01,
+                            ),
+                        ],
+                      ),
                     ),
-                  ),
-                  isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
-                  child: Container(
-                    color: field.value,
+                    isEmpty:
+                        isEmptyValue && effectiveDecoration.hintText == null,
+                    child: Container(
+                      color: field.value,
+                    ),
                   ),
                 ),
               ),

@@ -83,12 +83,12 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [PinCodeTextField] class
-  /// and [new PinCodeTextField], the constructor.
+  /// and [PinCodeTextField], the constructor.
   ReactivePinCodeTextField({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -118,7 +118,7 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
     TextEditingController? controller,
     bool enableActiveFill = false,
     bool autoDismissKeyboard = true,
-    bool autoDisposeControllers = true,
+    // bool autoDisposeControllers = true,
     TextCapitalization textCapitalization = TextCapitalization.none,
     TextInputAction textInputAction = TextInputAction.done,
     StreamController<ErrorAnimationType>? errorAnimationController,
@@ -144,6 +144,9 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
     bool readOnly = false,
     Gradient? textGradient,
     EdgeInsets scrollPadding = const EdgeInsets.all(20),
+    TextDirection errorTextDirection = TextDirection.ltr,
+    EdgeInsets errorTextMargin = EdgeInsets.zero,
+    bool autoUnfocus = true,
   }) : super(
           key: key,
           formControl: formControl,
@@ -188,7 +191,7 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
               textCapitalization: textCapitalization,
               textInputAction: textInputAction,
               autoDismissKeyboard: autoDismissKeyboard,
-              autoDisposeControllers: autoDisposeControllers,
+              autoDisposeControllers: false,
               onSubmitted: onSubmitted,
               errorAnimationController: errorAnimationController,
               beforeTextPaste: beforeTextPaste,
@@ -210,6 +213,9 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
               readOnly: readOnly,
               textGradient: textGradient,
               scrollPadding: scrollPadding,
+              errorTextDirection: errorTextDirection,
+              errorTextMargin: errorTextMargin,
+              autoUnfocus: autoUnfocus,
             );
           },
         );
@@ -225,6 +231,7 @@ class _ReactivePinCodeTextFieldState<T>
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override
@@ -283,6 +290,12 @@ class _ReactivePinCodeTextFieldState<T>
   void _unregisterFocusController() {
     control.unregisterFocusController(_focusController);
     // _focusController.dispose();
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
   }
 
   void _setFocusNode(FocusNode? focusNode) {

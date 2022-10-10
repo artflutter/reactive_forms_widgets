@@ -87,12 +87,12 @@ class ReactiveMultiImagePicker<T>
   /// ```
   ///
   /// For documentation about the various parameters, see the [ReactiveMultiImagePicker] class
-  /// and [new ReactiveMultiImagePicker], the constructor.
+  /// and [ReactiveMultiImagePicker], the constructor.
   ReactiveMultiImagePicker({
     Key? key,
     String? formControlName,
     FormControl<MultiImage<T>>? formControl,
-    ValidationMessagesFunction<MultiImage<T>>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<MultiImage<T>, MultiImage<T>>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

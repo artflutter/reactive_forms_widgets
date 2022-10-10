@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
 
   FormGroup buildForm() => fb.group({
         'input': FormControl<Color>(),
+        'inputDisabled': FormControl<Color>(disabled: true),
         'inputList': FormControl<List<Color>>(),
         'material': FormControl<Color>(value: Colors.amber),
         'colorPicker': FormControl<Color>(value: Colors.red),
@@ -39,6 +40,10 @@ class MyApp extends StatelessWidget {
                     const SizedBox(height: 16),
                     ReactiveBlockColorPicker<Color>(
                       formControlName: 'input',
+                    ),
+                    const SizedBox(height: 16),
+                    ReactiveBlockColorPicker<Color>(
+                      formControlName: 'inputDisabled',
                     ),
                     const SizedBox(height: 16),
                     ReactiveMultipleBlockColorPicker<List<Color>>(

@@ -78,12 +78,12 @@ class ReactiveCupertinoSlidingSegmentedControl<T extends Object,
   /// ```
   ///
   /// For documentation about the various parameters, see the [CupertinoSlidingSegmentedControl] class
-  /// and [new CupertinoSlidingSegmentedControl], the constructor.
+  /// and [CupertinoSlidingSegmentedControl], the constructor.
   ReactiveCupertinoSlidingSegmentedControl({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, V>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

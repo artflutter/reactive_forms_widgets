@@ -78,73 +78,36 @@ class ReactiveDropdownSearchMultiSelection<T, V>
   /// ```
   ///
   /// For documentation about the various parameters, see the [DropdownSearch] class
-  /// and [new DropdownSearch], the constructor.
+  /// and [DropdownSearch], the constructor.
   ReactiveDropdownSearchMultiSelection({
     Key? key,
     String? formControlName,
     FormControl<List<T>>? formControl,
-    ValidationMessagesFunction? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<List<T>, List<V>>? valueAccessor,
     ShowErrorsFunction? showErrors,
-    Mode mode = Mode.DIALOG,
-    String? label,
-    String? hint,
-    bool isFilteredOnline = false,
-    Widget? popupTitle,
-    List<V>? items,
-    DropdownSearchOnFind<V>? onFind,
-    DropdownSearchBuilder<List<V>>? dropdownBuilder,
-    DropdownSearchPopupItemBuilder<V>? popupItemBuilder,
-    bool showSearchBox = false,
+
+    ////////////////////////////////////////////////////////////////////////////
+    List<V> items = const [],
+    PopupPropsMultiSelection<V> popupProps =
+        const PopupPropsMultiSelection.menu(),
+    DropdownSearchOnFind<V>? asyncItems,
+    DropdownSearchBuilderMultiSelection<V>? dropdownBuilder,
     bool showClearButton = false,
-    Color? popupBackgroundColor,
-    double? maxHeight,
     DropdownSearchFilterFn<V>? filterFn,
     DropdownSearchItemAsString<V>? itemAsString,
-    bool showSelectedItems = false,
     DropdownSearchCompareFn<V>? compareFn,
-    InputDecoration? decoration,
-    EmptyBuilder? emptyBuilder,
-    LoadingBuilder? loadingBuilder,
-    ErrorBuilder? errorBuilder,
-    bool showAsSuffixIcons = false,
-    double? dialogMaxWidth,
-    Widget? clearButton,
-    IconButtonBuilder? clearButtonBuilder,
-    Widget? dropDownButton,
-    IconButtonBuilder? dropdownButtonBuilder,
-    bool dropdownBuilderSupportsNullItem = false,
-    ShapeBorder? popupShape,
-    VoidCallback? onPopupDismissed,
-    DropdownSearchPopupItemEnabled<V>? popupItemDisabled,
-    Color? popupBarrierColor,
-    Duration? searchDelay,
-    BeforeChange<List<V>?>? onBeforeChange,
-    bool showFavoriteItems = false,
-    FavoriteItemsBuilder<V>? favoriteItemBuilder,
-    FavoriteItems<V>? favoriteItems,
-    MainAxisAlignment? favoriteItemsAlignment,
-    PopupSafeAreaProps popupSafeArea = const PopupSafeAreaProps(),
-    double? clearButtonSplashRadius,
-    double? dropdownButtonSplashRadius,
-    TextFieldProps? searchFieldProps,
-    ScrollbarProps? scrollbarProps,
-    bool popupBarrierDismissible = true,
-    TextStyle? dropdownSearchBaseStyle,
+    ClearButtonProps clearButtonProps = const ClearButtonProps(),
+    DropdownButtonProps dropdownButtonProps = const DropdownButtonProps(),
+    BeforeChangeMultiSelection<V?>? onBeforeChange,
     TextAlign? dropdownSearchTextAlign,
     TextAlignVertical? dropdownSearchTextAlignVertical,
-    double popupElevation = 8,
-    SelectionListViewProps selectionListViewProps =
-        const SelectionListViewProps(),
-    bool stickMenuToBorder = false,
     FocusNode? focusNode,
-    PositionCallback? positionCallback,
-    ValidationMultiSelectionBuilder<V?>? popupValidationMultiSelectionWidget,
-    DropdownSearchPopupItemBuilder<V>? popupSelectionWidget,
-    OnItemRemoved<V>? popupOnItemRemoved,
-    OnItemAdded<V>? popupOnItemAdded,
     FormFieldSetter<List<V>>? onSaved,
-    ValidationMultiSelectionBuilder<V>? popupCustomMultiSelectionWidget,
+    TextStyle? dropdownSearchTextStyle,
+    DropDownDecoratorProps dropdownDecoratorProps =
+        const DropDownDecoratorProps(),
+    BeforePopupOpeningMultiSelection<V>? onBeforePopupOpening,
   }) : super(
           key: key,
           formControl: formControl,
@@ -153,7 +116,8 @@ class ReactiveDropdownSearchMultiSelection<T, V>
           validationMessages: validationMessages,
           showErrors: showErrors,
           builder: (field) {
-            final InputDecoration effectiveDecoration = (decoration ??
+            final effectiveDecoration = (dropdownDecoratorProps
+                        .dropdownSearchDecoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
@@ -164,72 +128,27 @@ class ReactiveDropdownSearchMultiSelection<T, V>
 
             return DropdownSearch<V>.multiSelection(
               onChanged: field.didChange,
-              mode: mode,
-              // ignore: deprecated_member_use
-              label: label,
-              // ignore: deprecated_member_use
-              hint: hint,
-              isFilteredOnline: isFilteredOnline,
-              popupTitle: popupTitle,
-              items: items,
+              popupProps: popupProps,
               selectedItems: field.value ?? [],
-              onFind: onFind,
+              items: items,
+              asyncItems: asyncItems,
               dropdownBuilder: dropdownBuilder,
-              popupItemBuilder: popupItemBuilder,
-              showSearchBox: showSearchBox,
-              showClearButton: showClearButton,
-              popupBackgroundColor: popupBackgroundColor,
               enabled: field.control.enabled,
-              maxHeight: maxHeight,
               filterFn: filterFn,
               itemAsString: itemAsString,
-              showSelectedItems: showSelectedItems,
               compareFn: compareFn,
-              dropdownSearchDecoration:
-                  effectiveDecoration.copyWith(errorText: field.errorText),
-              emptyBuilder: emptyBuilder,
-              loadingBuilder: loadingBuilder,
-              errorBuilder: errorBuilder,
-              dialogMaxWidth: dialogMaxWidth,
-              clearButton: clearButton,
-              clearButtonBuilder: clearButtonBuilder,
-              clearButtonSplashRadius: clearButtonSplashRadius,
-              dropDownButton: dropDownButton,
-              dropdownButtonBuilder: dropdownButtonBuilder,
-              dropdownButtonSplashRadius: dropdownButtonSplashRadius,
-              dropdownBuilderSupportsNullItem: dropdownBuilderSupportsNullItem,
-              popupShape: popupShape,
-              showAsSuffixIcons: showAsSuffixIcons,
-              popupItemDisabled: popupItemDisabled,
-              popupBarrierColor: popupBarrierColor,
-              onPopupDismissed: () {
-                field.control.markAsTouched();
-                onPopupDismissed?.call();
-              },
-              searchDelay: searchDelay,
+              dropdownDecoratorProps: DropDownDecoratorProps(
+                dropdownSearchDecoration:
+                    effectiveDecoration.copyWith(errorText: field.errorText),
+                baseStyle: dropdownDecoratorProps.baseStyle,
+                textAlign: dropdownDecoratorProps.textAlign,
+                textAlignVertical: dropdownDecoratorProps.textAlignVertical,
+              ),
+              clearButtonProps: clearButtonProps,
+              dropdownButtonProps: dropdownButtonProps,
               onBeforeChange: onBeforeChange,
-              showFavoriteItems: showFavoriteItems,
-              favoriteItemBuilder: favoriteItemBuilder,
-              favoriteItems: favoriteItems,
-              favoriteItemsAlignment: favoriteItemsAlignment,
-              popupSafeArea: popupSafeArea,
-              searchFieldProps: searchFieldProps,
-              scrollbarProps: scrollbarProps,
-              popupBarrierDismissible: popupBarrierDismissible,
-              dropdownSearchBaseStyle: dropdownSearchBaseStyle,
-              dropdownSearchTextAlign: dropdownSearchTextAlign,
-              dropdownSearchTextAlignVertical: dropdownSearchTextAlignVertical,
-              popupElevation: popupElevation,
-              selectionListViewProps: selectionListViewProps,
-              focusNode: state.focusNode,
-              positionCallback: positionCallback,
-              popupValidationMultiSelectionWidget:
-                  popupValidationMultiSelectionWidget,
-              popupSelectionWidget: popupSelectionWidget,
-              popupOnItemRemoved: popupOnItemRemoved,
-              popupOnItemAdded: popupOnItemAdded,
               onSaved: onSaved,
-              popupCustomMultiSelectionWidget: popupCustomMultiSelectionWidget,
+              onBeforePopupOpening: onBeforePopupOpening,
             );
           },
         );
@@ -244,6 +163,7 @@ class _ReactiveDropdownSearchMultiSelectionState<T, V>
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override

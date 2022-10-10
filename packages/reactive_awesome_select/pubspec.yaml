@@ -1,22 +1,22 @@
 name: reactive_awesome_select
 description: Wrapper around flutter_awesome_select to work with reactive_forms
-version: 0.1.0-beta
+version: 0.6.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
-  flutter: ">=2.8.0"
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_awesome_select: ^6.1.1-beta
-  reactive_forms: ^11.0.0
+  flutter_awesome_select: ^6.5.0
+  reactive_forms: ^14.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.4
+  flutter_lints: ^2.0.1
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

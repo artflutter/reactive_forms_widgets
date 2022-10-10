@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'image_file.dart';
@@ -11,23 +12,7 @@ part of 'image_file.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ImageFileTearOff {
-  const _$ImageFileTearOff();
-
-  _ImageFile call({String? imageUrl, String? localImage, File? image}) {
-    return _ImageFile(
-      imageUrl: imageUrl,
-      localImage: localImage,
-      image: image,
-    );
-  }
-}
-
-/// @nodoc
-const $ImageFile = _$ImageFileTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ImageFile {
@@ -79,22 +64,23 @@ class _$ImageFileCopyWithImpl<$Res> implements $ImageFileCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ImageFileCopyWith<$Res> implements $ImageFileCopyWith<$Res> {
-  factory _$ImageFileCopyWith(
-          _ImageFile value, $Res Function(_ImageFile) then) =
-      __$ImageFileCopyWithImpl<$Res>;
+abstract class _$$_ImageFileCopyWith<$Res> implements $ImageFileCopyWith<$Res> {
+  factory _$$_ImageFileCopyWith(
+          _$_ImageFile value, $Res Function(_$_ImageFile) then) =
+      __$$_ImageFileCopyWithImpl<$Res>;
   @override
   $Res call({String? imageUrl, String? localImage, File? image});
 }
 
 /// @nodoc
-class __$ImageFileCopyWithImpl<$Res> extends _$ImageFileCopyWithImpl<$Res>
-    implements _$ImageFileCopyWith<$Res> {
-  __$ImageFileCopyWithImpl(_ImageFile _value, $Res Function(_ImageFile) _then)
-      : super(_value, (v) => _then(v as _ImageFile));
+class __$$_ImageFileCopyWithImpl<$Res> extends _$ImageFileCopyWithImpl<$Res>
+    implements _$$_ImageFileCopyWith<$Res> {
+  __$$_ImageFileCopyWithImpl(
+      _$_ImageFile _value, $Res Function(_$_ImageFile) _then)
+      : super(_value, (v) => _then(v as _$_ImageFile));
 
   @override
-  _ImageFile get _value => super._value as _ImageFile;
+  _$_ImageFile get _value => super._value as _$_ImageFile;
 
   @override
   $Res call({
@@ -102,7 +88,7 @@ class __$ImageFileCopyWithImpl<$Res> extends _$ImageFileCopyWithImpl<$Res>
     Object? localImage = freezed,
     Object? image = freezed,
   }) {
-    return _then(_ImageFile(
+    return _then(_$_ImageFile(
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -140,7 +126,7 @@ class _$_ImageFile extends _ImageFile {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ImageFile &&
+            other is _$_ImageFile &&
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
             const DeepCollectionEquality()
                 .equals(other.localImage, localImage) &&
@@ -156,23 +142,25 @@ class _$_ImageFile extends _ImageFile {
 
   @JsonKey(ignore: true)
   @override
-  _$ImageFileCopyWith<_ImageFile> get copyWith =>
-      __$ImageFileCopyWithImpl<_ImageFile>(this, _$identity);
+  _$$_ImageFileCopyWith<_$_ImageFile> get copyWith =>
+      __$$_ImageFileCopyWithImpl<_$_ImageFile>(this, _$identity);
 }
 
 abstract class _ImageFile extends ImageFile {
   const factory _ImageFile(
-      {String? imageUrl, String? localImage, File? image}) = _$_ImageFile;
+      {final String? imageUrl,
+      final String? localImage,
+      final File? image}) = _$_ImageFile;
   const _ImageFile._() : super._();
 
   @override
-  String? get imageUrl;
+  String? get imageUrl => throw _privateConstructorUsedError;
   @override
-  String? get localImage;
+  String? get localImage => throw _privateConstructorUsedError;
   @override
-  File? get image;
+  File? get image => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ImageFileCopyWith<_ImageFile> get copyWith =>
+  _$$_ImageFileCopyWith<_$_ImageFile> get copyWith =>
       throw _privateConstructorUsedError;
 }

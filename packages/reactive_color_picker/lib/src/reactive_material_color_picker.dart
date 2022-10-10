@@ -33,7 +33,7 @@ class ReactiveMaterialColorPicker<T> extends ReactiveFormField<T, Color> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -43,7 +43,9 @@ class ReactiveMaterialColorPicker<T> extends ReactiveFormField<T, Color> {
     Color? contrastIconColorLight,
     Color contrastIconColorDark = Colors.white,
     PickerLayoutBuilder? layoutBuilder,
-    PickerItemBuilder itemBuilder = BlockPicker.defaultItemBuilder,
+    // PickerItemBuilder itemBuilder = BlockPicker.defaultItemBuilder,
+    double disabledOpacity = 0.5,
+    bool portraitOnly = false,
   }) : super(
           key: key,
           formControl: formControl,
@@ -66,6 +68,7 @@ class ReactiveMaterialColorPicker<T> extends ReactiveFormField<T, Color> {
                       child: MaterialPicker(
                         pickerColor: pickerColor,
                         onColorChanged: onColorChanged,
+                        portraitOnly: portraitOnly,
                         enableLabel: enableLabel,
                       ),
                     ),
@@ -87,44 +90,48 @@ class ReactiveMaterialColorPicker<T> extends ReactiveFormField<T, Color> {
 
             return IgnorePointer(
               ignoring: !field.control.enabled,
-              child: Listener(
-                onPointerDown: (_) => field.control.markAsTouched(),
-                child: InputDecorator(
-                  decoration: effectiveDecoration.copyWith(
-                    errorText: field.errorText,
-                    enabled: field.control.enabled,
-                    fillColor: field.value,
-                    filled: field.value != null,
-                    suffixIcon: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        IconButton(
-                          color: iconColor,
-                          icon: const Icon(Icons.edit),
-                          onPressed: () {
-                            _showDialog(
-                              field.context,
-                              pickerColor: field.value ?? Colors.transparent,
-                              onColorChanged: field.didChange,
-                            );
-                          },
-                          splashRadius: 0.01,
-                        ),
-                        if (field.value != null)
+              child: Opacity(
+                opacity: field.control.enabled ? 1 : disabledOpacity,
+                child: Listener(
+                  onPointerDown: (_) => field.control.markAsTouched(),
+                  child: InputDecorator(
+                    decoration: effectiveDecoration.copyWith(
+                      errorText: field.errorText,
+                      enabled: field.control.enabled,
+                      fillColor: field.value,
+                      filled: field.value != null,
+                      suffixIcon: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
                           IconButton(
                             color: iconColor,
-                            icon: const Icon(Icons.clear),
+                            icon: const Icon(Icons.edit),
                             onPressed: () {
-                              field.didChange(null);
+                              _showDialog(
+                                field.context,
+                                pickerColor: field.value ?? Colors.transparent,
+                                onColorChanged: field.didChange,
+                              );
                             },
                             splashRadius: 0.01,
                           ),
-                      ],
+                          if (field.value != null)
+                            IconButton(
+                              color: iconColor,
+                              icon: const Icon(Icons.clear),
+                              onPressed: () {
+                                field.didChange(null);
+                              },
+                              splashRadius: 0.01,
+                            ),
+                        ],
+                      ),
                     ),
-                  ),
-                  isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
-                  child: Container(
-                    color: field.value,
+                    isEmpty:
+                        isEmptyValue && effectiveDecoration.hintText == null,
+                    child: Container(
+                      color: field.value,
+                    ),
                   ),
                 ),
               ),

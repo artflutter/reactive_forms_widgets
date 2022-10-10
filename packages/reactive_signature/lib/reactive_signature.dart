@@ -82,12 +82,12 @@ class ReactiveSignature<T> extends ReactiveFormField<T, Uint8List> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [Signature] class
-  /// and [new Signature], the constructor.
+  /// and [Signature], the constructor.
   ReactiveSignature({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, Uint8List>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -102,6 +102,9 @@ class ReactiveSignature<T> extends ReactiveFormField<T, Uint8List> {
     this.exportBackgroundColor = Colors.blue,
     this.penStrokeWidth = 3.0,
     this.points,
+    this.onDrawStart,
+    this.onDrawMove,
+    this.onDrawEnd,
   }) : super(
           key: key,
           formControl: formControl,
@@ -150,6 +153,12 @@ class ReactiveSignature<T> extends ReactiveFormField<T, Uint8List> {
 
   final List<Point>? points;
 
+  final VoidCallback? onDrawStart;
+
+  final VoidCallback? onDrawMove;
+
+  final VoidCallback? onDrawEnd;
+
   @override
   ReactiveFormFieldState<T, Uint8List> createState() =>
       _ReactiveSignatureState();
@@ -168,6 +177,9 @@ class _ReactiveSignatureState<T> extends ReactiveFormFieldState<T, Uint8List> {
       penStrokeWidth: reactiveSignature.penStrokeWidth,
       penColor: reactiveSignature.penColor,
       exportBackgroundColor: reactiveSignature.exportBackgroundColor,
+      onDrawStart: reactiveSignature.onDrawStart,
+      onDrawMove: reactiveSignature.onDrawMove,
+      onDrawEnd: reactiveSignature.onDrawEnd,
     );
 
     _signatureController.addListener(() async {

@@ -18,16 +18,16 @@ typedef FilePickerBuilder<T> = Widget Function(
   FilePickerChangeCallback<T> onChange,
 );
 
-/// A [ReactiveFilePicker] that contains a [TouchSpin].
+/// A [ReactiveFilePicker] that contains a [FilePicker].
 ///
-/// This is a convenience widget that wraps a [TouchSpin] widget in a
+/// This is a convenience widget that wraps a [FilePicker] widget in a
 /// [ReactiveFilePicker].
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
 class ReactiveFilePicker<T>
     extends ReactiveFormField<MultiFile<T>, MultiFile<T>> {
-  /// Creates a [ReactiveFilePicker] that contains a [TouchSpin].
+  /// Creates a [ReactiveFilePicker] that contains a [FilePicker].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
   ///
@@ -88,13 +88,13 @@ class ReactiveFilePicker<T>
   /// ),
   /// ```
   ///
-  /// For documentation about the various parameters, see the [TouchSpin] class
-  /// and [new TouchSpin], the constructor.
+  /// For documentation about the various parameters, see the [FilePicker] class
+  /// and [FilePicker], the constructor.
   ReactiveFilePicker({
     Key? key,
     String? formControlName,
     FormControl<MultiFile<T>>? formControl,
-    ValidationMessagesFunction<MultiFile<T>>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<MultiFile<T>, MultiFile<T>>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -111,6 +111,7 @@ class ReactiveFilePicker<T>
     bool withReadStream = false,
     bool lockParentWindow = false,
     double disabledOpacity = 0.5,
+    String? initialDirectory,
   }) : super(
           key: key,
           formControl: formControl,
@@ -127,30 +128,39 @@ class ReactiveFilePicker<T>
             String? pickerError;
 
             pickFile() async {
-              List<PlatformFile>? platformFiles;
+              List<PlatformFile> platformFiles = [];
               try {
-                platformFiles = (await FilePicker.platform.pickFiles(
-                  dialogTitle: dialogTitle,
-                  allowMultiple: allowMultiple,
-                  type: type,
-                  allowedExtensions: allowedExtensions,
-                  onFileLoading: onFileLoading,
-                  allowCompression: allowCompression,
-                  withData: withData,
-                  withReadStream: withReadStream,
-                  lockParentWindow: lockParentWindow,
-                ))
-                    ?.files;
+                platformFiles = ((await FilePicker.platform.pickFiles(
+                      initialDirectory: initialDirectory,
+                      dialogTitle: dialogTitle,
+                      allowMultiple: allowMultiple,
+                      type: type,
+                      allowedExtensions: allowedExtensions,
+                      onFileLoading: onFileLoading,
+                      allowCompression: allowCompression,
+                      withData: withData,
+                      withReadStream: withReadStream,
+                      lockParentWindow: lockParentWindow,
+                    ))
+                        ?.files) ??
+                    [];
               } on PlatformException catch (e) {
-                pickerError = "Unsupported operation" + e.toString();
+                pickerError = "Unsupported operation $e";
               } catch (e) {
                 pickerError = e.toString();
               }
 
-              field.control.markAsTouched();
-              field.didChange(
-                value.copyWith(platformFiles: platformFiles ?? []),
-              );
+              if (platformFiles.isNotEmpty) {
+                field.control.markAsTouched();
+                field.didChange(
+                  value.copyWith(
+                    platformFiles: [
+                      ...value.platformFiles,
+                      ...platformFiles,
+                    ],
+                  ),
+                );
+              }
             }
 
             return InputDecorator(

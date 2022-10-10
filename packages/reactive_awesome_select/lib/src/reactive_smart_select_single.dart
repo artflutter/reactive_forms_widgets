@@ -76,12 +76,12 @@ class ReactiveSmartSelectSingle<T, V> extends ReactiveFormField<T, V?> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [AwesomeSelect] class
-  /// and [new AwesomeSelect], the constructor.
+  /// and [AwesomeSelect], the constructor.
   ReactiveSmartSelectSingle({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, V>? valueAccessor,
     ShowErrorsFunction? showErrors,
     ////////////////////////////////////////////////////////////////////////////

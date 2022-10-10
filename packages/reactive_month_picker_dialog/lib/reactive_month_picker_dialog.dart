@@ -2,7 +2,7 @@ library reactive_month_picker_dialog;
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:month_picker_dialog/month_picker_dialog.dart';
+import 'package:month_picker_dialog_2/month_picker_dialog_2.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 final _effectiveValueAccessor = DateTimeValueAccessor(
@@ -51,7 +51,7 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
     Key? key,
     String? formControlName,
     FormControl<DateTime>? formControl,
-    ValidationMessagesFunction<DateTime>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<DateTime, String>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

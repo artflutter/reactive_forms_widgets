@@ -110,12 +110,12 @@ class ReactiveMacosTextField<T> extends ReactiveFormField<T, String> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [MacosTextField] class
-  /// and [new MacosTextField], the constructor.
+  /// and [MacosTextField], the constructor.
   ReactiveMacosTextField({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -260,63 +260,6 @@ class ReactiveMacosTextField<T> extends ReactiveFormField<T, String> {
                 scrollPhysics: scrollPhysics,
                 autofillHints: autofillHints,
                 restorationId: restorationId,
-                //
-                //
-                // decoration:
-                //     effectiveDecoration.copyWith(errorText: state.errorText),
-                // keyboardType: keyboardType,
-                // textInputAction: textInputAction,
-                // style: style,
-                // strutStyle: strutStyle,
-                // textAlign: textAlign,
-                // textAlignVertical: textAlignVertical,
-                // textDirection: textDirection,
-                // textCapitalization: textCapitalization,
-                // autofocus: autofocus,
-                // toolbarOptions: toolbarOptions,
-                // readOnly: readOnly,
-                // showCursor: showCursor,
-                // obscureText: obscureText,
-                // autocorrect: autocorrect,
-                // smartDashesType: smartDashesType ??
-                //     (obscureText
-                //         ? SmartDashesType.disabled
-                //         : SmartDashesType.enabled),
-                // smartQuotesType: smartQuotesType ??
-                //     (obscureText
-                //         ? SmartQuotesType.disabled
-                //         : SmartQuotesType.enabled),
-                // enableSuggestions: enableSuggestions,
-                // maxLengthEnforcement: maxLengthEnforcement,
-                // maxLines: maxLines,
-                // minLines: minLines,
-                // expands: expands,
-                // maxLength: maxLength,
-                // onChanged: field.didChange,
-                // onTap: onTap,
-                // onSubmitted: onSubmitted != null ? (_) => onSubmitted() : null,
-                // onEditingComplete: onEditingComplete,
-                // inputFormatters: inputFormatters,
-                // enabled: field.control.enabled,
-                // cursorWidth: cursorWidth,
-                // cursorHeight: cursorHeight,
-                // cursorRadius: cursorRadius,
-                // cursorColor: cursorColor,
-                // scrollPadding: scrollPadding,
-                // scrollPhysics: scrollPhysics,
-                // keyboardAppearance: keyboardAppearance,
-                // enableInteractiveSelection: enableInteractiveSelection,
-                // buildCounter: buildCounter,
-                // autofillHints: autofillHints,
-                // mouseCursor: mouseCursor,
-                // obscuringCharacter: obscuringCharacter,
-                // dragStartBehavior: dragStartBehavior,
-                // onAppPrivateCommand: onAppPrivateCommand,
-                // restorationId: restorationId,
-                // scrollController: scrollController,
-                // selectionControls: selectionControls,
-                // selectionHeightStyle: selectionHeightStyle,
-                // selectionWidthStyle: selectionWidthStyle,
               ),
             );
           },
@@ -333,6 +276,7 @@ class _ReactiveMacosTextFieldState<T>
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override

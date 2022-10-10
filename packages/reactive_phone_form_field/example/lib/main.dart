@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   FormGroup buildForm() => fb.group({
         'input': FormControl<PhoneNumber>(
           value: const PhoneNumber(
-            isoCode: 'UA',
+            isoCode: IsoCode.UA,
             nsn: '933456789',
           ),
         ),
@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
                   children: [
                     ReactivePhoneFormField<PhoneNumber>(
                       formControlName: 'input',
+                      focusNode: FocusNode(),
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(

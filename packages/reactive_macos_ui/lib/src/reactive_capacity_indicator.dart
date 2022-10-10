@@ -73,12 +73,12 @@ class ReactiveCapacityIndicator<T> extends ReactiveFormField<T, double> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [CapacityIndicator] class
-  /// and [new CapacityIndicator], the constructor.
+  /// and [CapacityIndicator], the constructor.
   ReactiveCapacityIndicator({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

@@ -39,88 +39,99 @@ class MyApp extends StatelessWidget {
                   children: [
                     ReactiveDropdownSearch<String, String>(
                       formControlName: 'menu',
-                      decoration: const InputDecoration(
-                        helperText: '',
-                        contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                        border: OutlineInputBorder(),
+                      dropdownDecoratorProps: const DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
+                          hintText: "Select a country",
+                          helperText: '',
+                          labelText: "Menu mode *",
+                          contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                          border: OutlineInputBorder(),
+                        ),
                       ),
-                      mode: Mode.MENU,
-                      hint: "Select a country",
-                      showSelectedItems: true,
+                      popupProps: PopupProps.menu(
+                        showSelectedItems: true,
+                        disabledItemFn: (s) {
+                          return s.startsWith('I');
+                        },
+                      ),
                       items: const [
                         "Brazil",
                         "Italia (Disabled)",
                         "Tunisia",
                         'Canada'
                       ],
-                      label: "Menu mode *",
                       showClearButton: true,
-                      popupItemDisabled: (s) {
-                        return s.startsWith('I');
-                      },
                     ),
                     const SizedBox(height: 8),
                     ReactiveDropdownSearchMultiSelection<String, String>(
                       formControlName: 'menuMultiple',
-                      decoration: const InputDecoration(
-                        helperText: '',
-                        contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                        border: OutlineInputBorder(),
+                      dropdownDecoratorProps: const DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
+                          hintText: "Select a country",
+                          labelText: "Menu mode *",
+                          helperText: '',
+                          contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                          border: OutlineInputBorder(),
+                        ),
                       ),
-                      mode: Mode.MENU,
-                      hint: "Select a country",
-                      showSelectedItems: true,
+                      popupProps: PopupPropsMultiSelection.menu(
+                        showSelectedItems: true,
+                        disabledItemFn: (s) {
+                          return s.startsWith('I');
+                        },
+                      ),
                       items: const [
                         "Brazil",
                         "Italia (Disabled)",
                         "Tunisia",
                         'Canada'
                       ],
-                      label: "Menu mode *",
                       showClearButton: true,
-                      popupItemDisabled: (s) {
-                        return s.startsWith('I');
-                      },
                     ),
                     const SizedBox(height: 8),
                     ReactiveDropdownSearch<String, String>(
                       formControlName: 'bottomSheet',
-                      mode: Mode.BOTTOM_SHEET,
-                      decoration: const InputDecoration(
-                        helperText: '',
-                        contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                        border: OutlineInputBorder(),
-                      ),
-                      maxHeight: 300,
-                      items: const ["Brazil", "Italia", "Tunisia", 'Canada'],
-                      label: "Custom BottomSheet mode",
-                      showSearchBox: true,
-                      popupTitle: Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColorDark,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
+                      popupProps: PopupProps.bottomSheet(
+                        showSearchBox: true,
+                        bottomSheetProps: const BottomSheetProps(
+                          constraints: BoxConstraints(maxHeight: 300),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(24),
+                              topRight: Radius.circular(24),
+                            ),
                           ),
                         ),
-                        child: const Center(
-                          child: Text(
-                            'Country',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                        title: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColorDark,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            ),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'Country',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      popupShape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(24),
-                          topRight: Radius.circular(24),
+                      dropdownDecoratorProps: const DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
+                          labelText: "Custom BottomSheet mode",
+                          helperText: '',
+                          contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                          border: OutlineInputBorder(),
                         ),
                       ),
+                      items: const ["Brazil", "Italia", "Tunisia", 'Canada'],
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(

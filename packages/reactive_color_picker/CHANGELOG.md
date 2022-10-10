@@ -1,3 +1,15 @@
+## [0.4.0]
+* package version bump
+
+## 0.3.0
+* package update
+
+## 0.2.1
+* disabled opacity
+
+## 0.2.0
+* package version bump
+
 ## 0.1.0
 * package version bump
 

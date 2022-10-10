@@ -3,7 +3,9 @@ library reactive_fancy_password_field;
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
 import 'package:fancy_password_field/fancy_password_field.dart';
+// ignore: implementation_imports
 import 'package:fancy_password_field/src/widget/strength_indicator_widget.dart';
+// ignore: implementation_imports
 import 'package:fancy_password_field/src/widget/validation_rules_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -87,12 +89,12 @@ class ReactiveFancyPasswordField<T> extends ReactiveFormField<T, String> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [FancyPasswordField] class
-  /// and [new FancyPasswordField], the constructor.
+  /// and [FancyPasswordField], the constructor.
   ReactiveFancyPasswordField({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -181,6 +183,7 @@ class ReactiveFancyPasswordField<T> extends ReactiveFormField<T, String> {
               controller: state._controller,
               passwordController: passwordController,
               focusNode: state.focusNode,
+              obscureText: obscureText,
               decoration:
                   effectiveDecoration.copyWith(errorText: state.errorText),
               keyboardType: keyboardType,
@@ -245,6 +248,7 @@ class _ReactiveFancyPasswordFieldState<T>
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override

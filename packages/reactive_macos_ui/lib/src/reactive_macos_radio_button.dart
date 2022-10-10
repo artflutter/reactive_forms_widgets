@@ -73,12 +73,12 @@ class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [MacosRadioButton] class
-  /// and [new MacosRadioButton], the constructor.
+  /// and [MacosRadioButton], the constructor.
   ReactiveMacosRadioButton({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, V>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -107,30 +107,22 @@ class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
             //     .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
             return Listener(
-                onPointerDown: (_) {
-                  if (field.control.enabled) {
-                    field.control.markAsTouched();
-                  }
-                },
-                child: MacosRadioButton<V>(
-                  groupValue: field.value,
-                  value: value,
-                  onChanged: field.control.enabled ? field.didChange : null,
-                  size: size = 16.0,
-                  onColor: onColor,
-                  offColor: offColor = CupertinoColors.tertiaryLabel,
-                  innerColor: innerColor,
-                  semanticLabel: semanticLabel,
-                )
-
-                // InputDecorator(
-                //   decoration: effectiveDecoration.copyWith(
-                //     errorText: field.errorText,
-                //     enabled: field.control.enabled,
-                //   ),
-                //   child: ,
-                // ),
-                );
+              onPointerDown: (_) {
+                if (field.control.enabled) {
+                  field.control.markAsTouched();
+                }
+              },
+              child: MacosRadioButton<V>(
+                groupValue: field.value,
+                value: value,
+                onChanged: field.control.enabled ? field.didChange : null,
+                size: size = 16.0,
+                onColor: onColor,
+                offColor: offColor = CupertinoColors.tertiaryLabel,
+                innerColor: innerColor,
+                semanticLabel: semanticLabel,
+              ),
+            );
           },
         );
 }

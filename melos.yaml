@@ -4,3 +4,7 @@ packages:
   - packages/**
 ignore:
   - "packages/**/example"
+  - "packages/reactive_forms_widget_package/**"
+  - "packages/.mason"
+  - "packages/mason.yaml"
+  - "packages/mason-lock.json"

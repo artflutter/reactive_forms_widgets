@@ -81,7 +81,7 @@ class ReactivePhoneContactPicker<T> extends ReactiveFormField<T, PhoneContact> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, PhoneContact>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

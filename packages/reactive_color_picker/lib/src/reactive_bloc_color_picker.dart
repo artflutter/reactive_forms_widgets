@@ -26,6 +26,37 @@ const List<Color> _defaultColors = [
   Colors.black,
 ];
 
+// Provide a shape for [BlockPicker].
+Widget _defaultItemBuilder(
+    Color color, bool isCurrentColor, void Function() changeColor) {
+  return Container(
+    margin: const EdgeInsets.all(7),
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color: color,
+      boxShadow: [
+        BoxShadow(
+            color: color.withOpacity(0.8),
+            offset: const Offset(1, 2),
+            blurRadius: 5)
+      ],
+    ),
+    child: Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: changeColor,
+        borderRadius: BorderRadius.circular(50),
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 210),
+          opacity: isCurrentColor ? 1 : 0,
+          child: Icon(Icons.done,
+              color: useWhiteForeground(color) ? Colors.white : Colors.black),
+        ),
+      ),
+    ),
+  );
+}
+
 /// A builder that builds a widget responsible to decide when to show
 /// the picker dialog.
 ///
@@ -56,7 +87,7 @@ class ReactiveBlockColorPicker<T> extends ReactiveFormField<T, Color> {
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -65,7 +96,9 @@ class ReactiveBlockColorPicker<T> extends ReactiveFormField<T, Color> {
     Color? pickerColor,
     List<Color> availableColors = _defaultColors,
     PickerLayoutBuilder? layoutBuilder,
-    PickerItemBuilder itemBuilder = BlockPicker.defaultItemBuilder,
+    bool useInShowDialog = true,
+    PickerItemBuilder itemBuilder = _defaultItemBuilder,
+    double disabledOpacity = 0.5,
   }) : super(
           key: key,
           formControl: formControl,
@@ -81,28 +114,33 @@ class ReactiveBlockColorPicker<T> extends ReactiveFormField<T, Color> {
 
             return IgnorePointer(
               ignoring: !field.control.enabled,
-              child: Listener(
-                onPointerDown: (_) => field.control.markAsTouched(),
-                child: InputDecorator(
-                  decoration: effectiveDecoration.copyWith(
-                    errorText: field.errorText,
-                    enabled: field.control.enabled,
-                  ),
-                  isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
-                  child: BlockPicker(
-                    pickerColor: field.value ?? Colors.transparent,
-                    availableColors: availableColors,
-                    onColorChanged: field.didChange,
-                    layoutBuilder: layoutBuilder ??
-                        (BuildContext context, List<Color> colors,
-                            PickerItem child) {
-                          return Wrap(
-                            children: colors
-                                .map((Color color) => child(color))
-                                .toList(),
-                          );
-                        },
-                    itemBuilder: itemBuilder,
+              child: Opacity(
+                opacity: field.control.enabled ? 1 : disabledOpacity,
+                child: Listener(
+                  onPointerDown: (_) => field.control.markAsTouched(),
+                  child: InputDecorator(
+                    decoration: effectiveDecoration.copyWith(
+                      errorText: field.errorText,
+                      enabled: field.control.enabled,
+                    ),
+                    isEmpty:
+                        isEmptyValue && effectiveDecoration.hintText == null,
+                    child: BlockPicker(
+                      pickerColor: field.value ?? Colors.transparent,
+                      availableColors: availableColors,
+                      useInShowDialog: useInShowDialog,
+                      onColorChanged: field.didChange,
+                      layoutBuilder: layoutBuilder ??
+                          (BuildContext context, List<Color> colors,
+                              PickerItem child) {
+                            return Wrap(
+                              children: colors
+                                  .map((Color color) => child(color))
+                                  .toList(),
+                            );
+                          },
+                      itemBuilder: itemBuilder,
+                    ),
                   ),
                 ),
               ),

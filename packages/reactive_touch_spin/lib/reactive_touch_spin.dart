@@ -75,12 +75,12 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T, num> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [TouchSpin] class
-  /// and [new TouchSpin], the constructor.
+  /// and [TouchSpin], the constructor.
   ReactiveTouchSpin({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, num>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -122,7 +122,11 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T, num> {
                 ),
                 child: TouchSpin(
                   value: field.value ?? min,
-                  onChanged: field.didChange,
+                  onChanged: (value) {
+                    if (field.value != value) {
+                      field.didChange(value);
+                    }
+                  },
                   min: min,
                   max: max,
                   step: step,

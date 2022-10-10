@@ -73,12 +73,12 @@ class ReactiveMacosSwitch<T> extends ReactiveFormField<T, bool> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [MacosSwitch] class
-  /// and [new MacosSwitch], the constructor.
+  /// and [MacosSwitch], the constructor.
   ReactiveMacosSwitch({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, bool>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -101,32 +101,21 @@ class ReactiveMacosSwitch<T> extends ReactiveFormField<T, bool> {
           validationMessages: validationMessages,
           showErrors: showErrors,
           builder: (field) {
-            // final InputDecoration effectiveDecoration = decoration
-            //     .applyDefaults(Theme.of(field.context).inputDecorationTheme);
-
             return Listener(
-                onPointerDown: (_) {
-                  if (field.control.enabled) {
-                    field.control.markAsTouched();
-                  }
-                },
-                child: MacosSwitch(
-                  value: field.value ?? false,
-                  onChanged: field.control.enabled ? field.didChange : null,
-                  dragStartBehavior: dragStartBehavior,
-                  activeColor: activeColor,
-                  trackColor: trackColor,
-                  semanticLabel: semanticLabel,
-                )
-
-                // InputDecorator(
-                //   decoration: effectiveDecoration.copyWith(
-                //     errorText: field.errorText,
-                //     enabled: field.control.enabled,
-                //   ),
-                //   child: ,
-                // ),
-                );
+              onPointerDown: (_) {
+                if (field.control.enabled) {
+                  field.control.markAsTouched();
+                }
+              },
+              child: MacosSwitch(
+                value: field.value ?? false,
+                onChanged: field.control.enabled ? field.didChange : null,
+                dragStartBehavior: dragStartBehavior,
+                activeColor: activeColor,
+                trackColor: trackColor,
+                semanticLabel: semanticLabel,
+              ),
+            );
           },
         );
 }

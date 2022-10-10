@@ -83,12 +83,12 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [PhoneFormField] class
-  /// and [new PhoneFormField], the constructor.
+  /// and [PhoneFormField], the constructor.
   ReactivePhoneFormField({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, PhoneNumber>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -96,9 +96,10 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     bool shouldFormat = true,
     bool enabled = true,
     bool showFlagInInput = true,
-    CountrySelectorNavigator selectorNavigator = const BottomSheetNavigator(),
+    CountrySelectorNavigator countrySelectorNavigator =
+        const CountrySelectorNavigator.searchDelegate(),
     Function(PhoneNumber?)? onSaved,
-    String defaultCountry = 'US',
+    IsoCode defaultCountry = IsoCode.US,
     // AutovalidateMode autovalidateMode = AutovalidateMode.onUserInteraction,
     PhoneNumber? initialValue,
     double flagSize = 16,
@@ -107,7 +108,6 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     TextInputAction? textInputAction,
     TextStyle? style,
     StrutStyle? strutStyle,
-    TextDirection? textDirection,
     TextAlign textAlign = TextAlign.start,
     TextAlignVertical? textAlignVertical,
     bool autofocus = false,
@@ -148,6 +148,8 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     TextSelectionControls? selectionControls,
     ui.BoxHeightStyle selectionHeightStyle = ui.BoxHeightStyle.tight,
     ui.BoxWidthStyle selectionWidthStyle = ui.BoxWidthStyle.tight,
+    TextStyle? countryCodeStyle,
+    bool enableIMEPersonalizedLearning = true,
   }) : super(
           key: key,
           formControl: formControl,
@@ -163,6 +165,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
             state._setFocusNode(focusNode);
 
             return PhoneFormField(
+              countryCodeStyle: countryCodeStyle,
               focusNode: state.focusNode,
               controller: state._textController,
               shouldFormat: shouldFormat,
@@ -171,7 +174,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
               autofocus: autofocus,
               enabled: field.control.enabled,
               showFlagInInput: showFlagInInput,
-              selectorNavigator: selectorNavigator,
+              countrySelectorNavigator: countrySelectorNavigator,
               onSaved: onSaved,
               defaultCountry: defaultCountry,
               decoration: effectiveDecoration.copyWith(
@@ -189,7 +192,6 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
               strutStyle: strutStyle,
               textAlign: textAlign,
               textAlignVertical: textAlignVertical,
-              textDirection: textDirection,
               toolbarOptions: toolbarOptions,
               showCursor: showCursor,
               obscureText: obscureText,
@@ -219,6 +221,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
               selectionControls: selectionControls,
               selectionHeightStyle: selectionHeightStyle,
               selectionWidthStyle: selectionWidthStyle,
+              enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
             );
           },
         );
@@ -234,6 +237,7 @@ class _ReactivePhoneFormFieldState<T>
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override
@@ -277,7 +281,12 @@ class _ReactivePhoneFormFieldState<T>
   void _unregisterFocusController() {
     control.unregisterFocusController(_focusController);
     _focusController.dispose();
+  }
+
+  @override
+  void dispose() {
     _textController.dispose();
+    super.dispose();
   }
 
   void _setFocusNode(FocusNode? focusNode) {

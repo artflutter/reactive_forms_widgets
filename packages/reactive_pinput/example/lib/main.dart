@@ -13,13 +13,6 @@ class MyApp extends StatelessWidget {
         'input': FormControl<String>(value: null),
       });
 
-  BoxDecoration get _pinPutDecoration {
-    return BoxDecoration(
-      border: Border.all(color: Colors.deepPurpleAccent),
-      borderRadius: BorderRadius.circular(15.0),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,12 +23,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(),
         body: SafeArea(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 20.0,
-            ),
+          child: Center(
             child: ReactiveFormBuilder(
               form: buildForm,
               builder: (context, form, child) {
@@ -43,17 +31,7 @@ class MyApp extends StatelessWidget {
                   children: [
                     ReactivePinPut<String>(
                       formControlName: 'input',
-                      fieldsCount: 5,
-                      submittedFieldDecoration: _pinPutDecoration.copyWith(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      selectedFieldDecoration: _pinPutDecoration,
-                      followingFieldDecoration: _pinPutDecoration.copyWith(
-                        borderRadius: BorderRadius.circular(5.0),
-                        border: Border.all(
-                          color: Colors.deepPurpleAccent.withOpacity(.5),
-                        ),
-                      ),
+                      length: 5,
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(

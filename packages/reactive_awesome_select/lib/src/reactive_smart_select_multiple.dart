@@ -77,12 +77,12 @@ class ReactiveSmartSelectMultiple<T, V>
   /// ```
   ///
   /// For documentation about the various parameters, see the [AwesomeSelect] class
-  /// and [new AwesomeSelect], the constructor.
+  /// and [AwesomeSelect], the constructor.
   ReactiveSmartSelectMultiple({
     Key? key,
     String? formControlName,
     FormControl<List<T>>? formControl,
-    ValidationMessagesFunction<List<T>>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<List<T>, List<V>>? valueAccessor,
     ShowErrorsFunction? showErrors,
     ////////////////////////////////////////////////////////////////////////////

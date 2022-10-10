@@ -74,12 +74,12 @@ class ReactiveAdvancedSwitch<T> extends ReactiveFormField<T, bool> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [AdvancedSwitch] class
-  /// and [new AdvancedSwitch], the constructor.
+  /// and [AdvancedSwitch], the constructor.
   ReactiveAdvancedSwitch({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, bool>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

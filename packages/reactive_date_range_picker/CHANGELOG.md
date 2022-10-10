@@ -1,3 +1,15 @@
+## [0.5.0]
+* package version bump
+
+## [0.4.1]
+* handling canceling of selection
+
+## [0.4.0]
+* package version bump
+
+## [0.3.0]
+* package version bump
+
 ## [0.2.0]
 * package version bump
 

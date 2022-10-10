@@ -78,12 +78,12 @@ class ReactiveSegmentedControl<T extends Object, K extends Object>
   /// ```
   ///
   /// For documentation about the various parameters, see the [CupertinoSegmentedControl] class
-  /// and [new CupertinoSegmentedControl], the constructor.
+  /// and [CupertinoSegmentedControl], the constructor.
   ReactiveSegmentedControl({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, K>? valueAccessor,
     ShowErrorsFunction? showErrors,
 

@@ -24,12 +24,16 @@ class MyApp extends StatelessWidget {
         ),
         'checkbox': FormControl<bool>(
           value: null,
+          // disabled: true,
         ),
         'radio': FormControl<bool>(
           value: null,
         ),
         'switch': FormControl<bool>(
           value: true,
+        ),
+        'popupButton': FormControl<String>(
+          value: 'One',
         ),
       });
 
@@ -60,30 +64,24 @@ class MyApp extends StatelessWidget {
                   children: [
                     ReactiveRatingIndicator<double>(
                       formControlName: 'ratingIndicator',
-                      validationMessages: (_) {
-                        return {
-                          'min': 'Please select more than 1',
-                        };
-                      },
+                      validationMessages: {
+                          'min': (_) => 'Please select more than 1',
+                        },
                     ),
                     const SizedBox(height: 16),
                     ReactiveCapacityIndicator<double>(
                       formControlName: 'capacityIndicator',
-                      validationMessages: (_) {
-                        return {
-                          'min': 'Please select',
-                        };
-                      },
+                      validationMessages: {
+                          'min': (_) => 'Please select',
+                        },
                     ),
                     const SizedBox(height: 16),
                     ReactiveCapacityIndicator<double>(
                       formControlName: 'capacityIndicator',
                       discrete: true,
-                      validationMessages: (_) {
-                        return {
-                          'min': 'Please select more than half',
-                        };
-                      },
+                      validationMessages: {
+                          'min': (_) => 'Please select more than half',
+                        },
                     ),
                     const SizedBox(height: 16),
                     ReactiveMacosTextField<String>(
@@ -105,6 +103,17 @@ class MyApp extends StatelessWidget {
                     const SizedBox(height: 16),
                     ReactiveMacosSwitch<bool>(
                       formControlName: 'switch',
+                    ),
+                    const SizedBox(height: 16),
+                    ReactiveMacosPopupButton<String, String>(
+                      formControlName: 'popupButton',
+                      items: <String>['One', 'Two', 'Three', 'Four']
+                          .map<MacosPopupMenuItem<String>>((String value) {
+                        return MacosPopupMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(

@@ -1,25 +1,25 @@
 name: reactive_multi_image_picker
 description: Wrapper around multi_image_picker to use with reactive_forms
-version: 0.5.0
+version: 0.8.0
 repository: https://github.com/artflutter/reactive_forms_widgets
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
-  flutter: ">=2.8.0"
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^11.0.0
+  reactive_forms: ^14.1.0
   multi_image_picker: ^4.8.1
-  freezed_annotation: ^1.1.0
+  freezed_annotation: ^2.0.3
 
 dev_dependencies:
-  freezed: ^1.1.0
+  freezed: ^2.0.3+1
   flutter_test:
     sdk: flutter
-  build_runner: ^2.1.7
-  flutter_lints: ^1.0.4
+  build_runner: ^2.1.11
+  flutter_lints: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

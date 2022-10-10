@@ -48,7 +48,7 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
     String? formControlName,
     FormControl<DateTimeRange>? formControl,
     ControlValueAccessor<DateTimeRange, String>? valueAccessor,
-    ValidationMessagesFunction<DateTimeRange>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ShowErrorsFunction? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
@@ -137,6 +137,10 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
                     textDirection: textDirection,
                     builder: builder,
                   );
+
+                  if (dateRange == null) {
+                    return;
+                  }
 
                   field.control.markAsTouched();
                   field.didChange(

@@ -81,12 +81,12 @@ class ReactivePinInputTextField<T> extends ReactiveFormField<T, String> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [PinInputTextField] class
-  /// and [new PinInputTextField], the constructor.
+  /// and [PinInputTextField], the constructor.
   ReactivePinInputTextField({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -152,6 +152,7 @@ class _ReactiveMacosTextFieldState<T>
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override

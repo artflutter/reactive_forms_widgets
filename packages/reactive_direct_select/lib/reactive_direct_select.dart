@@ -82,12 +82,12 @@ class ReactiveDirectSelect<T, V> extends ReactiveFormField<T, V> {
   /// ```
   ///
   /// For documentation about the various parameters, see the [DirectSelect] class
-  /// and [new DirectSelect], the constructor.
+  /// and [DirectSelect], the constructor.
   ReactiveDirectSelect({
     Key? key,
     String? formControlName,
     FormControl<T>? formControl,
-    ValidationMessagesFunction<T>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, V>? valueAccessor,
     ShowErrorsFunction? showErrors,
 
@@ -123,6 +123,11 @@ class ReactiveDirectSelect<T, V> extends ReactiveFormField<T, V> {
                 i != null ? items[i] : null,
               ),
               itemExtent: itemExtent,
+              selectedIndex: items.indexWhere((e) => e == field.value),
+              mode: mode,
+              itemMagnification: itemMagnification,
+              backgroundColor: backgroundColor,
+              selectionColor: selectionColor,
               child: InputDecorator(
                 decoration: effectiveDecoration.copyWith(
                   errorText: field.errorText,
@@ -133,11 +138,6 @@ class ReactiveDirectSelect<T, V> extends ReactiveFormField<T, V> {
                   field.value,
                 ),
               ),
-              selectedIndex: items.indexWhere((e) => e == field.value),
-              mode: mode,
-              itemMagnification: itemMagnification,
-              backgroundColor: backgroundColor,
-              selectionColor: selectionColor,
             );
           },
         );
@@ -152,6 +152,7 @@ class _ReactiveMacosTextFieldState<T, V> extends ReactiveFormFieldState<T, V> {
   FocusNode? _focusNode;
   late FocusController _focusController;
 
+  @override
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override
