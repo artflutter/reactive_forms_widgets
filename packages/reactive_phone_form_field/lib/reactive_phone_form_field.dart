@@ -150,6 +150,8 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     ui.BoxWidthStyle selectionWidthStyle = ui.BoxWidthStyle.tight,
     TextStyle? countryCodeStyle,
     bool enableIMEPersonalizedLearning = true,
+    bool isCountrySelectionEnabled = true,
+    bool isCountryChipPersistent = false,
   }) : super(
           key: key,
           formControl: formControl,
@@ -222,6 +224,8 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
               selectionHeightStyle: selectionHeightStyle,
               selectionWidthStyle: selectionWidthStyle,
               enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+              isCountrySelectionEnabled: isCountrySelectionEnabled,
+              isCountryChipPersistent: isCountryChipPersistent,
             );
           },
         );
@@ -241,22 +245,16 @@ class _ReactivePhoneFormFieldState<T>
   FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
 
   @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
 
     _textController = PhoneController(value);
-  }
-
-  @override
-  void subscribeControl() {
-    _registerFocusController(FocusController());
-    super.subscribeControl();
-  }
-
-  @override
-  void unsubscribeControl() {
-    _unregisterFocusController();
-    super.unsubscribeControl();
   }
 
   @override
@@ -273,20 +271,21 @@ class _ReactivePhoneFormFieldState<T>
     super.onControlValueChanged(value);
   }
 
-  void _registerFocusController(FocusController focusController) {
-    _focusController = focusController;
-    control.registerFocusController(focusController);
-  }
-
-  void _unregisterFocusController() {
-    control.unregisterFocusController(_focusController);
-    _focusController.dispose();
+  @override
+  void subscribeControl() {
+    _registerFocusController(FocusController());
+    super.subscribeControl();
   }
 
   @override
-  void dispose() {
-    _textController.dispose();
-    super.dispose();
+  void unsubscribeControl() {
+    _unregisterFocusController();
+    super.unsubscribeControl();
+  }
+
+  void _registerFocusController(FocusController focusController) {
+    _focusController = focusController;
+    control.registerFocusController(focusController);
   }
 
   void _setFocusNode(FocusNode? focusNode) {
@@ -295,5 +294,10 @@ class _ReactivePhoneFormFieldState<T>
       _unregisterFocusController();
       _registerFocusController(FocusController(focusNode: _focusNode));
     }
+  }
+
+  void _unregisterFocusController() {
+    control.unregisterFocusController(_focusController);
+    _focusController.dispose();
   }
 }
