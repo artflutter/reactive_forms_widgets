@@ -85,12 +85,12 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
     ControlValueAccessor<T, V>? valueAccessor,
     ShowErrorsFunction? showErrors,
     required this.stringify,
+    V Function(String)? viewDataTypeFromTextEditingValue,
 
     ////////////////////////////////////////////////////////////////////////////
     required SuggestionsCallback<V> suggestionsCallback,
     required ItemBuilder<V> itemBuilder,
-    CupertinoSuggestionsBoxDecoration suggestionsBoxDecoration =
-        const CupertinoSuggestionsBoxDecoration(),
+    CupertinoSuggestionsBoxDecoration suggestionsBoxDecoration = const CupertinoSuggestionsBoxDecoration(),
     Duration debounceDuration = const Duration(milliseconds: 300),
     WidgetBuilder? loadingBuilder,
     WidgetBuilder? noItemsFoundBuilder,
@@ -109,8 +109,7 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
     bool keepSuggestionsOnSuggestionSelected = false,
     bool autoFlipDirection = false,
     bool hideKeyboard = false,
-    CupertinoTextFieldConfiguration textFieldConfiguration =
-        const CupertinoTextFieldConfiguration(),
+    CupertinoTextFieldConfiguration textFieldConfiguration = const CupertinoTextFieldConfiguration(),
     CupertinoSuggestionsBoxController? suggestionsBoxController,
     InputDecoration decoration = const InputDecoration(),
     TextInputType? keyboardType,
@@ -141,8 +140,7 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
             final effectiveDecoration = textFieldConfiguration.decoration;
 
             state._setFocusNode(textFieldConfiguration.focusNode);
-            final controller =
-                textFieldConfiguration.controller ?? state._textController;
+            final controller = textFieldConfiguration.controller ?? state._textController;
 
             return CupertinoTypeAheadFormField<V>(
               // initialValue: field.value,
@@ -150,13 +148,18 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
               onSuggestionSelected: (value) {
-                    controller.text = stringify(value);
-                    field.didChange(value);
-                  },
+                controller.text = stringify(value);
+                field.didChange(value);
+              },
               textFieldConfiguration: textFieldConfiguration.copyWith(
                 focusNode: textFieldConfiguration.focusNode ?? state.focusNode,
                 controller: controller,
                 decoration: effectiveDecoration,
+                onChanged: (value) {
+                  if (viewDataTypeFromTextEditingValue != null) {
+                    field.didChange(viewDataTypeFromTextEditingValue.call(value));
+                  }
+                },
               ),
               suggestionsBoxDecoration: suggestionsBoxDecoration,
               debounceDuration: debounceDuration,
@@ -175,8 +178,7 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
               hideOnError: hideOnError,
               hideSuggestionsOnKeyboardHide: hideSuggestionsOnKeyboardHide,
               keepSuggestionsOnLoading: keepSuggestionsOnLoading,
-              keepSuggestionsOnSuggestionSelected:
-                  keepSuggestionsOnSuggestionSelected,
+              keepSuggestionsOnSuggestionSelected: keepSuggestionsOnSuggestionSelected,
               autoFlipDirection: autoFlipDirection,
             );
           },
@@ -185,12 +187,10 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
   final String Function(V value) stringify;
 
   @override
-  ReactiveFormFieldState<T, V> createState() =>
-      _ReactiveCupertinoTypeAheadState<T, V>();
+  ReactiveFormFieldState<T, V> createState() => _ReactiveCupertinoTypeAheadState<T, V>();
 }
 
-class _ReactiveCupertinoTypeAheadState<T, V>
-    extends ReactiveFormFieldState<T, V> {
+class _ReactiveCupertinoTypeAheadState<T, V> extends ReactiveFormFieldState<T, V> {
   late TextEditingController _textController;
   FocusNode? _focusNode;
   late FocusController _focusController;
@@ -204,10 +204,7 @@ class _ReactiveCupertinoTypeAheadState<T, V>
 
     final initialValue = value;
     _textController = TextEditingController(
-      text: initialValue == null
-          ? ''
-          : (widget as ReactiveCupertinoTypeAhead<T, V>)
-              .stringify(initialValue),
+      text: initialValue == null ? '' : (widget as ReactiveCupertinoTypeAhead<T, V>).stringify(initialValue),
     );
   }
 

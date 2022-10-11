@@ -85,12 +85,12 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
     ControlValueAccessor<T, V>? valueAccessor,
     ShowErrorsFunction? showErrors,
     required this.stringify,
+    V Function(String)? viewDataTypeFromTextEditingValue,
 
     ////////////////////////////////////////////////////////////////////////////
     required SuggestionsCallback<V> suggestionsCallback,
     required ItemBuilder<V> itemBuilder,
-    SuggestionsBoxDecoration suggestionsBoxDecoration =
-        const SuggestionsBoxDecoration(),
+    SuggestionsBoxDecoration suggestionsBoxDecoration = const SuggestionsBoxDecoration(),
     Duration debounceDuration = const Duration(milliseconds: 300),
     WidgetBuilder? loadingBuilder,
     WidgetBuilder? noItemsFoundBuilder,
@@ -109,8 +109,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
     bool keepSuggestionsOnSuggestionSelected = false,
     bool autoFlipDirection = false,
     bool hideKeyboard = false,
-    TextFieldConfiguration textFieldConfiguration =
-        const TextFieldConfiguration(),
+    TextFieldConfiguration textFieldConfiguration = const TextFieldConfiguration(),
     SuggestionsBoxController? suggestionsBoxController,
     InputDecoration decoration = const InputDecoration(),
     TextInputType? keyboardType,
@@ -137,27 +136,30 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
           showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveTypeaheadState<T, V>;
-            final effectiveDecoration = textFieldConfiguration.decoration
-                .applyDefaults(Theme.of(state.context).inputDecorationTheme);
+            final effectiveDecoration =
+                textFieldConfiguration.decoration.applyDefaults(Theme.of(state.context).inputDecorationTheme);
 
             state._setFocusNode(textFieldConfiguration.focusNode);
-            final controller =
-                textFieldConfiguration.controller ?? state._textController;
+            final controller = textFieldConfiguration.controller ?? state._textController;
 
             return TypeAheadField<V>(
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
-              onSuggestionSelected:
-                  (value) {
-                    controller.text = stringify(value);
-                    field.didChange(value);
-                  },
+              onSuggestionSelected: (value) {
+                controller.text = stringify(value);
+                field.didChange(value);
+              },
               textFieldConfiguration: textFieldConfiguration.copyWith(
                 focusNode: textFieldConfiguration.focusNode ?? state.focusNode,
                 controller: controller,
                 decoration: effectiveDecoration.copyWith(
                   errorText: state.errorText,
                 ),
+                onChanged: (value) {
+                  if (viewDataTypeFromTextEditingValue != null) {
+                    field.didChange(viewDataTypeFromTextEditingValue.call(value));
+                  }
+                },
               ),
               suggestionsBoxDecoration: suggestionsBoxDecoration,
               debounceDuration: debounceDuration,
@@ -176,8 +178,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
               hideOnError: hideOnError,
               hideSuggestionsOnKeyboardHide: hideSuggestionsOnKeyboardHide,
               keepSuggestionsOnLoading: keepSuggestionsOnLoading,
-              keepSuggestionsOnSuggestionSelected:
-                  keepSuggestionsOnSuggestionSelected,
+              keepSuggestionsOnSuggestionSelected: keepSuggestionsOnSuggestionSelected,
               autoFlipDirection: autoFlipDirection,
               hideKeyboard: hideKeyboard,
             );
@@ -204,9 +205,7 @@ class _ReactiveTypeaheadState<T, V> extends ReactiveFormFieldState<T, V> {
 
     final initialValue = value;
     _textController = TextEditingController(
-      text: initialValue == null
-          ? ''
-          : (widget as ReactiveTypeAhead<T, V>).stringify(initialValue),
+      text: initialValue == null ? '' : (widget as ReactiveTypeAhead<T, V>).stringify(initialValue),
     );
   }
 
