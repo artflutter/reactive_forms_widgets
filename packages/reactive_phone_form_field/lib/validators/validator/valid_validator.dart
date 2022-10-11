@@ -1,6 +1,6 @@
-import 'package:inscruni_flutter/common/validator/phone/phone_validation_message.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:reactive_phone_form_field/validators/validation_message.dart';
 
 /// Validator that requires the control have a non-empty value.
 class ValidPhoneValidator extends Validator<dynamic> {
