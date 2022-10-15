@@ -28,18 +28,22 @@ mixin _$ImageFile {
 /// @nodoc
 abstract class $ImageFileCopyWith<$Res> {
   factory $ImageFileCopyWith(ImageFile value, $Res Function(ImageFile) then) =
-      _$ImageFileCopyWithImpl<$Res>;
+      _$ImageFileCopyWithImpl<$Res, ImageFile>;
+  @useResult
   $Res call({String? imageUrl, String? localImage, File? image});
 }
 
 /// @nodoc
-class _$ImageFileCopyWithImpl<$Res> implements $ImageFileCopyWith<$Res> {
+class _$ImageFileCopyWithImpl<$Res, $Val extends ImageFile>
+    implements $ImageFileCopyWith<$Res> {
   _$ImageFileCopyWithImpl(this._value, this._then);
 
-  final ImageFile _value;
   // ignore: unused_field
-  final $Res Function(ImageFile) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? imageUrl = freezed,
@@ -47,19 +51,19 @@ class _$ImageFileCopyWithImpl<$Res> implements $ImageFileCopyWith<$Res> {
     Object? image = freezed,
   }) {
     return _then(_value.copyWith(
-      imageUrl: imageUrl == freezed
+      imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      localImage: localImage == freezed
+      localImage: freezed == localImage
           ? _value.localImage
           : localImage // ignore: cast_nullable_to_non_nullable
               as String?,
-      image: image == freezed
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as File?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -69,19 +73,19 @@ abstract class _$$_ImageFileCopyWith<$Res> implements $ImageFileCopyWith<$Res> {
           _$_ImageFile value, $Res Function(_$_ImageFile) then) =
       __$$_ImageFileCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String? imageUrl, String? localImage, File? image});
 }
 
 /// @nodoc
-class __$$_ImageFileCopyWithImpl<$Res> extends _$ImageFileCopyWithImpl<$Res>
+class __$$_ImageFileCopyWithImpl<$Res>
+    extends _$ImageFileCopyWithImpl<$Res, _$_ImageFile>
     implements _$$_ImageFileCopyWith<$Res> {
   __$$_ImageFileCopyWithImpl(
       _$_ImageFile _value, $Res Function(_$_ImageFile) _then)
-      : super(_value, (v) => _then(v as _$_ImageFile));
+      : super(_value, _then);
 
-  @override
-  _$_ImageFile get _value => super._value as _$_ImageFile;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? imageUrl = freezed,
@@ -89,15 +93,15 @@ class __$$_ImageFileCopyWithImpl<$Res> extends _$ImageFileCopyWithImpl<$Res>
     Object? image = freezed,
   }) {
     return _then(_$_ImageFile(
-      imageUrl: imageUrl == freezed
+      imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      localImage: localImage == freezed
+      localImage: freezed == localImage
           ? _value.localImage
           : localImage // ignore: cast_nullable_to_non_nullable
               as String?,
-      image: image == freezed
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as File?,
@@ -127,21 +131,19 @@ class _$_ImageFile extends _ImageFile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ImageFile &&
-            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
-            const DeepCollectionEquality()
-                .equals(other.localImage, localImage) &&
-            const DeepCollectionEquality().equals(other.image, image));
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.localImage, localImage) ||
+                other.localImage == localImage) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(imageUrl),
-      const DeepCollectionEquality().hash(localImage),
-      const DeepCollectionEquality().hash(image));
+  int get hashCode => Object.hash(runtimeType, imageUrl, localImage, image);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ImageFileCopyWith<_$_ImageFile> get copyWith =>
       __$$_ImageFileCopyWithImpl<_$_ImageFile>(this, _$identity);
 }
@@ -154,11 +156,11 @@ abstract class _ImageFile extends ImageFile {
   const _ImageFile._() : super._();
 
   @override
-  String? get imageUrl => throw _privateConstructorUsedError;
+  String? get imageUrl;
   @override
-  String? get localImage => throw _privateConstructorUsedError;
+  String? get localImage;
   @override
-  File? get image => throw _privateConstructorUsedError;
+  File? get image;
   @override
   @JsonKey(ignore: true)
   _$$_ImageFileCopyWith<_$_ImageFile> get copyWith =>
