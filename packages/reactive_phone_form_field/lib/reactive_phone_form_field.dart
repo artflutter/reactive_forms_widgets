@@ -93,6 +93,9 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     ShowErrorsFunction? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
+    bool isCountryChipPersistent = false,
+    bool isCountrySelectionEnabled = true,
+    bool fixCountryChipOnLeft = false,
     bool shouldFormat = true,
     bool enabled = true,
     bool showFlagInInput = true,
@@ -181,6 +184,8 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
                 errorText: field.errorText,
                 enabled: field.control.enabled,
               ),
+              isCountryChipPersistent: isCountryChipPersistent,
+              isCountrySelectionEnabled: isCountrySelectionEnabled,
               cursorColor: cursorColor,
               autovalidateMode: AutovalidateMode.disabled,
               flagSize: flagSize,
@@ -218,6 +223,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
               obscuringCharacter: obscuringCharacter,
               onAppPrivateCommand: onAppPrivateCommand,
               scrollController: scrollController,
+              fixCountryChipOnLeft: fixCountryChipOnLeft,
               selectionControls: selectionControls,
               selectionHeightStyle: selectionHeightStyle,
               selectionWidthStyle: selectionWidthStyle,
