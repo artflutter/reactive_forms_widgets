@@ -95,7 +95,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     ////////////////////////////////////////////////////////////////////////////
     bool isCountryChipPersistent = false,
     bool isCountrySelectionEnabled = true,
-    bool fixCountryChipOnLeft = false,
+    TextDirection? countryChipDirection,
     bool shouldFormat = true,
     bool enabled = true,
     bool showFlagInInput = true,
@@ -223,7 +223,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
               obscuringCharacter: obscuringCharacter,
               onAppPrivateCommand: onAppPrivateCommand,
               scrollController: scrollController,
-              fixCountryChipOnLeft: fixCountryChipOnLeft,
+              countryChipDirection: countryChipDirection,
               selectionControls: selectionControls,
               selectionHeightStyle: selectionHeightStyle,
               selectionWidthStyle: selectionWidthStyle,

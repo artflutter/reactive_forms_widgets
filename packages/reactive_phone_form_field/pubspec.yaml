@@ -13,6 +13,7 @@ dependencies:
   reactive_forms: ^14.1.0
   phone_form_field:
     git: https://github.com/mohn93/phone_form_field.git
+#    path: ../../../phone_form_field
 
 
 dev_dependencies:
