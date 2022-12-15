@@ -183,9 +183,17 @@ class _ReactiveSignatureState<T> extends ReactiveFormFieldState<T, Uint8List> {
     );
 
     _signatureController.addListener(() async {
-      control.focus();
-      didChange(await _signatureController.toPngBytes());
+      if (!control.hasFocus) {
+        control.focus();
+      }
+      if (_signatureController.isEmpty) {
+        didChange(null);
+      }
     });
+
+    _signatureController.onDrawEnd = () async {
+      didChange(await _signatureController.toPngBytes());
+    };
   }
 
   @override
