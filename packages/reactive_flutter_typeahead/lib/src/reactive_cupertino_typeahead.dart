@@ -128,6 +128,7 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
     String obscuringCharacter = '•',
     bool autocorrect = true,
     bool enabled = true,
+    SuggestionSelectionCallback<V>? onSuggestionSelected,
   }) : super(
           key: key,
           formControl: formControl,
@@ -150,6 +151,7 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
               onSuggestionSelected: (value) {
                 controller.text = stringify(value);
                 field.didChange(value);
+                onSuggestionSelected?.call(value);
               },
               textFieldConfiguration: textFieldConfiguration.copyWith(
                 focusNode: textFieldConfiguration.focusNode ?? state.focusNode,
