@@ -27,7 +27,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^14.1.0
+  reactive_forms: ^14.2.0
   nested: ^1.0.0
   flash: ^2.0.3+2
 

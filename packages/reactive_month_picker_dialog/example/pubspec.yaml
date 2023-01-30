@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^14.1.0
+  reactive_forms: ^14.2.0
   reactive_month_picker_dialog:
     path: ../
 
