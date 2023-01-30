@@ -127,6 +127,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
     bool obscureText = false,
     String obscuringCharacter = '•',
     bool autocorrect = true,
+    SuggestionSelectionCallback<V>? onSuggestionSelected,
   }) : super(
           key: key,
           formControl: formControl,
@@ -148,6 +149,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
               onSuggestionSelected: (value) {
                 controller.text = stringify(value);
                 field.didChange(value);
+                onSuggestionSelected?.call(value);
               },
               textFieldConfiguration: textFieldConfiguration.copyWith(
                 focusNode: textFieldConfiguration.focusNode ?? state.focusNode,
