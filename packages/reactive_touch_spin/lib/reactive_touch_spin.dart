@@ -83,6 +83,7 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T, num> {
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, num>? valueAccessor,
     ShowErrorsFunction? showErrors,
+    void Function(num value)? onChanged,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,
@@ -125,6 +126,7 @@ class ReactiveTouchSpin<T> extends ReactiveFormField<T, num> {
                   onChanged: (value) {
                     if (field.value != value) {
                       field.didChange(value);
+                      onChanged?.call(value);
                     }
                   },
                   min: min,
