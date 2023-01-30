@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^14.1.0
+  reactive_forms: ^14.2.0
   cart_stepper: ^3.0.2
 
 dev_dependencies:

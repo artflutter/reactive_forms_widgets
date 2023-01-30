@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  reactive_forms: ^14.1.0
+  reactive_forms: ^14.2.0
   sleek_circular_slider: ^2.0.1
 
 dev_dependencies:
