@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   {{originalPackageName.snakeCase()}}:
-  reactive_forms: ^14.1.0
+  reactive_forms: ^14.2.0
 
 dev_dependencies:
   flutter_test:
