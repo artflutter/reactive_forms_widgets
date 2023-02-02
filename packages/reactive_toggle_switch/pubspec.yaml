@@ -1,6 +1,6 @@
 name: reactive_toggle_switch
 description: Wrapper around toggle_switch to use with reactive_forms.
-version: 0.0.1
+version: 0.1.0
 repository: https://github.com/artflutter/reactive_toggle_switch
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
