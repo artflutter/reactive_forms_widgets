@@ -1,4 +1,3 @@
-import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_file_selector/reactive_file_selector.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -11,10 +10,12 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   FormGroup buildForm() => fb.group({
-        'input': FormControl<MultiFile<String>>(value: const MultiFile(), validators: [
-          Validators.required,
-          FileSelectorValidators.limit<String>(min: 5, max: 10),
-        ]),
+        'input': FormControl<MultiFile<String>>(
+            value: const MultiFile(),
+            validators: [
+              Validators.required,
+              FileSelectorValidators.limit(min: 5, max: 10),
+            ]),
       });
 
   @override
@@ -47,7 +48,10 @@ class MyApp extends StatelessWidget {
                                     key,
                                     ListTile(
                                       onTap: () {
-                                        onChange(files.copyWith(files: List<String>.from(files.files)..removeAt(key)));
+                                        onChange(files.copyWith(
+                                            files:
+                                                List<String>.from(files.files)
+                                                  ..removeAt(key)));
                                       },
                                       leading: const Icon(Icons.delete),
                                       title: FileListItem(value).build(context),
@@ -59,10 +63,14 @@ class MyApp extends StatelessWidget {
                                       key,
                                       ListTile(
                                         onTap: () {
-                                          onChange(files.copyWith(platformFiles: List<XFile>.from(files.platformFiles)..removeAt(key)));
+                                          onChange(files.copyWith(
+                                              platformFiles: List<XFile>.from(
+                                                  files.platformFiles)
+                                                ..removeAt(key)));
                                         },
                                         leading: const Icon(Icons.delete),
-                                        title: PlatformFileListItem(value).build(context),
+                                        title: PlatformFileListItem(value)
+                                            .build(context),
                                       ),
                                       // InkWell(
                                       //   onTap: () => onChange(images.copyWith(
@@ -104,11 +112,15 @@ class MyApp extends StatelessWidget {
                         },
                         validationMessages: {
                           ValidationMessage.min: (error) {
-                            if (error is! Map<String, Object?>) return ValidationMessage.min;
+                            if (error is! Map<String, Object?>) {
+                              return ValidationMessage.min;
+                            }
                             return "Should have at least ${error['min']} files, got: ${error['actual']}";
                           },
                           ValidationMessage.max: (error) {
-                            if (error is! Map<String, Object?>) return ValidationMessage.max;
+                            if (error is! Map<String, Object?>) {
+                              return ValidationMessage.max;
+                            }
                             return "Should have at most ${error['max']} files, got: ${error['actual']}";
                           }
                         },
