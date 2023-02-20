@@ -47,3 +47,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveFlutterNativeTextInput](https://pub.dev/packages/reactive_flutter_native_text_input)** - wrapper around [`flutter_native_text_input`](https://pub.dev/packages/flutter_native_text_input)
 - **[ReactiveToggleSwitch](https://pub.dev/packages/reactive_toggle_switch)** - wrapper around [`toggle_switch`](https://pub.dev/packages/toggle_switch)
 - **[ReactiveFileSelector](https://pub.dev/packages/reactive_file_selector)** - wrapper around [`file_selector`](https://pub.dev/packages/file_selector)
+- **[ReactiveFluent*](https://pub.dev/packages/reactive_fluent_ui)** - wrapper around [`fluent_ui`](https://pub.dev/packages/fluent_ui)
