@@ -3,10 +3,10 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'multi_file.dart';
 
 class FileSelectorValidators {
-  static ValidatorFunction limit<T>({int? min, int? max}) => _FileSelectorGeneralValidator<T>(min: min, max: max).validate;
+  static ValidatorFunction limit({int? min, int? max}) => _FileSelectorGeneralValidator(min: min, max: max).validate;
 }
 
-class _FileSelectorGeneralValidator<T> implements Validator<MultiFile<T>> {
+class _FileSelectorGeneralValidator implements Validator<MultiFile<dynamic>> {
   final int? min;
   final int? max;
 
@@ -18,9 +18,9 @@ class _FileSelectorGeneralValidator<T> implements Validator<MultiFile<T>> {
 
     if (value == null) return null;
 
-    assert(value is MultiFile<T>,
-        "The limit validator is expecting a control of type `MultiFile<$T>`, but received a control of type ${control.value.runtimeType}");
-    if (value is! MultiFile<T>) {
+    assert(value is MultiFile,
+        "The limit validator is expecting a control of type `MultiFile`, but received a control of type ${control.value.runtimeType}");
+    if (value is! MultiFile) {
       return null;
     }
 
