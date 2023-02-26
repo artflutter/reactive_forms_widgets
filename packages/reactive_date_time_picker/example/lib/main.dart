@@ -75,8 +75,9 @@ class MyApp extends StatelessWidget {
                       type: ReactiveDatePickerFieldType.dateTime,
                       decoration: const InputDecoration(
                         labelText: 'Date & Time',
+                        hintText: 'hintText',
                         border: OutlineInputBorder(),
-                        helperText: '',
+                        helperText: 'helperText',
                         suffixIcon: Icon(Icons.calendar_today),
                       ),
                     ),

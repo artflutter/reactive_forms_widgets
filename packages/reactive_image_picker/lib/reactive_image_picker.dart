@@ -1,10 +1,12 @@
 library reactive_image_picker;
 
 import 'dart:io';
-import 'image_file.dart';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+
+import 'image_file.dart';
 
 export 'package:image_picker/image_picker.dart';
 
@@ -231,6 +233,7 @@ class ImagePickerWidget extends StatelessWidget {
   final CameraDevice preferredCameraDevice;
   final ValueChanged<ImageFile?> onChanged;
   final Duration? maxDuration;
+  final bool requestFullMetadata;
 
   // final ImagePickerMode mode;
 
@@ -255,6 +258,7 @@ class ImagePickerWidget extends StatelessWidget {
     this.imageQuality,
     this.preferredCameraDevice = CameraDevice.rear,
     this.maxDuration,
+    this.requestFullMetadata = true,
   }) : super(key: key);
 
   void _onImageButtonPressed(BuildContext context, ImageSource source) async {
@@ -267,6 +271,7 @@ class ImagePickerWidget extends StatelessWidget {
         maxWidth: maxWidth,
         imageQuality: imageQuality,
         preferredCameraDevice: preferredCameraDevice,
+        requestFullMetadata: requestFullMetadata,
       );
 
       if (pickedFile != null) {

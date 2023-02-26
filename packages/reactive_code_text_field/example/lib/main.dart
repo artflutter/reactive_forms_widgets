@@ -41,10 +41,7 @@ class MyApp extends StatelessWidget {
                   children: [
                     ReactiveCodeTextField<String>(
                       formControlName: 'input',
-                      controller: CodeController(
-                        language: dart,
-                        theme: monokaiSublimeTheme,
-                      ),
+                      controller: CodeController(language: dart),
                     ),
                     ElevatedButton(
                       child: const Text('Sign Up'),

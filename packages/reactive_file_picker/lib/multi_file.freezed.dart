@@ -28,33 +28,37 @@ mixin _$MultiFile<T> {
 abstract class $MultiFileCopyWith<T, $Res> {
   factory $MultiFileCopyWith(
           MultiFile<T> value, $Res Function(MultiFile<T>) then) =
-      _$MultiFileCopyWithImpl<T, $Res>;
+      _$MultiFileCopyWithImpl<T, $Res, MultiFile<T>>;
+  @useResult
   $Res call({List<T> files, List<PlatformFile> platformFiles});
 }
 
 /// @nodoc
-class _$MultiFileCopyWithImpl<T, $Res> implements $MultiFileCopyWith<T, $Res> {
+class _$MultiFileCopyWithImpl<T, $Res, $Val extends MultiFile<T>>
+    implements $MultiFileCopyWith<T, $Res> {
   _$MultiFileCopyWithImpl(this._value, this._then);
 
-  final MultiFile<T> _value;
   // ignore: unused_field
-  final $Res Function(MultiFile<T>) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? files = freezed,
-    Object? platformFiles = freezed,
+    Object? files = null,
+    Object? platformFiles = null,
   }) {
     return _then(_value.copyWith(
-      files: files == freezed
+      files: null == files
           ? _value.files
           : files // ignore: cast_nullable_to_non_nullable
               as List<T>,
-      platformFiles: platformFiles == freezed
+      platformFiles: null == platformFiles
           ? _value.platformFiles
           : platformFiles // ignore: cast_nullable_to_non_nullable
               as List<PlatformFile>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -65,31 +69,30 @@ abstract class _$$_MultiFileCopyWith<T, $Res>
           _$_MultiFile<T> value, $Res Function(_$_MultiFile<T>) then) =
       __$$_MultiFileCopyWithImpl<T, $Res>;
   @override
+  @useResult
   $Res call({List<T> files, List<PlatformFile> platformFiles});
 }
 
 /// @nodoc
 class __$$_MultiFileCopyWithImpl<T, $Res>
-    extends _$MultiFileCopyWithImpl<T, $Res>
+    extends _$MultiFileCopyWithImpl<T, $Res, _$_MultiFile<T>>
     implements _$$_MultiFileCopyWith<T, $Res> {
   __$$_MultiFileCopyWithImpl(
       _$_MultiFile<T> _value, $Res Function(_$_MultiFile<T>) _then)
-      : super(_value, (v) => _then(v as _$_MultiFile<T>));
+      : super(_value, _then);
 
-  @override
-  _$_MultiFile<T> get _value => super._value as _$_MultiFile<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? files = freezed,
-    Object? platformFiles = freezed,
+    Object? files = null,
+    Object? platformFiles = null,
   }) {
     return _then(_$_MultiFile<T>(
-      files: files == freezed
+      files: null == files
           ? _value._files
           : files // ignore: cast_nullable_to_non_nullable
               as List<T>,
-      platformFiles: platformFiles == freezed
+      platformFiles: null == platformFiles
           ? _value._platformFiles
           : platformFiles // ignore: cast_nullable_to_non_nullable
               as List<PlatformFile>,
@@ -146,6 +149,7 @@ class _$_MultiFile<T> extends _MultiFile<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MultiFileCopyWith<T, _$_MultiFile<T>> get copyWith =>
       __$$_MultiFileCopyWithImpl<T, _$_MultiFile<T>>(this, _$identity);
 }

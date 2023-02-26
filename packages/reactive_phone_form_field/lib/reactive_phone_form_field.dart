@@ -114,7 +114,6 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     TextAlignVertical? textAlignVertical,
     bool autofocus = false,
     bool readOnly = false,
-    ToolbarOptions? toolbarOptions,
     bool? showCursor,
     bool obscureText = false,
     String obscuringCharacter = '•',
@@ -152,6 +151,9 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     ui.BoxWidthStyle selectionWidthStyle = ui.BoxWidthStyle.tight,
     TextStyle? countryCodeStyle,
     bool enableIMEPersonalizedLearning = true,
+    bool isCountrySelectionEnabled = true,
+    bool isCountryChipPersistent = false,
+    ReactiveFormFieldCallback<T>? onChanged,
   }) : super(
           key: key,
           formControl: formControl,
@@ -171,7 +173,10 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
               focusNode: state.focusNode,
               controller: state._textController,
               shouldFormat: shouldFormat,
-              onChanged: field.didChange,
+              onChanged: (value) {
+                field.didChange(value);
+                onChanged?.call(field.control);
+              },
               autofillHints: autofillHints,
               autofocus: autofocus,
               enabled: field.control.enabled,
@@ -196,7 +201,6 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
               strutStyle: strutStyle,
               textAlign: textAlign,
               textAlignVertical: textAlignVertical,
-              toolbarOptions: toolbarOptions,
               showCursor: showCursor,
               obscureText: obscureText,
               autocorrect: autocorrect,
@@ -226,6 +230,8 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
               selectionHeightStyle: selectionHeightStyle,
               selectionWidthStyle: selectionWidthStyle,
               enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+              isCountrySelectionEnabled: isCountrySelectionEnabled,
+              isCountryChipPersistent: isCountryChipPersistent,
             );
           },
         );
