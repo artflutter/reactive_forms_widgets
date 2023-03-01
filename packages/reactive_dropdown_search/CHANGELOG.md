@@ -1,3 +1,7 @@
+## [1.0.0]
+* package version bump
+* min flutter version 3.7.0
+
 ## [0.13.0]
 * package version bump
 
