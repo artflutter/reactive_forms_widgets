@@ -2,7 +2,7 @@ library reactive_month_picker_dialog;
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:month_picker_dialog_2/month_picker_dialog_2.dart';
+import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 final _effectiveValueAccessor = DateTimeValueAccessor(
@@ -63,6 +63,21 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
     DateTime? firstDate,
     DateTime? lastDate,
     Locale? locale,
+    bool Function(DateTime)? selectableMonthPredicate,
+    bool capitalizeFirstLetter = true,
+    Color? headerColor,
+    Color? headerTextColor,
+    Color? selectedMonthBackgroundColor,
+    Color? selectedMonthTextColor,
+    Color? unselectedMonthTextColor,
+    Widget? confirmText,
+    Widget? cancelText,
+    double? customHeight,
+    double? customWidth,
+    bool yearFirst = false,
+    bool dismissible = false,
+    double roundedCornersRadius = 0,
+    bool forceSelectedDate = false,
   }) : super(
           key: key,
           formControl: formControl,
@@ -108,10 +123,28 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
                     ),
                     firstDate: firstDate ?? DateTime(1900),
                     lastDate: effectiveLastDate,
+                    locale: locale,
+                    selectableMonthPredicate: selectableMonthPredicate,
+                    capitalizeFirstLetter: capitalizeFirstLetter,
+                    headerColor: headerColor,
+                    headerTextColor: headerTextColor,
+                    selectedMonthBackgroundColor: selectedMonthBackgroundColor,
+                    selectedMonthTextColor: selectedMonthTextColor,
+                    unselectedMonthTextColor: unselectedMonthTextColor,
+                    confirmWidget: confirmText,
+                    cancelWidget: cancelText,
+                    customHeight: customHeight,
+                    customWidth: customWidth,
+                    yearFirst: yearFirst,
+                    dismissible: dismissible,
+                    roundedCornersRadius: roundedCornersRadius,
+                    forceSelectedDate: forceSelectedDate,
                   );
 
                   field.didChange(
-                    effectiveValueAccessor.modelToViewValue(date),
+                    date == null
+                        ? field.value
+                        : effectiveValueAccessor.modelToViewValue(date),
                   );
                   field.control.markAsTouched();
                 },
@@ -125,7 +158,7 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
                     field.value ?? '',
                     style: Theme.of(field.context)
                         .textTheme
-                        .subtitle1
+                        .titleMedium
                         ?.merge(style),
                   ),
                 ),

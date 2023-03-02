@@ -43,6 +43,13 @@ class MyApp extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
+                    TextButton(
+                      onPressed: () {
+                        form.control('switch').value =
+                            !(form.control('switch').value as bool);
+                      },
+                      child: const Text('Toggle'),
+                    ),
                     ElevatedButton(
                       child: const Text('Sign Up'),
                       onPressed: () {

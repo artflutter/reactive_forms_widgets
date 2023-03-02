@@ -1,5 +1,7 @@
 library reactive_advanced_switch;
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -140,10 +142,16 @@ class ReactiveAdvancedSwitch<T> extends ReactiveFormField<T, bool> {
 
 class _ReactiveAdvancedSwitchState<T> extends ReactiveFormFieldState<T, bool> {
   late ValueNotifier<bool> _advancedSwitchController;
+  late StreamSubscription<T?> _valueChangesSubscription;
 
   @override
   void initState() {
     super.initState();
+
+    _valueChangesSubscription = control.valueChanges.listen((value) {
+      _advancedSwitchController.value =
+          valueAccessor.modelToViewValue(value) ?? false;
+    });
 
     _advancedSwitchController = ValueNotifier<bool>(
       valueAccessor.modelToViewValue(control.value) ?? false,
@@ -157,6 +165,7 @@ class _ReactiveAdvancedSwitchState<T> extends ReactiveFormFieldState<T, bool> {
 
   @override
   void dispose() {
+    _valueChangesSubscription.cancel();
     _advancedSwitchController.dispose();
     super.dispose();
   }
