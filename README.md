@@ -48,3 +48,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveToggleSwitch](https://pub.dev/packages/reactive_toggle_switch)** - wrapper around [`toggle_switch`](https://pub.dev/packages/toggle_switch)
 - **[ReactiveFileSelector](https://pub.dev/packages/reactive_file_selector)** - wrapper around [`file_selector`](https://pub.dev/packages/file_selector)
 - **[ReactiveFluent*](https://pub.dev/packages/reactive_fluent_ui)** - wrapper around [`fluent_ui`](https://pub.dev/packages/fluent_ui)
+- **[ReactiveSfSignaturePad](https://pub.dev/packages/reactive_sf_signaturepad)** - wrapper around [`syncfusion_flutter_signaturepad`](https://pub.dev/packages/syncfusion_flutter_signaturepad)

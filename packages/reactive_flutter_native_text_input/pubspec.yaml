@@ -1,7 +1,7 @@
 name: reactive_flutter_native_text_input
 description: Wrapper around flutter_native_text_input to use with reactive_forms.
 version: 0.2.0
-repository: https://github.com/artflutter/reactive_flutter_native_text_input
+repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_flutter_native_text_input
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
 environment:

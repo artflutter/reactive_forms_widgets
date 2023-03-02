@@ -1,7 +1,7 @@
 name: reactive_cup_slide_segmented
 description: Wrapper around `flutter_colorpicker` to use with `reactive_forms`.
 version: 0.5.0
-repository: https://github.com/artflutter/reactive_forms_widgets
+repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_cup_slide_segmented
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
 environment:

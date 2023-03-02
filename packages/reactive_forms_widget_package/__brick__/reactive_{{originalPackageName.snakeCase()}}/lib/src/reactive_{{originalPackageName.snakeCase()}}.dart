@@ -74,7 +74,9 @@ class Reactive{{originalPackageName.pascalCase()}}<T, V> extends ReactiveFormFie
   /// For documentation about the various parameters, see the [{{originalPackageName.pascalCase()}}] class
   /// and [{{originalPackageName.pascalCase()}}], the constructor.
   Reactive{{originalPackageName.pascalCase()}}(
-      {Key? key,
+      {
+        Key? key,
+        Key? widgetKey,
         String? formControlName,
         FormControl<T>? formControl,
         Map<String, ValidationMessageFunction>? validationMessages,
@@ -93,7 +95,7 @@ class Reactive{{originalPackageName.pascalCase()}}<T, V> extends ReactiveFormFie
     showErrors: showErrors,
     builder: (field) {
       return {{originalPackageName.pascalCase()}}(
-
+        key: widgetKey,
       );
     },
   );

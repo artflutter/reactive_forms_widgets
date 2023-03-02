@@ -1,7 +1,7 @@
 name: reactive_pinput
 description: Wrapper around pinput to use with reactive_forms.
 version: 0.8.0
-repository: https://github.com/artflutter/reactive_forms_widgets
+repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_pinput
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
 environment:

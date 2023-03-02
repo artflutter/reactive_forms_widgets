@@ -1,7 +1,7 @@
 name: reactive_awesome_select
 description: Wrapper around flutter_awesome_select to work with reactive_forms
 version: 0.7.0
-repository: https://github.com/artflutter/reactive_forms_widgets
+repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_awesome_select
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
 environment:

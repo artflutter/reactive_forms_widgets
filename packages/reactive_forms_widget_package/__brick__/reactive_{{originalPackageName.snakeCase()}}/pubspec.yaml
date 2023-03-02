@@ -1,7 +1,7 @@
 name: reactive_{{originalPackageName.snakeCase()}}
 description: Wrapper around {{originalPackageName.snakeCase()}} to use with reactive_forms.
 version: 0.0.1
-repository: https://github.com/artflutter/reactive_{{originalPackageName.snakeCase()}}
+repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_{{originalPackageName.snakeCase()}}
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
 environment:

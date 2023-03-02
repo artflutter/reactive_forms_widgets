@@ -1,7 +1,7 @@
 name: reactive_file_selector
 description: Wrapper around file_selector to use with reactive_forms.
 version: 0.0.1
-repository: https://github.com/artflutter/reactive_file_selector
+repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_file_selector/reactive_file_selector
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
 environment:
