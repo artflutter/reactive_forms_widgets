@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:reactive_image_picker/reactive_image_picker.dart';
 
 part 'image_file.freezed.dart';
 
@@ -12,6 +13,7 @@ class ImageFile with _$ImageFile {
     String? imageUrl,
     String? localImage,
     File? image,
+    XFile? xFile,
   }) = _ImageFile;
 
   bool get isEmpty {

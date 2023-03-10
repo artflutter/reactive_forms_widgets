@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'image_file.dart';
 
@@ -19,6 +19,7 @@ mixin _$ImageFile {
   String? get imageUrl => throw _privateConstructorUsedError;
   String? get localImage => throw _privateConstructorUsedError;
   File? get image => throw _privateConstructorUsedError;
+  XFile? get xFile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ImageFileCopyWith<ImageFile> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $ImageFileCopyWith<$Res> {
   factory $ImageFileCopyWith(ImageFile value, $Res Function(ImageFile) then) =
       _$ImageFileCopyWithImpl<$Res, ImageFile>;
   @useResult
-  $Res call({String? imageUrl, String? localImage, File? image});
+  $Res call({String? imageUrl, String? localImage, File? image, XFile? xFile});
 }
 
 /// @nodoc
@@ -49,6 +50,7 @@ class _$ImageFileCopyWithImpl<$Res, $Val extends ImageFile>
     Object? imageUrl = freezed,
     Object? localImage = freezed,
     Object? image = freezed,
+    Object? xFile = freezed,
   }) {
     return _then(_value.copyWith(
       imageUrl: freezed == imageUrl
@@ -63,6 +65,10 @@ class _$ImageFileCopyWithImpl<$Res, $Val extends ImageFile>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as File?,
+      xFile: freezed == xFile
+          ? _value.xFile
+          : xFile // ignore: cast_nullable_to_non_nullable
+              as XFile?,
     ) as $Val);
   }
 }
@@ -74,7 +80,7 @@ abstract class _$$_ImageFileCopyWith<$Res> implements $ImageFileCopyWith<$Res> {
       __$$_ImageFileCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? imageUrl, String? localImage, File? image});
+  $Res call({String? imageUrl, String? localImage, File? image, XFile? xFile});
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class __$$_ImageFileCopyWithImpl<$Res>
     Object? imageUrl = freezed,
     Object? localImage = freezed,
     Object? image = freezed,
+    Object? xFile = freezed,
   }) {
     return _then(_$_ImageFile(
       imageUrl: freezed == imageUrl
@@ -105,6 +112,10 @@ class __$$_ImageFileCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as File?,
+      xFile: freezed == xFile
+          ? _value.xFile
+          : xFile // ignore: cast_nullable_to_non_nullable
+              as XFile?,
     ));
   }
 }
@@ -112,7 +123,8 @@ class __$$_ImageFileCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ImageFile extends _ImageFile {
-  const _$_ImageFile({this.imageUrl, this.localImage, this.image}) : super._();
+  const _$_ImageFile({this.imageUrl, this.localImage, this.image, this.xFile})
+      : super._();
 
   @override
   final String? imageUrl;
@@ -120,10 +132,12 @@ class _$_ImageFile extends _ImageFile {
   final String? localImage;
   @override
   final File? image;
+  @override
+  final XFile? xFile;
 
   @override
   String toString() {
-    return 'ImageFile(imageUrl: $imageUrl, localImage: $localImage, image: $image)';
+    return 'ImageFile(imageUrl: $imageUrl, localImage: $localImage, image: $image, xFile: $xFile)';
   }
 
   @override
@@ -135,11 +149,13 @@ class _$_ImageFile extends _ImageFile {
                 other.imageUrl == imageUrl) &&
             (identical(other.localImage, localImage) ||
                 other.localImage == localImage) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.xFile, xFile) || other.xFile == xFile));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, imageUrl, localImage, image);
+  int get hashCode =>
+      Object.hash(runtimeType, imageUrl, localImage, image, xFile);
 
   @JsonKey(ignore: true)
   @override
@@ -152,7 +168,8 @@ abstract class _ImageFile extends ImageFile {
   const factory _ImageFile(
       {final String? imageUrl,
       final String? localImage,
-      final File? image}) = _$_ImageFile;
+      final File? image,
+      final XFile? xFile}) = _$_ImageFile;
   const _ImageFile._() : super._();
 
   @override
@@ -161,6 +178,8 @@ abstract class _ImageFile extends ImageFile {
   String? get localImage;
   @override
   File? get image;
+  @override
+  XFile? get xFile;
   @override
   @JsonKey(ignore: true)
   _$$_ImageFileCopyWith<_$_ImageFile> get copyWith =>

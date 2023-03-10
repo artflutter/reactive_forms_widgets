@@ -275,7 +275,10 @@ class ImagePickerWidget extends StatelessWidget {
       );
 
       if (pickedFile != null) {
-        final imageFile = value.copyWith(image: File(pickedFile.path));
+        final imageFile = value.copyWith(
+          image: File(pickedFile.path),
+          xFile: pickedFile,
+        );
 
         onChanged(await onBeforeChange?.call(context, imageFile) ??
             await _onBeforeChange(imageFile));
