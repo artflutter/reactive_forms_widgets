@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:highlight/languages/dart.dart';
-import 'package:reactive_code_text_field/reactive_code_text_field.dart';
+import 'package:reactive_multi_select_flutter/reactive_multi_select_flutter.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 void main() {
@@ -11,15 +10,13 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   FormGroup buildForm() => fb.group({
-        'input': FormControl<String>(
-          value: "void main() {\n    print(\"Hello, world!\");\n}",
-        ),
+        'input': FormControl<List<String>>(value: null),
+        'chip': FormControl<List<String>>(value: null),
       });
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -38,18 +35,23 @@ class MyApp extends StatelessWidget {
               builder: (context, form, child) {
                 return Column(
                   children: [
-                    ReactiveCodeTextField<String>(
+                    ReactiveMultiSelectDialogField<String, String>(
                       formControlName: 'input',
-                      controller: CodeController(language: dart),
+                      items: [
+                        MultiSelectItem('a', 'a'),
+                      ],
+                    ),
+                    ReactiveMultiSelectChipField<String, String>(
+                      formControlName: 'chip',
+                      items: [
+                        MultiSelectItem('a', 'a'),
+                      ],
                     ),
                     ElevatedButton(
-                      child: const Text('Sign Up'),
+                      child: const Text('Submit'),
                       onPressed: () {
                         if (form.valid) {
-                          // ignore: avoid_print
-                          print(form.value);
-                        } else {
-                          form.markAllAsTouched();
+                          debugPrint(form.value.toString());
                         }
                       },
                     ),
