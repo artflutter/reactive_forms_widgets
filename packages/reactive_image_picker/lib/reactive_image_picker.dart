@@ -2,6 +2,7 @@ library reactive_image_picker;
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -481,12 +482,26 @@ class _ImageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imageFile = image.image;
-    if (imageFile != null) {
+
+    if (!kIsWeb && imageFile != null) {
       return Image.file(imageFile, fit: BoxFit.cover);
     }
 
+    if (kIsWeb && image.xFile != null) {
+      return FutureBuilder<Uint8List>(
+        future: image.xFile!.readAsBytes(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Image.memory(snapshot.data!);
+          } else {
+            return const Offstage();
+          }
+        },
+      );
+    }
+
     final localImage = image.localImage;
-    if (localImage != null) {
+    if (localImage != null && !kIsWeb) {
       final file = File(localImage);
       return Image.memory(file.readAsBytesSync(), fit: BoxFit.cover);
     }

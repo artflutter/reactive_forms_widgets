@@ -17,7 +17,10 @@ class ImageFile with _$ImageFile {
   }) = _ImageFile;
 
   bool get isEmpty {
-    return imageUrl == null && localImage == null && image == null;
+    return imageUrl == null &&
+        localImage == null &&
+        image == null &&
+        xFile == null;
   }
 
   bool get isNotEmpty {
