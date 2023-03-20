@@ -11,8 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^14.2.0
-  pinput: ^2.2.23
+  reactive_forms: ^14.1.0
+  pinput: ^2.2.22
   smart_auth: ^1.0.8
 
 dev_dependencies:
