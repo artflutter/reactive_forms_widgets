@@ -37,7 +37,7 @@ typedef DeleteDialogBuilder = Future<void> Function(
 typedef PopupDialogBuilder = Future<ImageSource?> Function(
     BuildContext context);
 
-typedef OnBeforeChangeCallback = Future<ImageFile> Function(
+typedef OnBeforeChangeCallback = Future<ImageFile?> Function(
     BuildContext context, ImageFile image);
 
 enum ImagePickerMode { image, video, multiImage }
@@ -294,7 +294,11 @@ class ImagePickerWidget extends StatelessWidget {
       if (pickedFile != null) {
         final imageFile = value.copyWith(image: File(pickedFile.path));
 
-        return await onBeforeChange?.call(context, imageFile) ?? imageFile;
+        if (onBeforeChange != null) {
+          return await onBeforeChange?.call(context, imageFile);
+        }
+
+        return imageFile;
       }
     } on PlatformException catch (e) {
       await processPickerError?.call(e);

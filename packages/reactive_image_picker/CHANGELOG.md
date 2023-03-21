@@ -1,3 +1,6 @@
+## [1.0.1]
+* small bugfix
+
 ## [1.0.0]
 * breaking changes
 
