@@ -98,7 +98,8 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
     TextCapitalization textCapitalization = TextCapitalization.none,
     TextInputAction? textInputAction,
     bool autofocus = false,
-    Widget Function(BuildContext context, EditableTextState editableTextState)? contextMenuBuilder,
+    Widget Function(BuildContext context, EditableTextState editableTextState)?
+        contextMenuBuilder,
     bool obscureText = false,
     List<TextInputFormatter> inputFormatters = const [],
     Brightness? keyboardAppearance,
@@ -148,6 +149,7 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
     AppPrivateCommandCallback? onAppPrivateCommand,
     TextSelectionControls? selectionControls,
     Iterable<String>? autofillHints,
+    bool enableIMEPersonalizedLearning = false,
   }) : super(
           key: key,
           formControl: formControl,
@@ -217,6 +219,7 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
               onCompleted: onCompleted,
               onSubmitted: onSubmitted,
               onLongPress: onLongPress,
+              enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
             );
           },
         );
