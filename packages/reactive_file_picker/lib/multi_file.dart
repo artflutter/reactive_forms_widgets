@@ -10,5 +10,5 @@ class MultiFile<T> with _$MultiFile<T> {
   const factory MultiFile({
     @Default([]) List<T> files,
     @Default([]) List<PlatformFile> platformFiles,
-  }) = _MultiFile;
+  }) = _MultiFile<T>;
 }
