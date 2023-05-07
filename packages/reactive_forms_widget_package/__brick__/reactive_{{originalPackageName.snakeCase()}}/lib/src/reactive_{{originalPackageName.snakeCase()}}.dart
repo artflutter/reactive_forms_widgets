@@ -75,24 +75,19 @@ class Reactive{{originalPackageName.pascalCase()}}<T, V> extends ReactiveFormFie
   /// and [{{originalPackageName.pascalCase()}}], the constructor.
   Reactive{{originalPackageName.pascalCase()}}(
       {
-        Key? key,
+        super.key,
         Key? widgetKey,
-        String? formControlName,
-        FormControl<T>? formControl,
-        Map<String, ValidationMessageFunction>? validationMessages,
-        ControlValueAccessor<T, V>? valueAccessor,
-        ShowErrorsFunction? showErrors,
+        super.formControlName,
+        super.formControl,
+        super.validationMessages,
+        super.valueAccessor,
+        super.showErrors,
+        super.focusNode,
 
         //////////////////////////////////////////////////////////////////////////
         // put component specific params here
     })
-      : super(
-    key: key,
-    formControl: formControl,
-    formControlName: formControlName,
-    valueAccessor: valueAccessor,
-    validationMessages: validationMessages,
-    showErrors: showErrors,
+      : super( 
     builder: (field) {
       return {{originalPackageName.pascalCase()}}(
         key: widgetKey,
