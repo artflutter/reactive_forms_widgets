@@ -74,5 +74,5 @@ Future<int> _runProcess(
   if (exitCode != 0) {
     exit(exitCode);
   }
-  return process.exitCode;
+  return exitCode;
 }
