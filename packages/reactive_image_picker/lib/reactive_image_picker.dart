@@ -2,52 +2,28 @@
 
 library reactive_image_picker;
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:reactive_image_picker/image_picker_widget.dart';
+import 'package:reactive_image_picker/selected_file_view.dart';
 
 import 'image_file.dart';
 
 export 'package:image_picker/image_picker.dart';
 
-typedef ImageViewBuilder = Widget Function(ImageFile image);
-
-typedef ImageBuilder = Widget Function(
-    ImageFile image, VoidCallback handleDelete, VoidCallback selectImage);
-
-typedef InputButtonBuilder = Widget Function(VoidCallback onPressed);
-
-typedef ErrorBuilder = Map<String, Object> Function(
-  String errorCode,
-  Object error,
-);
-
-typedef PreprocessPickerError = Future<void> Function(
-  Object error,
-);
-
-typedef DeleteDialogBuilder = Future<void> Function(
-  BuildContext context,
-  VoidCallback onConfirm,
-);
-
-typedef PopupDialogBuilder = Future<ImageSource?> Function(
-    BuildContext context);
-
-typedef OnBeforeChangeCallback = Future<ImageFile?> Function(
-    BuildContext context, ImageFile image);
-
-enum ImagePickerMode { image, video, multiImage }
+enum ImagePickerMode {
+  cameraImage,
+  galleryImage,
+  galleryMultiImage,
+  galleryVideo,
+  cameraVideo,
+}
 
 typedef ImagePickCallback = void Function(
   BuildContext context,
   ImageSource source,
 );
-
-final x = FocusNode();
 
 /// A [ReactiveImagePicker] that contains a [DropdownSearch].
 ///
@@ -56,7 +32,8 @@ final x = FocusNode();
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
+class ReactiveImagePicker
+    extends ReactiveFormField<List<SelectedFile>, List<SelectedFile>> {
   /// Creates a [ReactiveImagePicker] that contains a [DropdownSearch].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -122,14 +99,14 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
   ReactiveImagePicker({
     Key? key,
     String? formControlName,
-    FormControl<ImageFile>? formControl,
+    FormControl<List<SelectedFile>>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<ImageFile, ImageFile>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ControlValueAccessor<List<SelectedFile>, List<SelectedFile>>? valueAccessor,
+    ShowErrorsFunction<List<SelectedFile>>? showErrors,
     InputDecoration? decoration,
     InputButtonBuilder? inputBuilder,
-    ImageViewBuilder? imageViewBuilder,
-    ImageBuilder? imageBuilder,
+    SelectedFileViewBuilder? selectedFileViewBuilder,
+    SelectedValueBuilder? selectedValueBuilder,
     DeleteDialogBuilder? deleteDialogBuilder,
     ErrorBuilder? errorBuilder,
     PreprocessPickerError? preprocessError,
@@ -145,7 +122,9 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
     CameraDevice preferredCameraDevice = CameraDevice.rear,
     Duration? maxDuration,
     double disabledOpacity = 0.5,
-    // ImagePickerMode mode = ImagePickerMode.image,
+    List<ImagePickerMode> modes = ImagePickerMode.values,
+    SelectedImageBuilder? selectedImageBuilder,
+    SelectedVideoBuilder? selectedVideoBuilder,
   }) : super(
           key: key,
           formControl: formControl,
@@ -157,15 +136,15 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
-            // TextField
 
             return IgnorePointer(
               ignoring: !field.control.enabled,
               child: Opacity(
                 opacity: field.control.enabled ? 1 : disabledOpacity,
                 child: ImagePickerWidget(
-                  imageViewBuilder: imageViewBuilder,
-                  imageBuilder: imageBuilder,
+                  modes: modes,
+                  selectedFileViewBuilder: selectedFileViewBuilder,
+                  selectedValueBuilder: selectedValueBuilder,
                   onBeforePick: () async {
                     field.control.focus();
                     field.control.updateValueAndValidity();
@@ -179,19 +158,20 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
                   onBeforeChange: onBeforeChange,
                   processPickerError: preprocessError,
                   inputBuilder: inputBuilder,
-                  imageContainerDecoration: imageContainerDecoration,
                   deleteDialogBuilder: deleteDialogBuilder,
                   editIcon: editIcon,
                   deleteIcon: deleteIcon,
                   decoration:
                       effectiveDecoration.copyWith(errorText: field.errorText),
                   onChanged: field.didChange,
-                  value: field.value ?? const ImageFile(),
+                  value: field.value ?? [],
                   maxHeight: maxHeight,
                   maxWidth: maxWidth,
                   imageQuality: imageQuality,
                   preferredCameraDevice: preferredCameraDevice,
                   maxDuration: maxDuration,
+                  selectedImageBuilder: selectedImageBuilder,
+                  selectedVideoBuilder: selectedVideoBuilder,
                 ),
               ),
             );
@@ -222,299 +202,5 @@ class ReactiveImagePicker extends ReactiveFormField<ImageFile, ImageFile> {
     }
 
     return error;
-  }
-}
-
-class ImagePickerWidget extends StatelessWidget {
-  final InputDecoration decoration;
-  final OnBeforeChangeCallback? onBeforeChange;
-  final BoxDecoration? imageContainerDecoration;
-  final Widget? editIcon;
-  final Widget? deleteIcon;
-  final InputButtonBuilder? inputBuilder;
-  final ImageViewBuilder? imageViewBuilder;
-  final ImageBuilder? imageBuilder;
-  final DeleteDialogBuilder? deleteDialogBuilder;
-  final PreprocessPickerError? processPickerError;
-  final PopupDialogBuilder? popupDialogBuilder;
-  final ImageFile value;
-  final bool enabled;
-  final double? maxWidth;
-  final double? maxHeight;
-  final int? imageQuality;
-  final CameraDevice preferredCameraDevice;
-  final ValueChanged<ImageFile?> onChanged;
-  final Duration? maxDuration;
-  final bool requestFullMetadata;
-  final Future<void> Function()? onBeforePick;
-  final Future<void> Function()? onAfterPick;
-
-  // final ImagePickerMode mode;
-
-  const ImagePickerWidget({
-    Key? key,
-    required this.value,
-    this.enabled = true,
-    required this.onChanged,
-    required this.decoration,
-    this.imageViewBuilder,
-    this.imageBuilder,
-    this.inputBuilder,
-    this.imageContainerDecoration,
-    this.editIcon,
-    this.deleteIcon,
-    this.deleteDialogBuilder,
-    this.processPickerError,
-    this.popupDialogBuilder,
-    this.onBeforeChange,
-    this.maxWidth,
-    this.maxHeight,
-    this.imageQuality,
-    this.preferredCameraDevice = CameraDevice.rear,
-    this.maxDuration,
-    this.requestFullMetadata = true,
-    this.onBeforePick,
-    this.onAfterPick,
-  }) : super(key: key);
-
-  Future<ImageFile?> _onImageButtonPressed(
-      BuildContext context, ImageSource source) async {
-    final picker = ImagePicker();
-
-    try {
-      final pickedFile = await picker.pickImage(
-        source: source,
-        maxHeight: maxHeight,
-        maxWidth: maxWidth,
-        imageQuality: imageQuality,
-        preferredCameraDevice: preferredCameraDevice,
-        requestFullMetadata: requestFullMetadata,
-      );
-
-      if (pickedFile != null) {
-        final imageFile = value.copyWith(image: File(pickedFile.path));
-
-        if (onBeforeChange != null) {
-          return await onBeforeChange?.call(context, imageFile);
-        }
-
-        return imageFile;
-      }
-    } on PlatformException catch (e) {
-      await processPickerError?.call(e);
-    } catch (e) {
-      await processPickerError?.call(e);
-    }
-
-    return null;
-  }
-
-  // void _onVideoButtonPressed(BuildContext context, ImageSource source) async {
-  //   final picker = ImagePicker();
-  //
-  //   try {
-  //     final pickedFile = await picker.pickVideo(
-  //       source: source,
-  //       maxDuration: maxDuration,
-  //       preferredCameraDevice: preferredCameraDevice,
-  //     );
-  //
-  //     if (pickedFile != null) {
-  //       final imageFile = value.copyWith(image: File(pickedFile.path));
-  //
-  //       onChanged(await onBeforeChange?.call(context, imageFile) ??
-  //           await _onBeforeChange(imageFile));
-  //     }
-  //   } catch (e) {
-  //     errorPickBuilder?.call(source, context: context);
-  //   }
-  // }
-
-  Future<ImageSource?> _widgetPopupDialog(BuildContext context) async {
-    return await showModalBottomSheet<ImageSource>(
-      isScrollControlled: true,
-      context: context,
-      builder: (context) => Row(
-        children: <Widget>[
-          Expanded(
-              flex: 3,
-              child: SafeArea(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    ListTile(
-                      leading: const Icon(Icons.photo_camera),
-                      title: const Text('Take photo'),
-                      onTap: () =>
-                          Navigator.of(context).pop(ImageSource.camera),
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.photo),
-                      title: const Text('Choose from library'),
-                      onTap: () =>
-                          Navigator.of(context).pop(ImageSource.gallery),
-                    ),
-                    // ListTile(
-                    //   leading: Icon(Icons.video_call),
-                    //   title: Text('Take video'),
-                    //   onTap: () {
-                    //     Navigator.of(context).pop();
-                    //     _onVideoButtonPressed(
-                    //       context,
-                    //       ImageSource.camera,
-                    //     );
-                    //   },
-                    // ),
-                    // ListTile(
-                    //   leading: Icon(Icons.video_call),
-                    //   title: Text('Choose video from library'),
-                    //   onTap: () {
-                    //     Navigator.of(context).pop();
-                    //     _onVideoButtonPressed(
-                    //       context,
-                    //       ImageSource.gallery,
-                    //     );
-                    //   },
-                    // ),
-                    ListTile(
-                      leading: const Icon(Icons.clear),
-                      title: const Text('Cancel'),
-                      onTap: Navigator.of(context).pop,
-                    )
-                  ],
-                ),
-              )),
-        ],
-      ),
-    );
-  }
-
-  void _buildPopupMenu(BuildContext context) async {
-    await onBeforePick?.call();
-    final source = await (popupDialogBuilder?.call(context) ??
-        _widgetPopupDialog(context));
-
-    if (source != null) {
-      final file = await _onImageButtonPressed(context, source);
-
-      if ((value.isNotEmpty && file != null) || value.isEmpty) {
-        onChanged(file);
-      }
-    }
-    await onAfterPick?.call();
-  }
-
-  void _onConfirm() => onChanged(null);
-
-  void _handleDelete(BuildContext context) async {
-    if (deleteDialogBuilder != null) {
-      await deleteDialogBuilder?.call(context, _onConfirm);
-      return;
-    }
-
-    await showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Delete image"),
-          content: const Text("This action could not be undone"),
-          actions: [
-            TextButton(
-              child: const Text("CLOSE"),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-            TextButton(
-              child: const Text("CONFIRM"),
-              onPressed: () {
-                _onConfirm();
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Widget _buildImage(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: imageContainerDecoration ??
-          BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
-          ),
-      child: imageBuilder?.call(value, () => _handleDelete(context),
-              () => _buildPopupMenu(context)) ??
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              imageViewBuilder?.call(value) ??
-                  SizedBox(
-                    height: 250,
-                    child: _ImageView(image: value),
-                  ),
-              if (enabled)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    IconButton(
-                      onPressed: () => _buildPopupMenu(context),
-                      icon: editIcon ?? const Icon(Icons.edit),
-                    ),
-                    const SizedBox(width: 8),
-                    IconButton(
-                      onPressed: () => _handleDelete(context),
-                      icon: deleteIcon ?? const Icon(Icons.delete),
-                    )
-                  ],
-                )
-            ],
-          ),
-    );
-  }
-
-  Widget _buildInput(BuildContext context) {
-    return inputBuilder?.call(() => _buildPopupMenu(context)) ??
-        OutlinedButton.icon(
-          onPressed: () => _buildPopupMenu(context),
-          icon: const Icon(Icons.add, color: Color(0xFF00A7E1)),
-          label: const Text('Pick image'),
-        );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return InputDecorator(
-      decoration: decoration,
-      child: value.isNotEmpty ? _buildImage(context) : _buildInput(context),
-    );
-  }
-}
-
-class _ImageView extends StatelessWidget {
-  final ImageFile image;
-
-  const _ImageView({Key? key, required this.image}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final imageFile = image.image;
-    if (imageFile != null) {
-      return Image.file(imageFile, fit: BoxFit.cover);
-    }
-
-    final localImage = image.localImage;
-    if (localImage != null) {
-      final file = File(localImage);
-      return Image.memory(file.readAsBytesSync(), fit: BoxFit.cover);
-    }
-
-    final imageUrl = image.imageUrl;
-    if (imageUrl != null) {
-      return Image.network(imageUrl);
-    }
-
-    return Container();
   }
 }

@@ -1,3 +1,8 @@
+## [2.0.0]
+* refactoring
+* image, image gallery, multi image gallery, video, gallery video support
+* web support
+
 ## [1.0.1]
 * small bugfix
 

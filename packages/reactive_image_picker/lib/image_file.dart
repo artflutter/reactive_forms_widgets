@@ -5,17 +5,21 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'image_file.freezed.dart';
 
 @freezed
-class ImageFile with _$ImageFile {
-  const ImageFile._();
+class SelectedFile with _$SelectedFile {
+  SelectedFile._();
 
-  const factory ImageFile({
-    String? imageUrl,
-    String? localImage,
-    File? image,
-  }) = _ImageFile;
+  factory SelectedFile.video({
+    String? url,
+    File? file,
+  }) = SelectedFileVideo;
+
+  factory SelectedFile.image({
+    String? url,
+    File? file,
+  }) = SelectedFileImage;
 
   bool get isEmpty {
-    return imageUrl == null && localImage == null && image == null;
+    return url == null && file == null;
   }
 
   bool get isNotEmpty {
