@@ -1,3 +1,6 @@
+## [2.0.1]
+* package version bump
+
 ## [2.0.0]
 * refactoring
 * image, image gallery, multi image gallery, video, gallery video support
