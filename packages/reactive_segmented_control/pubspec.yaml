@@ -1,6 +1,6 @@
 name: reactive_segmented_control
 description: Wrapper around CupertinoSegmentedControl to use with reactive_forms
-version: 0.6.1
+version: 1.0.0
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_segmented_control
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 

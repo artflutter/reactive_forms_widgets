@@ -1,5 +1,5 @@
-## [0.6.1]
-* package version bump
+## [1.0.0]
+* reactive_forms update
 
 ## [0.6.0]
 * package version bump

@@ -1,5 +1,5 @@
-## [0.6.2]
-* package version bump
+## [1.0.0]
+* reactive_forms update
 
 ## [0.6.1]
 * fix https://github.com/artflutter/reactive_forms_widgets/issues/82
