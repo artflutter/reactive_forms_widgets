@@ -1,6 +1,6 @@
 name: reactive_sf_signaturepad
 description: Wrapper around syncfusion_flutter_signaturepad to use with reactive_forms.
-version: 0.0.3
+version: 1.0.0
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_sf_signaturepad
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   syncfusion_flutter_signaturepad: ^20.4.52
-  reactive_forms: ^14.2.0
+  reactive_forms: ^15.0.0
 
 dev_dependencies:
   flutter_test:

@@ -113,7 +113,7 @@ class ReactiveCartStepper<T, V extends num> extends ReactiveFormField<T, V> {
                 child: IgnorePointer(
                   ignoring: !field.control.enabled,
                   child: CartStepper<V>(
-                    count: field.value,
+                    value: field.value,
                     stepper: stepper,
                     didChangeCount: field.didChange,
                     size: size,

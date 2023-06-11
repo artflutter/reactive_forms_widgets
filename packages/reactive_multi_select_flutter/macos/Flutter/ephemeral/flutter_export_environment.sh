@@ -1,6 +1,6 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/vasilich/fvm/versions/stable"
+export "FLUTTER_ROOT=/Users/vasilich/fvm/versions/3.7.12"
 export "FLUTTER_APPLICATION_PATH=/Users/vasilich/IdeaProjects/reactive_forms_widgets/packages/reactive_multi_select_flutter"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"

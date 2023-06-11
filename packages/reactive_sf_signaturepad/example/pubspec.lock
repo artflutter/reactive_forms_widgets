@@ -135,17 +135,17 @@ packages:
     dependency: "direct main"
     description:
       name: reactive_forms
-      sha256: f81d29d633efcd254aaa18e877c1851e767e02d4fd2ee0b32de1e1574ef075d7
+      sha256: "7f3c7b53d5a875f002658bf675313d0d11795ee58cf8591f26c906b7a86c2b0a"
       url: "https://pub.dev"
     source: hosted
-    version: "14.2.0"
+    version: "15.0.0"
   reactive_sf_signaturepad:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.0.3"
+    version: "1.0.0"
   sky_engine:
     dependency: transitive
     description: flutter

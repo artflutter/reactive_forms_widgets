@@ -8,3 +8,5 @@ ignore:
   - "packages/.mason"
   - "packages/mason.yaml"
   - "packages/mason-lock.json"
+
+runPubGetInParallel: true
