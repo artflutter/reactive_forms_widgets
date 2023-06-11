@@ -1,3 +1,6 @@
+## [3.0.0]
+* reactive_forms update
+
 ## [2.0.0]
 * refactoring
 * image, image gallery, multi image gallery, video, gallery video support
