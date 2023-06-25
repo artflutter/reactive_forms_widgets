@@ -83,7 +83,7 @@ abstract class ReactiveFormControlValueListenerBase<T>
 
 class ReactiveFormControlValueListenerBaseState<T>
     extends SingleChildState<ReactiveFormControlValueListenerBase<T>> {
-  StreamSubscription? _subscription;
+  StreamSubscription<T?>? _subscription;
   late AbstractControl<T> _formControl;
   late T? _previousState;
 

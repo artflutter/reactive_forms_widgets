@@ -83,7 +83,7 @@ abstract class ReactiveFormControlTouchListenerBase<T>
 
 class ReactiveFormControlTouchListenerBaseState<T>
     extends SingleChildState<ReactiveFormControlTouchListenerBase<T>> {
-  StreamSubscription? _subscription;
+  StreamSubscription<bool>? _subscription;
   late AbstractControl<T> _formControl;
   late bool _previousState;
 
