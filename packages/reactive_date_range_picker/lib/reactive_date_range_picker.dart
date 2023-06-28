@@ -151,7 +151,7 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
                     errorText: field.errorText,
                     enabled: field.control.enabled,
                   ),
-                  isEmpty: isEmptyValue && effectiveDecoration.hintText == null,
+                  isEmpty: isEmptyValue,
                   child: Text(
                     field.value ?? '',
                     style: Theme.of(field.context)
