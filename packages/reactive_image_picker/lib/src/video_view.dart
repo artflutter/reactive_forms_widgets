@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:reactive_image_picker/image_file.dart';
+import 'package:reactive_image_picker/src/image_file.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoView extends StatefulWidget {

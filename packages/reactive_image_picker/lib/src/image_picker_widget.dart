@@ -4,45 +4,45 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:reactive_image_picker/reactive_image_picker.dart';
-import 'package:reactive_image_picker/selected_file_view.dart';
-import 'package:reactive_image_picker/widget_popup_dialog.dart';
+import 'package:reactive_image_picker/src/reactive_image_picker.dart';
+import 'package:reactive_image_picker/src/selected_file_view.dart';
+import 'package:reactive_image_picker/src/widget_popup_dialog.dart';
 
 import 'image_file.dart';
 
 typedef OnBeforeChangeCallback = Future<List<SelectedFile>> Function(
-    BuildContext context,
-    List<SelectedFile> value,
-    );
+  BuildContext context,
+  List<SelectedFile> value,
+);
 
 typedef SelectedFileViewBuilder = Widget Function(SelectedFile image);
 
 typedef SelectedValueBuilder = Widget Function(
-    List<SelectedFile> image,
-    OnDelete handleDelete,
-    OnChange handleChange,
-    );
+  List<SelectedFile> image,
+  OnDelete handleDelete,
+  OnChange handleChange,
+);
 
 typedef InputButtonBuilder = Widget Function(VoidCallback onPressed);
 
 typedef ErrorBuilder = Map<String, Object> Function(
-    String errorCode,
-    Object error,
-    );
+  String errorCode,
+  Object error,
+);
 
 typedef PreprocessPickerError = Future<void> Function(
-    Object error,
-    );
+  Object error,
+);
 
 typedef DeleteDialogBuilder = Future<void> Function(
-    BuildContext context,
-    Function(SelectedFile file) onConfirm,
-    );
+  BuildContext context,
+  Function(SelectedFile file) onConfirm,
+);
 
 typedef PopupDialogBuilder = Future<ImagePickerMode?> Function(
-    BuildContext context,
-    List<ImagePickerMode> mode,
-    );
+  BuildContext context,
+  List<ImagePickerMode> mode,
+);
 
 class ImagePickerWidget extends StatelessWidget {
   final InputDecoration decoration;
@@ -99,8 +99,10 @@ class ImagePickerWidget extends StatelessWidget {
     this.selectedVideoBuilder,
   }) : super(key: key);
 
-  Future<List<SelectedFile>> _onImageButtonPressed(BuildContext context,
-      ImagePickerMode mode,) async {
+  Future<List<SelectedFile>> _onImageButtonPressed(
+    BuildContext context,
+    ImagePickerMode mode,
+  ) async {
     List<SelectedFile> result = [];
     switch (mode) {
       case ImagePickerMode.cameraImage:
@@ -209,7 +211,7 @@ class ImagePickerWidget extends StatelessWidget {
 
       if (pickedFile.isNotEmpty) {
         final imageFile = pickedFile.map(
-              (e) => SelectedFile.image(file: File(e.path)),
+          (e) => SelectedFile.image(file: File(e.path)),
         );
 
         // if (onBeforeChange != null && context.mounted) {
@@ -353,10 +355,10 @@ class ImagePickerWidget extends StatelessWidget {
 
   Widget _buildImage(BuildContext context) {
     return selectedValueBuilder?.call(
-      value,
-      _handleDelete,
-      _handleChange,
-    ) ??
+          value,
+          _handleDelete,
+          _handleChange,
+        ) ??
         Container(
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(6)),
@@ -364,17 +366,17 @@ class ImagePickerWidget extends StatelessWidget {
               children: value
                   .map(
                     (e) =>
-                selectedFileViewBuilder?.call(e) ??
-                    SelectedFileView(
-                      file: e,
-                      selectedImageBuilder: selectedImageBuilder,
-                      selectedVideoBuilder: selectedVideoBuilder,
-                      changeIcon: editIcon,
-                      onChange: _handleChange,
-                      deleteIcon: deleteIcon,
-                      onDelete: _handleDelete,
-                    ),
-              )
+                        selectedFileViewBuilder?.call(e) ??
+                        SelectedFileView(
+                          file: e,
+                          selectedImageBuilder: selectedImageBuilder,
+                          selectedVideoBuilder: selectedVideoBuilder,
+                          changeIcon: editIcon,
+                          onChange: _handleChange,
+                          deleteIcon: deleteIcon,
+                          onDelete: _handleDelete,
+                        ),
+                  )
                   .toList(),
             ));
   }

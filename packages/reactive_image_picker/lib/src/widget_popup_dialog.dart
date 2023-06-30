@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reactive_image_picker/reactive_image_picker.dart';
+import 'package:reactive_image_picker/src/reactive_image_picker.dart';
 
 Future<ImagePickerMode?> widgetPopupDialog(
   BuildContext context,

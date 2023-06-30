@@ -4,7 +4,6 @@ import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_image_picker/image_file.dart';
 import 'package:reactive_image_picker/reactive_image_picker.dart';
 
 void main() {
