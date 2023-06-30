@@ -49,7 +49,7 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
     FormControl<DateTimeRange>? formControl,
     ControlValueAccessor<DateTimeRange, String>? valueAccessor,
     Map<String, ValidationMessageFunction>? validationMessages,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<DateTimeRange>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,
@@ -156,7 +156,7 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
                     field.value ?? '',
                     style: Theme.of(field.context)
                         .textTheme
-                        .subtitle1
+                        .titleMedium
                         ?.merge(style),
                   ),
                 ),

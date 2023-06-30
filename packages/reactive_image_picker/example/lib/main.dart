@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text('Photo access required'),
-            content: SingleChildScrollView(
+            content: const SingleChildScrollView(
               child: ListBody(
-                children: const <Widget>[
+                children: <Widget>[
                   Text(
                     'Open settings to allow access',
                   ),
@@ -54,9 +54,9 @@ class MyApp extends StatelessWidget {
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text('Camera access required'),
-            content: SingleChildScrollView(
+            content: const SingleChildScrollView(
               child: ListBody(
-                children: const <Widget>[
+                children: <Widget>[
                   Text(
                     'Open settings to allow access',
                   ),

@@ -10,7 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-typedef ControllerInitCallback = void Function(TextEditingController controller);
+typedef ControllerInitCallback = void Function(
+    TextEditingController controller);
 
 /// A [ReactiveRawAutocomplete] that contains a [TextField].
 ///
@@ -19,7 +20,8 @@ typedef ControllerInitCallback = void Function(TextEditingController controller)
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveRawAutocomplete<T, V extends Object> extends ReactiveFormField<T, V> {
+class ReactiveRawAutocomplete<T, V extends Object>
+    extends ReactiveFormField<T, V> {
   final ControllerInitCallback? onControllerInit;
 
   /// Creates a [ReactiveRawAutocomplete] that contains a [TextField].
@@ -91,14 +93,15 @@ class ReactiveRawAutocomplete<T, V extends Object> extends ReactiveFormField<T, 
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     // required List<V> options,
     required AutocompleteOptionsBuilder<V> optionsBuilder,
     AutocompleteFieldViewBuilder? fieldViewBuilder,
     required AutocompleteOptionsViewBuilder<V> optionsViewBuilder,
-    AutocompleteOptionToString<V> displayStringForOption = RawAutocomplete.defaultStringForOption,
+    AutocompleteOptionToString<V> displayStringForOption =
+        RawAutocomplete.defaultStringForOption,
     FocusNode? focusNode,
     V Function(String)? viewDataTypeFromTextEditingValue,
 
@@ -114,7 +117,6 @@ class ReactiveRawAutocomplete<T, V extends Object> extends ReactiveFormField<T, 
     TextAlignVertical? textAlignVertical,
     bool autofocus = false,
     bool readOnly = false,
-    ToolbarOptions? toolbarOptions,
     bool? showCursor,
     bool obscureText = false,
     String obscuringCharacter = '•',
@@ -161,7 +163,8 @@ class ReactiveRawAutocomplete<T, V extends Object> extends ReactiveFormField<T, 
           showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveRawAutocompleteState<T, V>;
-            final effectiveDecoration = decoration.applyDefaults(Theme.of(state.context).inputDecorationTheme);
+            final effectiveDecoration = decoration
+                .applyDefaults(Theme.of(state.context).inputDecorationTheme);
 
             state._setFocusNode(focusNode);
 
@@ -187,7 +190,8 @@ class ReactiveRawAutocomplete<T, V extends Object> extends ReactiveFormField<T, 
                       ),
                       onChanged: (value) {
                         if (viewDataTypeFromTextEditingValue != null) {
-                          field.didChange(viewDataTypeFromTextEditingValue.call(value));
+                          field.didChange(
+                              viewDataTypeFromTextEditingValue.call(value));
                         }
                       },
                       keyboardType: keyboardType,
@@ -199,15 +203,18 @@ class ReactiveRawAutocomplete<T, V extends Object> extends ReactiveFormField<T, 
                       textDirection: textDirection,
                       textCapitalization: textCapitalization,
                       autofocus: autofocus,
-                      toolbarOptions: toolbarOptions,
                       readOnly: readOnly,
                       showCursor: showCursor,
                       obscureText: obscureText,
                       autocorrect: autocorrect,
-                      smartDashesType:
-                          smartDashesType ?? (obscureText ? SmartDashesType.disabled : SmartDashesType.enabled),
-                      smartQuotesType:
-                          smartQuotesType ?? (obscureText ? SmartQuotesType.disabled : SmartQuotesType.enabled),
+                      smartDashesType: smartDashesType ??
+                          (obscureText
+                              ? SmartDashesType.disabled
+                              : SmartDashesType.enabled),
+                      smartQuotesType: smartQuotesType ??
+                          (obscureText
+                              ? SmartQuotesType.disabled
+                              : SmartQuotesType.enabled),
                       enableSuggestions: enableSuggestions,
                       maxLengthEnforcement: maxLengthEnforcement,
                       maxLines: maxLines,
@@ -215,7 +222,8 @@ class ReactiveRawAutocomplete<T, V extends Object> extends ReactiveFormField<T, 
                       expands: expands,
                       maxLength: maxLength,
                       onTap: onTap,
-                      onSubmitted: onSubmitted != null ? (_) => onSubmitted() : null,
+                      onSubmitted:
+                          onSubmitted != null ? (_) => onSubmitted() : null,
                       onEditingComplete: onEditingComplete,
                       inputFormatters: inputFormatters,
                       enabled: field.control.enabled,
@@ -239,7 +247,8 @@ class ReactiveRawAutocomplete<T, V extends Object> extends ReactiveFormField<T, 
                       selectionHeightStyle: selectionHeightStyle,
                       selectionWidthStyle: selectionWidthStyle,
                       scribbleEnabled: scribbleEnabled,
-                      enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+                      enableIMEPersonalizedLearning:
+                          enableIMEPersonalizedLearning,
                     );
                   },
             );
@@ -247,10 +256,12 @@ class ReactiveRawAutocomplete<T, V extends Object> extends ReactiveFormField<T, 
         );
 
   @override
-  ReactiveFormFieldState<T, V> createState() => _ReactiveRawAutocompleteState<T, V>();
+  ReactiveFormFieldState<T, V> createState() =>
+      _ReactiveRawAutocompleteState<T, V>();
 }
 
-class _ReactiveRawAutocompleteState<T, V extends Object> extends ReactiveFormFieldState<T, V> {
+class _ReactiveRawAutocompleteState<T, V extends Object>
+    extends ReactiveFormFieldState<T, V> {
   late TextEditingController _textController;
   FocusNode? _focusNode;
   late FocusController _focusController;
@@ -263,9 +274,12 @@ class _ReactiveRawAutocompleteState<T, V extends Object> extends ReactiveFormFie
     super.initState();
 
     final initialValue = value;
-    _textController = TextEditingController(text: initialValue == null ? '' : initialValue.toString());
+    _textController = TextEditingController(
+        text: initialValue == null ? '' : initialValue.toString());
 
-    (widget as ReactiveRawAutocomplete<T, V>).onControllerInit?.call(_textController);
+    (widget as ReactiveRawAutocomplete<T, V>)
+        .onControllerInit
+        ?.call(_textController);
   }
 
   @override

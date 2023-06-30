@@ -80,7 +80,7 @@ class ReactiveFluentTimePicker<T> extends ReactiveFormField<T, DateTime> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, DateTime>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     VoidCallback? onCancel,

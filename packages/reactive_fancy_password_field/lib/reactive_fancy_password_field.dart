@@ -3,8 +3,10 @@ library reactive_fancy_password_field;
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
 import 'package:fancy_password_field/fancy_password_field.dart';
+
 // ignore: implementation_imports
 import 'package:fancy_password_field/src/widget/strength_indicator_widget.dart';
+
 // ignore: implementation_imports
 import 'package:fancy_password_field/src/widget/validation_rules_widget.dart';
 import 'package:flutter/gestures.dart';
@@ -96,7 +98,7 @@ class ReactiveFancyPasswordField<T> extends ReactiveFormField<T, String> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(),
@@ -110,7 +112,6 @@ class ReactiveFancyPasswordField<T> extends ReactiveFormField<T, String> {
     TextAlignVertical? textAlignVertical,
     bool autofocus = false,
     bool readOnly = false,
-    ToolbarOptions? toolbarOptions,
     bool? showCursor,
     bool obscureText = false,
     String obscuringCharacter = '•',
@@ -195,7 +196,6 @@ class ReactiveFancyPasswordField<T> extends ReactiveFormField<T, String> {
               textDirection: textDirection,
               textCapitalization: textCapitalization,
               autofocus: autofocus,
-              toolbarOptions: toolbarOptions,
               readOnly: readOnly,
               showCursor: showCursor,
               autocorrect: autocorrect,

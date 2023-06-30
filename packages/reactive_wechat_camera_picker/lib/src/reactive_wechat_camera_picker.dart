@@ -89,7 +89,7 @@ class ReactiveWechatCameraPicker<T> extends ReactiveFormField<T, AssetEntity> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, AssetEntity>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     required ImagePickerBuilder<T> imagePickerBuilder,

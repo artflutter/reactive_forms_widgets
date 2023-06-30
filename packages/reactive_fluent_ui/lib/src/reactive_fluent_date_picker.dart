@@ -80,7 +80,7 @@ class ReactiveFluentDatePicker<T> extends ReactiveFormField<T, DateTime> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, DateTime>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     VoidCallback? onCancel,
@@ -100,8 +100,8 @@ class ReactiveFluentDatePicker<T> extends ReactiveFormField<T, DateTime> {
     bool showYear = true,
     Locale? locale,
     List<DatePickerField>? fieldOrder,
-    int? startYear,
-    int? endYear,
+    DateTime? startDate,
+    DateTime? endDate,
   }) : super(
           key: key,
           formControl: formControl,
@@ -125,8 +125,8 @@ class ReactiveFluentDatePicker<T> extends ReactiveFormField<T, DateTime> {
               showDay: showDay,
               showMonth: showMonth,
               showYear: showYear,
-              startYear: startYear,
-              endYear: endYear,
+              startDate: startDate,
+              endDate: endDate,
               locale: locale,
               fieldOrder: fieldOrder,
             );

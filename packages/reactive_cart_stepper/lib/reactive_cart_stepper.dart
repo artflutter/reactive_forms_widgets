@@ -84,7 +84,7 @@ class ReactiveCartStepper<T, V extends num> extends ReactiveFormField<T, V> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     required V stepper,

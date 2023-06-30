@@ -84,7 +84,7 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     List<V> items = const [],

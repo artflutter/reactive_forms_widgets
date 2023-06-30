@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -35,7 +37,7 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     Color? contrastIconColorLight,
@@ -44,9 +46,10 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
     PaletteType paletteType = PaletteType.hsv,
     bool enableAlpha = true,
     @Deprecated('Use empty list in [labelTypes] to disable label.')
-        bool showLabel = true,
-    @Deprecated('Use Theme.of(context).textTheme.bodyText1 & 2 to alter text style.')
-        TextStyle? labelTextStyle,
+    bool showLabel = true,
+    @Deprecated(
+        'Use Theme.of(context).textTheme.bodyText1 & 2 to alter text style.')
+    TextStyle? labelTextStyle,
     bool displayThumbColor = false,
     bool portraitOnly = false,
     bool hexInputBar = false,
@@ -88,8 +91,6 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
                         enableAlpha: enableAlpha,
                         pickerHsvColor: pickerHsvColor,
                         labelTypes: labelTypes,
-                        showLabel: showLabel,
-                        labelTextStyle: labelTextStyle,
                         displayThumbColor: displayThumbColor,
                         portraitOnly: portraitOnly,
                         colorPickerWidth: colorPickerWidth,

@@ -83,7 +83,7 @@ class ReactiveEmailContactPicker<T> extends ReactiveFormField<T, EmailContact> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, EmailContact>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = decorationInvisible,

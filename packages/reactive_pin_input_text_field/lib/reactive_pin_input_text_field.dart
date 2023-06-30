@@ -88,7 +88,7 @@ class ReactivePinInputTextField<T> extends ReactiveFormField<T, String> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     FocusNode? focusNode,
@@ -101,12 +101,9 @@ class ReactivePinInputTextField<T> extends ReactiveFormField<T, String> {
     bool autocorrect = false,
     bool enableInteractiveSelection = false,
     TextCapitalization? textCapitalization,
-    ToolbarOptions? toolbarOptions,
     Iterable<String>? autofillHints,
     List<TextInputFormatter>? inputFormatters,
-    PinDecoration decoration = const BoxLooseDecoration(
-      strokeColorBuilder: FixedColorBuilder(Colors.cyan),
-    ),
+    PinDecoration? decoration,
   }) : super(
           key: key,
           formControl: formControl,
@@ -122,7 +119,10 @@ class ReactivePinInputTextField<T> extends ReactiveFormField<T, String> {
             return PinInputTextField(
               pinLength: pinLength,
               onSubmit: onSubmit,
-              decoration: decoration,
+              decoration: decoration ??
+                  BoxLooseDecoration(
+                    strokeColorBuilder: const FixedColorBuilder(Colors.cyan),
+                  ),
               inputFormatters: inputFormatters,
               keyboardType: keyboardType,
               controller: state._textController,
@@ -134,7 +134,6 @@ class ReactivePinInputTextField<T> extends ReactiveFormField<T, String> {
               textCapitalization: textCapitalization,
               autocorrect: autocorrect,
               enableInteractiveSelection: enableInteractiveSelection,
-              toolbarOptions: toolbarOptions,
               autofillHints: autofillHints,
               cursor: cursor,
             );

@@ -117,7 +117,7 @@ class ReactiveMacosTextField<T> extends ReactiveFormField<T, String> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     BoxDecoration decoration = _kDefaultRoundedBorderDecoration,

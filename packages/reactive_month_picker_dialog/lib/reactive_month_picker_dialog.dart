@@ -49,7 +49,7 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
     FormControl<DateTime>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<DateTime, String>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<DateTime>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,

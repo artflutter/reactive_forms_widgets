@@ -78,89 +78,89 @@ class ReactiveFlutterNativeTextInput<T> extends ReactiveFormField<T, String> {
   ///
   /// For documentation about the various parameters, see the [FlutterNativeTextInput] class
   /// and [FlutterNativeTextInput], the constructor.
-  ReactiveFlutterNativeTextInput(
-      {Key? key,
-        String? formControlName,
-        FormControl<T>? formControl,
-        Map<String, ValidationMessageFunction>? validationMessages,
-        ControlValueAccessor<T, String>? valueAccessor,
-        ShowErrorsFunction? showErrors,
+  ReactiveFlutterNativeTextInput({
+    Key? key,
+    String? formControlName,
+    FormControl<T>? formControl,
+    Map<String, ValidationMessageFunction>? validationMessages,
+    ControlValueAccessor<T, String>? valueAccessor,
+    ShowErrorsFunction<T>? showErrors,
 
-        //////////////////////////////////////////////////////////////////////////
-        InputDecoration inputDecoration = const InputDecoration(
-          isCollapsed: true,
-          contentPadding: EdgeInsets.zero,
-          border: InputBorder.none,
-        ),
-        TextEditingController? controller,
-        BoxDecoration? decoration,
-        FocusNode? focusNode,
-        IosOptions? iosOptions,
-        KeyboardType keyboardType  = KeyboardType.defaultType,
-        double minHeightPadding = 18,
-        int maxLines = 1,
-        int minLines = 1,
-        String? placeholder,
-        Color? placeholderColor,
-        ReturnKeyType returnKeyType = ReturnKeyType.done,
-        TextStyle? style,
-        TextAlign textAlign = TextAlign.start,
-        TextCapitalization textCapitalization = TextCapitalization.none,
-        TextContentType? textContentType,
-        ValueChanged<String>? onChanged,
-        VoidCallback? onEditingComplete,
-        ValueChanged<String?>? onSubmitted,
-        VoidCallback? onTap,
-        this.onControllerInit,
-    })
-      : super(
-    key: key,
-    formControl: formControl,
-    formControlName: formControlName,
-    valueAccessor: valueAccessor,
-    validationMessages: validationMessages,
-    showErrors: showErrors,
-    builder: (field) {
-      final state = field as _ReactiveFlutterNativeTextInputState<T>;
-      final effectiveDecoration = inputDecoration
-          .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+    //////////////////////////////////////////////////////////////////////////
+    InputDecoration inputDecoration = const InputDecoration(
+      isCollapsed: true,
+      contentPadding: EdgeInsets.zero,
+      border: InputBorder.none,
+    ),
+    TextEditingController? controller,
+    BoxDecoration? decoration,
+    FocusNode? focusNode,
+    IosOptions? iosOptions,
+    KeyboardType keyboardType = KeyboardType.defaultType,
+    double minHeightPadding = 18,
+    int maxLines = 1,
+    int minLines = 1,
+    String? placeholder,
+    Color? placeholderColor,
+    ReturnKeyType returnKeyType = ReturnKeyType.done,
+    TextStyle? style,
+    TextAlign textAlign = TextAlign.start,
+    TextCapitalization textCapitalization = TextCapitalization.none,
+    TextContentType? textContentType,
+    ValueChanged<String>? onChanged,
+    VoidCallback? onEditingComplete,
+    ValueChanged<String?>? onSubmitted,
+    VoidCallback? onTap,
+    this.onControllerInit,
+  }) : super(
+          key: key,
+          formControl: formControl,
+          formControlName: formControlName,
+          valueAccessor: valueAccessor,
+          validationMessages: validationMessages,
+          showErrors: showErrors,
+          builder: (field) {
+            final state = field as _ReactiveFlutterNativeTextInputState<T>;
+            final effectiveDecoration = inputDecoration
+                .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
-      return InputDecorator(
-          decoration: effectiveDecoration.copyWith(
-            errorText: field.errorText,
-            enabled: field.control.enabled,
-          ),
-        child: NativeTextInput(
-            controller: state._textController,
-          decoration:decoration,
-          focusNode:focusNode,
-          iosOptions:iosOptions,
-          keyboardType:keyboardType,
-          maxLines:maxLines,
-          minHeightPadding:minHeightPadding,
-          minLines:minLines,
-          placeholder:placeholder,
-          placeholderColor:placeholderColor,
-          returnKeyType:returnKeyType,
-          style:style,
-          textAlign:textAlign,
-          textCapitalization:textCapitalization,
-          textContentType:textContentType,
-          onChanged: (value) => field.didChange(value),
-          onEditingComplete:onEditingComplete,
-          onSubmitted:onSubmitted,
-          onTap:onTap,
-        ),
-      );
-    },
-  );
+            return InputDecorator(
+              decoration: effectiveDecoration.copyWith(
+                errorText: field.errorText,
+                enabled: field.control.enabled,
+              ),
+              child: NativeTextInput(
+                controller: state._textController,
+                decoration: decoration,
+                focusNode: focusNode,
+                iosOptions: iosOptions,
+                keyboardType: keyboardType,
+                maxLines: maxLines,
+                minHeightPadding: minHeightPadding,
+                minLines: minLines,
+                placeholder: placeholder,
+                placeholderColor: placeholderColor,
+                returnKeyType: returnKeyType,
+                style: style,
+                textAlign: textAlign,
+                textCapitalization: textCapitalization,
+                textContentType: textContentType,
+                onChanged: (value) => field.didChange(value),
+                onEditingComplete: onEditingComplete,
+                onSubmitted: onSubmitted,
+                onTap: onTap,
+              ),
+            );
+          },
+        );
 
   @override
   ReactiveFormFieldState<T, String> createState() =>
       _ReactiveFlutterNativeTextInputState<T>();
 }
 
-class _ReactiveFlutterNativeTextInputState<T> extends ReactiveFormFieldState<T, String> {
+class _ReactiveFlutterNativeTextInputState<T>
+    extends ReactiveFormFieldState<T, String> {
   late TextEditingController _textController;
   FocusNode? _focusNode;
   late FocusController _focusController;
@@ -176,7 +176,9 @@ class _ReactiveFlutterNativeTextInputState<T> extends ReactiveFormFieldState<T, 
     _textController = TextEditingController(
         text: initialValue == null ? '' : initialValue.toString());
 
-    (widget as ReactiveFlutterNativeTextInput<T>).onControllerInit?.call(_textController);
+    (widget as ReactiveFlutterNativeTextInput<T>)
+        .onControllerInit
+        ?.call(_textController);
   }
 
   @override
@@ -188,7 +190,7 @@ class _ReactiveFlutterNativeTextInputState<T> extends ReactiveFormFieldState<T, 
       subscribeControl();
       final initialValue = value;
       _textController.text =
-      initialValue == null ? '' : initialValue.toString();
+          initialValue == null ? '' : initialValue.toString();
     }
 
     super.didUpdateWidget(oldWidget);
@@ -263,11 +265,11 @@ class _ReactiveFlutterNativeTextInputState<T> extends ReactiveFormFieldState<T, 
     _focusController.dispose();
   }
 
-  void _setFocusNode(FocusNode? focusNode) {
-    if (_focusNode != focusNode) {
-      _focusNode = focusNode;
-      _unregisterFocusController();
-      _registerFocusController(FocusController(focusNode: _focusNode));
-    }
-  }
+  // void _setFocusNode(FocusNode? focusNode) {
+  //   if (_focusNode != focusNode) {
+  //     _focusNode = focusNode;
+  //     _unregisterFocusController();
+  //     _registerFocusController(FocusController(focusNode: _focusNode));
+  //   }
+  // }
 }

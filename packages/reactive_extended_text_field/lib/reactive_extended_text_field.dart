@@ -90,7 +90,7 @@ class ReactiveExtendedTextField<T> extends ReactiveFormField<T, String> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     bool shouldFormat = true,
@@ -108,7 +108,6 @@ class ReactiveExtendedTextField<T> extends ReactiveFormField<T, String> {
     TextAlignVertical? textAlignVertical,
     bool autofocus = false,
     bool readOnly = false,
-    ToolbarOptions? toolbarOptions,
     bool? showCursor,
     bool obscureText = false,
     String obscuringCharacter = '•',
@@ -148,7 +147,8 @@ class ReactiveExtendedTextField<T> extends ReactiveFormField<T, String> {
     bool scribbleEnabled = true,
     bool enableIMEPersonalizedLearning = true,
     ShouldShowSelectionHandlesCallback? shouldShowSelectionHandles,
-    TextSelectionGestureDetectorBuilderCallback? textSelectionGestureDetectorBuilder,
+    TextSelectionGestureDetectorBuilderCallback?
+        textSelectionGestureDetectorBuilder,
   }) : super(
           key: key,
           formControl: formControl,
@@ -158,7 +158,8 @@ class ReactiveExtendedTextField<T> extends ReactiveFormField<T, String> {
           showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactivePhoneFormFieldState<T>;
-            final effectiveDecoration = decoration.applyDefaults(Theme.of(state.context).inputDecorationTheme);
+            final effectiveDecoration = decoration
+                .applyDefaults(Theme.of(state.context).inputDecorationTheme);
 
             state._setFocusNode(focusNode);
 
@@ -183,12 +184,17 @@ class ReactiveExtendedTextField<T> extends ReactiveFormField<T, String> {
               textAlign: textAlign,
               textAlignVertical: textAlignVertical,
               textDirection: textDirection,
-              toolbarOptions: toolbarOptions,
               showCursor: showCursor,
               obscureText: obscureText,
               autocorrect: autocorrect,
-              smartDashesType: smartDashesType ?? (obscureText ? SmartDashesType.disabled : SmartDashesType.enabled),
-              smartQuotesType: smartQuotesType ?? (obscureText ? SmartQuotesType.disabled : SmartQuotesType.enabled),
+              smartDashesType: smartDashesType ??
+                  (obscureText
+                      ? SmartDashesType.disabled
+                      : SmartDashesType.enabled),
+              smartQuotesType: smartQuotesType ??
+                  (obscureText
+                      ? SmartQuotesType.disabled
+                      : SmartQuotesType.enabled),
               enableSuggestions: enableSuggestions,
               onSubmitted: onSubmitted != null ? (_) => onSubmitted() : null,
               inputFormatters: inputFormatters,
@@ -219,16 +225,19 @@ class ReactiveExtendedTextField<T> extends ReactiveFormField<T, String> {
               scribbleEnabled: scribbleEnabled,
               enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
               shouldShowSelectionHandles: shouldShowSelectionHandles,
-              textSelectionGestureDetectorBuilder: textSelectionGestureDetectorBuilder,
+              textSelectionGestureDetectorBuilder:
+                  textSelectionGestureDetectorBuilder,
             );
           },
         );
 
   @override
-  ReactiveFormFieldState<T, String> createState() => _ReactivePhoneFormFieldState<T>();
+  ReactiveFormFieldState<T, String> createState() =>
+      _ReactivePhoneFormFieldState<T>();
 }
 
-class _ReactivePhoneFormFieldState<T> extends ReactiveFormFieldState<T, String> {
+class _ReactivePhoneFormFieldState<T>
+    extends ReactiveFormFieldState<T, String> {
   late TextEditingController _textController;
   FocusNode? _focusNode;
   late FocusController _focusController;
@@ -241,7 +250,8 @@ class _ReactivePhoneFormFieldState<T> extends ReactiveFormFieldState<T, String> 
     super.initState();
 
     final initialValue = value;
-    _textController = TextEditingController(text: initialValue == null ? '' : initialValue.toString());
+    _textController = TextEditingController(
+        text: initialValue == null ? '' : initialValue.toString());
   }
 
   @override

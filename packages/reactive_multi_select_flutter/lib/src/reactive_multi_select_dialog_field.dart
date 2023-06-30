@@ -76,12 +76,12 @@ class ReactiveMultiSelectDialogField<T, V>
   /// and [MultiSelectDialogField], the constructor.
   ReactiveMultiSelectDialogField({
     Key? key,
-    GlobalKey<FormFieldState>? widgetKey,
+    GlobalKey<FormFieldState<dynamic>>? widgetKey,
     String? formControlName,
     FormControl<List<T>>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<List<T>, List<V>>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<List<T>>? showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     Widget? title,

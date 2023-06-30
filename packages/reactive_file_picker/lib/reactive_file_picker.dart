@@ -96,7 +96,7 @@ class ReactiveFilePicker<T>
     FormControl<MultiFile<T>>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<MultiFile<T>, MultiFile<T>>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<MultiFile<T>>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,

@@ -92,7 +92,7 @@ class ReactiveWechatAssetsPicker<T>
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, List<AssetEntity>>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     required ImagePickerBuilder<T> imagePickerBuilder,

@@ -15,7 +15,7 @@ class _FileSelectorGeneralValidator extends Validator<MultiFile<dynamic>> {
   const _FileSelectorGeneralValidator({this.min, this.max});
 
   @override
-  Map<String, Object?>? validate(AbstractControl control) {
+  Map<String, Object?>? validate(AbstractControl<dynamic> control) {
     final Object? value = control.value;
 
     if (value == null) return null;

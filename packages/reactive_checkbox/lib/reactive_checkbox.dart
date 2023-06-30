@@ -1,4 +1,5 @@
 library reactive_checkbox;
+
 // Copyright 2020 Joan Pablo Jimenez Milian. All rights reserved.
 // Use of this source code is governed by the MIT license that can be
 // found in the LICENSE file.
@@ -29,7 +30,7 @@ class ReactiveCheckbox<T> extends ReactiveFormField<T, bool> {
     FormControl<T>? formControl,
     ControlValueAccessor<T, bool>? valueAccessor,
     // Map<String, ValidationMessageFunction>? validationMessages,
-    // ShowErrorsFunction? showErrors,
+    // ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     bool tristate = false,

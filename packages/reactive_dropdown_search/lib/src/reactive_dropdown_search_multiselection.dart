@@ -85,7 +85,7 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     FormControl<List<T>>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<List<T>, List<V>>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<List<T>>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     List<V> items = const [],

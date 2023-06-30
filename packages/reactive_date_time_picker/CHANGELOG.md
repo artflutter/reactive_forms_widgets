@@ -1,3 +1,7 @@
+## [3.0.0]
+
+* rf16
+
 ## [2.0.0]
 
 * reactive_forms update

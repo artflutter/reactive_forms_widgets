@@ -2,6 +2,8 @@
 // Use of this source code is governed by an Apache license that can be found
 // in the LICENSE file.
 
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -39,7 +41,7 @@ class _PreviewAssetWidgetState extends State<PreviewAssetWidget> {
   Future<void> _initializeController() async {
     final String? url = await widget.asset.getMediaUrl();
     if (url == null) {
-      _error = NullThrownError();
+      // _error = NullThrownError();
       return;
     }
     final VideoPlayerController controller;
