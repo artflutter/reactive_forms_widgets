@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^15.0.0
+  reactive_forms: ^16.0.0
   dropdown_search: ^5.0.6
 
 dev_dependencies:

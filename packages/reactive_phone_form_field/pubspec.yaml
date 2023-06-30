@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^15.0.0
+  reactive_forms: ^16.0.0
   phone_form_field: ^7.1.0
 
 dev_dependencies:

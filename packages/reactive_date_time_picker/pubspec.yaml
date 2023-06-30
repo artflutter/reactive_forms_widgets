@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.18.0
-  reactive_forms: ^15.0.0
+  reactive_forms: ^16.0.0
 
 dev_dependencies:
   flutter_test:

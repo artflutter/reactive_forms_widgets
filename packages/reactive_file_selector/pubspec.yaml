@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   file_selector: ^0.9.3
-  reactive_forms: ^15.0.0
+  reactive_forms: ^16.0.0
   collection: ^1.16.0
 dev_dependencies:
   flutter_test:
