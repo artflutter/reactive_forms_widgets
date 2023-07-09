@@ -27,7 +27,7 @@ jobs:
             Hi @${issue_creator}!
             Your issue has been closed. If we were helpful don't forget to star the repo.
             
-            Please check our reactive_forms widget section https://github.com/artflutter/reactive_forms_generator
+            Please check our [reactive_forms_generator](https://github.com/artflutter/reactive_forms_generator) package 
             
             We would appreciate sponsorship subscription or one time donation
             https://github.com/sponsors/artflutter
