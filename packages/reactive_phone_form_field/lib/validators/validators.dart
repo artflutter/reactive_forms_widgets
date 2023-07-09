@@ -7,18 +7,19 @@ import 'package:reactive_phone_form_field/validators/validator/valid_validator.d
 /// Provides a set of built-in validators that can be used by form controls.
 class PhoneValidators {
   /// Gets a validator that requires the control have a non-empty value.
-  static Validator<dynamic> get required => RequiredPhoneValidator();
+  static Validator<dynamic> get required => const RequiredPhoneValidator();
 
   /// Gets a validator that requires the control's value pass an phone
   /// validation test.
-  static Validator<dynamic> get valid => ValidPhoneValidator();
+  static Validator<dynamic> get valid => const ValidPhoneValidator();
 
   /// Gets a validator that requires the control's value pass a fixed line phone
   /// validation test.
   static Validator<dynamic> get validFixedLine =>
-      ValidFixedLinePhoneValidator();
+      const ValidFixedLinePhoneValidator();
 
   /// Gets a validator that requires the control's value pass a mobile phone
   /// validation test.
-  static Validator<dynamic> get validMobile => ValidMobilePhoneValidator();
+  static Validator<dynamic> get validMobile =>
+      const ValidMobilePhoneValidator();
 }
