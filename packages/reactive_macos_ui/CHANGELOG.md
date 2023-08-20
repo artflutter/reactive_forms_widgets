@@ -1,10 +1,7 @@
-## [2.1.0]
-
-* package version bump
-
 ## [2.0.0]
 
 * rf16
+* package version bump
 
 ## [1.0.0]
 
