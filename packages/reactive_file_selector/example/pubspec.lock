@@ -69,10 +69,18 @@ packages:
     dependency: transitive
     description:
       name: file_selector
-      sha256: a96fa9e956c1045c1879164b09f62918d827f6757a55d0ed2aa29c4fa2370c0b
+      sha256: "59b35aa4af7988be7ec88f9ddaa6c71c5b54bf0f8b35009389d9343b10e9c3af"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.3"
+    version: "1.0.0"
+  file_selector_android:
+    dependency: transitive
+    description:
+      name: file_selector_android
+      sha256: "43e5c719f671b9181bef1bf2851135c3ad993a9a6c804a4ccb07579cfee84e34"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.0+2"
   file_selector_ios:
     dependency: transitive
     description:
@@ -85,42 +93,42 @@ packages:
     dependency: transitive
     description:
       name: file_selector_linux
-      sha256: "30edefcdb76be8f4a2dadf57554b42a2791c06cdbc2db62894a918ea36c37cff"
+      sha256: "770eb1ab057b5ae4326d1c24cc57710758b9a46026349d021d6311bd27580046"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.1"
+    version: "0.9.2"
   file_selector_macos:
     dependency: transitive
     description:
       name: file_selector_macos
-      sha256: "6290eec24fc4cc62535fe609e0c6714d3c1306191dc8c3b0319eaecc09423a3a"
+      sha256: "4ada532862917bf16e3adb3891fe3a5917a58bae03293e497082203a80909412"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.2"
+    version: "0.9.3+1"
   file_selector_platform_interface:
     dependency: transitive
     description:
       name: file_selector_platform_interface
-      sha256: "17cdfe3d13a7d3e29e3d3978577ce840fcf94497d7de51bdea378abf9a34fc2c"
+      sha256: "412705a646a0ae90f33f37acfae6a0f7cbc02222d6cd34e479421c3e74d3853c"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.0"
+    version: "2.6.0"
   file_selector_web:
     dependency: transitive
     description:
       name: file_selector_web
-      sha256: "0175186c42ef8d622c7cf214e46294f8dbe81ae32ae4407896c773c8f7dc930b"
+      sha256: e292740c469df0aeeaba0895bf622bea351a05e87d22864c826bf21c4780e1d7
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.0+2"
+    version: "0.9.2"
   file_selector_windows:
     dependency: transitive
     description:
       name: file_selector_windows
-      sha256: ef246380b66d1fb9089fc65622c387bf3780bca79f533424c31d07f12c2c7fd8
+      sha256: "1372760c6b389842b77156203308940558a2817360154084368608413835fc26"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.2"
+    version: "0.9.3"
   flutter:
     dependency: "direct main"
     description: flutter
