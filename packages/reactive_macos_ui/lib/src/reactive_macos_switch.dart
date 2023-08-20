@@ -90,8 +90,8 @@ class ReactiveMacosSwitch<T> extends ReactiveFormField<T, bool> {
       isCollapsed: true,
     ),
     DragStartBehavior dragStartBehavior = DragStartBehavior.start,
-    Color? activeColor,
-    Color? trackColor,
+    MacosColor? activeColor,
+    MacosColor? trackColor,
     String? semanticLabel,
   }) : super(
           key: key,
