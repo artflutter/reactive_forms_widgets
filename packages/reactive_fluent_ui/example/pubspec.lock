@@ -74,10 +74,10 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_lints
-      sha256: aeb0b80a8b3709709c9cc496cdc027c5b3216796bc0af0ce1007eaf24464fd4c
+      sha256: "2118df84ef0c3ca93f96123a616ae8540879991b8b57af2f81b76a7ada49b2a4"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   flutter_localizations:
     dependency: transitive
     description: flutter
@@ -158,15 +158,15 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "1.0.0"
   reactive_forms:
     dependency: "direct main"
     description:
       name: reactive_forms
-      sha256: "5aa9c48a0626c20d00a005e597cb10efbdebbfeecb9c4227b03a5945fbb91ec4"
+      sha256: "3e23c4af17d63feea69a1448b8c806174739cf5e94fb5eee2646f8a3f5f6bef4"
       url: "https://pub.dev"
     source: hosted
-    version: "14.3.0"
+    version: "16.0.4"
   recase:
     dependency: transitive
     description:

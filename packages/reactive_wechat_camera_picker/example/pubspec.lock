@@ -246,7 +246,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.0.0"
+    version: "2.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -360,10 +360,10 @@ packages:
     dependency: transitive
     description:
       name: wechat_camera_picker
-      sha256: "1ba40432f1f146e3adcb87c6a5cb6c28218661bf07ea5497be86aa3925314d28"
+      sha256: d8108ea33b1ed25933770199d08d64c210a2854bc6a326fd058a2f34dca8bf46
       url: "https://pub.dev"
     source: hosted
-    version: "3.7.0"
+    version: "3.8.0"
 sdks:
   dart: ">=3.0.0 <4.0.0"
   flutter: ">=3.10.0"
