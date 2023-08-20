@@ -37,7 +37,7 @@ class VideoViewState extends State<VideoView> {
 
     if (file != null) {
       _controller = kIsWeb
-          ? VideoPlayerController.network(file.path)
+          ? VideoPlayerController.networkUrl(Uri.parse(file.path))
           : VideoPlayerController.file(file);
       _controller?.addListener(_onVideoControllerUpdate);
     }
@@ -45,7 +45,7 @@ class VideoViewState extends State<VideoView> {
     final url = widget.video.url;
 
     if (url != null) {
-      _controller = VideoPlayerController.network(url);
+      _controller = VideoPlayerController.networkUrl(Uri.parse(url));
       _controller?.addListener(_onVideoControllerUpdate);
     }
 

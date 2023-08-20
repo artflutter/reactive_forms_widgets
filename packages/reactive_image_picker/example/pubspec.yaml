@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   reactive_forms: ^16.0.0
-  app_settings: ^4.2.0
+  app_settings: ^5.0.0
   reactive_image_picker:
     path: ../
 
