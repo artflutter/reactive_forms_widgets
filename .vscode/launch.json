@@ -1,0 +1,1933 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "reactive_forms_widgets",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_advanced_switch",
+      "cwd": "packages\\reactive_advanced_switch",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_advanced_switch (profile mode)",
+      "cwd": "packages\\reactive_advanced_switch",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_advanced_switch (release mode)",
+      "cwd": "packages\\reactive_advanced_switch",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_awesome_select",
+      "cwd": "packages\\reactive_awesome_select",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_awesome_select (profile mode)",
+      "cwd": "packages\\reactive_awesome_select",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_awesome_select (release mode)",
+      "cwd": "packages\\reactive_awesome_select",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_cart_stepper",
+      "cwd": "packages\\reactive_cart_stepper",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_cart_stepper (profile mode)",
+      "cwd": "packages\\reactive_cart_stepper",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_cart_stepper (release mode)",
+      "cwd": "packages\\reactive_cart_stepper",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_checkbox",
+      "cwd": "packages\\reactive_checkbox",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_checkbox (profile mode)",
+      "cwd": "packages\\reactive_checkbox",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_checkbox (release mode)",
+      "cwd": "packages\\reactive_checkbox",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_code_text_field",
+      "cwd": "packages\\reactive_code_text_field",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_code_text_field (profile mode)",
+      "cwd": "packages\\reactive_code_text_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_code_text_field (release mode)",
+      "cwd": "packages\\reactive_code_text_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_color_picker",
+      "cwd": "packages\\reactive_color_picker",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_color_picker (profile mode)",
+      "cwd": "packages\\reactive_color_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_color_picker (release mode)",
+      "cwd": "packages\\reactive_color_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_contact_picker",
+      "cwd": "packages\\reactive_contact_picker",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_contact_picker (profile mode)",
+      "cwd": "packages\\reactive_contact_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_contact_picker (release mode)",
+      "cwd": "packages\\reactive_contact_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_cupertino_slider",
+      "cwd": "packages\\reactive_cupertino_slider",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_cupertino_slider (profile mode)",
+      "cwd": "packages\\reactive_cupertino_slider",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_cupertino_slider (release mode)",
+      "cwd": "packages\\reactive_cupertino_slider",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_cupertino_switch",
+      "cwd": "packages\\reactive_cupertino_switch",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_cupertino_switch (profile mode)",
+      "cwd": "packages\\reactive_cupertino_switch",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_cupertino_switch (release mode)",
+      "cwd": "packages\\reactive_cupertino_switch",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_cupertino_text_field",
+      "cwd": "packages\\reactive_cupertino_text_field",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_cupertino_text_field (profile mode)",
+      "cwd": "packages\\reactive_cupertino_text_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_cupertino_text_field (release mode)",
+      "cwd": "packages\\reactive_cupertino_text_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_cup_slide_segmented",
+      "cwd": "packages\\reactive_cup_slide_segmented",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_cup_slide_segmented (profile mode)",
+      "cwd": "packages\\reactive_cup_slide_segmented",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_cup_slide_segmented (release mode)",
+      "cwd": "packages\\reactive_cup_slide_segmented",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_date_range_picker",
+      "cwd": "packages\\reactive_date_range_picker",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_date_range_picker (profile mode)",
+      "cwd": "packages\\reactive_date_range_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_date_range_picker (release mode)",
+      "cwd": "packages\\reactive_date_range_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_date_time_picker",
+      "cwd": "packages\\reactive_date_time_picker",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_date_time_picker (profile mode)",
+      "cwd": "packages\\reactive_date_time_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_date_time_picker (release mode)",
+      "cwd": "packages\\reactive_date_time_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_direct_select",
+      "cwd": "packages\\reactive_direct_select",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_direct_select (profile mode)",
+      "cwd": "packages\\reactive_direct_select",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_direct_select (release mode)",
+      "cwd": "packages\\reactive_direct_select",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_dropdown_field",
+      "cwd": "packages\\reactive_dropdown_field",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_dropdown_field (profile mode)",
+      "cwd": "packages\\reactive_dropdown_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_dropdown_field (release mode)",
+      "cwd": "packages\\reactive_dropdown_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_dropdown_search",
+      "cwd": "packages\\reactive_dropdown_search",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_dropdown_search (profile mode)",
+      "cwd": "packages\\reactive_dropdown_search",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_dropdown_search (release mode)",
+      "cwd": "packages\\reactive_dropdown_search",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_extended_text_field",
+      "cwd": "packages\\reactive_extended_text_field",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_extended_text_field (profile mode)",
+      "cwd": "packages\\reactive_extended_text_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_extended_text_field (release mode)",
+      "cwd": "packages\\reactive_extended_text_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_fancy_password_field",
+      "cwd": "packages\\reactive_fancy_password_field",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_fancy_password_field (profile mode)",
+      "cwd": "packages\\reactive_fancy_password_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_fancy_password_field (release mode)",
+      "cwd": "packages\\reactive_fancy_password_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_file_picker",
+      "cwd": "packages\\reactive_file_picker",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_file_picker (profile mode)",
+      "cwd": "packages\\reactive_file_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_file_picker (release mode)",
+      "cwd": "packages\\reactive_file_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_file_selector",
+      "cwd": "packages\\reactive_file_selector",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_file_selector (profile mode)",
+      "cwd": "packages\\reactive_file_selector",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_file_selector (release mode)",
+      "cwd": "packages\\reactive_file_selector",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_fluent_ui",
+      "cwd": "packages\\reactive_fluent_ui",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_fluent_ui (profile mode)",
+      "cwd": "packages\\reactive_fluent_ui",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_fluent_ui (release mode)",
+      "cwd": "packages\\reactive_fluent_ui",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_flutter_native_text_input",
+      "cwd": "packages\\reactive_flutter_native_text_input",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_flutter_native_text_input (profile mode)",
+      "cwd": "packages\\reactive_flutter_native_text_input",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_flutter_native_text_input (release mode)",
+      "cwd": "packages\\reactive_flutter_native_text_input",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_flutter_rating_bar",
+      "cwd": "packages\\reactive_flutter_rating_bar",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_flutter_rating_bar (profile mode)",
+      "cwd": "packages\\reactive_flutter_rating_bar",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_flutter_rating_bar (release mode)",
+      "cwd": "packages\\reactive_flutter_rating_bar",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_flutter_typeahead",
+      "cwd": "packages\\reactive_flutter_typeahead",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_flutter_typeahead (profile mode)",
+      "cwd": "packages\\reactive_flutter_typeahead",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_flutter_typeahead (release mode)",
+      "cwd": "packages\\reactive_flutter_typeahead",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_forms_lbc",
+      "cwd": "packages\\reactive_forms_lbc",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_forms_lbc (profile mode)",
+      "cwd": "packages\\reactive_forms_lbc",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_forms_lbc (release mode)",
+      "cwd": "packages\\reactive_forms_lbc",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_getwidget",
+      "cwd": "packages\\reactive_getwidget",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_getwidget (profile mode)",
+      "cwd": "packages\\reactive_getwidget",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_getwidget (release mode)",
+      "cwd": "packages\\reactive_getwidget",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_image_picker",
+      "cwd": "packages\\reactive_image_picker",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_image_picker (profile mode)",
+      "cwd": "packages\\reactive_image_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_image_picker (release mode)",
+      "cwd": "packages\\reactive_image_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_language_picker",
+      "cwd": "packages\\reactive_language_picker",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_language_picker (profile mode)",
+      "cwd": "packages\\reactive_language_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_language_picker (release mode)",
+      "cwd": "packages\\reactive_language_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_macos_ui",
+      "cwd": "packages\\reactive_macos_ui",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_macos_ui (profile mode)",
+      "cwd": "packages\\reactive_macos_ui",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_macos_ui (release mode)",
+      "cwd": "packages\\reactive_macos_ui",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_md_editable_textinput",
+      "cwd": "packages\\reactive_md_editable_textinput",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_md_editable_textinput (profile mode)",
+      "cwd": "packages\\reactive_md_editable_textinput",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_md_editable_textinput (release mode)",
+      "cwd": "packages\\reactive_md_editable_textinput",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_month_picker_dialog",
+      "cwd": "packages\\reactive_month_picker_dialog",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_month_picker_dialog (profile mode)",
+      "cwd": "packages\\reactive_month_picker_dialog",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_month_picker_dialog (release mode)",
+      "cwd": "packages\\reactive_month_picker_dialog",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_multi_select_flutter",
+      "cwd": "packages\\reactive_multi_select_flutter",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_multi_select_flutter (profile mode)",
+      "cwd": "packages\\reactive_multi_select_flutter",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_multi_select_flutter (release mode)",
+      "cwd": "packages\\reactive_multi_select_flutter",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_phone_form_field",
+      "cwd": "packages\\reactive_phone_form_field",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_phone_form_field (profile mode)",
+      "cwd": "packages\\reactive_phone_form_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_phone_form_field (release mode)",
+      "cwd": "packages\\reactive_phone_form_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_pinput",
+      "cwd": "packages\\reactive_pinput",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_pinput (profile mode)",
+      "cwd": "packages\\reactive_pinput",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_pinput (release mode)",
+      "cwd": "packages\\reactive_pinput",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_pin_code_fields",
+      "cwd": "packages\\reactive_pin_code_fields",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_pin_code_fields (profile mode)",
+      "cwd": "packages\\reactive_pin_code_fields",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_pin_code_fields (release mode)",
+      "cwd": "packages\\reactive_pin_code_fields",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_pin_input_text_field",
+      "cwd": "packages\\reactive_pin_input_text_field",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_pin_input_text_field (profile mode)",
+      "cwd": "packages\\reactive_pin_input_text_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_pin_input_text_field (release mode)",
+      "cwd": "packages\\reactive_pin_input_text_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_range_slider",
+      "cwd": "packages\\reactive_range_slider",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_range_slider (profile mode)",
+      "cwd": "packages\\reactive_range_slider",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_range_slider (release mode)",
+      "cwd": "packages\\reactive_range_slider",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_raw_autocomplete",
+      "cwd": "packages\\reactive_raw_autocomplete",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_raw_autocomplete (profile mode)",
+      "cwd": "packages\\reactive_raw_autocomplete",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_raw_autocomplete (release mode)",
+      "cwd": "packages\\reactive_raw_autocomplete",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_segmented_control",
+      "cwd": "packages\\reactive_segmented_control",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_segmented_control (profile mode)",
+      "cwd": "packages\\reactive_segmented_control",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_segmented_control (release mode)",
+      "cwd": "packages\\reactive_segmented_control",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_sf_signaturepad",
+      "cwd": "packages\\reactive_sf_signaturepad",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_sf_signaturepad (profile mode)",
+      "cwd": "packages\\reactive_sf_signaturepad",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_sf_signaturepad (release mode)",
+      "cwd": "packages\\reactive_sf_signaturepad",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_signature",
+      "cwd": "packages\\reactive_signature",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_signature (profile mode)",
+      "cwd": "packages\\reactive_signature",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_signature (release mode)",
+      "cwd": "packages\\reactive_signature",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_sleek_circular_slider",
+      "cwd": "packages\\reactive_sleek_circular_slider",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_sleek_circular_slider (profile mode)",
+      "cwd": "packages\\reactive_sleek_circular_slider",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_sleek_circular_slider (release mode)",
+      "cwd": "packages\\reactive_sleek_circular_slider",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_sliding_segmented",
+      "cwd": "packages\\reactive_sliding_segmented",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_sliding_segmented (profile mode)",
+      "cwd": "packages\\reactive_sliding_segmented",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_sliding_segmented (release mode)",
+      "cwd": "packages\\reactive_sliding_segmented",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_textfield_tags",
+      "cwd": "packages\\reactive_textfield_tags",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_textfield_tags (profile mode)",
+      "cwd": "packages\\reactive_textfield_tags",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_textfield_tags (release mode)",
+      "cwd": "packages\\reactive_textfield_tags",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_text_field",
+      "cwd": "packages\\reactive_text_field",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_text_field (profile mode)",
+      "cwd": "packages\\reactive_text_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_text_field (release mode)",
+      "cwd": "packages\\reactive_text_field",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_toggle_switch",
+      "cwd": "packages\\reactive_toggle_switch",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_toggle_switch (profile mode)",
+      "cwd": "packages\\reactive_toggle_switch",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_toggle_switch (release mode)",
+      "cwd": "packages\\reactive_toggle_switch",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_wechat_assets_picker",
+      "cwd": "packages\\reactive_wechat_assets_picker",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_wechat_assets_picker (profile mode)",
+      "cwd": "packages\\reactive_wechat_assets_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_wechat_assets_picker (release mode)",
+      "cwd": "packages\\reactive_wechat_assets_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "reactive_wechat_camera_picker",
+      "cwd": "packages\\reactive_wechat_camera_picker",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "reactive_wechat_camera_picker (profile mode)",
+      "cwd": "packages\\reactive_wechat_camera_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "reactive_wechat_camera_picker (release mode)",
+      "cwd": "packages\\reactive_wechat_camera_picker",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_advanced_switch\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_advanced_switch\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_advanced_switch\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_awesome_select\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_awesome_select\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_awesome_select\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_cart_stepper\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_cart_stepper\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_cart_stepper\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_checkbox\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_checkbox\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_checkbox\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_code_text_field\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_code_text_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_code_text_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_color_picker\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_color_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_color_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_contact_picker\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_contact_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_contact_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_cupertino_slider\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_cupertino_slider\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_cupertino_slider\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_cupertino_switch\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_cupertino_switch\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_cupertino_switch\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_cupertino_text_field\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_cupertino_text_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_cupertino_text_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_cup_slide_segmented\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_cup_slide_segmented\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_cup_slide_segmented\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_date_range_picker\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_date_range_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_date_range_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_date_time_picker\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_date_time_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_date_time_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_direct_select\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_direct_select\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_direct_select\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_dropdown_field\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_dropdown_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_dropdown_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_dropdown_search\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_dropdown_search\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_dropdown_search\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_extended_text_field\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_extended_text_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_extended_text_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_fancy_password_field\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_fancy_password_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_fancy_password_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_file_picker\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_file_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_file_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_file_selector\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_file_selector\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_file_selector\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_fluent_ui\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_fluent_ui\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_fluent_ui\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_flutter_native_text_input\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_flutter_native_text_input\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_flutter_native_text_input\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_flutter_rating_bar\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_flutter_rating_bar\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_flutter_rating_bar\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_flutter_typeahead\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_flutter_typeahead\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_flutter_typeahead\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_forms_lbc\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_forms_lbc\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_forms_lbc\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_getwidget\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_getwidget\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_getwidget\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_image_picker\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_image_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_image_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_language_picker\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_language_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_language_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_macos_ui\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_macos_ui\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_macos_ui\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_md_editable_textinput\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_md_editable_textinput\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_md_editable_textinput\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_month_picker_dialog\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_month_picker_dialog\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_month_picker_dialog\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_multi_select_flutter\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_multi_select_flutter\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_multi_select_flutter\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_phone_form_field\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_phone_form_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_phone_form_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_pinput\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_pinput\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_pinput\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_pin_code_fields\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_pin_code_fields\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_pin_code_fields\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_pin_input_text_field\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_pin_input_text_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_pin_input_text_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_range_slider\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_range_slider\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_range_slider\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_raw_autocomplete\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_raw_autocomplete\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_raw_autocomplete\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_segmented_control\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_segmented_control\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_segmented_control\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_sf_signaturepad\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_sf_signaturepad\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_sf_signaturepad\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_signature\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_signature\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_signature\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_sleek_circular_slider\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_sleek_circular_slider\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_sleek_circular_slider\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_sliding_segmented\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_sliding_segmented\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_sliding_segmented\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_textfield_tags\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_textfield_tags\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_textfield_tags\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_text_field\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_text_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_text_field\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_toggle_switch\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_toggle_switch\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_toggle_switch\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_wechat_assets_picker\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_wechat_assets_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_wechat_assets_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "example",
+      "cwd": "packages\\reactive_wechat_camera_picker\\example",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "example (profile mode)",
+      "cwd": "packages\\reactive_wechat_camera_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "example (release mode)",
+      "cwd": "packages\\reactive_wechat_camera_picker\\example",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    }
+  ]
+}
