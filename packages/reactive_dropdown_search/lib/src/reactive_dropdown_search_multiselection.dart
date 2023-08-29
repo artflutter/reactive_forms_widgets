@@ -85,7 +85,7 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     FormControl<List<T>>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<List<T>, List<V>>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<List<T>>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     List<V> items = const [],
@@ -127,7 +127,8 @@ class ReactiveDropdownSearchMultiSelection<T, V>
             state._setFocusNode(focusNode);
 
             return DropdownSearch<V>.multiSelection(
-              onChanged: field.didChange,
+              onChanged: (value) =>
+                  field.didChange(value.isEmpty ? null : value),
               popupProps: popupProps,
               selectedItems: field.value ?? [],
               items: items,

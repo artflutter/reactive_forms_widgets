@@ -85,7 +85,7 @@ abstract class ReactiveFormControlFocusListenerBase<T>
 
 class ReactiveFormControlFocusListenerBaseState<T>
     extends SingleChildState<ReactiveFormControlFocusListenerBase<T>> {
-  StreamSubscription? _subscription;
+  StreamSubscription<bool>? _subscription;
   late FormControl<T> _formControl;
   late bool _previousState;
 

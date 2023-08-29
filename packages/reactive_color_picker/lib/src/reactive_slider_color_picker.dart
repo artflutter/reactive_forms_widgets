@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -35,7 +37,7 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     Color? contrastIconColorLight,
@@ -44,11 +46,13 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
     PaletteType paletteType = PaletteType.hsv,
     bool enableAlpha = true,
     @Deprecated('Use empty list in [labelTypes] to disable label.')
-        bool showLabel = true,
-    @Deprecated('Use Theme.of(context).textTheme.bodyText1 & 2 to alter text style.')
-        TextStyle? labelTextStyle,
-    @Deprecated('Use Theme.of(context).textTheme.bodyText1 & 2 to alter text style.')
-        TextStyle? sliderTextStyle,
+    bool showLabel = true,
+    @Deprecated(
+        'Use Theme.of(context).textTheme.bodyText1 & 2 to alter text style.')
+    TextStyle? labelTextStyle,
+    @Deprecated(
+        'Use Theme.of(context).textTheme.bodyText1 & 2 to alter text style.')
+    TextStyle? sliderTextStyle,
     bool displayThumbColor = false,
     Size sliderSize = const Size(260, 40),
     Size indicatorSize = const Size(280, 50),
@@ -85,12 +89,10 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
                         onColorChanged: onColorChanged,
                         // paletteType: paletteType,
                         enableAlpha: enableAlpha,
-                        showLabel: showLabel,
-                        labelTextStyle: labelTextStyle,
+
                         displayThumbColor: displayThumbColor,
                         sliderSize: sliderSize,
                         showSliderText: showSliderText,
-                        sliderTextStyle: sliderTextStyle,
                         showIndicator: showIndicator,
                         indicatorSize: indicatorSize,
                         indicatorAlignmentBegin: indicatorAlignmentBegin,

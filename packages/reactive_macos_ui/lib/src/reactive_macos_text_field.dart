@@ -117,7 +117,7 @@ class ReactiveMacosTextField<T> extends ReactiveFormField<T, String> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     BoxDecoration decoration = _kDefaultRoundedBorderDecoration,
@@ -144,7 +144,6 @@ class ReactiveMacosTextField<T> extends ReactiveFormField<T, String> {
     TextAlignVertical? textAlignVertical,
     bool autofocus = false,
     bool readOnly = false,
-    ToolbarOptions? toolbarOptions,
     bool? showCursor,
     bool obscureText = false,
     String obscuringCharacter = '•',
@@ -225,7 +224,6 @@ class ReactiveMacosTextField<T> extends ReactiveFormField<T, String> {
                 textAlign: textAlign,
                 textAlignVertical: textAlignVertical,
                 readOnly: readOnly,
-                toolbarOptions: toolbarOptions,
                 showCursor: showCursor,
                 autofocus: autofocus,
                 obscuringCharacter: obscuringCharacter,

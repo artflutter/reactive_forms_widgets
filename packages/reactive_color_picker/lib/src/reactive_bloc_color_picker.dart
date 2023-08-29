@@ -89,7 +89,7 @@ class ReactiveBlockColorPicker<T> extends ReactiveFormField<T, Color> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,

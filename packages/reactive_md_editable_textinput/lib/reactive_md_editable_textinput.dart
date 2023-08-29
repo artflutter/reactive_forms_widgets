@@ -90,7 +90,7 @@ class ReactiveMarkdownEditableTextInput<T>
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(

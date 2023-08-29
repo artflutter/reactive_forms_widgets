@@ -1,6 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_image_picker/image_file.dart';
 import 'package:reactive_image_picker/reactive_image_picker.dart';
 
 void main() {
@@ -10,11 +13,78 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  Future<void> _photoDenied(BuildContext context) async =>
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Photo access required'),
+            content: const SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text(
+                    'Open settings to allow access',
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Cancel'),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              TextButton(
+                child: const Text('Settings'),
+                onPressed: () async {
+                  await AppSettings.openAppSettings();
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+
+  Future<void> _cameraDenied(BuildContext context) async =>
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Camera access required'),
+            content: const SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text(
+                    'Open settings to allow access',
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Cancel'),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              TextButton(
+                child: const Text('Settings'),
+                onPressed: () async {
+                  await AppSettings.openAppSettings();
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+
   @override
   Widget build(BuildContext context) {
     FormGroup buildForm() => fb.group({
-          'input': FormControl<ImageFile>(),
+          'input': FormControl<List<SelectedFile>>(validators: [
+            Validators.required,
+          ]),
         });
 
     return MaterialApp(
@@ -53,6 +123,18 @@ class MyApp extends StatelessWidget {
                                 enabledBorder: InputBorder.none,
                                 disabledBorder: InputBorder.none,
                                 helperText: ''),
+                            preprocessError: (e) async {
+                              if (e is PlatformException) {
+                                switch (e.code) {
+                                  case 'photo_access_denied':
+                                    await _photoDenied(context);
+                                    break;
+                                  case 'camera_access_denied':
+                                    await _cameraDenied(context);
+                                    break;
+                                }
+                              }
+                            },
                             inputBuilder: (onPressed) => TextButton.icon(
                               onPressed: onPressed,
                               icon: const Icon(Icons.add),

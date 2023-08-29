@@ -3,6 +3,8 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_phone_form_field/validators/validation_message.dart';
 
 class ValidMobilePhoneValidator extends Validator<dynamic> {
+  const ValidMobilePhoneValidator();
+
   @override
   Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
     final error = <String, dynamic>{PhoneValidationMessage.validMobile: true};

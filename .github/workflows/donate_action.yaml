@@ -1,0 +1,41 @@
+name: Donation comment on issue
+
+on:
+  issues:
+    types: [ closed ]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Comment on issue
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const issue_number = context.issue.number;
+            const issue = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue_number
+            });
+            const issue_creator = issue.data.user.login;
+            const comment_body = `
+            Hi @${issue_creator}!
+            Your issue has been closed. If we were helpful don't forget to star the repo.
+            
+            Please check our [reactive_forms_generator](https://github.com/artflutter/reactive_forms_generator) package 
+            
+            We would appreciate sponsorship subscription or one time donation
+            https://github.com/sponsors/artflutter
+            `;
+            
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue_number,
+              body: comment_body
+            });

@@ -80,7 +80,7 @@ class ReactiveMacosSwitch<T> extends ReactiveFormField<T, bool> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, bool>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(
@@ -90,8 +90,8 @@ class ReactiveMacosSwitch<T> extends ReactiveFormField<T, bool> {
       isCollapsed: true,
     ),
     DragStartBehavior dragStartBehavior = DragStartBehavior.start,
-    Color? activeColor,
-    Color? trackColor,
+    MacosColor? activeColor,
+    MacosColor? trackColor,
     String? semanticLabel,
   }) : super(
           key: key,

@@ -86,7 +86,7 @@ class ReactiveFluentTextFormBox<T> extends ReactiveFormField<T, String> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     TextEditingController? controller,
@@ -190,7 +190,6 @@ class ReactiveFluentTextFormBox<T> extends ReactiveFormField<T, String> {
               minLines: minLines,
               expands: expands,
               maxLength: maxLength,
-              minHeight: minHeight,
               padding: padding,
               onChanged: field.didChange,
               onTap: onTap,
@@ -209,8 +208,6 @@ class ReactiveFluentTextFormBox<T> extends ReactiveFormField<T, String> {
               autofillHints: autofillHints,
               placeholder: placeholder,
               placeholderStyle: placeholderStyle,
-              header: header,
-              headerStyle: headerStyle,
               scrollController: scrollController,
               clipBehavior: clipBehavior,
               prefix: prefix,

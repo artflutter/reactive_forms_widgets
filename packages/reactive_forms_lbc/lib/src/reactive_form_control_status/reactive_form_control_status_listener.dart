@@ -83,7 +83,7 @@ abstract class ReactiveFormControlStatusListenerBase<T>
 
 class ReactiveFormControlStatusListenerBaseState<T>
     extends SingleChildState<ReactiveFormControlStatusListenerBase<T>> {
-  StreamSubscription? _subscription;
+  StreamSubscription<ControlStatus>? _subscription;
   late AbstractControl<T> _formControl;
   late ControlStatus _previousState;
 

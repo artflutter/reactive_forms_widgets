@@ -1,3 +1,9 @@
+## [2.0.0]
+* rf 16
+
+## [1.0.0]
+* reactive_forms update
+
 ## [0.4.0]
 * package version bump
 

@@ -83,7 +83,7 @@ class ReactiveSmartSelectSingle<T, V> extends ReactiveFormField<T, V?> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = decorationInvisible,
     String? title,
@@ -244,9 +244,9 @@ class ReactiveSmartSelectSingle<T, V> extends ReactiveFormField<T, V?> {
           },
         );
 
-  // @override
-  // ReactiveFormFieldState<T, bool> createState() =>
-  //     _ReactiveSmartSelectSingleState<V?>();
+// @override
+// ReactiveFormFieldState<T, bool> createState() =>
+//     _ReactiveSmartSelectSingleState<V?>();
 }
 
 // class _ReactiveSmartSelectSingleState<V?>

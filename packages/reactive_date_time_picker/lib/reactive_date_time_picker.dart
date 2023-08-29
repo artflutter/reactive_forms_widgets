@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 library reactive_date_time_picker;
 
 import 'package:flutter/material.dart';
@@ -59,7 +61,7 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
     FormControl<DateTime>? formControl,
     ControlValueAccessor<DateTime, String>? valueAccessor,
     Map<String, ValidationMessageFunction>? validationMessages,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<DateTime>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     TextStyle? style,
@@ -230,7 +232,7 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
                       field.value ?? '',
                       style: Theme.of(field.context)
                           .textTheme
-                          .subtitle1
+                          .titleMedium
                           ?.merge(style),
                     ),
                   ),

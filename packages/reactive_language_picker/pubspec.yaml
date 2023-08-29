@@ -1,0 +1,20 @@
+name: reactive_language_picker
+description: Wrapper around language_picker to use with reactive_forms.
+version: 2.0.0
+repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_language_picker
+issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  language_picker: ^0.4.3
+  reactive_forms: ^16.0.0
+
+dev_dependencies:
+  flutter_lints: ^2.0.2
+  flutter_test:
+    sdk: flutter

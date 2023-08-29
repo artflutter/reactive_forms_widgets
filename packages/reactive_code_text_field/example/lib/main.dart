@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_highlight/themes/monokai-sublime.dart';
 import 'package:highlight/languages/dart.dart';
 import 'package:reactive_code_text_field/reactive_code_text_field.dart';
 import 'package:reactive_forms/reactive_forms.dart';

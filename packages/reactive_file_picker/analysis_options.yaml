@@ -1,7 +1,7 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude: [lib/multi_file.*]
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
+  exclude: [ lib/multi_file.* ]
+  language:
+    strict-casts: true
+    strict-raw-types: true

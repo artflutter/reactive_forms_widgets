@@ -83,7 +83,7 @@ class ReactiveFullContactPicker<T> extends ReactiveFormField<T, FullContact> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, FullContact>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = decorationInvisible,

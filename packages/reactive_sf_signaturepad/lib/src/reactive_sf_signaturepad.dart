@@ -92,7 +92,7 @@ class ReactiveSfSignaturePad<T> extends ReactiveFormField<T, Uint8List> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, Uint8List>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = decorationInvisible,

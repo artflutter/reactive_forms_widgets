@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return fui.FluentApp(
-      theme: fui.ThemeData(),
+      theme: fui.FluentThemeData(),
       home: Scaffold(
         appBar: AppBar(),
         body: SafeArea(

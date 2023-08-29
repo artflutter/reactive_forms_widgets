@@ -79,7 +79,7 @@ class ReactiveToggleSwitch<T> extends ReactiveFormField<T, int> {
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
     ControlValueAccessor<T, int>? valueAccessor,
-    ShowErrorsFunction? showErrors,
+    ShowErrorsFunction<T>? showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     List<Color>? borderColor,
