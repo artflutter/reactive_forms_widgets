@@ -12,17 +12,21 @@ import 'package:reactive_forms/reactive_forms.dart';
 class ReactiveTextfieldTags
     extends ReactiveFormField<List<String>, List<String>> {
   ///
-  ReactiveTextfieldTags({
-    Key? key,
-    Key? widgetKey,
-    String? formControlName,
-    FormControl<List<String>>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ShowErrorsFunction<List<String>>? showErrors,
-    List<String> separators = const [' ', ','],
-    //////////////////////////////////////////////////////////////////////////
-    // put component specific params here
-  }) : super(
+  ReactiveTextfieldTags(
+      {Key? key,
+      Key? widgetKey,
+      String? formControlName,
+      FormControl<List<String>>? formControl,
+      Map<String, ValidationMessageFunction>? validationMessages,
+      ShowErrorsFunction<List<String>>? showErrors,
+      List<String> separators = const [' ', ','],
+      Color? chipColor,
+      Widget? deleteIcon,
+      TextStyle? tagTextStyle
+      //////////////////////////////////////////////////////////////////////////
+      // put component specific params here
+      })
+      : super(
           key: key,
           formControl: formControl,
           formControlName: formControlName,
@@ -51,44 +55,16 @@ class ReactiveTextfieldTags
                               scrollDirection: Axis.horizontal,
                               child: Row(
                                   children: tags.map((String tag) {
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(20.0),
-                                    ),
-                                    color: Theme.of(context).primaryColor,
+                                return Chip(
+                                  label: Text(
+                                    tag,
+                                    style: tagTextStyle,
                                   ),
-                                  margin: const EdgeInsets.only(right: 10.0),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10.0, vertical: 4.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      InkWell(
-                                        child: Text(tag,
-                                            style: Theme.of(context)
-                                                .primaryTextTheme
-                                                .bodyMedium),
-                                        onTap: () {
-                                          //print("$tag selected");
-                                        },
-                                      ),
-                                      const SizedBox(width: 4.0),
-                                      InkWell(
-                                        child: Icon(
-                                          Icons.cancel,
-                                          size: 14.0,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onPrimary,
-                                        ),
-                                        onTap: () {
-                                          onTagDelete(tag);
-                                        },
-                                      )
-                                    ],
-                                  ),
+                                  backgroundColor: chipColor,
+                                  deleteIcon: deleteIcon,
+                                  onDeleted: () {
+                                    onTagDelete(tag);
+                                  },
                                 );
                               }).toList()),
                             )
