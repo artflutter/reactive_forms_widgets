@@ -1,3 +1,7 @@
+## [2.1.0]
+
+* expose more fields
+
 ## [2.0.0]
 
 * rf16
