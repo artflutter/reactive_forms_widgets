@@ -165,6 +165,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
               textFieldConfiguration: textFieldConfiguration.copyWith(
                 focusNode: textFieldConfiguration.focusNode ?? state.focusNode,
                 controller: controller,
+                enabled: field.control.enabled,
                 decoration: effectiveDecoration.copyWith(
                   errorText: state.errorText,
                 ),
