@@ -24,6 +24,8 @@ class ReactiveRawAutocomplete<T, V extends Object>
     extends ReactiveFormField<T, V> {
   final ControllerInitCallback? onControllerInit;
 
+  final AutocompleteOptionToString<V> displayStringForOption;
+
   /// Creates a [ReactiveRawAutocomplete] that contains a [TextField].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -96,12 +98,10 @@ class ReactiveRawAutocomplete<T, V extends Object>
     ShowErrorsFunction<T>? showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
-    // required List<V> options,
     required AutocompleteOptionsBuilder<V> optionsBuilder,
     AutocompleteFieldViewBuilder? fieldViewBuilder,
     required AutocompleteOptionsViewBuilder<V> optionsViewBuilder,
-    AutocompleteOptionToString<V> displayStringForOption =
-        RawAutocomplete.defaultStringForOption,
+    this.displayStringForOption = RawAutocomplete.defaultStringForOption,
     FocusNode? focusNode,
     V Function(String)? viewDataTypeFromTextEditingValue,
 
@@ -273,13 +273,16 @@ class _ReactiveRawAutocompleteState<T, V extends Object>
   void initState() {
     super.initState();
 
+    final widgetInstance = (widget as ReactiveRawAutocomplete<T, V>);
+
     final initialValue = value;
     _textController = TextEditingController(
-        text: initialValue == null ? '' : initialValue.toString());
+      text: initialValue == null
+          ? ''
+          : widgetInstance.displayStringForOption(initialValue),
+    );
 
-    (widget as ReactiveRawAutocomplete<T, V>)
-        .onControllerInit
-        ?.call(_textController);
+    widgetInstance.onControllerInit?.call(_textController);
   }
 
   @override

@@ -1,3 +1,7 @@
+## [2.0.1]
+
+* fix for https://github.com/artflutter/reactive_forms_widgets/issues/123
+
 ## [2.0.0]
 
 * rf16
