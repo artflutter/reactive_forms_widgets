@@ -1,6 +1,6 @@
 name: reactive_dropdown_button2
 description: Wrapper around dropdown_button2 to use with reactive_forms.
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_dropdown_button2
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
