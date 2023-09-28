@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:reactive_raw_autocomplete/reactive_raw_autocomplete.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:reactive_raw_autocomplete/reactive_raw_autocomplete.dart';
 
 void main() {
   runApp(const MyApp());
@@ -51,9 +51,13 @@ class MyApp extends StatelessWidget {
                               .contains(textEditingValue.text.toLowerCase());
                         });
                       },
+                      autocompleteOnSubmit: true,
                       optionsViewBuilder: (BuildContext context,
                           AutocompleteOnSelected<String> onSelected,
                           Iterable<String> options) {
+                        final selectedIndex =
+                            AutocompleteHighlightedOption.of(context);
+
                         return Align(
                           alignment: Alignment.topLeft,
                           child: Material(
@@ -72,6 +76,7 @@ class MyApp extends StatelessWidget {
                                     },
                                     child: ListTile(
                                       title: Text(option),
+                                      selected: selectedIndex == index,
                                     ),
                                   );
                                 },
