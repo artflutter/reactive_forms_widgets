@@ -1,8 +1,8 @@
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_phone_form_field/validators/validator/required_validator.dart';
-import 'package:reactive_phone_form_field/validators/validator/valid_fixed_line_validator.dart';
-import 'package:reactive_phone_form_field/validators/validator/valid_mobile_validator.dart';
-import 'package:reactive_phone_form_field/validators/validator/valid_validator.dart';
+import 'package:reactive_phone_form_field/src/validators/validator/required_validator.dart';
+import 'package:reactive_phone_form_field/src/validators/validator/valid_fixed_line_validator.dart';
+import 'package:reactive_phone_form_field/src/validators/validator/valid_mobile_validator.dart';
+import 'package:reactive_phone_form_field/src/validators/validator/valid_validator.dart';
 
 /// Provides a set of built-in validators that can be used by form controls.
 class PhoneValidators {

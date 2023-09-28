@@ -1,21 +1,22 @@
 import 'package:phone_form_field/phone_form_field.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_phone_form_field/validators/validation_message.dart';
+import 'package:reactive_phone_form_field/src/validators/validation_message.dart';
 
-/// Validator that requires the control have a non-empty value.
-class ValidPhoneValidator extends Validator<dynamic> {
-  const ValidPhoneValidator();
+class ValidFixedLinePhoneValidator extends Validator<dynamic> {
+  const ValidFixedLinePhoneValidator();
 
   @override
   Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
-    final error = <String, dynamic>{PhoneValidationMessage.valid: true};
+    final error = <String, dynamic>{
+      PhoneValidationMessage.validFixedLine: true
+    };
 
     if (control.value == null) {
       return null;
     } else if (control.value is PhoneNumber) {
       PhoneNumber? valueCandidate = control.value as PhoneNumber;
 
-      if (PhoneValidator.valid().call(valueCandidate) == null) {
+      if (PhoneValidator.validFixedLine().call(valueCandidate) == null) {
         return null;
       } else {
         return error;

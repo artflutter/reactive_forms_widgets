@@ -1,22 +1,20 @@
 import 'package:phone_form_field/phone_form_field.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_phone_form_field/validators/validation_message.dart';
+import 'package:reactive_phone_form_field/src/validators/validation_message.dart';
 
-class ValidFixedLinePhoneValidator extends Validator<dynamic> {
-  const ValidFixedLinePhoneValidator();
+class ValidMobilePhoneValidator extends Validator<dynamic> {
+  const ValidMobilePhoneValidator();
 
   @override
   Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
-    final error = <String, dynamic>{
-      PhoneValidationMessage.validFixedLine: true
-    };
+    final error = <String, dynamic>{PhoneValidationMessage.validMobile: true};
 
     if (control.value == null) {
       return null;
     } else if (control.value is PhoneNumber) {
       PhoneNumber? valueCandidate = control.value as PhoneNumber;
 
-      if (PhoneValidator.validFixedLine().call(valueCandidate) == null) {
+      if (PhoneValidator.validMobile().call(valueCandidate) == null) {
         return null;
       } else {
         return error;
