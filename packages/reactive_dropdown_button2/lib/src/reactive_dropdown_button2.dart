@@ -90,7 +90,7 @@ class ReactiveDropdownButton2<T, V> extends ReactiveFocusableFormField<T, V> {
       isDense: true,
       isCollapsed: true,
     ),
-    List<DropdownMenuItem<V>>? items,
+    List<DropdownItem<V>>? items,
     DropdownButtonBuilder? selectedItemBuilder,
     T? value,
     Widget? hint,
@@ -113,6 +113,7 @@ class ReactiveDropdownButton2<T, V> extends ReactiveFocusableFormField<T, V> {
     bool barrierDismissible = true,
     Color? barrierColor,
     String? barrierLabel,
+    DropdownSeparator<V>? dropdownSeparator,
   }) : super(
           key: key,
           formControl: formControl,
@@ -157,6 +158,7 @@ class ReactiveDropdownButton2<T, V> extends ReactiveFocusableFormField<T, V> {
                 barrierDismissible: barrierDismissible,
                 barrierColor: barrierColor,
                 barrierLabel: barrierLabel,
+                dropdownSeparator: dropdownSeparator,
               ),
             );
           },
