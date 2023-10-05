@@ -1,3 +1,7 @@
+## [2.0.1]
+
+* export validators
+
 ## [2.0.0]
 
 * reactive_forms update
