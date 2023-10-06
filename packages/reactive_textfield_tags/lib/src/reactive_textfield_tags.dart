@@ -45,7 +45,7 @@ class ReactiveTextfieldTags
               inputfieldBuilder:
                   (context, tec, fn, error, onChanged, onSubmitted) {
                 return ((context, sc, tags, onTagDelete) {
-                  /// Update reactive form value
+                  /// decide max lines
                   final maxLines = minLines + 1;
 
                   /// create tags on unfocus
@@ -69,7 +69,10 @@ class ReactiveTextfieldTags
                       return KeyEventResult.ignored;
                     };
                   }
+
+                  /// Update reactive form value
                   field.didChange(tags);
+
                   return TextField(
                     controller: tec,
                     focusNode: fn,
