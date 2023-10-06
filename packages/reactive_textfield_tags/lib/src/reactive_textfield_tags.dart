@@ -40,7 +40,6 @@ class ReactiveTextfieldTags
           builder: (field) {
             return TextFieldTags(
               key: widgetKey,
-              focusNode: focusNode,
               initialTags: field.value ?? [],
               textSeparators: separators,
               inputfieldBuilder:
