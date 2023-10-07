@@ -17,23 +17,23 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SelectedFile {
   String? get url => throw _privateConstructorUsedError;
-  File? get file => throw _privateConstructorUsedError;
+  XFile? get file => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? url, File? file) video,
-    required TResult Function(String? url, File? file) image,
+    required TResult Function(String? url, XFile? file) video,
+    required TResult Function(String? url, XFile? file) image,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? url, File? file)? video,
-    TResult? Function(String? url, File? file)? image,
+    TResult? Function(String? url, XFile? file)? video,
+    TResult? Function(String? url, XFile? file)? image,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? url, File? file)? video,
-    TResult Function(String? url, File? file)? image,
+    TResult Function(String? url, XFile? file)? video,
+    TResult Function(String? url, XFile? file)? image,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,7 +68,7 @@ abstract class $SelectedFileCopyWith<$Res> {
           SelectedFile value, $Res Function(SelectedFile) then) =
       _$SelectedFileCopyWithImpl<$Res, SelectedFile>;
   @useResult
-  $Res call({String? url, File? file});
+  $Res call({String? url, XFile? file});
 }
 
 /// @nodoc
@@ -95,28 +95,28 @@ class _$SelectedFileCopyWithImpl<$Res, $Val extends SelectedFile>
       file: freezed == file
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
-              as File?,
+              as XFile?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$SelectedFileVideoCopyWith<$Res>
+abstract class _$$SelectedFileVideoImplCopyWith<$Res>
     implements $SelectedFileCopyWith<$Res> {
-  factory _$$SelectedFileVideoCopyWith(
-          _$SelectedFileVideo value, $Res Function(_$SelectedFileVideo) then) =
-      __$$SelectedFileVideoCopyWithImpl<$Res>;
+  factory _$$SelectedFileVideoImplCopyWith(_$SelectedFileVideoImpl value,
+          $Res Function(_$SelectedFileVideoImpl) then) =
+      __$$SelectedFileVideoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? url, File? file});
+  $Res call({String? url, XFile? file});
 }
 
 /// @nodoc
-class __$$SelectedFileVideoCopyWithImpl<$Res>
-    extends _$SelectedFileCopyWithImpl<$Res, _$SelectedFileVideo>
-    implements _$$SelectedFileVideoCopyWith<$Res> {
-  __$$SelectedFileVideoCopyWithImpl(
-      _$SelectedFileVideo _value, $Res Function(_$SelectedFileVideo) _then)
+class __$$SelectedFileVideoImplCopyWithImpl<$Res>
+    extends _$SelectedFileCopyWithImpl<$Res, _$SelectedFileVideoImpl>
+    implements _$$SelectedFileVideoImplCopyWith<$Res> {
+  __$$SelectedFileVideoImplCopyWithImpl(_$SelectedFileVideoImpl _value,
+      $Res Function(_$SelectedFileVideoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -125,7 +125,7 @@ class __$$SelectedFileVideoCopyWithImpl<$Res>
     Object? url = freezed,
     Object? file = freezed,
   }) {
-    return _then(_$SelectedFileVideo(
+    return _then(_$SelectedFileVideoImpl(
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -133,20 +133,20 @@ class __$$SelectedFileVideoCopyWithImpl<$Res>
       file: freezed == file
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
-              as File?,
+              as XFile?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SelectedFileVideo extends SelectedFileVideo {
-  _$SelectedFileVideo({this.url, this.file}) : super._();
+class _$SelectedFileVideoImpl extends SelectedFileVideo {
+  _$SelectedFileVideoImpl({this.url, this.file}) : super._();
 
   @override
   final String? url;
   @override
-  final File? file;
+  final XFile? file;
 
   @override
   String toString() {
@@ -157,7 +157,7 @@ class _$SelectedFileVideo extends SelectedFileVideo {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectedFileVideo &&
+            other is _$SelectedFileVideoImpl &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.file, file) || other.file == file));
   }
@@ -168,14 +168,15 @@ class _$SelectedFileVideo extends SelectedFileVideo {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectedFileVideoCopyWith<_$SelectedFileVideo> get copyWith =>
-      __$$SelectedFileVideoCopyWithImpl<_$SelectedFileVideo>(this, _$identity);
+  _$$SelectedFileVideoImplCopyWith<_$SelectedFileVideoImpl> get copyWith =>
+      __$$SelectedFileVideoImplCopyWithImpl<_$SelectedFileVideoImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? url, File? file) video,
-    required TResult Function(String? url, File? file) image,
+    required TResult Function(String? url, XFile? file) video,
+    required TResult Function(String? url, XFile? file) image,
   }) {
     return video(url, file);
   }
@@ -183,8 +184,8 @@ class _$SelectedFileVideo extends SelectedFileVideo {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? url, File? file)? video,
-    TResult? Function(String? url, File? file)? image,
+    TResult? Function(String? url, XFile? file)? video,
+    TResult? Function(String? url, XFile? file)? image,
   }) {
     return video?.call(url, file);
   }
@@ -192,8 +193,8 @@ class _$SelectedFileVideo extends SelectedFileVideo {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? url, File? file)? video,
-    TResult Function(String? url, File? file)? image,
+    TResult Function(String? url, XFile? file)? video,
+    TResult Function(String? url, XFile? file)? image,
     required TResult orElse(),
   }) {
     if (video != null) {
@@ -235,37 +236,37 @@ class _$SelectedFileVideo extends SelectedFileVideo {
 }
 
 abstract class SelectedFileVideo extends SelectedFile {
-  factory SelectedFileVideo({final String? url, final File? file}) =
-      _$SelectedFileVideo;
+  factory SelectedFileVideo({final String? url, final XFile? file}) =
+      _$SelectedFileVideoImpl;
   SelectedFileVideo._() : super._();
 
   @override
   String? get url;
   @override
-  File? get file;
+  XFile? get file;
   @override
   @JsonKey(ignore: true)
-  _$$SelectedFileVideoCopyWith<_$SelectedFileVideo> get copyWith =>
+  _$$SelectedFileVideoImplCopyWith<_$SelectedFileVideoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SelectedFileImageCopyWith<$Res>
+abstract class _$$SelectedFileImageImplCopyWith<$Res>
     implements $SelectedFileCopyWith<$Res> {
-  factory _$$SelectedFileImageCopyWith(
-          _$SelectedFileImage value, $Res Function(_$SelectedFileImage) then) =
-      __$$SelectedFileImageCopyWithImpl<$Res>;
+  factory _$$SelectedFileImageImplCopyWith(_$SelectedFileImageImpl value,
+          $Res Function(_$SelectedFileImageImpl) then) =
+      __$$SelectedFileImageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? url, File? file});
+  $Res call({String? url, XFile? file});
 }
 
 /// @nodoc
-class __$$SelectedFileImageCopyWithImpl<$Res>
-    extends _$SelectedFileCopyWithImpl<$Res, _$SelectedFileImage>
-    implements _$$SelectedFileImageCopyWith<$Res> {
-  __$$SelectedFileImageCopyWithImpl(
-      _$SelectedFileImage _value, $Res Function(_$SelectedFileImage) _then)
+class __$$SelectedFileImageImplCopyWithImpl<$Res>
+    extends _$SelectedFileCopyWithImpl<$Res, _$SelectedFileImageImpl>
+    implements _$$SelectedFileImageImplCopyWith<$Res> {
+  __$$SelectedFileImageImplCopyWithImpl(_$SelectedFileImageImpl _value,
+      $Res Function(_$SelectedFileImageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -274,7 +275,7 @@ class __$$SelectedFileImageCopyWithImpl<$Res>
     Object? url = freezed,
     Object? file = freezed,
   }) {
-    return _then(_$SelectedFileImage(
+    return _then(_$SelectedFileImageImpl(
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -282,20 +283,20 @@ class __$$SelectedFileImageCopyWithImpl<$Res>
       file: freezed == file
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
-              as File?,
+              as XFile?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SelectedFileImage extends SelectedFileImage {
-  _$SelectedFileImage({this.url, this.file}) : super._();
+class _$SelectedFileImageImpl extends SelectedFileImage {
+  _$SelectedFileImageImpl({this.url, this.file}) : super._();
 
   @override
   final String? url;
   @override
-  final File? file;
+  final XFile? file;
 
   @override
   String toString() {
@@ -306,7 +307,7 @@ class _$SelectedFileImage extends SelectedFileImage {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectedFileImage &&
+            other is _$SelectedFileImageImpl &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.file, file) || other.file == file));
   }
@@ -317,14 +318,15 @@ class _$SelectedFileImage extends SelectedFileImage {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectedFileImageCopyWith<_$SelectedFileImage> get copyWith =>
-      __$$SelectedFileImageCopyWithImpl<_$SelectedFileImage>(this, _$identity);
+  _$$SelectedFileImageImplCopyWith<_$SelectedFileImageImpl> get copyWith =>
+      __$$SelectedFileImageImplCopyWithImpl<_$SelectedFileImageImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? url, File? file) video,
-    required TResult Function(String? url, File? file) image,
+    required TResult Function(String? url, XFile? file) video,
+    required TResult Function(String? url, XFile? file) image,
   }) {
     return image(url, file);
   }
@@ -332,8 +334,8 @@ class _$SelectedFileImage extends SelectedFileImage {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? url, File? file)? video,
-    TResult? Function(String? url, File? file)? image,
+    TResult? Function(String? url, XFile? file)? video,
+    TResult? Function(String? url, XFile? file)? image,
   }) {
     return image?.call(url, file);
   }
@@ -341,8 +343,8 @@ class _$SelectedFileImage extends SelectedFileImage {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? url, File? file)? video,
-    TResult Function(String? url, File? file)? image,
+    TResult Function(String? url, XFile? file)? video,
+    TResult Function(String? url, XFile? file)? image,
     required TResult orElse(),
   }) {
     if (image != null) {
@@ -384,16 +386,16 @@ class _$SelectedFileImage extends SelectedFileImage {
 }
 
 abstract class SelectedFileImage extends SelectedFile {
-  factory SelectedFileImage({final String? url, final File? file}) =
-      _$SelectedFileImage;
+  factory SelectedFileImage({final String? url, final XFile? file}) =
+      _$SelectedFileImageImpl;
   SelectedFileImage._() : super._();
 
   @override
   String? get url;
   @override
-  File? get file;
+  XFile? get file;
   @override
   @JsonKey(ignore: true)
-  _$$SelectedFileImageCopyWith<_$SelectedFileImage> get copyWith =>
+  _$$SelectedFileImageImplCopyWith<_$SelectedFileImageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

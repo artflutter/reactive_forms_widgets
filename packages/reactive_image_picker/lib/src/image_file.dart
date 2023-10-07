@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_picker/image_picker.dart';
 
 part 'image_file.freezed.dart';
 
@@ -10,12 +9,12 @@ class SelectedFile with _$SelectedFile {
 
   factory SelectedFile.video({
     String? url,
-    File? file,
+    XFile? file,
   }) = SelectedFileVideo;
 
   factory SelectedFile.image({
     String? url,
-    File? file,
+    XFile? file,
   }) = SelectedFileImage;
 
   bool get isEmpty {
