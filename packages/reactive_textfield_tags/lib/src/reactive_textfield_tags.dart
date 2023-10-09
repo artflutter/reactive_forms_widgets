@@ -34,6 +34,8 @@ class ReactiveTextfieldTags
     BorderSide? chipBorder,
     bool createTagsOnReturn = false,
     bool createTagsOnBlur = false,
+    EdgeInsets widgetPadding =
+        const EdgeInsets.only(top: 4.0, left: 4.0, right: 4.0),
   }) : super(
           key: key,
           formControl: formControl,
@@ -78,7 +80,7 @@ class ReactiveTextfieldTags
 
                   return Container(
                     decoration: widgetDecoration,
-                    padding: const EdgeInsets.all(8.0),
+                    padding: widgetPadding,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -104,7 +106,6 @@ class ReactiveTextfieldTags
                                 );
                               }).toList())
                             : Container(),
-                        const SizedBox(height: 8.0),
                         TextField(
                           controller: tec,
                           focusNode: fn,
