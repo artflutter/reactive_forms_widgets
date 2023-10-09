@@ -24,11 +24,14 @@ class ReactiveTextfieldTags
     Color? chipColor,
     Widget? deleteIcon,
     TextStyle? tagTextStyle,
+    EdgeInsets chipMargin = const EdgeInsets.only(right: 4.0),
     //////////////////////////////////////////////////////////////////////////
     // put component specific params here
     bool? autoFocus,
     int minLines = 1,
-    InputBorder? border,
+    BoxDecoration? widgetDecoration,
+    InputBorder? inputBorder,
+    BorderSide? chipBorder,
     bool createTagsOnReturn = false,
     bool createTagsOnBlur = false,
   }) : super(
@@ -73,45 +76,50 @@ class ReactiveTextfieldTags
                   /// Update reactive form value
                   field.didChange(tags);
 
-                  return TextField(
-                    controller: tec,
-                    focusNode: fn,
-                    autofocus: autoFocus ?? false,
-                    onChanged: onChanged,
-                    onSubmitted: onSubmitted,
-                    decoration: InputDecoration(
-                      errorText: error,
-                      prefixIcon: tags.isNotEmpty
-                          ? Padding(
-                              padding: EdgeInsets.only(
-                                  bottom: (maxLines - 1) * 18.0),
-                              child: SingleChildScrollView(
-                                controller: sc,
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: tags.map((String tag) {
-                                      return Chip(
-                                        label: Text(
-                                          tag,
-                                          style: tagTextStyle,
-                                        ),
-                                        backgroundColor: chipColor,
-                                        deleteIcon: deleteIcon,
-                                        onDeleted: () {
-                                          onTagDelete(tag);
-                                        },
-                                      );
-                                    }).toList()),
-                              ),
-                            )
-                          : null,
-                      border: border,
+                  return Container(
+                    decoration: widgetDecoration,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        tags.isNotEmpty
+                            ? Wrap(
+                                children: tags.map((String tag) {
+                                return Container(
+                                  margin: chipMargin,
+                                  child: Chip(
+                                    label: Text(
+                                      tag,
+                                      style: tagTextStyle,
+                                    ),
+                                    backgroundColor: chipColor,
+                                    clipBehavior: Clip.antiAlias,
+                                    side: chipBorder,
+                                    deleteIcon: deleteIcon,
+                                    onDeleted: () {
+                                      onTagDelete(tag);
+                                    },
+                                  ),
+                                );
+                              }).toList())
+                            : Container(),
+                        const SizedBox(height: 8.0),
+                        TextField(
+                          controller: tec,
+                          focusNode: fn,
+                          autofocus: autoFocus ?? false,
+                          onChanged: onChanged,
+                          onSubmitted: onSubmitted,
+                          decoration: InputDecoration(
+                            errorText: error,
+                            border: inputBorder,
+                          ),
+                          minLines: minLines,
+                          maxLines: maxLines,
+                        ),
+                      ],
                     ),
-                    minLines: minLines,
-                    maxLines: maxLines,
                   );
                 });
               },
