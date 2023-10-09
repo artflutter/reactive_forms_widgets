@@ -1,7 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_image_picker/src/reactive_image_picker.dart';
@@ -154,7 +152,7 @@ class ImagePickerWidget extends StatelessWidget {
       );
 
       if (pickedFile != null) {
-        final imageFile = SelectedFile.image(file: File(pickedFile.path));
+        final imageFile = SelectedFile.image(file: pickedFile);
 
         return imageFile;
       }
@@ -181,7 +179,7 @@ class ImagePickerWidget extends StatelessWidget {
       );
 
       if (pickedFile != null) {
-        final imageFile = SelectedFile.image(file: File(pickedFile.path));
+        final imageFile = SelectedFile.image(file: pickedFile);
 
         // if (onBeforeChange != null && context.mounted) {
         //   return await onBeforeChange?.call(context, imageFile);
@@ -211,7 +209,7 @@ class ImagePickerWidget extends StatelessWidget {
 
       if (pickedFile.isNotEmpty) {
         final imageFile = pickedFile.map(
-          (e) => SelectedFile.image(file: File(e.path)),
+          (e) => SelectedFile.image(file: e),
         );
 
         // if (onBeforeChange != null && context.mounted) {
@@ -239,7 +237,7 @@ class ImagePickerWidget extends StatelessWidget {
       );
 
       if (pickedFile != null) {
-        final imageFile = SelectedFile.video(file: File(pickedFile.path));
+        final imageFile = SelectedFile.video(file: pickedFile);
 
         // if (onBeforeChange != null && context.mounted) {
         //   return await onBeforeChange?.call(context, imageFile);
@@ -266,7 +264,7 @@ class ImagePickerWidget extends StatelessWidget {
       );
 
       if (pickedFile != null) {
-        final imageFile = SelectedFile.video(file: File(pickedFile.path));
+        final imageFile = SelectedFile.video(file: pickedFile);
 
         // if (onBeforeChange != null && context.mounted) {
         //   return await onBeforeChange?.call(context, imageFile);

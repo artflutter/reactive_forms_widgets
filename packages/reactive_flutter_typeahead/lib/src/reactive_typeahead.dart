@@ -153,6 +153,9 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
             state._setFocusNode(textFieldConfiguration.focusNode);
             final controller =
                 textFieldConfiguration.controller ?? state._textController;
+            if (field.value != null) {
+              controller.text = stringify(field.value as V);
+            }
 
             return TypeAheadField<V>(
               suggestionsCallback: suggestionsCallback,
@@ -165,6 +168,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
               textFieldConfiguration: textFieldConfiguration.copyWith(
                 focusNode: textFieldConfiguration.focusNode ?? state.focusNode,
                 controller: controller,
+                enabled: field.control.enabled,
                 decoration: effectiveDecoration.copyWith(
                   errorText: state.errorText,
                 ),

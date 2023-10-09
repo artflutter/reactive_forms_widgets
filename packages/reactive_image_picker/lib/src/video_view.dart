@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_image_picker/src/image_file.dart';
@@ -38,7 +40,7 @@ class VideoViewState extends State<VideoView> {
     if (file != null) {
       _controller = kIsWeb
           ? VideoPlayerController.networkUrl(Uri.parse(file.path))
-          : VideoPlayerController.file(file);
+          : VideoPlayerController.file(File(file.path));
       _controller?.addListener(_onVideoControllerUpdate);
     }
 

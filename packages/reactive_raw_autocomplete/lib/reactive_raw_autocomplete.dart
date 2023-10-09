@@ -117,6 +117,7 @@ class ReactiveRawAutocomplete<T, V extends Object>
     TextAlignVertical? textAlignVertical,
     bool autofocus = false,
     bool readOnly = false,
+    bool autocompleteOnSubmit = false,
     bool? showCursor,
     bool obscureText = false,
     String obscuringCharacter = '•',
@@ -222,8 +223,15 @@ class ReactiveRawAutocomplete<T, V extends Object>
                       expands: expands,
                       maxLength: maxLength,
                       onTap: onTap,
-                      onSubmitted:
-                          onSubmitted != null ? (_) => onSubmitted() : null,
+                      onSubmitted: (_) {
+                        if (autocompleteOnSubmit) {
+                          onFieldSubmitted();
+                        }
+
+                        if (onSubmitted != null) {
+                          onSubmitted();
+                        }
+                      },
                       onEditingComplete: onEditingComplete,
                       inputFormatters: inputFormatters,
                       enabled: field.control.enabled,
