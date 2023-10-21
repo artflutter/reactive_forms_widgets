@@ -53,3 +53,4 @@ Collection of advanced widgets based on Reactive Forms managed by [Melos](https:
 - **[ReactiveWechatCameraPicker](https://pub.dev/packages/reactive_wechat_camera_picker)** - wrapper around [`wechat_camera_picker`](https://pub.dev/packages/wechat_camera_picker)
 - **[ReactiveTextfieldTags](https://pub.dev/packages/reactive_textfields_tags)** - wrapper around [`textfield_tags`](https://pub.dev/packages/textfield_tags)
 - **[ReactiveDropdownButton2](https://pub.dev/packages/reactive_dropdown_button2)** - wrapper around [`dropdown_button2`](https://pub.dev/packages/dropdown_button2)
+- **[ReactiveAnimatedToggleSwitch*](https://pub.dev/packages/reactive_animated_toggle_switch)** - wrapper around [`animated_toggle_switch`](https://pub.dev/packages/animated_toggle_switch)

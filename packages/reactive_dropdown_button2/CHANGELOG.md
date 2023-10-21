@@ -1,3 +1,7 @@
+## 0.0.3-beta.6
+
+* wrapper for v3 beta.6
+
 ## 0.0.3-beta
 
 * wrapper for v3 beta
