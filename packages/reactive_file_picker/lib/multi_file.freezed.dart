@@ -63,22 +63,22 @@ class _$MultiFileCopyWithImpl<T, $Res, $Val extends MultiFile<T>>
 }
 
 /// @nodoc
-abstract class _$$_MultiFileCopyWith<T, $Res>
+abstract class _$$MultiFileImplCopyWith<T, $Res>
     implements $MultiFileCopyWith<T, $Res> {
-  factory _$$_MultiFileCopyWith(
-          _$_MultiFile<T> value, $Res Function(_$_MultiFile<T>) then) =
-      __$$_MultiFileCopyWithImpl<T, $Res>;
+  factory _$$MultiFileImplCopyWith(
+          _$MultiFileImpl<T> value, $Res Function(_$MultiFileImpl<T>) then) =
+      __$$MultiFileImplCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call({List<T> files, List<PlatformFile> platformFiles});
 }
 
 /// @nodoc
-class __$$_MultiFileCopyWithImpl<T, $Res>
-    extends _$MultiFileCopyWithImpl<T, $Res, _$_MultiFile<T>>
-    implements _$$_MultiFileCopyWith<T, $Res> {
-  __$$_MultiFileCopyWithImpl(
-      _$_MultiFile<T> _value, $Res Function(_$_MultiFile<T>) _then)
+class __$$MultiFileImplCopyWithImpl<T, $Res>
+    extends _$MultiFileCopyWithImpl<T, $Res, _$MultiFileImpl<T>>
+    implements _$$MultiFileImplCopyWith<T, $Res> {
+  __$$MultiFileImplCopyWithImpl(
+      _$MultiFileImpl<T> _value, $Res Function(_$MultiFileImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$_MultiFileCopyWithImpl<T, $Res>
     Object? files = null,
     Object? platformFiles = null,
   }) {
-    return _then(_$_MultiFile<T>(
+    return _then(_$MultiFileImpl<T>(
       files: null == files
           ? _value._files
           : files // ignore: cast_nullable_to_non_nullable
@@ -102,8 +102,8 @@ class __$$_MultiFileCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_MultiFile<T> extends _MultiFile<T> {
-  const _$_MultiFile(
+class _$MultiFileImpl<T> extends _MultiFile<T> {
+  const _$MultiFileImpl(
       {final List<T> files = const [],
       final List<PlatformFile> platformFiles = const []})
       : _files = files,
@@ -137,7 +137,7 @@ class _$_MultiFile<T> extends _MultiFile<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MultiFile<T> &&
+            other is _$MultiFileImpl<T> &&
             const DeepCollectionEquality().equals(other._files, _files) &&
             const DeepCollectionEquality()
                 .equals(other._platformFiles, _platformFiles));
@@ -152,14 +152,14 @@ class _$_MultiFile<T> extends _MultiFile<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MultiFileCopyWith<T, _$_MultiFile<T>> get copyWith =>
-      __$$_MultiFileCopyWithImpl<T, _$_MultiFile<T>>(this, _$identity);
+  _$$MultiFileImplCopyWith<T, _$MultiFileImpl<T>> get copyWith =>
+      __$$MultiFileImplCopyWithImpl<T, _$MultiFileImpl<T>>(this, _$identity);
 }
 
 abstract class _MultiFile<T> extends MultiFile<T> {
   const factory _MultiFile(
       {final List<T> files,
-      final List<PlatformFile> platformFiles}) = _$_MultiFile<T>;
+      final List<PlatformFile> platformFiles}) = _$MultiFileImpl<T>;
   const _MultiFile._() : super._();
 
   @override
@@ -168,6 +168,6 @@ abstract class _MultiFile<T> extends MultiFile<T> {
   List<PlatformFile> get platformFiles;
   @override
   @JsonKey(ignore: true)
-  _$$_MultiFileCopyWith<T, _$_MultiFile<T>> get copyWith =>
+  _$$MultiFileImplCopyWith<T, _$MultiFileImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
