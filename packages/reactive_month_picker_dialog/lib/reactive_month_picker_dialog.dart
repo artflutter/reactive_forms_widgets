@@ -100,6 +100,7 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
                 onTap: () {
                   field.control.markAsTouched();
                   field.didChange(null);
+                  onChanged?.call(field.control);
                 },
               );
             }

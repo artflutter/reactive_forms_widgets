@@ -100,6 +100,9 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
     // time picker params
     TimePickerEntryMode timePickerEntryMode = TimePickerEntryMode.dial,
     RouteSettings? timePickerRouteSettings,
+
+....// Events
+    ReactiveFormFieldCallback<DateTime>? onChanged,
   }) : super(
           key: key,
           formControl: formControl,
@@ -120,6 +123,7 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
                 onTap: () {
                   field.control.markAsTouched();
                   field.didChange(null);
+                  onChanged?.call(field.control);
                 },
               );
             }
@@ -215,6 +219,7 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
                             _combine(date, time),
                           ),
                         );
+                       onChanged?.call(field.control);
                       }
                     }
                     field.control.unfocus();
