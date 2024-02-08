@@ -70,13 +70,14 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
     Widget? confirmText,
     Widget? cancelText,
     double? customHeight,
-    double? customWidth,
+    double customWidth = 320,
     bool yearFirst = false,
     bool dismissible = false,
     double roundedCornersRadius = 0,
     bool forceSelectedDate = false,
     ButtonStyle? Function(DateTime)? monthStylePredicate,
     ButtonStyle? Function(int)? yearStylePredicate,
+    ReactiveFormFieldCallback<DateTime>? onChanged,
   }) : super(
           key: key,
           formControl: formControl,
@@ -148,6 +149,7 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
                         ? field.value
                         : field.valueAccessor.modelToViewValue(date),
                   );
+                  onChanged?.call(field.control);
                   field.control.markAsTouched();
                 },
                 child: InputDecorator(
