@@ -2,6 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+abstract class DropDownValueAccessor<T, V> {
+  // <DateTime, String>
+  DropDownValueAccessor();
+
+  V? modelToViewValue(List<DropdownItem<V>> items, T? modelValue);
+
+  T? viewToModelValue(List<DropdownItem<V>> items, V? modelValue);
+}
+
+class _DropDownValueAccessor<T, V> extends ControlValueAccessor<T, V> {
+  final List<DropdownItem<V>> items;
+
+  final DropDownValueAccessor<T, V> dropDownValueAccessor;
+
+  _DropDownValueAccessor({
+    this.items = const [],
+    required this.dropDownValueAccessor,
+  });
+
+  @override
+  V? modelToViewValue(T? modelValue) {
+    return dropDownValueAccessor.modelToViewValue(items, modelValue);
+  }
+
+  @override
+  T? viewToModelValue(V? viewValue) {
+    return dropDownValueAccessor.viewToModelValue(items, viewValue);
+  }
+}
+
 /// A [ReactiveDropdownButton2] that contains a [DropdownButton2].
 ///
 /// This is a convenience widget that wraps a [DropdownButton2] widget in a
@@ -79,7 +109,7 @@ class ReactiveDropdownButton2<T, V> extends ReactiveFocusableFormField<T, V> {
     String? formControlName,
     FormControl<T>? formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
+    DropDownValueAccessor<T, V>? valueAccessor,
     ShowErrorsFunction<T>? showErrors,
     FocusNode? focusNode,
 
@@ -103,10 +133,13 @@ class ReactiveDropdownButton2<T, V> extends ReactiveFocusableFormField<T, V> {
     bool autofocus = false,
     bool? enableFeedback,
     AlignmentGeometry alignment = AlignmentDirectional.centerStart,
+    ButtonStyleData? errorButtonStyleData,
     ButtonStyleData? buttonStyleData,
     IconStyleData iconStyleData = const IconStyleData(),
+    IconStyleData errorIconStyleData = const IconStyleData(),
     DropdownStyleData dropdownStyleData = const DropdownStyleData(),
     MenuItemStyleData menuItemStyleData = const MenuItemStyleData(),
+    Widget Function(BuildContext context, String error)? errorBuilder,
     DropdownSearchData<V>? dropdownSearchData,
     Widget? customButton,
     bool openWithLongPress = false,
@@ -114,11 +147,18 @@ class ReactiveDropdownButton2<T, V> extends ReactiveFocusableFormField<T, V> {
     Color? barrierColor,
     String? barrierLabel,
     DropdownSeparator<V>? dropdownSeparator,
+    bool barrierCoversButton = true,
+    EdgeInsets padding = EdgeInsets.zero,
   }) : super(
           key: key,
           formControl: formControl,
           formControlName: formControlName,
-          valueAccessor: valueAccessor,
+          valueAccessor: valueAccessor != null
+              ? _DropDownValueAccessor(
+                  items: items ?? [],
+                  dropDownValueAccessor: valueAccessor,
+                )
+              : null,
           validationMessages: validationMessages,
           showErrors: showErrors,
           focusNode: focusNode,
@@ -126,39 +166,62 @@ class ReactiveDropdownButton2<T, V> extends ReactiveFocusableFormField<T, V> {
             final effectiveDecoration = inputDecoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
+            final errorText = field.errorText;
+
             return InputDecorator(
               decoration: effectiveDecoration.copyWith(
-                errorText: field.errorText,
+                errorText: errorBuilder == null ? field.errorText : null,
                 enabled: field.control.enabled,
+                error: errorBuilder != null && errorText != null
+                    ? DefaultTextStyle(
+                        style: Theme.of(field.context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(
+                                  color:
+                                      Theme.of(field.context).colorScheme.error,
+                                ) ??
+                            const TextStyle(),
+                        child: errorBuilder.call(field.context, errorText),
+                      )
+                    : null,
               ),
-              child: DropdownButton2<V>(
-                key: widgetKey,
-                items: items ?? [],
-                selectedItemBuilder: selectedItemBuilder,
-                value: field.value,
-                hint: hint,
-                disabledHint: disabledHint,
-                onChanged: field.didChange,
-                onMenuStateChange: onMenuStateChange,
-                style: style,
-                underline: underline,
-                isDense: isDense,
-                isExpanded: isExpanded,
-                focusNode: field.focusNode,
-                autofocus: autofocus,
-                enableFeedback: enableFeedback,
-                alignment: alignment,
-                buttonStyleData: buttonStyleData,
-                iconStyleData: iconStyleData,
-                dropdownStyleData: dropdownStyleData,
-                menuItemStyleData: menuItemStyleData,
-                dropdownSearchData: dropdownSearchData,
-                customButton: customButton,
-                openWithLongPress: openWithLongPress,
-                barrierDismissible: barrierDismissible,
-                barrierColor: barrierColor,
-                barrierLabel: barrierLabel,
-                dropdownSeparator: dropdownSeparator,
+              child: Padding(
+                padding: padding,
+                child: DropdownButton2<V>(
+                  key: widgetKey,
+                  items: items ?? [],
+                  selectedItemBuilder: selectedItemBuilder,
+                  value: field.value,
+                  hint: hint,
+                  disabledHint: disabledHint,
+                  onChanged: field.control.disabled ? null : field.didChange,
+                  onMenuStateChange: onMenuStateChange,
+                  style: style,
+                  underline: underline,
+                  isDense: isDense,
+                  isExpanded: isExpanded,
+                  focusNode: field.focusNode,
+                  autofocus: autofocus,
+                  enableFeedback: enableFeedback,
+                  alignment: alignment,
+                  buttonStyleData: field.errorText != null
+                      ? errorButtonStyleData ?? buttonStyleData
+                      : buttonStyleData,
+                  iconStyleData: field.errorText != null
+                      ? errorIconStyleData
+                      : iconStyleData,
+                  dropdownStyleData: dropdownStyleData,
+                  menuItemStyleData: menuItemStyleData,
+                  dropdownSearchData: dropdownSearchData,
+                  customButton: customButton,
+                  openWithLongPress: openWithLongPress,
+                  barrierDismissible: barrierDismissible,
+                  barrierColor: barrierColor,
+                  barrierLabel: barrierLabel,
+                  dropdownSeparator: dropdownSeparator,
+                  barrierCoversButton: barrierCoversButton,
+                ),
               ),
             );
           },

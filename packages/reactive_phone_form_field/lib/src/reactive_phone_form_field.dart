@@ -100,7 +100,6 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
         const CountrySelectorNavigator.searchDelegate(),
     Function(PhoneNumber?)? onSaved,
     IsoCode defaultCountry = IsoCode.US,
-    // AutovalidateMode autovalidateMode = AutovalidateMode.onUserInteraction,
     PhoneNumber? initialValue,
     double flagSize = 16,
     InputDecoration decoration = const InputDecoration(),
@@ -151,7 +150,6 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     bool enableIMEPersonalizedLearning = true,
     bool isCountrySelectionEnabled = true,
     bool isCountryChipPersistent = false,
-    ReactiveFormFieldCallback<T>? onChanged,
   }) : super(
           key: key,
           formControl: formControl,
@@ -171,10 +169,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
               focusNode: state.focusNode,
               controller: state._textController,
               shouldFormat: shouldFormat,
-              onChanged: (value) {
-                field.didChange(value);
-                onChanged?.call(field.control);
-              },
+              onChanged: field.didChange,
               autofillHints: autofillHints,
               autofocus: autofocus,
               enabled: field.control.enabled,

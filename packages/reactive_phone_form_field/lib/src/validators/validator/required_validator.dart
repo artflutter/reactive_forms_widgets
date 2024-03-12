@@ -5,20 +5,21 @@ import 'package:reactive_phone_form_field/src/validators/validation_message.dart
 class RequiredPhoneValidator extends Validator<dynamic> {
   const RequiredPhoneValidator();
 
+  static const message = 'phone.required';
+
   @override
   Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
-    final error = <String, dynamic>{PhoneValidationMessage.required: true};
+    final error = <String, dynamic>{message: true};
+    final value = control.value;
 
-    if (control.value == null) {
+    if(value is! PhoneNumber?) {
       return error;
     }
 
-    PhoneNumber? valueCandidate = control.value as PhoneNumber;
-
-    if (PhoneValidator.required().call(valueCandidate) == null) {
-      return null;
-    } else {
+    if (value == null || (value.nsn.trim().isEmpty)) {
       return error;
     }
+
+    return null;
   }
 }

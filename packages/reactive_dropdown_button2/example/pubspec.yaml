@@ -29,6 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  collection: ^1.18.0
   reactive_dropdown_button2:
     path: ../
   reactive_forms: ^16.0.0
