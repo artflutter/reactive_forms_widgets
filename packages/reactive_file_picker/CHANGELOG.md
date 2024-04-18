@@ -1,76 +1,80 @@
+## [2.1.0]
+
+- reactive_forms update
+
 ## [2.0.0]
 
-* rf16
+- rf16
 
 ## [1.0.0]
 
-* reactive_forms update
+- reactive_forms update
 
 ## [0.12.1]
 
-* bugfix
+- bugfix
 
 ## [0.12.0]
 
-* package version bump
+- package version bump
 
 ## [0.11.0]
 
-* package version bump
+- package version bump
 
 ## [0.10.0]
 
-* package version bump
+- package version bump
 
 ## [0.9.0]
 
-* issue fixes
+- issue fixes
 
 ## [0.8.0]
 
-* package version bump
+- package version bump
 
 ## [0.7.0]
 
-* package version bump
+- package version bump
 
 ## [0.6.0]
 
-* package version bump
+- package version bump
 
 ## [0.5.0]
 
-* package version bump
+- package version bump
 
 ## [0.4.0]
 
-* package version bump
+- package version bump
 
 ## [0.3.0]
 
-* package updates
+- package updates
 
 ## [0.2.1]
 
-* reactive_forms update
+- reactive_forms update
 
 ## [0.2.0]
 
-* update file_picker to 4.0.2
+- update file_picker to 4.0.2
 
 ## [0.1.2]
 
-* validation messages function type
+- validation messages function type
 
 ## [0.1.1]
 
-* package updates
+- package updates
 
 ## [0.1.0]
 
-* null safety
-* disabled handling
+- null safety
+- disabled handling
 
 ## [0.0.1]
 
-* initial release
+- initial release

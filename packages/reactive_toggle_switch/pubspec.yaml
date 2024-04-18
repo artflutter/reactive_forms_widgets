@@ -1,6 +1,6 @@
 name: reactive_toggle_switch
 description: Wrapper around toggle_switch to use with reactive_forms.
-version: 2.0.0
+version: 2.1.0
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_toggle_switch
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   toggle_switch: ^2.1.0
-  reactive_forms: ^16.0.0
+  reactive_forms: ^17.0.0
 
 dev_dependencies:
   flutter_test:
@@ -24,7 +24,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
 # To add assets to your package, add an assets section, like this:
 # assets:
 #   - images/a_dot_burr.jpeg

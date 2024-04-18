@@ -1,6 +1,6 @@
 name: reactive_dropdown_button2
 description: Wrapper around dropdown_button2 to use with reactive_forms.
-version: 1.0.0-beta.10
+version: 1.1.0-beta.10
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_dropdown_button2
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   dropdown_button2: 3.0.0-beta.10
-  reactive_forms: ^16.0.0
+  reactive_forms: ^17.0.0
 
 dev_dependencies:
   flutter_test:
@@ -24,7 +24,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
 # To add assets to your package, add an assets section, like this:
 # assets:
 #   - images/a_dot_burr.jpeg

@@ -1,15 +1,15 @@
 name: example
 description: A new Flutter project.
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: ">=2.19.6 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^16.0.0
+  reactive_forms: ^17.0.0
   reactive_language_picker:
     path: ..
 

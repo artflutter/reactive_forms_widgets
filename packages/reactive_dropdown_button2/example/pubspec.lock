@@ -87,10 +87,10 @@ packages:
     dependency: transitive
     description:
       name: intl
-      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
+      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
       url: "https://pub.dev"
     source: hosted
-    version: "0.18.1"
+    version: "0.19.0"
   leak_tracker:
     dependency: transitive
     description:
@@ -161,15 +161,15 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.0.0-beta.10"
+    version: "1.1.0-beta.10"
   reactive_forms:
     dependency: "direct main"
     description:
       name: reactive_forms
-      sha256: "74f221052d43ba2f0661e7fda4177ed219fc3aa1fc613c9d981690e51156b418"
+      sha256: "10771b3b8f7df3dc6942928cc55b2abb49c0a5eb56ca8ab1ff4084b2bd968044"
       url: "https://pub.dev"
     source: hosted
-    version: "16.1.0"
+    version: "17.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -240,5 +240,5 @@ packages:
     source: hosted
     version: "13.0.0"
 sdks:
-  dart: ">=3.2.0-0 <4.0.0"
-  flutter: ">=3.10.0"
+  dart: ">=3.2.0 <4.0.0"
+  flutter: ">=3.16.0"

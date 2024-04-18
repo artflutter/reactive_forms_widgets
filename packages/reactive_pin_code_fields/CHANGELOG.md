@@ -1,39 +1,43 @@
+## [2.1.0]
+
+- reactive_forms update
+
 ## [2.0.0]
 
-* rf16
+- rf16
 
 ## [1.0.0]
 
-* reactive_forms update
+- reactive_forms update
 
 ## [0.5.0]
 
-* package version bump
+- package version bump
 
 ## [0.4.0]
 
-* package version bump
+- package version bump
 
 ## 0.3.0
 
-* package version bump
+- package version bump
 
 ## 0.2.0
 
-* package version bump
+- package version bump
 
 ## 0.1.1
 
-* bugfix
+- bugfix
 
 ## 0.1.0
 
-* package version bump
+- package version bump
 
 ## 0.0.2
 
-* package updates
+- package updates
 
 ## 0.0.1
 
-* initial release.
+- initial release.

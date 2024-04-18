@@ -1,6 +1,6 @@
 name: reactive_multi_select_flutter
 description: Wrapper around multi_select_flutter to use with reactive_forms.
-version: 2.0.0
+version: 2.1.0
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_multi_select_flutter
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   multi_select_flutter: ^4.1.3
-  reactive_forms: ^16.0.0
+  reactive_forms: ^17.0.0
 
 dev_dependencies:
   flutter_test:
@@ -24,7 +24,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
 # To add assets to your package, add an assets section, like this:
 # assets:
 #   - images/a_dot_burr.jpeg

@@ -1,6 +1,6 @@
 name: reactive_wechat_assets_picker
 description: Wrapper around wechat_assets_picker to use with reactive_forms.
-version: 2.0.0
+version: 2.1.0
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_wechat_assets_picker
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   wechat_assets_picker: ^8.5.0
-  reactive_forms: ^16.0.0
+  reactive_forms: ^17.0.0
 
 dev_dependencies:
   flutter_test:
@@ -24,7 +24,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
 # To add assets to your package, add an assets section, like this:
 # assets:
 #   - images/a_dot_burr.jpeg
