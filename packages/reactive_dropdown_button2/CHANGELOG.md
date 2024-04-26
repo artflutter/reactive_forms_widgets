@@ -1,3 +1,7 @@
+## 1.0.0-beta.11
+
+* Support `reactive_forms: 17.x`
+
 ## 1.0.0-beta.10
 
 * upgrade control value accessor to have ability to map against `items`

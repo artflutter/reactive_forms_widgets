@@ -1,3 +1,7 @@
+## [5.0.1]
+
+* Support `reactive_forms: 17.x`
+
 ## [5.0.0]
 
 * file structure refactoring

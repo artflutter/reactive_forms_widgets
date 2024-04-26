@@ -1,6 +1,6 @@
 name: reactive_month_picker_dialog
 description: Wrapper around month_picker_dialog to use with reactive_forms.
-version: 2.0.0
+version: 2.0.1
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_month_picker_dialog
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   month_picker_dialog: ^2.0.2
   reactive_forms: ^16.0.1
-  intl: ^0.18.0
+  intl: ">=0.18.0 <1.0.0"
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,7 @@
+## [3.0.1]
+
+* Support `reactive_forms: 17.x`
+
 ## [3.0.0]
 
 * package update

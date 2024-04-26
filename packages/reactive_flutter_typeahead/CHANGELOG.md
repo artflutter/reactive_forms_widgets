@@ -1,3 +1,7 @@
+## [2.1.1]
+
+* Support `reactive_forms: 17.x`
+
 ## [2.1.0]
 
 * expose more fields
