@@ -1,3 +1,7 @@
+## [2.0.2]
+
+* Support `reactive_forms: 17.x`
+
 ## [2.0.1]
 * bugfix with hintText display
 

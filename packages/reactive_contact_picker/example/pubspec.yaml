@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^16.0.0
+  reactive_forms: ">=16.0.0 <18.0.0"
   reactive_contact_picker:
     path: ../
 

@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ^16.0.0
+  reactive_forms: ">=16.0.0 <18.0.0"
   highlight: ^0.7.0
   flutter_highlight: ^0.7.0
   reactive_code_text_field:
