@@ -7,7 +7,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -80,7 +80,7 @@ class CitiesService {
 class MyApp1 extends StatelessWidget {
   final int c;
 
-  const MyApp1({Key? key, required this.c}) : super(key: key);
+  const MyApp1({super.key, required this.c});
 
   FormGroup buildForm() => fb.group({
         'input': FormControl<String>(value: null),

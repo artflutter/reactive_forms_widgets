@@ -79,12 +79,12 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
   /// For documentation about the various parameters, see the [DropdownSearch] class
   /// and [DropdownSearch], the constructor.
   ReactiveDropdownSearch({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     List<V> items = const [],
@@ -108,12 +108,6 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
         const DropDownDecoratorProps(),
     BeforePopupOpening<V>? onBeforePopupOpening,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final effectiveDecoration = (dropdownDecoratorProps
                         .dropdownSearchDecoration ??

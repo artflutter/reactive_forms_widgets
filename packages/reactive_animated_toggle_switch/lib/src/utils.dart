@@ -13,7 +13,7 @@ Widget _defaultLoadingIconBuilder(BuildContext context,
     const _MyLoading();
 
 class _MyLoading extends StatelessWidget {
-  const _MyLoading({Key? key}) : super(key: key);
+  const _MyLoading();
 
   @override
   Widget build(BuildContext context) {

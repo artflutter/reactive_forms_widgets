@@ -74,16 +74,16 @@ class ReactiveFluentToggleSwitch<T> extends ReactiveFormField<T, bool> {
   /// For documentation about the various parameters, see the [FluentUi] class
   /// and [FluentUi], the constructor.
   ReactiveFluentToggleSwitch({
-    Key? key,
+    super.key,
     Key? widgetKey,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, bool>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
-    FocusNode? focusNode,
+    super.focusNode,
     ToggleSwitchThemeData? style,
     Widget? content,
     String? semanticLabel,
@@ -92,13 +92,6 @@ class ReactiveFluentToggleSwitch<T> extends ReactiveFormField<T, bool> {
     Widget? thumb,
     ToggleSwitchThumbBuilder? thumbBuilder,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
-          focusNode: focusNode,
           builder: (field) {
             final state = field as _ReactiveFluentToggleSwitchState<T>;
 

@@ -13,16 +13,16 @@ dependencies:
     sdk: flutter
   reactive_forms: ">=16.0.0 <18.0.0"
   freezed_annotation: ^2.4.1
-  image_picker: ^1.0.2
-  app_settings: ^5.0.0
-  video_player: ^2.7.0
+  image_picker: ^1.1.0
+  app_settings: ^5.1.1
+  video_player: ^2.8.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  freezed: ^2.4.2
-  build_runner: ^2.4.6
-  flutter_lints: ^2.0.2
+  freezed: ^2.5.2
+  build_runner: ^2.4.9
+  flutter_lints: ^3.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -44,12 +44,12 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
   /// For documentation about the various parameters, see the [showDateRangePicker]
   /// function parameters.
   ReactiveDateRangePicker({
-    Key? key,
-    String? formControlName,
-    FormControl<DateTimeRange>? formControl,
+    super.key,
+    super.formControlName,
+    super.formControl,
     ControlValueAccessor<DateTimeRange, String>? valueAccessor,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ShowErrorsFunction<DateTimeRange>? showErrors,
+    super.validationMessages,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,
@@ -77,12 +77,7 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
     TextDirection? textDirection,
     RouteSettings? routeSettings,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          validationMessages: validationMessages,
           valueAccessor: valueAccessor ?? DateTimeRangeValueAccessor(),
-          showErrors: showErrors,
           builder: (field) {
             Widget? suffixIcon = decoration?.suffixIcon;
             final isEmptyValue =

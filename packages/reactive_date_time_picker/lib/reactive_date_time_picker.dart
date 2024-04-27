@@ -56,12 +56,12 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
   /// For documentation about the various parameters, see the [showTimePicker]
   /// function parameters.
   ReactiveDateTimePicker({
-    Key? key,
-    String? formControlName,
-    FormControl<DateTime>? formControl,
+    super.key,
+    super.formControlName,
+    super.formControl,
     ControlValueAccessor<DateTime, String>? valueAccessor,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ShowErrorsFunction<DateTime>? showErrors,
+    super.validationMessages,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     TextStyle? style,
@@ -101,13 +101,8 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
     TimePickerEntryMode timePickerEntryMode = TimePickerEntryMode.dial,
     RouteSettings? timePickerRouteSettings,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          validationMessages: validationMessages,
           valueAccessor:
               valueAccessor ?? _effectiveValueAccessor(type, dateFormat),
-          showErrors: showErrors,
           builder: (field) {
             Widget? suffixIcon = decoration?.suffixIcon;
             final isEmptyValue =

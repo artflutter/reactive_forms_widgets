@@ -91,12 +91,12 @@ class ReactiveFilePicker<T>
   /// For documentation about the various parameters, see the [FilePicker] class
   /// and [FilePicker], the constructor.
   ReactiveFilePicker({
-    Key? key,
-    String? formControlName,
-    FormControl<MultiFile<T>>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<MultiFile<T>, MultiFile<T>>? valueAccessor,
-    ShowErrorsFunction<MultiFile<T>>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,
@@ -113,12 +113,6 @@ class ReactiveFilePicker<T>
     double disabledOpacity = 0.5,
     String? initialDirectory,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final value = field.value ?? MultiFile<T>();
             final InputDecoration effectiveDecoration = (decoration ??

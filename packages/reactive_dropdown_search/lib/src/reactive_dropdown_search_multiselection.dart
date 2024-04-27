@@ -80,12 +80,12 @@ class ReactiveDropdownSearchMultiSelection<T, V>
   /// For documentation about the various parameters, see the [DropdownSearch] class
   /// and [DropdownSearch], the constructor.
   ReactiveDropdownSearchMultiSelection({
-    Key? key,
-    String? formControlName,
-    FormControl<List<T>>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<List<T>, List<V>>? valueAccessor,
-    ShowErrorsFunction<List<T>>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     List<V> items = const [],
@@ -109,12 +109,6 @@ class ReactiveDropdownSearchMultiSelection<T, V>
         const DropDownDecoratorProps(),
     BeforePopupOpeningMultiSelection<V>? onBeforePopupOpening,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final effectiveDecoration = (dropdownDecoratorProps
                         .dropdownSearchDecoration ??

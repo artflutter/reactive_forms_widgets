@@ -112,12 +112,12 @@ class ReactiveMacosTextField<T> extends ReactiveFormField<T, String> {
   /// For documentation about the various parameters, see the [MacosTextField] class
   /// and [MacosTextField], the constructor.
   ReactiveMacosTextField({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     BoxDecoration decoration = _kDefaultRoundedBorderDecoration,
@@ -185,12 +185,6 @@ class ReactiveMacosTextField<T> extends ReactiveFormField<T, String> {
     OverlayVisibilityMode suffixMode = OverlayVisibilityMode.always,
     OverlayVisibilityMode clearButtonMode = OverlayVisibilityMode.never,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveMacosTextFieldState<T>;
             final effectiveDecoration = inputDecoration

@@ -32,10 +32,10 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
   /// Must provide one of the arguments [formControl] or a [formControlName],
   /// but not both at the same time.
   ReactiveColorPicker({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction<T>? showErrors,
 
@@ -67,10 +67,6 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
     List<Color>? colorHistory,
     ValueChanged<List<Color>>? onHistoryChanged,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          validationMessages: validationMessages,
           builder: (field) {
             void _showDialog(
               BuildContext context, {

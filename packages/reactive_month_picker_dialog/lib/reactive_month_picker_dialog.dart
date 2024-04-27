@@ -44,12 +44,12 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
   /// For documentation about the various parameters, see the [showTimePicker]
   /// function parameters.
   ReactiveMonthPickerDialog({
-    Key? key,
-    String? formControlName,
-    FormControl<DateTime>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
     ControlValueAccessor<DateTime, String>? valueAccessor,
-    ShowErrorsFunction<DateTime>? showErrors,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,
@@ -78,11 +78,6 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
     ButtonStyle? Function(DateTime)? monthStylePredicate,
     ButtonStyle? Function(int)? yearStylePredicate,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           valueAccessor: valueAccessor ??
               DateTimeValueAccessor(
                 dateTimeFormat: DateFormat('yyyy/MM'),

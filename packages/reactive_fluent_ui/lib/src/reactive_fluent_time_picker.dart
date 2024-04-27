@@ -74,13 +74,13 @@ class ReactiveFluentTimePicker<T> extends ReactiveFormField<T, DateTime> {
   /// For documentation about the various parameters, see the [FluentUi] class
   /// and [FluentUi], the constructor.
   ReactiveFluentTimePicker({
-    Key? key,
+    super.key,
     Key? comboBoxKey,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, DateTime>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     VoidCallback? onCancel,
@@ -96,12 +96,6 @@ class ReactiveFluentTimePicker<T> extends ReactiveFormField<T, DateTime> {
     ),
     double popupHeight = 400,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveFluentTimePickerState<T>;
             return TimePicker(

@@ -80,12 +80,12 @@ class ReactiveRatingBarBuilder<T> extends ReactiveFormField<T, double> {
   /// For documentation about the various parameters, see the [TouchSpin] class
   /// and [TouchSpin], the constructor.
   ReactiveRatingBarBuilder({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, double>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(
@@ -113,12 +113,6 @@ class ReactiveRatingBarBuilder<T> extends ReactiveFormField<T, double> {
     bool updateOnDrag = false,
     WrapAlignment wrapAlignment = WrapAlignment.start,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final InputDecoration effectiveDecoration = decoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);

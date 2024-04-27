@@ -78,13 +78,13 @@ class ReactiveCartStepper<T, V extends num> extends ReactiveFormField<T, V> {
   /// For documentation about the various parameters, see the [CartStepper] class
   /// and [CartStepper], the constructor.
   ReactiveCartStepper({
-    Key? key,
-    String? formControlName,
+    super.key,
+    super.formControlName,
     InputDecoration? decoration,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     required V stepper,
@@ -95,12 +95,6 @@ class ReactiveCartStepper<T, V extends num> extends ReactiveFormField<T, V> {
     double disabledOpacity = 0.5,
     CartStepperStyle? style,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             return Listener(
               onPointerDown: (_) {

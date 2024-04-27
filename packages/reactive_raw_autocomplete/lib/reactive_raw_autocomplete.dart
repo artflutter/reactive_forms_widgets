@@ -90,12 +90,12 @@ class ReactiveRawAutocomplete<T, V extends Object>
   /// For documentation about the various parameters, see the [RawAutocomplete] class
   /// and [RawAutocomplete], the constructor.
   ReactiveRawAutocomplete({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     required AutocompleteOptionsBuilder<V> optionsBuilder,
@@ -156,12 +156,6 @@ class ReactiveRawAutocomplete<T, V extends Object>
     bool scribbleEnabled = true,
     bool enableIMEPersonalizedLearning = true,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveRawAutocompleteState<T, V>;
             final effectiveDecoration = decoration

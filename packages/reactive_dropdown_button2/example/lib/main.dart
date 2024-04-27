@@ -31,15 +31,16 @@ final List<({int id, String value})> itemsRecord = [
 
 class Drop extends DropDownValueAccessor<int, ({int id, String value})> {
   @override
-  ({int id, String value})? modelToViewValue(List<DropdownItem<({int id, String value})>> items, int? modelValue) {
+  ({int id, String value})? modelToViewValue(
+      List<DropdownItem<({int id, String value})>> items, int? modelValue) {
     return items.firstWhereOrNull((e) => e.value?.id == modelValue)?.value;
   }
 
   @override
-  int? viewToModelValue(List<DropdownItem<({int id, String value})>> items, ({int id, String value})? modelValue) {
+  int? viewToModelValue(List<DropdownItem<({int id, String value})>> items,
+      ({int id, String value})? modelValue) {
     return modelValue?.id;
   }
-
 }
 
 const icon = Icon(
@@ -49,22 +50,22 @@ const icon = Icon(
 const hint = Text('Hint text');
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   FormGroup buildForm() => fb.group({
-    'input': FormControl<String>(
-      value: null,
-      validators: [
-        const RequiredValidator(),
-      ],
-    ),
-    'input2': FormControl<int>(
-      value: null,
-      validators: [
-        const RequiredValidator(),
-      ],
-    ),
-  });
+        'input': FormControl<String>(
+          value: null,
+          validators: [
+            const RequiredValidator(),
+          ],
+        ),
+        'input2': FormControl<int>(
+          value: null,
+          validators: [
+            const RequiredValidator(),
+          ],
+        ),
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -156,16 +157,19 @@ class MyApp extends StatelessWidget {
                       ),
                       items: itemsRecord
                           .map(
-                            (({int id, String value}) item) => DropdownItem<({int id, String value})>(
-                          value: item,
-                          child: Row(
-                            children: [
-                              const SizedBox.square(dimension: 40,),
-                              Text(item.value),
-                            ],
-                          ),
-                        ),
-                      )
+                            (({int id, String value}) item) =>
+                                DropdownItem<({int id, String value})>(
+                              value: item,
+                              child: Row(
+                                children: [
+                                  const SizedBox.square(
+                                    dimension: 40,
+                                  ),
+                                  Text(item.value),
+                                ],
+                              ),
+                            ),
+                          )
                           .toList(),
                       hint: Row(
                         children: [
@@ -231,7 +235,6 @@ class MyApp extends StatelessWidget {
                               builder: (context) {
                                 final color =
                                     DefaultTextStyle.of(context).style.color;
-
 
                                 return IconTheme(
                                   data: IconTheme.of(context).copyWith(

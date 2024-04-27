@@ -4,18 +4,17 @@ import 'package:reactive_forms_lbc/reactive_forms_lbc.dart';
 
 class ReactiveFormControlTouchConsumer<T> extends StatefulWidget {
   const ReactiveFormControlTouchConsumer({
-    Key? key,
+    super.key,
     required this.builder,
     required this.listener,
     this.formControlName,
     this.formControl,
     this.buildWhen,
     this.listenWhen,
-  })  : assert(
-  (formControlName != null && formControl == null) ||
-      (formControlName == null && formControl != null),
-  'Must provide a formControlName or a formControl, but not both at the same time.'),
-        super(key: key);
+  }) : assert(
+            (formControlName != null && formControl == null) ||
+                (formControlName == null && formControl != null),
+            'Must provide a formControlName or a formControl, but not both at the same time.');
 
   final String? formControlName;
 
@@ -51,10 +50,12 @@ class ReactiveFormControlTouchConsumer<T> extends StatefulWidget {
   }
 
   @override
-  State<ReactiveFormControlTouchConsumer<T>> createState() => _ReactiveFormControlTouchConsumerState<T>();
+  State<ReactiveFormControlTouchConsumer<T>> createState() =>
+      _ReactiveFormControlTouchConsumerState<T>();
 }
 
-class _ReactiveFormControlTouchConsumerState<T> extends State<ReactiveFormControlTouchConsumer<T>> {
+class _ReactiveFormControlTouchConsumerState<T>
+    extends State<ReactiveFormControlTouchConsumer<T>> {
   late AbstractControl<T> _formControl;
 
   @override

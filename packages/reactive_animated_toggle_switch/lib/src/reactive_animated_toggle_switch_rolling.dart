@@ -94,13 +94,13 @@ class ReactiveAnimatedToggleSwitchRolling<T, V>
   /// For documentation about the various parameters, see the [AnimatedToggleSwitch] class
   /// and [AnimatedToggleSwitch], the constructor.
   ReactiveAnimatedToggleSwitchRolling({
-    Key? key,
+    super.key,
     Key? widgetKey,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     required List<V> values,
@@ -149,12 +149,6 @@ class ReactiveAnimatedToggleSwitchRolling<T, V>
         const ForegroundIndicatorTransition.rolling(),
     double indicatorIconScale = 1.0,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             return AnimatedToggleSwitch<V>.rolling(
               key: widgetKey,

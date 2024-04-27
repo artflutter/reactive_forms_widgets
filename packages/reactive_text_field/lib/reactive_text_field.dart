@@ -88,12 +88,12 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
   /// For documentation about the various parameters, see the [TextField] class
   /// and [TextField], the constructor.
   ReactiveTextField({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
     InputDecoration decoration = const InputDecoration(),
     TextInputType? keyboardType,
     TextCapitalization textCapitalization = TextCapitalization.none,
@@ -145,12 +145,6 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
     bool enableIMEPersonalizedLearning = true,
     bool scribbleEnabled = true,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (ReactiveFormFieldState<T, String> field) {
             final state = field as _ReactiveTextFieldState<T>;
             final effectiveDecoration = decoration

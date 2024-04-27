@@ -78,12 +78,12 @@ class ReactivePhoneContactPicker<T> extends ReactiveFormField<T, PhoneContact> {
   /// For documentation about the various parameters, see the [ContactPicker] class
   /// and [ContactPicker], the constructor.
   ReactivePhoneContactPicker({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, PhoneContact>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = decorationInvisible,
@@ -91,12 +91,6 @@ class ReactivePhoneContactPicker<T> extends ReactiveFormField<T, PhoneContact> {
     GestureBuilder? gestureBuilder,
     double disabledOpacity = 0.5,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final InputDecoration effectiveDecoration = decoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);

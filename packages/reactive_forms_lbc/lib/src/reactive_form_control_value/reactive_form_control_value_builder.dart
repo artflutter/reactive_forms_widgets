@@ -10,21 +10,15 @@ typedef ReactiveBuilderCondition<T> = bool Function(
 
 class ReactiveFormControlValueBuilder<T> extends ReactiveFormControlValueBuilderBase<T> {
   const ReactiveFormControlValueBuilder({
-    Key? key,
+    super.key,
     required this.builder,
-    String? formControlName,
-    AbstractControl<T>? formControl,
-    ReactiveBuilderCondition<T>? buildWhen,
+    super.formControlName,
+    super.formControl,
+    super.buildWhen,
   })  : assert(
             (formControlName != null && formControl == null) ||
                 (formControlName == null && formControl != null),
-            'Must provide a formControlName or a formControl, but not both at the same time.'),
-        super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          buildWhen: buildWhen,
-        );
+            'Must provide a formControlName or a formControl, but not both at the same time.');
 
   final ReactiveFormControlWidgetBuilder<T> builder;
 
@@ -35,11 +29,11 @@ class ReactiveFormControlValueBuilder<T> extends ReactiveFormControlValueBuilder
 
 abstract class ReactiveFormControlValueBuilderBase<T> extends StatefulWidget {
   const ReactiveFormControlValueBuilderBase({
-    Key? key,
+    super.key,
     this.formControl,
     this.formControlName,
     this.buildWhen,
-  }) : super(key: key);
+  });
 
   final String? formControlName;
 

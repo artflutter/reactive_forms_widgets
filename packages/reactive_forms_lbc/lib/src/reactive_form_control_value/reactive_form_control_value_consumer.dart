@@ -4,7 +4,7 @@ import 'package:reactive_forms_lbc/reactive_forms_lbc.dart';
 
 class ReactiveFormControlValueConsumer<T> extends StatefulWidget {
   const ReactiveFormControlValueConsumer({
-    Key? key,
+    super.key,
     required this.builder,
     required this.listener,
     this.formControlName,
@@ -14,8 +14,7 @@ class ReactiveFormControlValueConsumer<T> extends StatefulWidget {
   })  : assert(
             (formControlName != null && formControl == null) ||
                 (formControlName == null && formControl != null),
-            'Must provide a formControlName or a formControl, but not both at the same time.'),
-        super(key: key);
+            'Must provide a formControlName or a formControl, but not both at the same time.');
 
   final String? formControlName;
 

@@ -80,13 +80,13 @@ class ReactiveFluentTextFormBox<T> extends ReactiveFormField<T, String> {
   /// For documentation about the various parameters, see the [FluentUi] class
   /// and [FluentUi], the constructor.
   ReactiveFluentTextFormBox({
-    Key? key,
+    super.key,
     Key? textFormBox,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     TextEditingController? controller,
@@ -153,12 +153,6 @@ class ReactiveFluentTextFormBox<T> extends ReactiveFormField<T, String> {
     Color? unfocusedColor,
   })  : _textController = controller,
         super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveFluentTextFormBoxState<T>;
             return TextFormBox(

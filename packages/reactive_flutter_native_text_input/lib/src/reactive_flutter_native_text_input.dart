@@ -79,12 +79,12 @@ class ReactiveFlutterNativeTextInput<T> extends ReactiveFormField<T, String> {
   /// For documentation about the various parameters, see the [FlutterNativeTextInput] class
   /// and [FlutterNativeTextInput], the constructor.
   ReactiveFlutterNativeTextInput({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     InputDecoration inputDecoration = const InputDecoration(
@@ -113,12 +113,6 @@ class ReactiveFlutterNativeTextInput<T> extends ReactiveFormField<T, String> {
     VoidCallback? onTap,
     this.onControllerInit,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveFlutterNativeTextInputState<T>;
             final effectiveDecoration = inputDecoration
@@ -265,11 +259,11 @@ class _ReactiveFlutterNativeTextInputState<T>
     _focusController.dispose();
   }
 
-  // void _setFocusNode(FocusNode? focusNode) {
-  //   if (_focusNode != focusNode) {
-  //     _focusNode = focusNode;
-  //     _unregisterFocusController();
-  //     _registerFocusController(FocusController(focusNode: _focusNode));
-  //   }
-  // }
+// void _setFocusNode(FocusNode? focusNode) {
+//   if (_focusNode != focusNode) {
+//     _focusNode = focusNode;
+//     _unregisterFocusController();
+//     _registerFocusController(FocusController(focusNode: _focusNode));
+//   }
+// }
 }

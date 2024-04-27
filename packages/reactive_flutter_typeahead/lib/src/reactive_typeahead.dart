@@ -78,12 +78,12 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
   /// For documentation about the various parameters, see the [TextField] class
   /// and [TextField], the constructor.
   ReactiveTypeAhead({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
     required this.stringify,
     V Function(String)? viewDataTypeFromTextEditingValue,
 
@@ -139,12 +139,6 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
     double autoFlipMinHeight = 64.0,
     void Function(bool)? onSuggestionsBoxToggle,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveTypeaheadState<T, V>;
             final effectiveDecoration = textFieldConfiguration.decoration

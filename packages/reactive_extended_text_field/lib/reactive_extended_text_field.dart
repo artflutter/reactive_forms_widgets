@@ -85,12 +85,12 @@ class ReactiveExtendedTextField<T> extends ReactiveFormField<T, String> {
   /// For documentation about the various parameters, see the [PhoneFormField] class
   /// and [PhoneFormField], the constructor.
   ReactiveExtendedTextField({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     bool shouldFormat = true,
@@ -150,12 +150,6 @@ class ReactiveExtendedTextField<T> extends ReactiveFormField<T, String> {
     TextSelectionGestureDetectorBuilderCallback?
         textSelectionGestureDetectorBuilder,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactivePhoneFormFieldState<T>;
             final effectiveDecoration = decoration

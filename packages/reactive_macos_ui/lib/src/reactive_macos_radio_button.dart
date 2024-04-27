@@ -75,12 +75,12 @@ class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
   /// For documentation about the various parameters, see the [MacosRadioButton] class
   /// and [MacosRadioButton], the constructor.
   ReactiveMacosRadioButton({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(
@@ -96,12 +96,6 @@ class ReactiveMacosRadioButton<T, V> extends ReactiveFormField<T, V> {
     Color offColor = CupertinoColors.tertiaryLabel,
     String? semanticLabel,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             // final InputDecoration effectiveDecoration = decoration
             //     .applyDefaults(Theme.of(field.context).inputDecorationTheme);

@@ -4,18 +4,17 @@ import 'package:reactive_forms_lbc/reactive_forms_lbc.dart';
 
 class ReactiveFormControlFocusConsumer<T> extends StatefulWidget {
   const ReactiveFormControlFocusConsumer({
-    Key? key,
+    super.key,
     required this.builder,
     required this.listener,
     this.formControlName,
     this.formControl,
     this.buildWhen,
     this.listenWhen,
-  })  : assert(
-  (formControlName != null && formControl == null) ||
-      (formControlName == null && formControl != null),
-  'Must provide a formControlName or a formControl, but not both at the same time.'),
-        super(key: key);
+  }) : assert(
+            (formControlName != null && formControl == null) ||
+                (formControlName == null && formControl != null),
+            'Must provide a formControlName or a formControl, but not both at the same time.');
 
   final String? formControlName;
 
@@ -49,11 +48,14 @@ class ReactiveFormControlFocusConsumer<T> extends StatefulWidget {
 
     return control;
   }
+
   @override
-  State<ReactiveFormControlFocusConsumer<T>> createState() => _ReactiveFormControlFocusConsumerState<T>();
+  State<ReactiveFormControlFocusConsumer<T>> createState() =>
+      _ReactiveFormControlFocusConsumerState<T>();
 }
 
-class _ReactiveFormControlFocusConsumerState<T> extends State<ReactiveFormControlFocusConsumer<T>> {
+class _ReactiveFormControlFocusConsumerState<T>
+    extends State<ReactiveFormControlFocusConsumer<T>> {
   late FormControl<T> _formControl;
 
   @override

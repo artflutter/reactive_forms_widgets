@@ -14,12 +14,12 @@ class ReactiveTextfieldTags
     extends ReactiveFormField<List<String>, List<String>> {
   ///
   ReactiveTextfieldTags({
-    Key? key,
+    super.key,
     Key? widgetKey,
-    String? formControlName,
-    FormControl<List<String>>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ShowErrorsFunction<List<String>>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.showErrors,
     List<String> separators = const [' ', ','],
     Color? chipColor,
     Widget? deleteIcon,
@@ -37,11 +37,6 @@ class ReactiveTextfieldTags
     EdgeInsets widgetPadding =
         const EdgeInsets.only(top: 4.0, left: 4.0, right: 4.0),
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             return TextFieldTags(
               key: widgetKey,

@@ -7,7 +7,7 @@ import 'package:reactive_image_picker/src/image_file.dart';
 class ImageView extends StatelessWidget {
   final SelectedFileImage image;
 
-  const ImageView({Key? key, required this.image}) : super(key: key);
+  const ImageView({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {

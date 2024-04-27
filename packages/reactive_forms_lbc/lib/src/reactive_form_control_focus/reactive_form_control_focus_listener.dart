@@ -16,36 +16,28 @@ typedef ReactiveFormControlFocusWidgetListener<T> = void Function(
 class ReactiveFormControlFocusListener<T>
     extends ReactiveFormControlFocusListenerBase<T> {
   const ReactiveFormControlFocusListener({
-    Key? key,
-    required ReactiveFormControlFocusWidgetListener<T> listener,
-    String? formControlName,
-    FormControl<T>? formControl,
-    ReactiveFormControlFocusListenerCondition<T>? listenWhen,
-    Widget? child,
-  })  : assert(
+    super.key,
+    required super.listener,
+    super.formControlName,
+    super.formControl,
+    super.listenWhen,
+    super.child,
+  }) : assert(
             (formControlName != null && formControl == null) ||
                 (formControlName == null && formControl != null),
-            'Must provide a formControlName or a formControl, but not both at the same time.'),
-        super(
-          key: key,
-          child: child,
-          listener: listener,
-          formControl: formControl,
-          formControlName: formControlName,
-          listenWhen: listenWhen,
-        );
+            'Must provide a formControlName or a formControl, but not both at the same time.');
 }
 
 abstract class ReactiveFormControlFocusListenerBase<T>
     extends SingleChildStatefulWidget {
   const ReactiveFormControlFocusListenerBase({
-    Key? key,
+    super.key,
     required this.listener,
     this.formControl,
     this.formControlName,
     this.child,
     this.listenWhen,
-  }) : super(key: key, child: child);
+  }) : super(child: child);
 
   final String? formControlName;
 

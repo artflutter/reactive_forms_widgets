@@ -83,13 +83,13 @@ class ReactiveWechatCameraPicker<T> extends ReactiveFormField<T, AssetEntity> {
   /// For documentation about the various parameters, see the [WechatCameraPicker] class
   /// and [WechatCameraPicker], the constructor.
   ReactiveWechatCameraPicker({
-    Key? key,
+    super.key,
     Key? widgetKey,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, AssetEntity>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     required ImagePickerBuilder<T> imagePickerBuilder,
@@ -102,12 +102,6 @@ class ReactiveWechatCameraPicker<T> extends ReactiveFormField<T, AssetEntity> {
     Locale? locale,
     double disabledOpacity = 0.5,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final value = field.value;
 

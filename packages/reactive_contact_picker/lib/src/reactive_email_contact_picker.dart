@@ -78,12 +78,12 @@ class ReactiveEmailContactPicker<T> extends ReactiveFormField<T, EmailContact> {
   /// For documentation about the various parameters, see the [ContactPicker] class
   /// and [ContactPicker], the constructor.
   ReactiveEmailContactPicker({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, EmailContact>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = decorationInvisible,
@@ -91,12 +91,6 @@ class ReactiveEmailContactPicker<T> extends ReactiveFormField<T, EmailContact> {
     GestureBuilder? gestureBuilder,
     double disabledOpacity = 0.5,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final InputDecoration effectiveDecoration = decoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);

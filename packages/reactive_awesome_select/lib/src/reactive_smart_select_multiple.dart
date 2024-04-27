@@ -79,12 +79,12 @@ class ReactiveSmartSelectMultiple<T, V>
   /// For documentation about the various parameters, see the [AwesomeSelect] class
   /// and [AwesomeSelect], the constructor.
   ReactiveSmartSelectMultiple({
-    Key? key,
-    String? formControlName,
-    FormControl<List<T>>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<List<T>, List<V>>? valueAccessor,
-    ShowErrorsFunction<List<T>>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = decorationInvisible,
     String? title,
@@ -153,12 +153,6 @@ class ReactiveSmartSelectMultiple<T, V>
     bool fieldError = false,
     bool modalError = false,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final InputDecoration effectiveDecoration = decoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);

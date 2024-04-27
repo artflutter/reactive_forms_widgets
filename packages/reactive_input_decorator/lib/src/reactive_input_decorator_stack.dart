@@ -73,24 +73,18 @@ class ReactiveInputDecoratorStack extends ReactiveFormField<dynamic, dynamic> {
   /// For documentation about the various parameters, see the [InputDecorator] class
   /// and [InputDecorator], the constructor.
   ReactiveInputDecoratorStack({
-    Key? key,
-    String? formControlName,
-    FormControl<dynamic>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<dynamic, dynamic>? valueAccessor,
-    ShowErrorsFunction<dynamic>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     required List<Widget> children,
     required Widget? child,
     InputDecoration? decoration,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final effectiveDecoration = (decoration ?? const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);

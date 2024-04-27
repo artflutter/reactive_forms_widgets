@@ -78,12 +78,12 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
   /// For documentation about the various parameters, see the [TextField] class
   /// and [TextField], the constructor.
   ReactiveCupertinoTypeAhead({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
     required this.stringify,
     V Function(String)? viewDataTypeFromTextEditingValue,
 
@@ -131,12 +131,6 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
     bool enabled = true,
     SuggestionSelectionCallback<V>? onSuggestionSelected,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveCupertinoTypeAheadState<T, V>;
             final effectiveDecoration = textFieldConfiguration.decoration;

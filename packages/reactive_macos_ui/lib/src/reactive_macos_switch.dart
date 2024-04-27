@@ -75,12 +75,12 @@ class ReactiveMacosSwitch<T> extends ReactiveFormField<T, bool> {
   /// For documentation about the various parameters, see the [MacosSwitch] class
   /// and [MacosSwitch], the constructor.
   ReactiveMacosSwitch({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, bool>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(
@@ -94,12 +94,6 @@ class ReactiveMacosSwitch<T> extends ReactiveFormField<T, bool> {
     MacosColor? trackColor,
     String? semanticLabel,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             return Listener(
               onPointerDown: (_) {

@@ -84,12 +84,12 @@ class ReactiveSignature<T> extends ReactiveFormField<T, Uint8List> {
   /// For documentation about the various parameters, see the [Signature] class
   /// and [Signature], the constructor.
   ReactiveSignature({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, Uint8List>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,
@@ -106,12 +106,6 @@ class ReactiveSignature<T> extends ReactiveFormField<T, Uint8List> {
     this.onDrawMove,
     this.onDrawEnd,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveSignatureState;
             final InputDecoration effectiveDecoration = (decoration ??

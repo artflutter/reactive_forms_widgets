@@ -25,10 +25,10 @@ class ReactiveCheckbox<T> extends ReactiveFormField<T, bool> {
   ///
   /// The [formControlName] arguments must not be null.
   ReactiveCheckbox({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    ControlValueAccessor<T, bool>? valueAccessor,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.valueAccessor,
     // Map<String, ValidationMessageFunction>? validationMessages,
     // ShowErrorsFunction<T>? showErrors,
 
@@ -49,10 +49,6 @@ class ReactiveCheckbox<T> extends ReactiveFormField<T, bool> {
     OutlinedBorder? shape,
     BorderSide? side,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
           builder: (field) {
             final state = field as _ReactiveCheckboxState<T, bool>;
 

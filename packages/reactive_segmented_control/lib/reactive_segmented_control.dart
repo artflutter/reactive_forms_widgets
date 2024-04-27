@@ -80,12 +80,12 @@ class ReactiveSegmentedControl<T extends Object, K extends Object>
   /// For documentation about the various parameters, see the [CupertinoSegmentedControl] class
   /// and [CupertinoSegmentedControl], the constructor.
   ReactiveSegmentedControl({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, K>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,
@@ -96,12 +96,6 @@ class ReactiveSegmentedControl<T extends Object, K extends Object>
     Color? pressedColor,
     EdgeInsets? padding,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())

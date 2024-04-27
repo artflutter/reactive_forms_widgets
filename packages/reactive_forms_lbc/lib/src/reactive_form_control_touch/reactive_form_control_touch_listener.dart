@@ -14,36 +14,28 @@ typedef ReactiveFormControlTouchListenerCondition<T> = bool Function(
 class ReactiveFormControlTouchListener<T>
     extends ReactiveFormControlTouchListenerBase<T> {
   const ReactiveFormControlTouchListener({
-    Key? key,
-    required ReactiveFormControlWidgetListener<T> listener,
-    String? formControlName,
-    AbstractControl<T>? formControl,
-    ReactiveFormControlTouchListenerCondition<T>? listenWhen,
-    Widget? child,
-  })  : assert(
+    super.key,
+    required super.listener,
+    super.formControlName,
+    super.formControl,
+    super.listenWhen,
+    super.child,
+  }) : assert(
             (formControlName != null && formControl == null) ||
                 (formControlName == null && formControl != null),
-            'Must provide a formControlName or a formControl, but not both at the same time.'),
-        super(
-          key: key,
-          child: child,
-          listener: listener,
-          formControl: formControl,
-          formControlName: formControlName,
-          listenWhen: listenWhen,
-        );
+            'Must provide a formControlName or a formControl, but not both at the same time.');
 }
 
 abstract class ReactiveFormControlTouchListenerBase<T>
     extends SingleChildStatefulWidget {
   const ReactiveFormControlTouchListenerBase({
-    Key? key,
+    super.key,
     required this.listener,
     this.formControl,
     this.formControlName,
     this.child,
     this.listenWhen,
-  }) : super(key: key, child: child);
+  }) : super(child: child);
 
   final String? formControlName;
 

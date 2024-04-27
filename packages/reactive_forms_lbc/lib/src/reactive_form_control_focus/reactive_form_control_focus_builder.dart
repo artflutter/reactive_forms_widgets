@@ -3,28 +3,23 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_lbc/reactive_forms_lbc.dart';
 
 typedef ReactiveFormControlFocusBuilderCondition<T> = bool Function(
-    FormControl<T> control,
-    bool previousValue,
-    bool currentValue,
-    );
+  FormControl<T> control,
+  bool previousValue,
+  bool currentValue,
+);
 
-class ReactiveFormControlFocusBuilder<T> extends ReactiveFormControlFocusBuilderBase<T> {
+class ReactiveFormControlFocusBuilder<T>
+    extends ReactiveFormControlFocusBuilderBase<T> {
   const ReactiveFormControlFocusBuilder({
-    Key? key,
+    super.key,
     required this.builder,
-    String? formControlName,
-    FormControl<T>? formControl,
-    ReactiveFormControlFocusBuilderCondition<T>? buildWhen,
-  })  : assert(
-  (formControlName != null && formControl == null) ||
-      (formControlName == null && formControl != null),
-  'Must provide a formControlName or a formControl, but not both at the same time.'),
-        super(
-        key: key,
-        formControl: formControl,
-        formControlName: formControlName,
-        buildWhen: buildWhen,
-      );
+    super.formControlName,
+    super.formControl,
+    super.buildWhen,
+  }) : assert(
+            (formControlName != null && formControl == null) ||
+                (formControlName == null && formControl != null),
+            'Must provide a formControlName or a formControl, but not both at the same time.');
 
   final ReactiveFormControlWidgetBuilder<T> builder;
 
@@ -35,11 +30,11 @@ class ReactiveFormControlFocusBuilder<T> extends ReactiveFormControlFocusBuilder
 
 abstract class ReactiveFormControlFocusBuilderBase<T> extends StatefulWidget {
   const ReactiveFormControlFocusBuilderBase({
-    Key? key,
+    super.key,
     this.formControl,
     this.formControlName,
     this.buildWhen,
-  }) : super(key: key);
+  });
 
   final String? formControlName;
 

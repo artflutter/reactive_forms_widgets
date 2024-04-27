@@ -84,12 +84,12 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
   /// For documentation about the various parameters, see the [PinPut] class
   /// and [PinPut], the constructor.
   ReactivePinPut({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     required int length,
@@ -154,12 +154,6 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
     EdgeInsets scrollPadding = const EdgeInsets.all(20),
     TapRegionCallback? onTapOutside,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveMacosTextFieldState<T>;
 

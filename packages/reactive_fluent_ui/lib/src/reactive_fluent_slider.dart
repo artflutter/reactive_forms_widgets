@@ -74,16 +74,16 @@ class ReactiveFluentSlider<T> extends ReactiveFormField<T, double> {
   /// For documentation about the various parameters, see the [FluentUi] class
   /// and [FluentUi], the constructor.
   ReactiveFluentSlider({
-    Key? key,
+    super.key,
     Key? widgetKey,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, double>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
-    FocusNode? focusNode,
+    super.focusNode,
     double min = 0.0,
     double max = 100.0,
     bool autofocus = false,
@@ -95,13 +95,6 @@ class ReactiveFluentSlider<T> extends ReactiveFormField<T, double> {
     SliderThemeData? style,
     String? label,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
-          focusNode: focusNode,
           builder: (field) {
             final state = field as _ReactiveFluentSliderState<T>;
 

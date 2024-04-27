@@ -86,13 +86,13 @@ class ReactiveSfSignaturePad<T> extends ReactiveFormField<T, Uint8List> {
   /// For documentation about the various parameters, see the [SfSignaturePad] class
   /// and [SfSignaturePad], the constructor.
   ReactiveSfSignaturePad({
-    Key? key,
+    super.key,
     Key? widgetKey,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, Uint8List>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = decorationInvisible,
@@ -104,12 +104,6 @@ class ReactiveSfSignaturePad<T> extends ReactiveFormField<T, Uint8List> {
     SignatureDrawCallback? onDraw,
     VoidCallback? onDrawEnd,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final InputDecoration effectiveDecoration = decoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);

@@ -3,28 +3,23 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_lbc/reactive_forms_lbc.dart';
 
 typedef ReactiveFormControlStatusBuilderCondition<T> = bool Function(
-    AbstractControl<T> control,
-    ControlStatus previousValue,
-    ControlStatus currentValue,
-    );
+  AbstractControl<T> control,
+  ControlStatus previousValue,
+  ControlStatus currentValue,
+);
 
-class ReactiveFormControlStatusBuilder<T> extends ReactiveFormControlStatusBuilderBase<T> {
+class ReactiveFormControlStatusBuilder<T>
+    extends ReactiveFormControlStatusBuilderBase<T> {
   const ReactiveFormControlStatusBuilder({
-    Key? key,
+    super.key,
     required this.builder,
-    String? formControlName,
-    AbstractControl<T>? formControl,
-    ReactiveFormControlStatusBuilderCondition<T>? buildWhen,
-  })  : assert(
-  (formControlName != null && formControl == null) ||
-      (formControlName == null && formControl != null),
-  'Must provide a formControlName or a formControl, but not both at the same time.'),
-        super(
-        key: key,
-        formControl: formControl,
-        formControlName: formControlName,
-        buildWhen: buildWhen,
-      );
+    super.formControlName,
+    super.formControl,
+    super.buildWhen,
+  }) : assert(
+            (formControlName != null && formControl == null) ||
+                (formControlName == null && formControl != null),
+            'Must provide a formControlName or a formControl, but not both at the same time.');
 
   final ReactiveFormControlWidgetBuilder<T> builder;
 
@@ -35,11 +30,11 @@ class ReactiveFormControlStatusBuilder<T> extends ReactiveFormControlStatusBuild
 
 abstract class ReactiveFormControlStatusBuilderBase<T> extends StatefulWidget {
   const ReactiveFormControlStatusBuilderBase({
-    Key? key,
+    super.key,
     this.formControl,
     this.formControlName,
     this.buildWhen,
-  }) : super(key: key);
+  });
 
   final String? formControlName;
 

@@ -70,7 +70,7 @@ class ImagePickerWidget extends StatelessWidget {
   final SelectedVideoBuilder? selectedVideoBuilder;
 
   const ImagePickerWidget({
-    Key? key,
+    super.key,
     required this.value,
     required this.modes,
     this.enabled = true,
@@ -95,7 +95,7 @@ class ImagePickerWidget extends StatelessWidget {
     this.onAfterPick,
     this.selectedImageBuilder,
     this.selectedVideoBuilder,
-  }) : super(key: key);
+  });
 
   Future<List<SelectedFile>> _onImageButtonPressed(
     BuildContext context,

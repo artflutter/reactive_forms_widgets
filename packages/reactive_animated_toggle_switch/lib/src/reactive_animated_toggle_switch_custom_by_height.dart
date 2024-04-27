@@ -73,13 +73,13 @@ class ReactiveAnimatedToggleSwitchCustomByHeight<T, V>
   /// For documentation about the various parameters, see the [AnimatedToggleSwitch] class
   /// and [AnimatedToggleSwitch], the constructor.
   ReactiveAnimatedToggleSwitchCustomByHeight(
-      {Key? key,
+      {super.key,
       Key? widgetKey,
-      String? formControlName,
-      FormControl<T>? formControl,
-      Map<String, ValidationMessageFunction>? validationMessages,
-      ControlValueAccessor<T, V>? valueAccessor,
-      ShowErrorsFunction<T>? showErrors,
+      super.formControlName,
+      super.formControl,
+      super.validationMessages,
+      super.valueAccessor,
+      super.showErrors,
 
       //////////////////////////////////////////////////////////////////////////
       required List<V> values,
@@ -128,12 +128,6 @@ class ReactiveAnimatedToggleSwitchCustomByHeight<T, V>
       double selectedIconOpacity = 1.0,
       AnimationType iconAnimationType = AnimationType.onSelected})
       : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             return AnimatedToggleSwitch<V>.customByHeight(
               key: widgetKey,

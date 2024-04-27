@@ -32,10 +32,10 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
   /// Must provide one of the arguments [formControl] or a [formControlName],
   /// but not both at the same time.
   ReactiveSliderColorPicker({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction<T>? showErrors,
 
@@ -66,10 +66,6 @@ class ReactiveSliderColorPicker<T> extends ReactiveFormField<T, Color> {
     bool showParams = true,
     List<ColorLabelType> labelTypes = const [],
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          validationMessages: validationMessages,
           builder: (field) {
             void _showDialog(
               BuildContext context, {

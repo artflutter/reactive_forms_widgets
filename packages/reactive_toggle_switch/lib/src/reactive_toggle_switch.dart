@@ -74,12 +74,12 @@ class ReactiveToggleSwitch<T> extends ReactiveFormField<T, int> {
   /// For documentation about the various parameters, see the [ToggleSwitch] class
   /// and [ToggleSwitch], the constructor.
   ReactiveToggleSwitch({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, int>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     List<Color>? borderColor,
@@ -115,12 +115,6 @@ class ReactiveToggleSwitch<T> extends ReactiveFormField<T, int> {
     bool isVertical = false,
     List<Border?>? activeBorders,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             return ToggleSwitch(
               borderColor: borderColor,

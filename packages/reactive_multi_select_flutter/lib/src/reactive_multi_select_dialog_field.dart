@@ -75,13 +75,13 @@ class ReactiveMultiSelectDialogField<T, V>
   /// For documentation about the various parameters, see the [MultiSelectDialogField] class
   /// and [MultiSelectDialogField], the constructor.
   ReactiveMultiSelectDialogField({
-    Key? key,
+    super.key,
     GlobalKey<FormFieldState<dynamic>>? widgetKey,
-    String? formControlName,
-    FormControl<List<T>>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<List<T>, List<V>>? valueAccessor,
-    ShowErrorsFunction<List<T>>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     Widget? title,
@@ -119,12 +119,6 @@ class ReactiveMultiSelectDialogField<T, V>
       isCollapsed: true,
     ),
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final effectiveDecoration = inputDecoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);

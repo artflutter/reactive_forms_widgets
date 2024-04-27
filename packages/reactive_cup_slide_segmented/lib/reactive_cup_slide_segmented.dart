@@ -80,12 +80,12 @@ class ReactiveCupertinoSlidingSegmentedControl<T extends Object,
   /// For documentation about the various parameters, see the [CupertinoSlidingSegmentedControl] class
   /// and [CupertinoSlidingSegmentedControl], the constructor.
   ReactiveCupertinoSlidingSegmentedControl({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration? decoration,
@@ -97,12 +97,6 @@ class ReactiveCupertinoSlidingSegmentedControl<T extends Object,
     EdgeInsets padding = const EdgeInsets.symmetric(vertical: 2, horizontal: 3),
     Color backgroundColor = CupertinoColors.tertiarySystemFill,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())

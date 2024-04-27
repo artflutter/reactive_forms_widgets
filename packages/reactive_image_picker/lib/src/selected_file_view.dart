@@ -19,7 +19,7 @@ class SelectedFileView extends StatelessWidget {
   final OnDelete onDelete;
 
   const SelectedFileView({
-    Key? key,
+    super.key,
     required this.file,
     required this.onChange,
     required this.onDelete,
@@ -27,7 +27,7 @@ class SelectedFileView extends StatelessWidget {
     required this.deleteIcon,
     this.selectedImageBuilder,
     this.selectedVideoBuilder,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

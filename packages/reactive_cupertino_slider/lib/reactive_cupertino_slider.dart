@@ -25,12 +25,12 @@ class ReactiveCupertinoSlider<T> extends ReactiveFormField<T, double> {
   /// Must provide one of the arguments [formControl] or a [formControlName],
   /// but not both at the same time.
   ReactiveCupertinoSlider({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, double>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(
@@ -46,12 +46,6 @@ class ReactiveCupertinoSlider<T> extends ReactiveFormField<T, double> {
     Color? activeColor,
     Color thumbColor = CupertinoColors.white,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          validationMessages: validationMessages,
-          valueAccessor: valueAccessor,
-          showErrors: showErrors,
           builder: (field) {
             final InputDecoration effectiveDecoration = decoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);

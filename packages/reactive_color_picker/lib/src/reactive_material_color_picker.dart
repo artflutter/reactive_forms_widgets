@@ -32,10 +32,10 @@ class ReactiveMaterialColorPicker<T> extends ReactiveFormField<T, Color> {
   /// Must provide one of the arguments [formControl] or a [formControlName],
   /// but not both at the same time.
   ReactiveMaterialColorPicker({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction<T>? showErrors,
 
@@ -49,10 +49,6 @@ class ReactiveMaterialColorPicker<T> extends ReactiveFormField<T, Color> {
     double disabledOpacity = 0.5,
     bool portraitOnly = false,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          validationMessages: validationMessages,
           builder: (field) {
             void _showDialog(
               BuildContext context, {

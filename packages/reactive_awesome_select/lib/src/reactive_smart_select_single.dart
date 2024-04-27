@@ -78,12 +78,12 @@ class ReactiveSmartSelectSingle<T, V> extends ReactiveFormField<T, V?> {
   /// For documentation about the various parameters, see the [AwesomeSelect] class
   /// and [AwesomeSelect], the constructor.
   ReactiveSmartSelectSingle({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    ControlValueAccessor<T, V>? super.valueAccessor,
+    super.showErrors,
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = decorationInvisible,
     String? title,
@@ -153,12 +153,6 @@ class ReactiveSmartSelectSingle<T, V> extends ReactiveFormField<T, V?> {
     bool fieldError = false,
     bool modalError = false,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final InputDecoration effectiveDecoration = decoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);

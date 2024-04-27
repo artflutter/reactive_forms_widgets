@@ -84,13 +84,13 @@ class ReactiveSleekCircularSlider<T> extends ReactiveFormField<T, double> {
   /// For documentation about the various parameters, see the [TouchSpin] class
   /// and [TouchSpin], the constructor.
   ReactiveSleekCircularSlider({
-    Key? key,
-    String? formControlName,
+    super.key,
+    super.formControlName,
     InputDecoration? decoration,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, double>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     double min = 0,
@@ -106,12 +106,6 @@ class ReactiveSleekCircularSlider<T> extends ReactiveFormField<T, double> {
     double heightFactor = 1,
     Clip clipBehavior = Clip.hardEdge,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())

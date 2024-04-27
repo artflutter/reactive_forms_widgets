@@ -85,10 +85,10 @@ class ReactiveMultipleBlockColorPicker<T>
   /// Must provide one of the arguments [formControl] or a [formControlName],
   /// but not both at the same time.
   ReactiveMultipleBlockColorPicker({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
     ControlValueAccessor<T, double>? valueAccessor,
     ShowErrorsFunction<T>? showErrors,
 
@@ -101,10 +101,6 @@ class ReactiveMultipleBlockColorPicker<T>
     double disabledOpacity = 0.5,
     bool useInShowDialog = true,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          validationMessages: validationMessages,
           builder: (field) {
             final isEmptyValue =
                 field.value == null || field.value.toString().isEmpty;

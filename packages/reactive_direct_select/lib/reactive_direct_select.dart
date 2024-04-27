@@ -84,12 +84,12 @@ class ReactiveDirectSelect<T, V> extends ReactiveFormField<T, V> {
   /// For documentation about the various parameters, see the [DirectSelect] class
   /// and [DirectSelect], the constructor.
   ReactiveDirectSelect({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(),
@@ -103,12 +103,6 @@ class ReactiveDirectSelect<T, V> extends ReactiveFormField<T, V> {
     Color backgroundColor = Colors.white,
     Color selectionColor = Colors.black12,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveMacosTextFieldState<T, V>;
 

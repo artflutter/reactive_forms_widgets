@@ -95,12 +95,12 @@ class ReactiveImagePicker
   /// For documentation about the various parameters, see the [ImagePicker] class
   /// and [ImagePicker], the constructor.
   ReactiveImagePicker({
-    Key? key,
-    String? formControlName,
-    FormControl<List<SelectedFile>>? formControl,
+    super.key,
+    super.formControlName,
+    super.formControl,
     Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<List<SelectedFile>, List<SelectedFile>>? valueAccessor,
-    ShowErrorsFunction<List<SelectedFile>>? showErrors,
+    super.valueAccessor,
+    super.showErrors,
     InputDecoration? decoration,
     InputButtonBuilder? inputBuilder,
     SelectedFileViewBuilder? selectedFileViewBuilder,
@@ -124,11 +124,6 @@ class ReactiveImagePicker
     SelectedImageBuilder? selectedImageBuilder,
     SelectedVideoBuilder? selectedVideoBuilder,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          showErrors: showErrors,
           validationMessages: _validationMessages(validationMessages),
           builder: (field) {
             final InputDecoration effectiveDecoration = (decoration ??

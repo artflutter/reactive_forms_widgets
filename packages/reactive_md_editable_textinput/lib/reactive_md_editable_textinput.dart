@@ -85,12 +85,12 @@ class ReactiveMarkdownEditableTextInput<T>
   /// For documentation about the various parameters, see the [MarkdownTextInput] class
   /// and [MarkdownTextInput], the constructor.
   ReactiveMarkdownEditableTextInput({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(
@@ -110,12 +110,6 @@ class ReactiveMarkdownEditableTextInput<T>
       MarkdownType.list
     ],
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final InputDecoration effectiveDecoration = decoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);

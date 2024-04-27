@@ -85,12 +85,12 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
   /// For documentation about the various parameters, see the [PinCodeTextField] class
   /// and [PinCodeTextField], the constructor.
   ReactivePinCodeTextField({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     bool obscureText = false,
@@ -148,12 +148,6 @@ class ReactivePinCodeTextField<T> extends ReactiveFormField<T, String> {
     EdgeInsets errorTextMargin = EdgeInsets.zero,
     bool autoUnfocus = true,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactivePinCodeTextFieldState<T>;
             // final effectiveDecoration = inputDecoration

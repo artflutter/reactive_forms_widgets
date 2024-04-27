@@ -72,13 +72,13 @@ class ReactiveAnimatedToggleSwitchDual<T, V> extends ReactiveFormField<T, V> {
   /// For documentation about the various parameters, see the [AnimatedToggleSwitch] class
   /// and [AnimatedToggleSwitch], the constructor.
   ReactiveAnimatedToggleSwitchDual({
-    Key? key,
+    super.key,
     Key? widgetKey,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     required V first,
@@ -122,12 +122,6 @@ class ReactiveAnimatedToggleSwitchDual<T, V> extends ReactiveFormField<T, V> {
     Curve inactiveOpacityCurve = Curves.easeInOut,
     Duration inactiveOpacityDuration = const Duration(milliseconds: 350),
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             return AnimatedToggleSwitch<V>.dual(
               key: widgetKey,

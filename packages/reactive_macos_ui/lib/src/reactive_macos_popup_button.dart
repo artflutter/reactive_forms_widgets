@@ -74,12 +74,12 @@ class ReactiveMacosPopupButton<T, V> extends ReactiveFormField<T, V> {
   /// For documentation about the various parameters, see the [MacosSwitch] class
   /// and [MacosSwitch], the constructor.
   ReactiveMacosPopupButton({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(
@@ -101,12 +101,6 @@ class ReactiveMacosPopupButton<T, V> extends ReactiveFormField<T, V> {
     VoidCallback? onTap,
     MacosPopupButtonBuilder? selectedItemBuilder,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as ReactiveMacosPopupButtonState<T, V>;
 

@@ -74,13 +74,13 @@ class ReactiveFluentComboBox<T, V> extends ReactiveFormField<T, V> {
   /// For documentation about the various parameters, see the [FluentUi] class
   /// and [FluentUi], the constructor.
   ReactiveFluentComboBox({
-    Key? key,
+    super.key,
     Key? comboBoxKey,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     required List<ComboBoxItem<V>> items,
@@ -103,12 +103,6 @@ class ReactiveFluentComboBox<T, V> extends ReactiveFormField<T, V> {
     bool? enableFeedback,
     AlignmentGeometry alignment = AlignmentDirectional.centerStart,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveFluentComboBoxState<T, V>;
             return ComboboxFormField<V>(

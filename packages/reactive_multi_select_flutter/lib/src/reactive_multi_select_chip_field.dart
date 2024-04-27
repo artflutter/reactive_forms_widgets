@@ -75,13 +75,13 @@ class ReactiveMultiSelectChipField<T, V>
   /// For documentation about the various parameters, see the [MultiSelectChipField] class
   /// and [MultiSelectChipField], the constructor.
   ReactiveMultiSelectChipField({
-    Key? key,
+    super.key,
     GlobalKey<FormFieldState<dynamic>>? widgetKey,
-    String? formControlName,
-    FormControl<List<T>>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<List<T>, List<V>>? valueAccessor,
-    ShowErrorsFunction<List<T>>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     Text? title,
@@ -133,12 +133,6 @@ class ReactiveMultiSelectChipField<T, V>
     bool showHeader = true,
     double? chipWidth,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final effectiveDecoration = inputDecoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);

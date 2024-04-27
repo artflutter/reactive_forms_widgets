@@ -24,13 +24,13 @@ class ReactiveDropdownField<T, V> extends ReactiveFormField<T, V> {
   ///
   /// The [DropdownButton] [items] parameters must not be null.
   ReactiveDropdownField({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    ControlValueAccessor<T, V>? valueAccessor,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.valueAccessor,
     required List<DropdownMenuItem<V>> items,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ShowErrorsFunction<T>? showErrors,
+    super.validationMessages,
+    super.showErrors,
     DropdownButtonBuilder? selectedItemBuilder,
     Widget? hint,
     VoidCallback? onTap,
@@ -56,12 +56,6 @@ class ReactiveDropdownField<T, V> extends ReactiveFormField<T, V> {
     BorderRadius? borderRadius,
   })  : assert(itemHeight == null || itemHeight > 0),
         super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final state = field as _ReactiveDropdownFieldState<T, V>;
 

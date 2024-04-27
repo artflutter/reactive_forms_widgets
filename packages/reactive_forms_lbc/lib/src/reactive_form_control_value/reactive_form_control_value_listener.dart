@@ -14,36 +14,28 @@ typedef ReactiveFormControlValueListenerCondition<T> = bool Function(
 class ReactiveFormControlValueListener<T>
     extends ReactiveFormControlValueListenerBase<T> {
   const ReactiveFormControlValueListener({
-    Key? key,
-    required ReactiveFormControlWidgetListener<T> listener,
-    String? formControlName,
-    AbstractControl<T>? formControl,
-    ReactiveFormControlValueListenerCondition<T>? listenWhen,
-    Widget? child,
+    super.key,
+    required super.listener,
+    super.formControlName,
+    super.formControl,
+    super.listenWhen,
+    super.child,
   })  : assert(
             (formControlName != null && formControl == null) ||
                 (formControlName == null && formControl != null),
-            'Must provide a formControlName or a formControl, but not both at the same time.'),
-        super(
-          key: key,
-          child: child,
-          listener: listener,
-          formControl: formControl,
-          formControlName: formControlName,
-          listenWhen: listenWhen,
-        );
+            'Must provide a formControlName or a formControl, but not both at the same time.');
 }
 
 abstract class ReactiveFormControlValueListenerBase<T>
     extends SingleChildStatefulWidget {
   const ReactiveFormControlValueListenerBase({
-    Key? key,
+    super.key,
     required this.listener,
     this.formControl,
     this.formControlName,
     this.child,
     this.listenWhen,
-  }) : super(key: key, child: child);
+  }) : super(child: child);
 
   final String? formControlName;
 

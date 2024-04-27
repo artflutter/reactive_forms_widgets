@@ -75,12 +75,12 @@ class ReactiveMacosCheckbox<T> extends ReactiveFormField<T, bool> {
   /// For documentation about the various parameters, see the [MacosCheckbox] class
   /// and [MacosCheckbox], the constructor.
   ReactiveMacosCheckbox({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, bool>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(
@@ -95,12 +95,6 @@ class ReactiveMacosCheckbox<T> extends ReactiveFormField<T, bool> {
     Color offBorderColor = CupertinoColors.tertiaryLabel,
     String? semanticLabel,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             // final InputDecoration effectiveDecoration = decoration
             //     .applyDefaults(Theme.of(field.context).inputDecorationTheme);

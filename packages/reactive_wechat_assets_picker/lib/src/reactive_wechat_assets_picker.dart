@@ -86,13 +86,13 @@ class ReactiveWechatAssetsPicker<T>
   /// For documentation about the various parameters, see the [WechatAssetsPicker] class
   /// and [WechatAssetsPicker], the constructor.
   ReactiveWechatAssetsPicker({
-    Key? key,
+    super.key,
     Key? widgetKey,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, List<AssetEntity>>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////
     required ImagePickerBuilder<T> imagePickerBuilder,
@@ -103,12 +103,6 @@ class ReactiveWechatAssetsPicker<T>
     double disabledOpacity = 0.5,
     // put component specific params here
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (field) {
             final value = field.value;
 

@@ -104,14 +104,14 @@ class ReactiveDropdownButton2<T, V> extends ReactiveFocusableFormField<T, V> {
   /// For documentation about the various parameters, see the [DropdownButton2] class
   /// and [DropdownButton2], the constructor.
   ReactiveDropdownButton2({
-    Key? key,
+    super.key,
     Key? widgetKey,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
     DropDownValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
-    FocusNode? focusNode,
+    super.showErrors,
+    super.focusNode,
 
     //////////////////////////////////////////////////////////////////////////
     InputDecoration inputDecoration = const InputDecoration(
@@ -150,18 +150,12 @@ class ReactiveDropdownButton2<T, V> extends ReactiveFocusableFormField<T, V> {
     bool barrierCoversButton = true,
     EdgeInsets padding = EdgeInsets.zero,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
           valueAccessor: valueAccessor != null
               ? _DropDownValueAccessor(
                   items: items ?? [],
                   dropDownValueAccessor: valueAccessor,
                 )
               : null,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
-          focusNode: focusNode,
           builder: (field) {
             final effectiveDecoration = inputDecoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);

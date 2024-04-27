@@ -93,12 +93,12 @@ class ReactiveFancyPasswordField<T> extends ReactiveFormField<T, String> {
   /// For documentation about the various parameters, see the [FancyPasswordField] class
   /// and [FancyPasswordField], the constructor.
   ReactiveFancyPasswordField({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, String>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
     InputDecoration decoration = const InputDecoration(),
@@ -160,12 +160,6 @@ class ReactiveFancyPasswordField<T> extends ReactiveFormField<T, String> {
     StrengthIndicatorBuilder? strengthIndicatorBuilder,
     ValidationRulesBuilder? validationRuleBuilder,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
           builder: (ReactiveFormFieldState<T, String> field) {
             final state = field as _ReactiveFancyPasswordFieldState<T>;
             final effectiveDecoration = decoration
