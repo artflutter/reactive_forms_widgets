@@ -80,6 +80,7 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
   /// and [DropdownSearch], the constructor.
   ReactiveDropdownSearch({
     super.key,
+    Key? widgetKey,
     super.formControlName,
     super.formControl,
     super.validationMessages,
@@ -119,6 +120,7 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
             state._setFocusNode(focusNode);
 
             return DropdownSearch<V>(
+              key: widgetKey,
               onChanged: field.didChange,
               popupProps: popupProps,
               selectedItem: field.value,

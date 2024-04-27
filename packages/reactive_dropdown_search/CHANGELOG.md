@@ -1,3 +1,7 @@
+## [3.0.2]
+
+* widget key added
+
 ## [3.0.1]
 
 * Support `reactive_forms: 17.x`
