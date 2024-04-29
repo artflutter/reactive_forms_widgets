@@ -10,7 +10,7 @@ class CountryPhoneValidator extends Validator<PhoneNumber> {
   });
 
   @override
-  Map<String, dynamic>? validate(AbstractControl<PhoneNumber> control) {
+  Map<String, Object>? validate(AbstractControl<PhoneNumber> control) {
     final value = control.value;
 
     if (value == null || value.nsn.trim().isEmpty) return null;

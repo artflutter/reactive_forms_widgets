@@ -9,7 +9,7 @@ class ValidPhoneValidator extends Validator<PhoneNumber> {
   final PhoneNumberType? type;
 
   @override
-  Map<String, dynamic>? validate(AbstractControl<PhoneNumber> control) {
+  Map<String, Object>? validate(AbstractControl<PhoneNumber> control) {
     final value = control.value;
 
     if (value == null || value.nsn.trim().isEmpty) return null;
@@ -24,7 +24,7 @@ class ValidPhoneValidator extends Validator<PhoneNumber> {
       };
 
       return {
-        messageKey: type,
+        messageKey: type ?? true,
       };
     }
 

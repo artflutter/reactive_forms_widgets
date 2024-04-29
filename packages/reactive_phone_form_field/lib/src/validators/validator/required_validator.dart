@@ -7,7 +7,7 @@ class RequiredPhoneValidator extends Validator<PhoneNumber> {
   const RequiredPhoneValidator();
 
   @override
-  Map<String, dynamic>? validate(AbstractControl<PhoneNumber> control) {
+  Map<String, Object>? validate(AbstractControl<PhoneNumber> control) {
     final value = control.value;
 
     if (value == null || value.nsn.trim().isEmpty) {
