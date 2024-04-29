@@ -22,6 +22,8 @@ export 'package:phone_form_field/phone_form_field.dart';
 ///
 class ReactivePhoneFormField<T>
     extends ReactiveFocusableFormField<T, PhoneNumber> {
+  final PhoneController? _textController;
+
   /// Creates a [ReactivePhoneFormField] that contains a [PhoneFormField].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -97,6 +99,7 @@ class ReactivePhoneFormField<T>
     CountrySelectorNavigator countrySelectorNavigator =
         const CountrySelectorNavigator.page(),
     Function(PhoneNumber?)? onSaved,
+    ReactiveFormFieldCallback<T>? onChanged,
     InputDecoration decoration = const InputDecoration(),
     TextInputType keyboardType = TextInputType.phone,
     TextInputAction? textInputAction,
@@ -136,17 +139,17 @@ class ReactivePhoneFormField<T>
     bool isCountryButtonPersistent = false,
     Widget Function(BuildContext, EditableTextState)? contextMenuBuilder,
     Function(PointerDownEvent)? onTapOutside,
-  }) : super(
+    PhoneController? controller,
+  })  : _textController = controller,
+        super(
           builder: (field) {
             final state = field as _ReactivePhoneFormFieldState<T>;
             final effectiveDecoration = decoration
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);
-
             return PhoneFormField(
               countryButtonStyle: countryButtonStyle,
               focusNode: state.focusNode,
               controller: state._textController,
-              onChanged: field.didChange,
               autofillHints: autofillHints,
               contextMenuBuilder: contextMenuBuilder,
               autofocus: autofocus,
@@ -159,6 +162,10 @@ class ReactivePhoneFormField<T>
               ),
               cursorColor: cursorColor,
               autovalidateMode: AutovalidateMode.disabled,
+              onChanged: (value) {
+                field.didChange(value);
+                onChanged?.call(field.control);
+              },
               onEditingComplete: onEditingComplete,
               restorationId: restorationId,
               keyboardType: keyboardType,
@@ -210,21 +217,21 @@ class _ReactivePhoneFormFieldState<T>
   @override
   void initState() {
     super.initState();
+    _initializeTextController();
+  }
 
-    _textController = PhoneController(
-      initialValue: value ?? defaultPhone,
-    );
+  void _initializeTextController() {
+    final initialValue = value;
+    final currentWidget = widget as ReactivePhoneFormField<T>;
+    _textController = (currentWidget._textController != null)
+        ? currentWidget._textController!
+        : PhoneController(initialValue: initialValue ?? defaultPhone);
   }
 
   @override
   void onControlValueChanged(dynamic value) {
-    if (value == null) {
-      _textController.value = const PhoneNumber(isoCode: IsoCode.US, nsn: '');
-    } else if (value is PhoneNumber) {
-      _textController.value = PhoneNumber(
-        isoCode: value.isoCode,
-        nsn: value.nsn,
-      );
+    if (value is PhoneNumber?) {
+      _textController.value = value ?? defaultPhone;
     }
 
     super.onControlValueChanged(value);
@@ -232,7 +239,10 @@ class _ReactivePhoneFormFieldState<T>
 
   @override
   void dispose() {
-    _textController.dispose();
+    final currentWidget = widget as ReactivePhoneFormField<T>;
+    if (currentWidget._textController == null) {
+      _textController.dispose();
+    }
     super.dispose();
   }
 }
