@@ -20,7 +20,10 @@ export 'package:phone_form_field/phone_form_field.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
+class ReactivePhoneFormField<T>
+    extends ReactiveFocusableFormField<T, PhoneNumber> {
+  final PhoneController? _textController;
+
   /// Creates a [ReactivePhoneFormField] that contains a [PhoneFormField].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -85,32 +88,25 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
   /// For documentation about the various parameters, see the [PhoneFormField] class
   /// and [PhoneFormField], the constructor.
   ReactivePhoneFormField({
-    Key? key,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, PhoneNumber>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
-
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
+    super.focusNode,
     ////////////////////////////////////////////////////////////////////////////
-    bool shouldFormat = true,
-    bool enabled = true,
-    bool showFlagInInput = true,
     CountrySelectorNavigator countrySelectorNavigator =
-        const CountrySelectorNavigator.searchDelegate(),
+        const CountrySelectorNavigator.page(),
     Function(PhoneNumber?)? onSaved,
-    IsoCode defaultCountry = IsoCode.US,
-    PhoneNumber? initialValue,
-    double flagSize = 16,
+    ReactiveFormFieldCallback<T>? onChanged,
     InputDecoration decoration = const InputDecoration(),
     TextInputType keyboardType = TextInputType.phone,
     TextInputAction? textInputAction,
     TextStyle? style,
     StrutStyle? strutStyle,
-    TextAlign textAlign = TextAlign.start,
     TextAlignVertical? textAlignVertical,
     bool autofocus = false,
-    bool readOnly = false,
     bool? showCursor,
     bool obscureText = false,
     String obscuringCharacter = '•',
@@ -118,12 +114,6 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     SmartDashesType? smartDashesType,
     SmartQuotesType? smartQuotesType,
     bool enableSuggestions = true,
-    MaxLengthEnforcement? maxLengthEnforcement,
-    int? maxLines = 1,
-    int? minLines,
-    bool expands = false,
-    int? maxLength,
-    GestureTapCallback? onTap,
     VoidCallback? onEditingComplete,
     List<TextInputFormatter>? inputFormatters,
     double cursorWidth = 2.0,
@@ -133,76 +123,62 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
     Brightness? keyboardAppearance,
     EdgeInsets scrollPadding = const EdgeInsets.all(20.0),
     bool enableInteractiveSelection = true,
-    InputCounterWidgetBuilder? buildCounter,
     ScrollPhysics? scrollPhysics,
     VoidCallback? onSubmitted,
-    FocusNode? focusNode,
     Iterable<String>? autofillHints,
     MouseCursor? mouseCursor,
-    DragStartBehavior dragStartBehavior = DragStartBehavior.start,
     AppPrivateCommandCallback? onAppPrivateCommand,
     String? restorationId,
     ScrollController? scrollController,
     TextSelectionControls? selectionControls,
     ui.BoxHeightStyle selectionHeightStyle = ui.BoxHeightStyle.tight,
     ui.BoxWidthStyle selectionWidthStyle = ui.BoxWidthStyle.tight,
-    TextStyle? countryCodeStyle,
+    CountryButtonStyle countryButtonStyle = const CountryButtonStyle(),
     bool enableIMEPersonalizedLearning = true,
     bool isCountrySelectionEnabled = true,
-    bool isCountryChipPersistent = false,
-  }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
+    bool isCountryButtonPersistent = false,
+    Widget Function(BuildContext, EditableTextState)? contextMenuBuilder,
+    Function(PointerDownEvent)? onTapOutside,
+    PhoneController? controller,
+  })  : _textController = controller,
+        super(
           builder: (field) {
             final state = field as _ReactivePhoneFormFieldState<T>;
             final effectiveDecoration = decoration
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);
-
-            state._setFocusNode(focusNode);
-
             return PhoneFormField(
-              countryCodeStyle: countryCodeStyle,
+              countryButtonStyle: countryButtonStyle,
               focusNode: state.focusNode,
               controller: state._textController,
-              shouldFormat: shouldFormat,
-              onChanged: field.didChange,
               autofillHints: autofillHints,
+              contextMenuBuilder: contextMenuBuilder,
               autofocus: autofocus,
               enabled: field.control.enabled,
-              showFlagInInput: showFlagInInput,
               countrySelectorNavigator: countrySelectorNavigator,
               onSaved: onSaved,
-              defaultCountry: defaultCountry,
               decoration: effectiveDecoration.copyWith(
                 errorText: field.errorText,
                 enabled: field.control.enabled,
               ),
               cursorColor: cursorColor,
               autovalidateMode: AutovalidateMode.disabled,
-              flagSize: flagSize,
+              onChanged: (value) {
+                field.didChange(value);
+                onChanged?.call(field.control);
+              },
               onEditingComplete: onEditingComplete,
               restorationId: restorationId,
               keyboardType: keyboardType,
               textInputAction: textInputAction,
               style: style,
               strutStyle: strutStyle,
-              textAlign: textAlign,
               textAlignVertical: textAlignVertical,
               showCursor: showCursor,
               obscureText: obscureText,
               autocorrect: autocorrect,
-              smartDashesType: smartDashesType ??
-                  (obscureText
-                      ? SmartDashesType.disabled
-                      : SmartDashesType.enabled),
-              smartQuotesType: smartQuotesType ??
-                  (obscureText
-                      ? SmartQuotesType.disabled
-                      : SmartQuotesType.enabled),
+              smartDashesType: smartDashesType,
+              smartQuotesType: smartQuotesType,
+              onTapOutside: onTapOutside,
               enableSuggestions: enableSuggestions,
               onSubmitted: onSubmitted != null ? (_) => onSubmitted() : null,
               inputFormatters: inputFormatters,
@@ -222,7 +198,7 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
               selectionWidthStyle: selectionWidthStyle,
               enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
               isCountrySelectionEnabled: isCountrySelectionEnabled,
-              isCountryChipPersistent: isCountryChipPersistent,
+              isCountryButtonPersistent: isCountryButtonPersistent,
             );
           },
         );
@@ -233,68 +209,40 @@ class ReactivePhoneFormField<T> extends ReactiveFormField<T, PhoneNumber> {
 }
 
 class _ReactivePhoneFormFieldState<T>
-    extends ReactiveFormFieldState<T, PhoneNumber> {
+    extends ReactiveFocusableFormFieldState<T, PhoneNumber> {
   late PhoneController _textController;
-  FocusNode? _focusNode;
-  late FocusController _focusController;
 
-  @override
-  FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
+  static const defaultPhone = PhoneNumber(isoCode: IsoCode.US, nsn: '');
 
   @override
   void initState() {
     super.initState();
-
-    _textController = PhoneController(value);
+    _initializeTextController();
   }
 
-  @override
-  void subscribeControl() {
-    _registerFocusController(FocusController());
-    super.subscribeControl();
-  }
-
-  @override
-  void unsubscribeControl() {
-    _unregisterFocusController();
-    super.unsubscribeControl();
+  void _initializeTextController() {
+    final initialValue = value;
+    final currentWidget = widget as ReactivePhoneFormField<T>;
+    _textController = (currentWidget._textController != null)
+        ? currentWidget._textController!
+        : PhoneController(initialValue: initialValue ?? defaultPhone);
   }
 
   @override
   void onControlValueChanged(dynamic value) {
-    if (value == null) {
-      _textController.value = null;
-    } else if (value is PhoneNumber) {
-      _textController.value = PhoneNumber(
-        isoCode: value.isoCode,
-        nsn: value.nsn,
-      );
+    if (value is PhoneNumber?) {
+      _textController.value = value ?? defaultPhone;
     }
 
     super.onControlValueChanged(value);
   }
 
-  void _registerFocusController(FocusController focusController) {
-    _focusController = focusController;
-    control.registerFocusController(focusController);
-  }
-
-  void _unregisterFocusController() {
-    control.unregisterFocusController(_focusController);
-    _focusController.dispose();
-  }
-
   @override
   void dispose() {
-    _textController.dispose();
-    super.dispose();
-  }
-
-  void _setFocusNode(FocusNode? focusNode) {
-    if (_focusNode != focusNode) {
-      _focusNode = focusNode;
-      _unregisterFocusController();
-      _registerFocusController(FocusController(focusNode: _focusNode));
+    final currentWidget = widget as ReactivePhoneFormField<T>;
+    if (currentWidget._textController == null) {
+      _textController.dispose();
     }
+    super.dispose();
   }
 }

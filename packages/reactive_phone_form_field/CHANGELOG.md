@@ -1,6 +1,7 @@
-## [2.0.2]
+## [3.0.0]
 
 * Support `reactive_forms: 17.x`
+* Support `phone_form_field: 9.x` (read [BREAKING CHANGES](https://pub.dev/packages/phone_form_field/changelog#900))
 
 ## [2.0.1]
 
