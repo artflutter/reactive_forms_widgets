@@ -97,6 +97,7 @@ class ReactiveAdvancedSwitch<T> extends ReactiveFormField<T, bool> {
     double width = 50.0,
     double height = 30.0,
     Widget? thumb,
+    double disabledOpacity = 0.5,
   }) : super(
           builder: (field) {
             final state = field as _ReactiveAdvancedSwitchState;
@@ -117,6 +118,7 @@ class ReactiveAdvancedSwitch<T> extends ReactiveFormField<T, bool> {
               height: height,
               enabled: field.control.enabled,
               thumb: thumb,
+                disabledOpacity:disabledOpacity,
             );
 
             return InputDecorator(
