@@ -76,6 +76,12 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
     Locale? locale,
     TextDirection? textDirection,
     RouteSettings? routeSettings,
+    bool barrierDismissible = true,
+    Color? barrierColor,
+    Offset? anchorPoint,
+    TextInputType keyboardType = TextInputType.datetime,
+    Icon? switchToInputEntryModeIcon,
+    Icon? switchToCalendarEntryModeIcon,
   }) : super(
           valueAccessor: valueAccessor ?? DateTimeRangeValueAccessor(),
           builder: (field) {
@@ -131,6 +137,13 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
                     routeSettings: routeSettings,
                     textDirection: textDirection,
                     builder: builder,
+                    barrierDismissible: barrierDismissible,
+                    barrierColor: barrierColor,
+                    anchorPoint: anchorPoint,
+                    keyboardType: keyboardType,
+                    switchToInputEntryModeIcon: switchToInputEntryModeIcon,
+                    switchToCalendarEntryModeIcon:
+                        switchToCalendarEntryModeIcon,
                   );
 
                   if (dateRange == null) {
