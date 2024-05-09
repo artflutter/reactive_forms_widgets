@@ -54,6 +54,7 @@ class ReactiveDropdownField<T, V> extends ReactiveFormField<T, V> {
     bool? enableFeedback,
     AlignmentDirectional alignment = AlignmentDirectional.centerStart,
     BorderRadius? borderRadius,
+    EdgeInsetsGeometry? padding,
   })  : assert(itemHeight == null || itemHeight > 0),
         super(
           builder: (field) {
@@ -115,6 +116,7 @@ class ReactiveDropdownField<T, V> extends ReactiveFormField<T, V> {
                   enableFeedback: enableFeedback,
                   alignment: alignment,
                   borderRadius: borderRadius,
+                  padding: padding,
                 ),
               ),
             );
