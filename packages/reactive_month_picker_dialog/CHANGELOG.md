@@ -1,3 +1,7 @@
+## [2.1.0]
+
+* month_picker_dialog: ^2.11.2
+
 ## [2.0.1]
 
 * Support `reactive_forms: 17.x`
