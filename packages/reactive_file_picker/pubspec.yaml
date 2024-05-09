@@ -1,6 +1,6 @@
 name: reactive_file_picker
 description: Wrapper around file_picker to use with reactive_forms.
-version: 2.0.1
+version: 3.0.0
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_file_picker
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
@@ -18,9 +18,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  freezed: ^2.4.5
-  build_runner: ^2.4.6
-  flutter_lints: ^3.0.1
+  freezed: ^2.5.2
+  build_runner: ^2.4.9
+  flutter_lints: ^3.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
