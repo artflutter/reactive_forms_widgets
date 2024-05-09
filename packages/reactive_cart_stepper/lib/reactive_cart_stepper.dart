@@ -77,24 +77,26 @@ class ReactiveCartStepper<T, V extends num> extends ReactiveFormField<T, V> {
   ///
   /// For documentation about the various parameters, see the [CartStepper] class
   /// and [CartStepper], the constructor.
-  ReactiveCartStepper({
-    super.key,
-    super.formControlName,
-    InputDecoration? decoration,
-    super.formControl,
-    super.validationMessages,
-    super.valueAccessor,
-    super.showErrors,
+  ReactiveCartStepper(
+      {super.key,
+      super.formControlName,
+      InputDecoration? decoration,
+      super.formControl,
+      super.validationMessages,
+      super.valueAccessor,
+      super.showErrors,
 
-    ////////////////////////////////////////////////////////////////////////////
-    required V stepper,
-    double size = 30,
-    double numberSize = 2,
-    Axis axis = Axis.horizontal,
-    double elevation = 2,
-    double disabledOpacity = 0.5,
-    CartStepperStyle? style,
-  }) : super(
+      ////////////////////////////////////////////////////////////////////////////
+      required V stepper,
+      double size = 30,
+      double numberSize = 2,
+      Axis axis = Axis.horizontal,
+      double elevation = 2,
+      double disabledOpacity = 0.5,
+      CartStepperStyle? style,
+      TextInputType? editKeyboardType,
+      bool alwaysExpanded = false})
+      : super(
           builder: (field) {
             return Listener(
               onPointerDown: (_) {
@@ -115,6 +117,8 @@ class ReactiveCartStepper<T, V extends num> extends ReactiveFormField<T, V> {
                     numberSize: numberSize,
                     elevation: elevation,
                     style: style,
+                    editKeyboardType: editKeyboardType,
+                    alwaysExpanded: alwaysExpanded,
                   ),
                 ),
               ),
