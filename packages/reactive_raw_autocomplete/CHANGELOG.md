@@ -1,3 +1,7 @@
+## [2.1.0]
+
+* Props update
+
 ## [2.0.2]
 
 * Support `reactive_forms: 17.x`

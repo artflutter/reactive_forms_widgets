@@ -1,6 +1,6 @@
 name: reactive_raw_autocomplete
 description: Wrapper around RawAutocomplete to use with reactive_forms
-version: 2.0.2
+version: 2.1.0
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_raw_autocomplete
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 

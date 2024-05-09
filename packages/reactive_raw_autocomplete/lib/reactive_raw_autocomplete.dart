@@ -13,6 +13,13 @@ import 'package:reactive_forms/reactive_forms.dart';
 typedef ControllerInitCallback = void Function(
     TextEditingController controller);
 
+Widget _defaultContextMenuBuilder(
+    BuildContext context, EditableTextState editableTextState) {
+  return AdaptiveTextSelectionToolbar.editableText(
+    editableTextState: editableTextState,
+  );
+}
+
 /// A [ReactiveRawAutocomplete] that contains a [TextField].
 ///
 /// This is a convenience widget that wraps a [TextField] widget in a
@@ -155,6 +162,21 @@ class ReactiveRawAutocomplete<T, V extends Object>
     this.onControllerInit,
     bool scribbleEnabled = true,
     bool enableIMEPersonalizedLearning = true,
+    OptionsViewOpenDirection optionsViewOpenDirection =
+        OptionsViewOpenDirection.down,
+    UndoHistoryController? undoController,
+    TapRegionCallback? onTapOutside,
+    bool cursorOpacityAnimates = true,
+    ContentInsertionConfiguration? contentInsertionConfiguration,
+    Clip clipBehavior = Clip.hardEdge,
+    EditableTextContextMenuBuilder? contextMenuBuilder =
+        _defaultContextMenuBuilder,
+    SpellCheckConfiguration? spellCheckConfiguration,
+    TextMagnifierConfiguration? magnifierConfiguration,
+    bool onTapAlwaysCalled = false,
+    bool canRequestFocus = true,
+    Color? cursorErrorColor,
+    MaterialStatesController? statesController,
   }) : super(
           builder: (field) {
             final state = field as _ReactiveRawAutocompleteState<T, V>;
@@ -251,6 +273,19 @@ class ReactiveRawAutocomplete<T, V extends Object>
                       scribbleEnabled: scribbleEnabled,
                       enableIMEPersonalizedLearning:
                           enableIMEPersonalizedLearning,
+                      undoController: undoController,
+                      onTapOutside: onTapOutside,
+                      cursorOpacityAnimates: cursorOpacityAnimates,
+                      contentInsertionConfiguration:
+                          contentInsertionConfiguration,
+                      clipBehavior: clipBehavior,
+                      contextMenuBuilder: contextMenuBuilder,
+                      spellCheckConfiguration: spellCheckConfiguration,
+                      magnifierConfiguration: magnifierConfiguration,
+                      statesController: statesController,
+                      cursorErrorColor: cursorErrorColor,
+                      onTapAlwaysCalled: onTapAlwaysCalled,
+                      canRequestFocus: canRequestFocus,
                     );
                   },
             );
