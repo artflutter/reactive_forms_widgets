@@ -1,3 +1,7 @@
+## [2.1.0]
+
+* added missing properties
+
 ## [2.0.1]
 
 * Support `reactive_forms: 17.x`

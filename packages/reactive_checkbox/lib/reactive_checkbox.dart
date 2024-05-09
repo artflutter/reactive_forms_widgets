@@ -48,6 +48,7 @@ class ReactiveCheckbox<T> extends ReactiveFormField<T, bool> {
     FocusNode? focusNode,
     OutlinedBorder? shape,
     BorderSide? side,
+    String? semanticLabel,
   }) : super(
           builder: (field) {
             final state = field as _ReactiveCheckboxState<T, bool>;
@@ -72,6 +73,8 @@ class ReactiveCheckbox<T> extends ReactiveFormField<T, bool> {
               focusNode: state.focusNode,
               shape: shape,
               side: side,
+              isError: state.control.hasErrors,
+              semanticLabel: semanticLabel,
             );
           },
         );

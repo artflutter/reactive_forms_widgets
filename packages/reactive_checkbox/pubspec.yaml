@@ -1,6 +1,6 @@
 name: reactive_checkbox
 description: Wrapper around Checkbox to work with reactive_forms
-version: 2.0.1
+version: 2.1.0
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_checkbox
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
