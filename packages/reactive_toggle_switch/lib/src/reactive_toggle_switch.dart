@@ -114,6 +114,11 @@ class ReactiveToggleSwitch<T> extends ReactiveFormField<T, int> {
     bool doubleTapDisable = false,
     bool isVertical = false,
     List<Border?>? activeBorders,
+    bool centerText = false,
+    bool multiLineText = false,
+    List<Widget>? customWidgets,
+    CancelToggle? cancelToggle,
+    List<bool>? states,
   }) : super(
           builder: (field) {
             return ToggleSwitch(
@@ -149,6 +154,11 @@ class ReactiveToggleSwitch<T> extends ReactiveFormField<T, int> {
               doubleTapDisable: doubleTapDisable,
               isVertical: isVertical,
               activeBorders: activeBorders,
+              states: states,
+              cancelToggle: cancelToggle,
+              centerText: centerText,
+              multiLineText: multiLineText,
+              customWidgets: customWidgets,
             );
           },
         );
