@@ -28,6 +28,13 @@ const Border _kDefaultRoundedBorder = Border(
   right: _kDefaultRoundedBorderSide,
 );
 
+Widget _defaultContextMenuBuilder(
+    BuildContext context, EditableTextState editableTextState) {
+  return CupertinoAdaptiveTextSelectionToolbar.editableText(
+    editableTextState: editableTextState,
+  );
+}
+
 const BoxDecoration _kDefaultRoundedBorderDecoration = BoxDecoration(
   color: CupertinoDynamicColor.withBrightness(
     color: CupertinoColors.white,
@@ -177,6 +184,17 @@ class ReactiveCupertinoTextField<T> extends ReactiveFormField<T, String> {
       color: CupertinoColors.placeholderText,
     ),
     bool scribbleEnabled = true,
+    UndoHistoryController? undoController,
+    String? clearButtonSemanticLabel,
+    TapRegionCallback? onTapOutside,
+    bool cursorOpacityAnimates = true,
+    ContentInsertionConfiguration? contentInsertionConfiguration,
+    Clip clipBehavior = Clip.hardEdge,
+    bool enableIMEPersonalizedLearning = true,
+    EditableTextContextMenuBuilder? contextMenuBuilder =
+        _defaultContextMenuBuilder,
+    SpellCheckConfiguration? spellCheckConfiguration,
+    TextMagnifierConfiguration? magnifierConfiguration,
   }) : super(
           builder: (field) {
             final state = field as _ReactiveCupertinoTextFieldState<T>;
@@ -251,6 +269,16 @@ class ReactiveCupertinoTextField<T> extends ReactiveFormField<T, String> {
                 autofillHints: autofillHints,
                 restorationId: restorationId,
                 scribbleEnabled: scribbleEnabled,
+                undoController: undoController,
+                clearButtonSemanticLabel: clearButtonSemanticLabel,
+                onTapOutside: onTapOutside,
+                cursorOpacityAnimates: cursorOpacityAnimates,
+                contentInsertionConfiguration: contentInsertionConfiguration,
+                clipBehavior: clipBehavior,
+                enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+                contextMenuBuilder: contextMenuBuilder,
+                spellCheckConfiguration: spellCheckConfiguration,
+                magnifierConfiguration: magnifierConfiguration,
               ),
             );
           },
