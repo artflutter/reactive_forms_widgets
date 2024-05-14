@@ -336,7 +336,11 @@ class _ReactiveRawAutocompleteState<T, V extends Object>
 
   @override
   void onControlValueChanged(dynamic value) {
-    final effectiveValue = (value == null) ? '' : value.toString();
+    final widgetInstance = (widget as ReactiveRawAutocomplete<T, V>);
+
+    final effectiveValue = (value == null)
+        ? ''
+        : widgetInstance.displayStringForOption(value as V);
     _textController.value = _textController.value.copyWith(
       text: effectiveValue,
       selection: TextSelection.collapsed(offset: effectiveValue.length),
