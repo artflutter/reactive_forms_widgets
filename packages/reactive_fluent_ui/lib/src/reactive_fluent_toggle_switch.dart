@@ -9,7 +9,8 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveFluentToggleSwitch<T> extends ReactiveFormField<T, bool> {
+class ReactiveFluentToggleSwitch<T>
+    extends ReactiveFocusableFormField<T, bool> {
   /// Creates a [ReactiveFluentToggleSwitch] that contains a [FluentUi].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -90,11 +91,10 @@ class ReactiveFluentToggleSwitch<T> extends ReactiveFormField<T, bool> {
     bool autofocus = false,
     bool leadingContent = false,
     Widget? thumb,
-    ToggleSwitchThumbBuilder? thumbBuilder,
+    Widget? knob,
+    ToggleSwitchKnobBuilder? knobBuilder,
   }) : super(
           builder: (field) {
-            final state = field as _ReactiveFluentToggleSwitchState<T>;
-
             return ToggleSwitch(
               key: widgetKey,
               checked: field.value ?? false,
@@ -102,19 +102,12 @@ class ReactiveFluentToggleSwitch<T> extends ReactiveFormField<T, bool> {
               style: style,
               content: content,
               semanticLabel: semanticLabel,
-              focusNode: state.focusNode,
+              focusNode: field.focusNode,
               autofocus: autofocus,
               leadingContent: leadingContent,
-              thumb: thumb,
-              thumbBuilder: thumbBuilder,
+              knob: knob,
+              knobBuilder: knobBuilder,
             );
           },
         );
-
-  @override
-  ReactiveFormFieldState<T, bool> createState() =>
-      _ReactiveFluentToggleSwitchState<T>();
 }
-
-class _ReactiveFluentToggleSwitchState<T>
-    extends ReactiveFocusableFormFieldState<T, bool> {}

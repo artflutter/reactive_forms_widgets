@@ -151,6 +151,10 @@ class ReactiveFluentTextFormBox<T> extends ReactiveFormField<T, String> {
     Color? highlightColor,
     Color? errorHighlightColor,
     Color? unfocusedColor,
+    TapRegionCallback? onTapOutside,
+    EditableTextContextMenuBuilder? contextMenuBuilder,
+    TextMagnifierConfiguration? magnifierConfiguration,
+    SpellCheckConfiguration? spellCheckConfiguration,
   })  : _textController = controller,
         super(
           builder: (field) {
@@ -219,6 +223,10 @@ class ReactiveFluentTextFormBox<T> extends ReactiveFormField<T, String> {
               highlightColor: highlightColor,
               errorHighlightColor: errorHighlightColor,
               unfocusedColor: unfocusedColor,
+              onTapOutside: onTapOutside,
+              contextMenuBuilder: contextMenuBuilder,
+              magnifierConfiguration: magnifierConfiguration,
+              spellCheckConfiguration: spellCheckConfiguration,
             );
           },
         );

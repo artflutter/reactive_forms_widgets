@@ -116,6 +116,8 @@ class ReactiveFluentAutoSuggestBox<T, V> extends ReactiveFormField<T, V> {
     bool enableKeyboardControls = true,
     double maxPopupHeight = 380.0,
     WidgetBuilder? noResultsFoundBuilder,
+    ValueChanged<bool>? onOverlayVisibilityChanged,
+    AutoSuggestBoxItemBuilder<dynamic>? itemBuilder,
   })  : _textController = controller,
         super(
           builder: (field) {
@@ -155,6 +157,8 @@ class ReactiveFluentAutoSuggestBox<T, V> extends ReactiveFormField<T, V> {
               foregroundDecoration: foregroundDecoration,
               enableKeyboardControls: enableKeyboardControls,
               maxPopupHeight: maxPopupHeight,
+              onOverlayVisibilityChanged: onOverlayVisibilityChanged,
+              itemBuilder: itemBuilder,
             );
           },
         );

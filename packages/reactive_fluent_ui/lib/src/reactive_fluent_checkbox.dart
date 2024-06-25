@@ -9,7 +9,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveFluentCheckBox<T> extends ReactiveFormField<T, bool> {
+class ReactiveFluentCheckBox<T> extends ReactiveFocusableFormField<T, bool> {
   /// Creates a [ReactiveFluentCheckBox] that contains a [FluentUi].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -81,17 +81,15 @@ class ReactiveFluentCheckBox<T> extends ReactiveFormField<T, bool> {
     super.validationMessages,
     super.valueAccessor,
     super.showErrors,
+    super.focusNode,
 
     //////////////////////////////////////////////////////////////////////////
-    super.focusNode,
     CheckboxThemeData? style,
     Widget? content,
     String? semanticLabel,
     bool autofocus = false,
   }) : super(
           builder: (field) {
-            final state = field as _ReactiveFluentCheckBoxState<T>;
-
             return Checkbox(
               key: widgetKey,
               checked: field.value,
@@ -99,16 +97,9 @@ class ReactiveFluentCheckBox<T> extends ReactiveFormField<T, bool> {
               style: style,
               content: content,
               semanticLabel: semanticLabel,
-              focusNode: state.focusNode,
+              focusNode: field.focusNode,
               autofocus: autofocus,
             );
           },
         );
-
-  @override
-  ReactiveFormFieldState<T, bool> createState() =>
-      _ReactiveFluentCheckBoxState<T>();
 }
-
-class _ReactiveFluentCheckBoxState<T>
-    extends ReactiveFocusableFormFieldState<T, bool> {}

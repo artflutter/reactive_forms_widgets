@@ -9,7 +9,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveFluentSlider<T> extends ReactiveFormField<T, double> {
+class ReactiveFluentSlider<T> extends ReactiveFocusableFormField<T, double> {
   /// Creates a [ReactiveFluentSlider] that contains a [FluentUi].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -81,9 +81,9 @@ class ReactiveFluentSlider<T> extends ReactiveFormField<T, double> {
     super.validationMessages,
     super.valueAccessor,
     super.showErrors,
+    super.focusNode,
 
     //////////////////////////////////////////////////////////////////////////
-    super.focusNode,
     double min = 0.0,
     double max = 100.0,
     bool autofocus = false,
@@ -96,13 +96,13 @@ class ReactiveFluentSlider<T> extends ReactiveFormField<T, double> {
     String? label,
   }) : super(
           builder: (field) {
-            final state = field as _ReactiveFluentSliderState<T>;
-
             return Slider(
               key: widgetKey,
               value: field.value ?? min,
+              min: min,
+              max: max,
               onChanged: field.didChange,
-              focusNode: state.focusNode,
+              focusNode: field.focusNode,
               autofocus: autofocus,
               onChangeStart: onChangeStart,
               onChangeEnd: onChangeEnd,
@@ -114,11 +114,4 @@ class ReactiveFluentSlider<T> extends ReactiveFormField<T, double> {
             );
           },
         );
-
-  @override
-  ReactiveFormFieldState<T, double> createState() =>
-      _ReactiveFluentSliderState<T>();
 }
-
-class _ReactiveFluentSliderState<T>
-    extends ReactiveFocusableFormFieldState<T, double> {}

@@ -9,7 +9,8 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveFluentDatePicker<T> extends ReactiveFormField<T, DateTime> {
+class ReactiveFluentDatePicker<T>
+    extends ReactiveFocusableFormField<T, DateTime> {
   /// Creates a [ReactiveFluentDatePicker] that contains a [FluentUi].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -81,6 +82,7 @@ class ReactiveFluentDatePicker<T> extends ReactiveFormField<T, DateTime> {
     super.validationMessages,
     super.valueAccessor,
     super.showErrors,
+    super.focusNode,
 
     //////////////////////////////////////////////////////////////////////////
     VoidCallback? onCancel,
@@ -102,12 +104,12 @@ class ReactiveFluentDatePicker<T> extends ReactiveFormField<T, DateTime> {
     List<DatePickerField>? fieldOrder,
     DateTime? startDate,
     DateTime? endDate,
+    List<int>? fieldFlex,
   }) : super(
           builder: (field) {
-            final state = field as _ReactiveFluentDatePickerState<T>;
             return DatePicker(
               key: comboBoxKey,
-              focusNode: state.focusNode,
+              focusNode: field.focusNode,
               selected: field.value,
               onChanged: field.didChange,
               onCancel: onCancel,
@@ -123,14 +125,8 @@ class ReactiveFluentDatePicker<T> extends ReactiveFormField<T, DateTime> {
               endDate: endDate,
               locale: locale,
               fieldOrder: fieldOrder,
+              fieldFlex: fieldFlex,
             );
           },
         );
-
-  @override
-  ReactiveFormFieldState<T, DateTime> createState() =>
-      _ReactiveFluentDatePickerState<T>();
 }
-
-class _ReactiveFluentDatePickerState<T>
-    extends ReactiveFocusableFormFieldState<T, DateTime> {}
