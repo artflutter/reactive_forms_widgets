@@ -1,3 +1,7 @@
+## [3.0.0]
+
+* month_picker_dialog: ^3.0.0
+
 ## [2.1.0]
 
 * month_picker_dialog: ^2.11.2
