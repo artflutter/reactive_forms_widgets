@@ -74,26 +74,28 @@ class ReactiveMacosSwitch<T> extends ReactiveFormField<T, bool> {
   ///
   /// For documentation about the various parameters, see the [MacosSwitch] class
   /// and [MacosSwitch], the constructor.
-  ReactiveMacosSwitch({
-    super.key,
-    super.formControlName,
-    super.formControl,
-    super.validationMessages,
-    super.valueAccessor,
-    super.showErrors,
+  ReactiveMacosSwitch(
+      {super.key,
+      super.formControlName,
+      super.formControl,
+      super.validationMessages,
+      super.valueAccessor,
+      super.showErrors,
 
-    ////////////////////////////////////////////////////////////////////////////
-    InputDecoration decoration = const InputDecoration(
-      border: InputBorder.none,
-      contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-      isDense: true,
-      isCollapsed: true,
-    ),
-    DragStartBehavior dragStartBehavior = DragStartBehavior.start,
-    MacosColor? activeColor,
-    MacosColor? trackColor,
-    String? semanticLabel,
-  }) : super(
+      ////////////////////////////////////////////////////////////////////////////
+      InputDecoration decoration = const InputDecoration(
+        border: InputBorder.none,
+        contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+        isDense: true,
+        isCollapsed: true,
+      ),
+      DragStartBehavior dragStartBehavior = DragStartBehavior.start,
+      MacosColor? activeColor,
+      MacosColor? trackColor,
+      MacosColor? knobColor,
+      String? semanticLabel,
+      ControlSize size = ControlSize.regular})
+      : super(
           builder: (field) {
             return Listener(
               onPointerDown: (_) {
@@ -108,6 +110,8 @@ class ReactiveMacosSwitch<T> extends ReactiveFormField<T, bool> {
                 activeColor: activeColor,
                 trackColor: trackColor,
                 semanticLabel: semanticLabel,
+                size: size,
+                knobColor: knobColor,
               ),
             );
           },
