@@ -72,18 +72,22 @@ class ReactiveInputDecorator extends ReactiveFormField<dynamic, dynamic> {
   ///
   /// For documentation about the various parameters, see the [InputDecorator] class
   /// and [InputDecorator], the constructor.
-  ReactiveInputDecorator(
-      {super.key,
-      super.formControlName,
-      super.formControl,
-      super.validationMessages,
-      super.valueAccessor,
-      super.showErrors,
+  ReactiveInputDecorator({
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
 
-      //////////////////////////////////////////////////////////////////////////
-      required Widget child,
-      InputDecoration? decoration})
-      : super(
+    //////////////////////////////////////////////////////////////////////////
+    required Widget child,
+    InputDecoration? decoration,
+    bool expands = false,
+    TextStyle? baseStyle,
+    TextAlign? textAlign,
+    TextAlignVertical? textAlignVertical,
+  }) : super(
           builder: (field) {
             final effectiveDecoration = (decoration ?? const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
@@ -97,6 +101,10 @@ class ReactiveInputDecorator extends ReactiveFormField<dynamic, dynamic> {
                     errorText: field.errorText,
                     enabled: field.control.enabled,
                   ),
+                  expands: expands,
+                  baseStyle: baseStyle,
+                  textAlign: textAlign,
+                  textAlignVertical: textAlignVertical,
                   child: child,
                 ),
               ),

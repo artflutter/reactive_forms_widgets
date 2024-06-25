@@ -84,6 +84,10 @@ class ReactiveInputDecoratorStack extends ReactiveFormField<dynamic, dynamic> {
     required List<Widget> children,
     required Widget? child,
     InputDecoration? decoration,
+    bool expands = false,
+    TextStyle? baseStyle,
+    TextAlign? textAlign,
+    TextAlignVertical? textAlignVertical,
   }) : super(
           builder: (field) {
             final effectiveDecoration = (decoration ?? const InputDecoration())
@@ -100,6 +104,10 @@ class ReactiveInputDecoratorStack extends ReactiveFormField<dynamic, dynamic> {
                         errorText: field.errorText,
                         enabled: field.control.enabled,
                       ),
+                      expands: expands,
+                      baseStyle: baseStyle,
+                      textAlign: textAlign,
+                      textAlignVertical: textAlignVertical,
                       child: child,
                     ),
                     ...children
