@@ -11,7 +11,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveCupertinoSwitch<T> extends ReactiveFormField<T, bool> {
+class ReactiveCupertinoSwitch<T> extends ReactiveFocusableFormField<T, bool> {
   /// Creates a [ReactiveCupertinoSwitch] that contains a [CupertinoSwitch].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -82,12 +82,21 @@ class ReactiveCupertinoSwitch<T> extends ReactiveFormField<T, bool> {
     super.validationMessages,
     super.valueAccessor,
     super.showErrors,
+    super.focusNode,
 
     ////////////////////////////////////////////////////////////////////////////
     // InputDecoration? decoration = const InputDecoration(),
+    Key? widgetKey,
     DragStartBehavior dragStartBehavior = DragStartBehavior.start,
     Color? activeColor,
     Color? trackColor,
+    Color? thumbColor,
+    Color? focusColor,
+    Color? onLabelColor,
+    Color? offLabelColor,
+    ValueChanged<bool>? onFocusChange,
+    bool? applyTheme,
+    bool autofocus = false,
     double disabledOpacity = 0.5,
   }) : super(
           builder: (field) {
@@ -96,11 +105,20 @@ class ReactiveCupertinoSwitch<T> extends ReactiveFormField<T, bool> {
               child: Opacity(
                 opacity: field.control.enabled ? 1 : disabledOpacity,
                 child: CupertinoSwitch(
+                  key: widgetKey,
                   value: field.value ?? false,
                   onChanged: field.didChange,
                   activeColor: activeColor,
                   trackColor: trackColor,
                   dragStartBehavior: dragStartBehavior,
+                  thumbColor: thumbColor,
+                  applyTheme: applyTheme,
+                  focusColor: focusColor,
+                  onLabelColor: onLabelColor,
+                  offLabelColor: offLabelColor,
+                  focusNode: field.focusNode,
+                  onFocusChange: onFocusChange,
+                  autofocus: autofocus,
                 ),
               ),
             );
