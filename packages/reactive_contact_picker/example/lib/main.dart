@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
 
   FormGroup buildForm() => fb.group({
         'input': FormControl<PhoneContact>(),
+        'fullContact': FormControl<FullContact>(),
       });
 
   @override
@@ -61,8 +62,7 @@ class MyApp extends StatelessWidget {
                       child: const Text('Sign Up'),
                       onPressed: () {
                         if (form.valid) {
-                          // ignore: avoid_print
-                          print(form.value);
+                          debugPrint(form.value.toString());
                         } else {
                           form.markAllAsTouched();
                         }

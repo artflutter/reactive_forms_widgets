@@ -96,7 +96,12 @@ class ReactivePhoneContactPicker<T> extends ReactiveFormField<T, PhoneContact> {
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
             void pickContact() async {
-              field.didChange(await FlutterContactPicker.pickPhoneContact());
+              try {
+                field.didChange(await FlutterContactPicker.pickPhoneContact());
+              } on UserCancelledPickingException catch(_) {
+                print('object');
+                // user canceled picking contact
+              }
             }
 
             final child = InkWell(
