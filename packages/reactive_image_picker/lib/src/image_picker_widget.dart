@@ -45,6 +45,7 @@ typedef PopupDialogBuilder = Future<ImagePickerMode?> Function(
 class ImagePickerWidget extends StatelessWidget {
   final InputDecoration decoration;
   final OnBeforeChangeCallback? onBeforeChange;
+  final Size? mediaSize;
   final Widget? editIcon;
   final Widget? deleteIcon;
   final InputButtonBuilder? inputBuilder;
@@ -95,6 +96,7 @@ class ImagePickerWidget extends StatelessWidget {
     this.onAfterPick,
     this.selectedImageBuilder,
     this.selectedVideoBuilder,
+    this.mediaSize,
   });
 
   Future<List<SelectedFile>> _onImageButtonPressed(

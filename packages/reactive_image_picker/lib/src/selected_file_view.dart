@@ -17,6 +17,7 @@ class SelectedFileView extends StatelessWidget {
   final OnChange onChange;
   final Widget? deleteIcon;
   final OnDelete onDelete;
+  final Size? mediaSize;
 
   const SelectedFileView({
     super.key,
@@ -26,6 +27,7 @@ class SelectedFileView extends StatelessWidget {
     required this.changeIcon,
     required this.deleteIcon,
     this.selectedImageBuilder,
+    this.mediaSize,
     this.selectedVideoBuilder,
   });
 
@@ -34,8 +36,8 @@ class SelectedFileView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        SizedBox(
-          height: 250,
+        SizedBox.fromSize(
+          size: mediaSize ?? const Size(double.infinity, 250),
           child: file.map(
             video: (v) => selectedVideoBuilder?.call(v) ?? VideoView(video: v),
             image: (i) => selectedImageBuilder?.call(i) ?? ImageView(image: i),

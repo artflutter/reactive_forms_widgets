@@ -1,3 +1,7 @@
+## [5.0.2]
+
+* media size property exposed
+
 ## [5.0.1]
 
 * Support `reactive_forms: 17.x`
