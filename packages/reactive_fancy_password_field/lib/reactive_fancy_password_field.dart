@@ -113,7 +113,7 @@ class ReactiveFancyPasswordField<T> extends ReactiveFormField<T, String> {
     bool autofocus = false,
     bool readOnly = false,
     bool? showCursor,
-    bool obscureText = false,
+    bool? obscureText,
     String obscuringCharacter = '•',
     bool autocorrect = true,
     SmartDashesType? smartDashesType,
@@ -194,11 +194,11 @@ class ReactiveFancyPasswordField<T> extends ReactiveFormField<T, String> {
               showCursor: showCursor,
               autocorrect: autocorrect,
               smartDashesType: smartDashesType ??
-                  (obscureText
+                  (obscureText == true
                       ? SmartDashesType.disabled
                       : SmartDashesType.enabled),
               smartQuotesType: smartQuotesType ??
-                  (obscureText
+                  (obscureText == true
                       ? SmartQuotesType.disabled
                       : SmartQuotesType.enabled),
               enableSuggestions: enableSuggestions,
