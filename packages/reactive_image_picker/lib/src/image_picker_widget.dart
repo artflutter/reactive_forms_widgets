@@ -369,6 +369,7 @@ class ImagePickerWidget extends StatelessWidget {
                         selectedFileViewBuilder?.call(e) ??
                         SelectedFileView(
                           file: e,
+                          mediaSize: mediaSize,
                           selectedImageBuilder: selectedImageBuilder,
                           selectedVideoBuilder: selectedVideoBuilder,
                           changeIcon: editIcon,
