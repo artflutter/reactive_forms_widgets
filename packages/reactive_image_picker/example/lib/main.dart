@@ -113,36 +113,32 @@ class MyApp extends StatelessWidget {
                     builder: (context, form, child) {
                       return Column(
                         children: [
-                          SizedBox(
-                            width: 200,
-                            height: 200,
-                            child: ReactiveImagePicker(
-                              formControlName: 'input',
-                              decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.zero,
-                                  labelText: 'Image',
-                                  filled: false,
-                                  border: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  helperText: ''),
-                              preprocessError: (e) async {
-                                if (e is PlatformException) {
-                                  switch (e.code) {
-                                    case 'photo_access_denied':
-                                      await _photoDenied(context);
-                                      break;
-                                    case 'camera_access_denied':
-                                      await _cameraDenied(context);
-                                      break;
-                                  }
+                          ReactiveImagePicker(
+                            formControlName: 'input',
+                            decoration: const InputDecoration(
+                                contentPadding: EdgeInsets.zero,
+                                labelText: 'Image',
+                                filled: false,
+                                border: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                                helperText: ''),
+                            preprocessError: (e) async {
+                              if (e is PlatformException) {
+                                switch (e.code) {
+                                  case 'photo_access_denied':
+                                    await _photoDenied(context);
+                                    break;
+                                  case 'camera_access_denied':
+                                    await _cameraDenied(context);
+                                    break;
                                 }
-                              },
-                              inputBuilder: (onPressed) => TextButton.icon(
-                                onPressed: onPressed,
-                                icon: const Icon(Icons.add),
-                                label: const Text('Add an image'),
-                              ),
+                              }
+                            },
+                            inputBuilder: (onPressed) => TextButton.icon(
+                              onPressed: onPressed,
+                              icon: const Icon(Icons.add),
+                              label: const Text('Add an image'),
                             ),
                           ),
                           const SizedBox(height: 16),

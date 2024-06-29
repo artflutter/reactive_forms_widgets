@@ -291,6 +291,9 @@ class ImagePickerWidget extends StatelessWidget {
 
     if (mode != null) {
       List<SelectedFile> result = await _onImageButtonPressed(context, mode);
+      if(result.isEmpty) {
+        return;
+      }
 
       final index = value.indexWhere((e) => e == oldFile);
 

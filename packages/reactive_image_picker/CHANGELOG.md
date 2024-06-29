@@ -1,3 +1,7 @@
+## [5.0.5]
+
+* fix image cleanup on cancel selection
+
 ## [5.0.4]
 
 * media size property exposed
