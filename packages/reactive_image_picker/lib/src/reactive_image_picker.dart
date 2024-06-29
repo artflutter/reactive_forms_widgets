@@ -123,6 +123,7 @@ class ReactiveImagePicker
     List<ImagePickerMode> modes = ImagePickerMode.values,
     SelectedImageBuilder? selectedImageBuilder,
     SelectedVideoBuilder? selectedVideoBuilder,
+    Size? mediaSize,
   }) : super(
           validationMessages: _validationMessages(validationMessages),
           builder: (field) {
@@ -142,6 +143,7 @@ class ReactiveImagePicker
                     field.control.focus();
                     field.control.updateValueAndValidity();
                   },
+                  mediaSize: mediaSize,
                   onAfterPick: () async {
                     field.control.unfocus();
                     // field.control.updateValueAndValidity();
