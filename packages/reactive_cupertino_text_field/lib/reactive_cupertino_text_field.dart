@@ -124,7 +124,7 @@ class ReactiveCupertinoTextField<T> extends ReactiveFormField<T, String> {
     super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
-    BoxDecoration decoration = _kDefaultRoundedBorderDecoration,
+    BoxDecoration? decoration = _kDefaultRoundedBorderDecoration,
     InputDecoration inputDecoration = const InputDecoration(
       border: InputBorder.none,
       contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),

@@ -1,3 +1,7 @@
+## [2.1.1]
+
+* allow null for decoration property
+
 ## [2.1.0]
 
 * props update
