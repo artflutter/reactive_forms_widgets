@@ -1,6 +1,6 @@
 name: reactive_extended_text_field
 description: Wrapper around extended_text_field to use with reactive_forms.
-version: 3.0.0
+version: 3.0.1
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_extended_text_field
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
@@ -12,19 +12,18 @@ dependencies:
   flutter:
     sdk: flutter
   reactive_forms: ">=16.0.0 <18.0.0"
-  extended_text_field: ^14.0.0
+  extended_text_field: ^15.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.2
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
 # To add assets to your package, add an assets section, like this:
 # assets:
 #   - images/a_dot_burr.jpeg
