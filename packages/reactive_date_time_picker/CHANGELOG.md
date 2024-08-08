@@ -1,3 +1,7 @@
+## [4.0.0]
+
+* fixes https://github.com/artflutter/reactive_forms_widgets/issues/139
+
 ## [3.0.1]
 
 * Support `reactive_forms: 17.x`

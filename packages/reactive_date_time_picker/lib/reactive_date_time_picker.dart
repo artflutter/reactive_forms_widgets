@@ -256,17 +256,13 @@ class ReactiveDateTimePicker extends ReactiveFormField<DateTime, String> {
   }
 
   static DateTime _combine(DateTime? date, TimeOfDay? time) {
-    DateTime dateTime = DateTime(0);
-
-    if (date != null) {
-      dateTime = dateTime.add(date.difference(dateTime));
-    }
-
-    if (time != null) {
-      dateTime = dateTime.add(Duration(hours: time.hour, minutes: time.minute));
-    }
-
-    return dateTime;
+    return DateTime(
+      date?.year ?? 0,
+      date?.month ?? 1,
+      date?.day ?? 1,
+      time?.hour ?? 0,
+      time?.minute ?? 0,
+    );
   }
 
   static DateTime _getInitialDate(DateTime? fieldValue, DateTime lastDate) {
