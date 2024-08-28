@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
             nsn: '933456789',
           ),
           validators: [
-            PhoneValidators.required,
-            PhoneValidators.valid,
+            // PhoneValidators.required,
+            // PhoneValidators.valid,
           ],
         ),
       });
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      localizationsDelegates: [
+      localizationsDelegates: const [
         ...PhoneFieldLocalization.delegates,
       ],
       supportedLocales: const [
@@ -69,6 +69,7 @@ class MyApp extends StatelessWidget {
                     ReactivePhoneFormField<PhoneNumber>(
                       formControlName: 'input',
                       focusNode: FocusNode(),
+                      valueAccessor: PhoneNumberValueAccessor(),
                       // validationMessages: {
                       //   ...PhoneValidationMessage.localizedValidationMessages(
                       //     context,

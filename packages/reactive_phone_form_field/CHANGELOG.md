@@ -1,3 +1,8 @@
+## [3.1.0]
+
+* added `PhoneNumberValueAccessor` which assigns `null` if `nsn` is empty could be added upon demand
+* updated package
+
 ## [3.0.0]
 
 * Support `reactive_forms: 17.x`
