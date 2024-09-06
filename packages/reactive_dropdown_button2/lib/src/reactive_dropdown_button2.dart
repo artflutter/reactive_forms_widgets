@@ -135,8 +135,10 @@ class ReactiveDropdownButton2<T, V> extends ReactiveFocusableFormField<T, V> {
     AlignmentGeometry alignment = AlignmentDirectional.centerStart,
     ButtonStyleData? errorButtonStyleData,
     ButtonStyleData? buttonStyleData,
+    ButtonStyleData? disabledButtonStyleData,
     IconStyleData iconStyleData = const IconStyleData(),
     IconStyleData errorIconStyleData = const IconStyleData(),
+    IconStyleData disabledIconStyleData = const IconStyleData(),
     DropdownStyleData dropdownStyleData = const DropdownStyleData(),
     MenuItemStyleData menuItemStyleData = const MenuItemStyleData(),
     Widget Function(BuildContext context, String error)? errorBuilder,
@@ -199,10 +201,13 @@ class ReactiveDropdownButton2<T, V> extends ReactiveFocusableFormField<T, V> {
                   autofocus: autofocus,
                   enableFeedback: enableFeedback,
                   alignment: alignment,
-                  buttonStyleData: field.errorText != null
-                      ? errorButtonStyleData ?? buttonStyleData
-                      : buttonStyleData,
-                  iconStyleData: field.errorText != null
+                  buttonStyleData: field.control.disabled
+                      ? disabledButtonStyleData
+                      : field.errorText != null
+                          ? errorButtonStyleData ?? buttonStyleData
+                          : buttonStyleData,
+                  iconStyleData: field.control.disabled
+                      ? disabledIconStyleData : field.errorText != null
                       ? errorIconStyleData
                       : iconStyleData,
                   dropdownStyleData: dropdownStyleData,
