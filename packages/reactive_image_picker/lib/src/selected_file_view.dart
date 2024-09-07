@@ -3,7 +3,7 @@ import 'package:reactive_image_picker/src/image_file.dart';
 import 'package:reactive_image_picker/src/image_view.dart';
 import 'package:reactive_image_picker/src/video_view.dart';
 
-typedef OnChange = void Function(BuildContext context, SelectedFile file);
+typedef OnChange = void Function(BuildContext context, SelectedFile? file);
 typedef OnDelete = void Function(BuildContext context, SelectedFile file);
 
 typedef SelectedImageBuilder = Widget Function(SelectedFileImage file);
