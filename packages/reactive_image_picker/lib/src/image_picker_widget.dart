@@ -34,7 +34,7 @@ typedef PreprocessPickerError = Future<void> Function(
 
 typedef DeleteDialogBuilder = Future<void> Function(
   BuildContext context,
-  Function(SelectedFile file) onConfirm,
+  void Function() onConfirm,
 );
 
 typedef PopupDialogBuilder = Future<ImagePickerMode?> Function(
@@ -291,7 +291,7 @@ class ImagePickerWidget extends StatelessWidget {
 
     if (mode != null) {
       List<SelectedFile> result = await _onImageButtonPressed(context, mode);
-      if(result.isEmpty) {
+      if (result.isEmpty) {
         return;
       }
 
@@ -328,7 +328,9 @@ class ImagePickerWidget extends StatelessWidget {
 
   void _handleDelete(BuildContext context, SelectedFile file) async {
     if (deleteDialogBuilder != null) {
-      await deleteDialogBuilder?.call(context, _handleDeleteConfirm);
+      await deleteDialogBuilder?.call(context, () {
+        _handleDeleteConfirm(file);
+      });
       return;
     }
 
