@@ -5,7 +5,6 @@
 
 <p align="center">
   <img src="https://github.com/artflutter/reactive_forms_widgets/blob/master/assets/rfw.png?raw=true" height="200" style="border-radius:8px" />
-  <h1><b>ReactiveFormsGenerator</b></h1>
 </p>
 
 Collection of advanced widgets based on Reactive Forms managed by [Melos](https://pub.dev/packages/melos) monorepo package
