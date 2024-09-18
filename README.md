@@ -10,6 +10,18 @@
 
 Collection of advanced widgets based on Reactive Forms managed by [Melos](https://pub.dev/packages/melos) monorepo package
 
+# Sponsors
+
+<table border="0">
+    <tbody>
+        <tr>
+            <td align="center">
+                <a href="https://www.dellaconnect.com/"><img src="https://github.com/artflutter/reactive_forms_widgets/blob/master/assets/dc.png?raw=true" width="225"/></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 ## Fields
 
 - **[ReactiveAdvancedSwitch](https://pub.dev/packages/reactive_advanced_switch)** - wrapper around [`flutter_advanced_switch`](https://pub.dev/packages/flutter_advanced_switch)

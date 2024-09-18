@@ -1,3 +1,7 @@
+## [5.0.0]
+
+* extended_text_field: ^15.0.0
+
 ## [3.0.0]
 
 * extended_text_field: ^14.0.0
