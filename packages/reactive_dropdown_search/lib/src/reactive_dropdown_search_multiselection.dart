@@ -1,11 +1,11 @@
 library reactive_dropdown_search;
 
-// Use of this source code is governed by the MIT license that can be
-// found in the LICENSE file.
-
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+
+// Use of this source code is governed by the MIT license that can be
+// found in the LICENSE file.
 
 abstract class DropDownSearchMultiSelectionValueAccessor<T, V> {
   DropDownSearchMultiSelectionValueAccessor();
@@ -17,23 +17,34 @@ abstract class DropDownSearchMultiSelectionValueAccessor<T, V> {
 
 class _DropDownSearchMultiSelectionValueAccessor<T, V>
     extends ControlValueAccessor<List<T>, List<V>> {
-  final List<V> items;
+  final DropdownSearchOnFind<V>? items;
 
   final DropDownSearchMultiSelectionValueAccessor<T, V> dropDownValueAccessor;
 
   _DropDownSearchMultiSelectionValueAccessor({
-    this.items = const [],
+    this.items,
     required this.dropDownValueAccessor,
   });
 
   @override
   List<V>? modelToViewValue(List<T>? modelValue) {
-    return dropDownValueAccessor.modelToViewValue(items, modelValue);
+    final result = items?.call('', null) ?? [];
+    if(result is List<V>) {
+      return dropDownValueAccessor.modelToViewValue(result, modelValue);
+    }
+
+    throw UnsupportedError('Asynchronously fetched values are not supported');
   }
 
   @override
   List<T>? viewToModelValue(List<V>? viewValue) {
-    return dropDownValueAccessor.viewToModelValue(items, viewValue);
+    final result = items?.call('', null) ?? [];
+
+    if(result is List<V>) {
+      return dropDownValueAccessor.viewToModelValue(result, viewValue);
+    }
+
+    throw UnsupportedError('Asynchronously fetched values are not supported');
   }
 }
 
@@ -115,7 +126,7 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     super.formControlName,
     super.formControl,
     super.validationMessages,
-    super.valueAccessor,
+    DropDownSearchMultiSelectionValueAccessor<T, V>? valueAccessor,
     super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
@@ -135,9 +146,15 @@ class ReactiveDropdownSearchMultiSelection<T, V>
         const DropDownDecoratorProps(),
     BeforePopupOpeningMultiSelection<V>? onBeforePopupOpening,
   }) : super(
-          builder: (field) {
-            final effectiveDecoration = dropdownDecoratorProps.decoration
-                .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+    valueAccessor: valueAccessor != null
+        ? _DropDownSearchMultiSelectionValueAccessor(
+      items: items,
+      dropDownValueAccessor: valueAccessor,
+    )
+        : null,
+    builder: (field) {
+      final effectiveDecoration = dropdownDecoratorProps.decoration
+          .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
             return DropdownSearch<V>.multiSelection(
               key: widgetKey,

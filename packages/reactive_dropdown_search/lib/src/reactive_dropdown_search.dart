@@ -3,6 +3,8 @@ library reactive_dropdown_search;
 // Use of this source code is governed by the MIT license that can be
 // found in the LICENSE file.
 
+import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -16,23 +18,34 @@ abstract class DropDownSearchValueAccessor<T, V> {
 }
 
 class _DropDownSearchValueAccessor<T, V> extends ControlValueAccessor<T, V> {
-  final List<V> items;
+  final DropdownSearchOnFind<V>? items;
 
   final DropDownSearchValueAccessor<T, V> dropDownValueAccessor;
 
   _DropDownSearchValueAccessor({
-    this.items = const [],
+    this.items,
     required this.dropDownValueAccessor,
   });
 
   @override
   V? modelToViewValue(T? modelValue) {
-    return dropDownValueAccessor.modelToViewValue(items, modelValue);
+    final result = items?.call('', null) ?? [];
+    if(result is List<V>) {
+      return dropDownValueAccessor.modelToViewValue(result, modelValue);
+    }
+
+    throw UnsupportedError('Asynchronously fetched values are not supported');
   }
 
   @override
   T? viewToModelValue(V? viewValue) {
-    return dropDownValueAccessor.viewToModelValue(items, viewValue);
+    final result = items?.call('', null) ?? [];
+
+    if(result is List<V>) {
+      return dropDownValueAccessor.viewToModelValue(result, viewValue);
+    }
+
+    throw UnsupportedError('Asynchronously fetched values are not supported');
   }
 }
 
@@ -113,7 +126,7 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
     super.formControlName,
     super.formControl,
     super.validationMessages,
-    super.valueAccessor,
+    DropDownSearchValueAccessor<T, V>? valueAccessor,
     super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
@@ -132,38 +145,43 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
         const DropDownDecoratorProps(),
     BeforePopupOpening<V>? onBeforePopupOpening,
   }) : super(
-          builder: (field) {
-            final effectiveDecoration = dropdownDecoratorProps.decoration
-                .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+    valueAccessor: valueAccessor != null
+        ? _DropDownSearchValueAccessor(
+      items: items,
+      dropDownValueAccessor: valueAccessor,
+    )
+        : null,
+    builder: (field) {
+      final effectiveDecoration = dropdownDecoratorProps.decoration
+          .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
-            return DropdownSearch<V>(
-              key: widgetKey,
-              onChanged: field.didChange,
-              popupProps: popupProps,
-              selectedItem: field.value,
-              dropdownBuilder: dropdownBuilder,
-              enabled: field.control.enabled,
-              filterFn: filterFn,
-              itemAsString: itemAsString,
-              compareFn: compareFn,
-              mode: mode,
-              onSaved: onSaved,
-              onBeforeChange: onBeforeChange,
-              onBeforePopupOpening: onBeforePopupOpening,
-              decoratorProps: DropDownDecoratorProps(
-                decoration:
-                    effectiveDecoration.copyWith(errorText: field.errorText),
-                baseStyle: dropdownDecoratorProps.baseStyle,
-                textAlign: dropdownDecoratorProps.textAlign,
-                textAlignVertical: dropdownDecoratorProps.textAlignVertical,
-                expands: dropdownDecoratorProps.expands,
-                isHovering: dropdownDecoratorProps.isHovering,
-              ),
-              suffixProps: suffixProps,
-              clickProps: clickProps,
-              items: items,
-            );
-          },
-        );
+      return DropdownSearch<V>(
+        key: widgetKey,
+        onChanged: field.didChange,
+        popupProps: popupProps,
+        selectedItem: field.value,
+        dropdownBuilder: dropdownBuilder,
+        enabled: field.control.enabled,
+        filterFn: filterFn,
+        itemAsString: itemAsString,
+        compareFn: compareFn,
+        mode: mode,
+        onSaved: onSaved,
+        onBeforeChange: onBeforeChange,
+        onBeforePopupOpening: onBeforePopupOpening,
+        decoratorProps: DropDownDecoratorProps(
+          decoration:
+          effectiveDecoration.copyWith(errorText: field.errorText),
+          baseStyle: dropdownDecoratorProps.baseStyle,
+          textAlign: dropdownDecoratorProps.textAlign,
+          textAlignVertical: dropdownDecoratorProps.textAlignVertical,
+          expands: dropdownDecoratorProps.expands,
+          isHovering: dropdownDecoratorProps.isHovering,
+        ),
+        suffixProps: suffixProps,
+        clickProps: clickProps,
+        items: items,
+      );
+    },
+  );
 }
-

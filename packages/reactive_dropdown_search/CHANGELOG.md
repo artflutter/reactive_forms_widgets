@@ -1,3 +1,7 @@
+## [5.0.2]
+
+* valueAccessor fix
+
 ## [5.0.1]
 
 * rollback forgotten value accessors
