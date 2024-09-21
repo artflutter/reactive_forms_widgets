@@ -1,3 +1,7 @@
+## [5.0.4]
+
+* errorBuilder
+
 ## [5.0.3]
 
 * ffi dependency fix

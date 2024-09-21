@@ -29,7 +29,7 @@ class _DropDownSearchMultiSelectionValueAccessor<T, V>
   @override
   List<V>? modelToViewValue(List<T>? modelValue) {
     final result = items?.call('', null) ?? [];
-    if(result is List<V>) {
+    if (result is List<V>) {
       return dropDownValueAccessor.modelToViewValue(result, modelValue);
     }
 
@@ -40,7 +40,7 @@ class _DropDownSearchMultiSelectionValueAccessor<T, V>
   List<T>? viewToModelValue(List<V>? viewValue) {
     final result = items?.call('', null) ?? [];
 
-    if(result is List<V>) {
+    if (result is List<V>) {
       return dropDownValueAccessor.viewToModelValue(result, viewValue);
     }
 
@@ -145,16 +145,19 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     DropDownDecoratorProps dropdownDecoratorProps =
         const DropDownDecoratorProps(),
     BeforePopupOpeningMultiSelection<V>? onBeforePopupOpening,
+    Widget Function(BuildContext context, String error)? errorBuilder,
   }) : super(
-    valueAccessor: valueAccessor != null
-        ? _DropDownSearchMultiSelectionValueAccessor(
-      items: items,
-      dropDownValueAccessor: valueAccessor,
-    )
-        : null,
-    builder: (field) {
-      final effectiveDecoration = dropdownDecoratorProps.decoration
-          .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+          valueAccessor: valueAccessor != null
+              ? _DropDownSearchMultiSelectionValueAccessor(
+                  items: items,
+                  dropDownValueAccessor: valueAccessor,
+                )
+              : null,
+          builder: (field) {
+            final effectiveDecoration = dropdownDecoratorProps.decoration
+                .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+
+            final errorText = field.errorText;
 
             return DropdownSearch<V>.multiSelection(
               key: widgetKey,
@@ -173,8 +176,24 @@ class ReactiveDropdownSearchMultiSelection<T, V>
               itemAsString: itemAsString,
               compareFn: compareFn,
               decoratorProps: DropDownDecoratorProps(
-                decoration:
-                    effectiveDecoration.copyWith(errorText: field.errorText),
+                decoration: effectiveDecoration.copyWith(
+                  errorText: errorBuilder == null ? errorText : null,
+                  error: errorBuilder != null && errorText != null
+                      ? DefaultTextStyle(
+                    style: Theme.of(field.context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(
+                      color: Theme.of(field.context)
+                          .colorScheme
+                          .error,
+                    ) ??
+                        const TextStyle(),
+                    child:
+                    errorBuilder.call(field.context, errorText),
+                  )
+                      : null,
+                ),
                 baseStyle: dropdownDecoratorProps.baseStyle,
                 textAlign: dropdownDecoratorProps.textAlign,
                 textAlignVertical: dropdownDecoratorProps.textAlignVertical,

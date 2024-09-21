@@ -28,7 +28,7 @@ class _DropDownSearchValueAccessor<T, V> extends ControlValueAccessor<T, V> {
   @override
   V? modelToViewValue(T? modelValue) {
     final result = items?.call('', null) ?? [];
-    if(result is List<V>) {
+    if (result is List<V>) {
       return dropDownValueAccessor.modelToViewValue(result, modelValue);
     }
 
@@ -39,7 +39,7 @@ class _DropDownSearchValueAccessor<T, V> extends ControlValueAccessor<T, V> {
   T? viewToModelValue(V? viewValue) {
     final result = items?.call('', null) ?? [];
 
-    if(result is List<V>) {
+    if (result is List<V>) {
       return dropDownValueAccessor.viewToModelValue(result, viewValue);
     }
 
@@ -142,44 +142,63 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
     DropDownDecoratorProps dropdownDecoratorProps =
         const DropDownDecoratorProps(),
     BeforePopupOpening<V>? onBeforePopupOpening,
+    Widget Function(BuildContext context, String error)? errorBuilder,
   }) : super(
-    valueAccessor: valueAccessor != null
-        ? _DropDownSearchValueAccessor(
-      items: items,
-      dropDownValueAccessor: valueAccessor,
-    )
-        : null,
-    builder: (field) {
-      final effectiveDecoration = dropdownDecoratorProps.decoration
-          .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+          valueAccessor: valueAccessor != null
+              ? _DropDownSearchValueAccessor(
+                  items: items,
+                  dropDownValueAccessor: valueAccessor,
+                )
+              : null,
+          builder: (field) {
+            final effectiveDecoration = dropdownDecoratorProps.decoration
+                .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
-      return DropdownSearch<V>(
-        key: widgetKey,
-        onChanged: field.didChange,
-        popupProps: popupProps,
-        selectedItem: field.value,
-        dropdownBuilder: dropdownBuilder,
-        enabled: field.control.enabled,
-        filterFn: filterFn,
-        itemAsString: itemAsString,
-        compareFn: compareFn,
-        mode: mode,
-        onSaved: onSaved,
-        onBeforeChange: onBeforeChange,
-        onBeforePopupOpening: onBeforePopupOpening,
-        decoratorProps: DropDownDecoratorProps(
-          decoration:
-          effectiveDecoration.copyWith(errorText: field.errorText),
-          baseStyle: dropdownDecoratorProps.baseStyle,
-          textAlign: dropdownDecoratorProps.textAlign,
-          textAlignVertical: dropdownDecoratorProps.textAlignVertical,
-          expands: dropdownDecoratorProps.expands,
-          isHovering: dropdownDecoratorProps.isHovering,
-        ),
-        suffixProps: suffixProps,
-        clickProps: clickProps,
-        items: items,
-      );
-    },
-  );
+            final errorText = field.errorText;
+
+            return DropdownSearch<V>(
+              key: widgetKey,
+              onChanged: field.didChange,
+              popupProps: popupProps,
+              selectedItem: field.value,
+              dropdownBuilder: dropdownBuilder,
+              enabled: field.control.enabled,
+              filterFn: filterFn,
+              itemAsString: itemAsString,
+              compareFn: compareFn,
+              mode: mode,
+              onSaved: onSaved,
+              onBeforeChange: onBeforeChange,
+              onBeforePopupOpening: onBeforePopupOpening,
+              decoratorProps: DropDownDecoratorProps(
+                decoration: effectiveDecoration.copyWith(
+                  errorText: errorBuilder == null ? errorText : null,
+                  error: errorBuilder != null && errorText != null
+                      ? DefaultTextStyle(
+                          style: Theme.of(field.context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: Theme.of(field.context)
+                                        .colorScheme
+                                        .error,
+                                  ) ??
+                              const TextStyle(),
+                          child:
+                              errorBuilder.call(field.context, errorText),
+                        )
+                      : null,
+                ),
+                baseStyle: dropdownDecoratorProps.baseStyle,
+                textAlign: dropdownDecoratorProps.textAlign,
+                textAlignVertical: dropdownDecoratorProps.textAlignVertical,
+                expands: dropdownDecoratorProps.expands,
+                isHovering: dropdownDecoratorProps.isHovering,
+              ),
+              suffixProps: suffixProps,
+              clickProps: clickProps,
+              items: items,
+            );
+          },
+        );
 }
