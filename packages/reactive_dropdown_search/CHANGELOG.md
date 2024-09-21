@@ -1,3 +1,7 @@
+## [5.0.3]
+
+* ffi dependency fix
+
 ## [5.0.2]
 
 * valueAccessor fix

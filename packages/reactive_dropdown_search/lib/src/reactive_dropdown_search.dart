@@ -3,8 +3,6 @@ library reactive_dropdown_search;
 // Use of this source code is governed by the MIT license that can be
 // found in the LICENSE file.
 
-import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
-
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
