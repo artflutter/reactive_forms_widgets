@@ -88,104 +88,53 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
     super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
-    List<V> items = const [],
+    DropdownSearchOnFind<V>? items,
     PopupProps<V> popupProps = const PopupProps.menu(),
-    DropdownSearchOnFind<V>? asyncItems,
     DropdownSearchBuilder<V>? dropdownBuilder,
-    bool showClearButton = false,
     DropdownSearchFilterFn<V>? filterFn,
     DropdownSearchItemAsString<V>? itemAsString,
     DropdownSearchCompareFn<V>? compareFn,
-    // InputDecoration? decoration,
-    ClearButtonProps clearButtonProps = const ClearButtonProps(),
-    DropdownButtonProps dropdownButtonProps = const DropdownButtonProps(),
+    Mode mode = Mode.form,
+    DropdownSuffixProps suffixProps = const DropdownSuffixProps(),
+    ClickProps clickProps = const ClickProps(),
     BeforeChange<V?>? onBeforeChange,
-    TextAlign? dropdownSearchTextAlign,
-    TextAlignVertical? dropdownSearchTextAlignVertical,
-    FocusNode? focusNode,
     FormFieldSetter<V>? onSaved,
-    TextStyle? dropdownSearchTextStyle,
     DropDownDecoratorProps dropdownDecoratorProps =
         const DropDownDecoratorProps(),
     BeforePopupOpening<V>? onBeforePopupOpening,
   }) : super(
           builder: (field) {
-            final effectiveDecoration = (dropdownDecoratorProps
-                        .dropdownSearchDecoration ??
-                    const InputDecoration())
+            final effectiveDecoration = dropdownDecoratorProps.decoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
-
-            final state = field as _ReactiveDropdownSearchState<T, V>;
-
-            state._setFocusNode(focusNode);
 
             return DropdownSearch<V>(
               key: widgetKey,
               onChanged: field.didChange,
               popupProps: popupProps,
               selectedItem: field.value,
-              items: items,
-              asyncItems: asyncItems,
               dropdownBuilder: dropdownBuilder,
               enabled: field.control.enabled,
               filterFn: filterFn,
               itemAsString: itemAsString,
               compareFn: compareFn,
-              dropdownDecoratorProps: DropDownDecoratorProps(
-                dropdownSearchDecoration:
+              mode: mode,
+              onSaved: onSaved,
+              onBeforeChange: onBeforeChange,
+              onBeforePopupOpening: onBeforePopupOpening,
+              decoratorProps: DropDownDecoratorProps(
+                decoration:
                     effectiveDecoration.copyWith(errorText: field.errorText),
                 baseStyle: dropdownDecoratorProps.baseStyle,
                 textAlign: dropdownDecoratorProps.textAlign,
                 textAlignVertical: dropdownDecoratorProps.textAlignVertical,
+                expands: dropdownDecoratorProps.expands,
+                isHovering: dropdownDecoratorProps.isHovering,
               ),
-              clearButtonProps: clearButtonProps,
-              dropdownButtonProps: dropdownButtonProps,
-              onBeforeChange: onBeforeChange,
-              onSaved: onSaved,
-              onBeforePopupOpening: onBeforePopupOpening,
+              suffixProps: suffixProps,
+              clickProps: clickProps,
+              items: items,
             );
           },
         );
-
-  @override
-  ReactiveFormFieldState<T, V> createState() =>
-      _ReactiveDropdownSearchState<T, V>();
 }
 
-class _ReactiveDropdownSearchState<T, V> extends ReactiveFormFieldState<T, V> {
-  FocusNode? _focusNode;
-  late FocusController _focusController;
-
-  @override
-  FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
-
-  @override
-  void subscribeControl() {
-    _registerFocusController(FocusController());
-    super.subscribeControl();
-  }
-
-  @override
-  void unsubscribeControl() {
-    _unregisterFocusController();
-    super.unsubscribeControl();
-  }
-
-  void _registerFocusController(FocusController focusController) {
-    _focusController = focusController;
-    control.registerFocusController(focusController);
-  }
-
-  void _unregisterFocusController() {
-    control.unregisterFocusController(_focusController);
-    _focusController.dispose();
-  }
-
-  void _setFocusNode(FocusNode? focusNode) {
-    if (_focusNode != focusNode) {
-      _focusNode = focusNode;
-      _unregisterFocusController();
-      _registerFocusController(FocusController(focusNode: _focusNode));
-    }
-  }
-}

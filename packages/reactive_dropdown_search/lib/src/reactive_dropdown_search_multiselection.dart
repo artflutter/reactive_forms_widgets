@@ -81,6 +81,7 @@ class ReactiveDropdownSearchMultiSelection<T, V>
   /// and [DropdownSearch], the constructor.
   ReactiveDropdownSearchMultiSelection({
     super.key,
+    Key? widgetKey,
     super.formControlName,
     super.formControl,
     super.validationMessages,
@@ -88,106 +89,55 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
-    List<V> items = const [],
-    PopupPropsMultiSelection<V> popupProps =
-        const PopupPropsMultiSelection.menu(),
-    DropdownSearchOnFind<V>? asyncItems,
+    DropdownSearchOnFind<V>? items,
     DropdownSearchBuilderMultiSelection<V>? dropdownBuilder,
-    bool showClearButton = false,
     DropdownSearchFilterFn<V>? filterFn,
     DropdownSearchItemAsString<V>? itemAsString,
     DropdownSearchCompareFn<V>? compareFn,
-    ClearButtonProps clearButtonProps = const ClearButtonProps(),
-    DropdownButtonProps dropdownButtonProps = const DropdownButtonProps(),
+    PopupPropsMultiSelection<V> popupProps =
+        const PopupPropsMultiSelection.menu(),
+    ScrollProps? selectedItemsScrollProps,
     BeforeChangeMultiSelection<V?>? onBeforeChange,
-    TextAlign? dropdownSearchTextAlign,
-    TextAlignVertical? dropdownSearchTextAlignVertical,
-    FocusNode? focusNode,
     FormFieldSetter<List<V>>? onSaved,
-    TextStyle? dropdownSearchTextStyle,
+    DropdownSuffixProps suffixProps = const DropdownSuffixProps(),
+    ClickProps clickProps = const ClickProps(),
     DropDownDecoratorProps dropdownDecoratorProps =
         const DropDownDecoratorProps(),
     BeforePopupOpeningMultiSelection<V>? onBeforePopupOpening,
   }) : super(
           builder: (field) {
-            final effectiveDecoration = (dropdownDecoratorProps
-                        .dropdownSearchDecoration ??
-                    const InputDecoration())
+            final effectiveDecoration = dropdownDecoratorProps.decoration
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
-            final state = field
-                as _ReactiveDropdownSearchMultiSelectionState<List<T>, List<V>>;
-
-            state._setFocusNode(focusNode);
-
             return DropdownSearch<V>.multiSelection(
+              key: widgetKey,
               onChanged: (value) =>
                   field.didChange(value.isEmpty ? null : value),
               popupProps: popupProps,
               selectedItems: field.value ?? [],
               items: items,
-              asyncItems: asyncItems,
+              selectedItemsScrollProps: selectedItemsScrollProps,
+              // asyncItems: asyncItems,
+              suffixProps: suffixProps,
+              clickProps: clickProps,
               dropdownBuilder: dropdownBuilder,
               enabled: field.control.enabled,
               filterFn: filterFn,
               itemAsString: itemAsString,
               compareFn: compareFn,
-              dropdownDecoratorProps: DropDownDecoratorProps(
-                dropdownSearchDecoration:
+              decoratorProps: DropDownDecoratorProps(
+                decoration:
                     effectiveDecoration.copyWith(errorText: field.errorText),
                 baseStyle: dropdownDecoratorProps.baseStyle,
                 textAlign: dropdownDecoratorProps.textAlign,
                 textAlignVertical: dropdownDecoratorProps.textAlignVertical,
+                expands: dropdownDecoratorProps.expands,
+                isHovering: dropdownDecoratorProps.isHovering,
               ),
-              clearButtonProps: clearButtonProps,
-              dropdownButtonProps: dropdownButtonProps,
               onBeforeChange: onBeforeChange,
               onSaved: onSaved,
               onBeforePopupOpening: onBeforePopupOpening,
             );
           },
         );
-
-  @override
-  ReactiveFormFieldState<List<T>, List<V>> createState() =>
-      _ReactiveDropdownSearchMultiSelectionState<List<T>, List<V>>();
-}
-
-class _ReactiveDropdownSearchMultiSelectionState<T, V>
-    extends ReactiveFormFieldState<T, V> {
-  FocusNode? _focusNode;
-  late FocusController _focusController;
-
-  @override
-  FocusNode get focusNode => _focusNode ?? _focusController.focusNode;
-
-  @override
-  void subscribeControl() {
-    _registerFocusController(FocusController());
-    super.subscribeControl();
-  }
-
-  @override
-  void unsubscribeControl() {
-    _unregisterFocusController();
-    super.unsubscribeControl();
-  }
-
-  void _registerFocusController(FocusController focusController) {
-    _focusController = focusController;
-    control.registerFocusController(focusController);
-  }
-
-  void _unregisterFocusController() {
-    control.unregisterFocusController(_focusController);
-    _focusController.dispose();
-  }
-
-  void _setFocusNode(FocusNode? focusNode) {
-    if (_focusNode != focusNode) {
-      _focusNode = focusNode;
-      _unregisterFocusController();
-      _registerFocusController(FocusController(focusNode: _focusNode));
-    }
-  }
 }

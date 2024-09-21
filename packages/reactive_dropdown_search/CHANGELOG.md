@@ -1,3 +1,11 @@
+## [5.0.0]
+
+* dropdown_search: ^6.0.0
+
+## [4.0.0]
+
+* dropdown_search: ^6.0.0
+
 ## [3.0.2]
 
 * widget key added
