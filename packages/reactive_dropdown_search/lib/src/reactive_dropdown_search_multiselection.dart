@@ -7,6 +7,36 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+abstract class DropDownSearchMultiSelectionValueAccessor<T, V> {
+  DropDownSearchMultiSelectionValueAccessor();
+
+  List<V>? modelToViewValue(List<V> items, List<T>? modelValue);
+
+  List<T>? viewToModelValue(List<V> items, List<V>? modelValue);
+}
+
+class _DropDownSearchMultiSelectionValueAccessor<T, V>
+    extends ControlValueAccessor<List<T>, List<V>> {
+  final List<V> items;
+
+  final DropDownSearchMultiSelectionValueAccessor<T, V> dropDownValueAccessor;
+
+  _DropDownSearchMultiSelectionValueAccessor({
+    this.items = const [],
+    required this.dropDownValueAccessor,
+  });
+
+  @override
+  List<V>? modelToViewValue(List<T>? modelValue) {
+    return dropDownValueAccessor.modelToViewValue(items, modelValue);
+  }
+
+  @override
+  List<T>? viewToModelValue(List<V>? viewValue) {
+    return dropDownValueAccessor.viewToModelValue(items, viewValue);
+  }
+}
+
 /// A [ReactiveDropdownSearchMultiSelection] that contains a [DropdownSearch].
 ///
 /// This is a convenience widget that wraps a [DropdownSearch] widget in a

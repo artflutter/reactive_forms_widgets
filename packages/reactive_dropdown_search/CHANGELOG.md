@@ -1,3 +1,7 @@
+## [5.0.1]
+
+* rollback forgotten value accessors
+
 ## [5.0.0]
 
 * dropdown_search: ^6.0.0
