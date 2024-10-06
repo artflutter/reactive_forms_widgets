@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-library reactive_image_picker;
+library;
 
 export 'src/reactive_image_picker.dart';
 export 'src/image_file.dart';
