@@ -16,6 +16,7 @@ typedef OnBeforeChangeCallback = Future<List<SelectedFile>> Function(
 typedef SelectedFileViewBuilder = Widget Function(SelectedFile image);
 
 typedef SelectedValueBuilder = Widget Function(
+  BuildContext context,
   List<SelectedFile> image,
   OnDelete handleDelete,
   OnChange handleChange,
@@ -305,6 +306,14 @@ class ImagePickerWidget extends StatelessWidget {
           ...value.getRange(index + 1, value.length),
         ];
       }
+      // if the oldFile is null we assume that we would like to add more
+      // but not replace the images
+      else if(oldFile == null) {
+        result = [
+          ...value,
+          ...result,
+        ];
+      }
 
       onChanged(result);
     }
@@ -361,6 +370,7 @@ class ImagePickerWidget extends StatelessWidget {
 
   Widget _buildImage(BuildContext context) {
     return selectedValueBuilder?.call(
+          context,
           value,
           _handleDelete,
           _handleChange,
