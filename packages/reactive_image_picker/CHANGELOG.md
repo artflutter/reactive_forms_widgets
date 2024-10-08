@@ -1,3 +1,7 @@
+## [7.0.0]
+
+* fixes for `selectedValueBuilder` and `deleteDialogBuilder`
+
 ## [5.0.5]
 
 * fix image cleanup on cancel selection
