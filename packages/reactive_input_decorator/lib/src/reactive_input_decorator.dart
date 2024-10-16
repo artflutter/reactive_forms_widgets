@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+const decorationInvisible = InputDecoration(
+  border: InputBorder.none,
+  contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+  isDense: true,
+  isCollapsed: true,
+);
+
 /// A [ReactiveInputDecorator] that contains a [InputDecorator].
 ///
 /// This is a convenience widget that wraps a [InputDecorator] widget in a

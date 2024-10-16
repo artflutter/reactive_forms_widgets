@@ -1,3 +1,8 @@
+## 0.0.5
+
+* export `ReactiveInputDecoratorStack`
+* added `decorationInvisible`
+
 ## 0.0.4
 
 * props update
