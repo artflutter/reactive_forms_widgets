@@ -1,3 +1,7 @@
+## 0.0.7
+
+* fix: properly apply default text style for error builder
+
 ## 0.0.6
 
 * `errorBuilder`

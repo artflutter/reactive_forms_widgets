@@ -117,30 +117,30 @@ class ReactiveInputDecorator extends ReactiveFormField<dynamic, dynamic> {
             return IgnorePointer(
               ignoring: !field.control.enabled,
               child: Listener(
-                onPointerDown: markAsTouched == MarkAsTouched.pointerDown ? (_) => field.control.markAsTouched() : null,
-                onPointerUp: markAsTouched == MarkAsTouched.pointerUp ? (_) => field.control.markAsTouched() : null,
+                onPointerDown: markAsTouched == MarkAsTouched.pointerDown
+                    ? (_) => field.control.markAsTouched()
+                    : null,
+                onPointerUp: markAsTouched == MarkAsTouched.pointerUp
+                    ? (_) => field.control.markAsTouched()
+                    : null,
                 child: InputDecorator(
                   decoration: effectiveDecoration.copyWith(
-                    errorText: errorBuilder == null ? field.errorText : null,
-                    enabled: field.control.enabled,
+                      errorText: errorBuilder == null ? field.errorText : null,
+                      enabled: field.control.enabled,
                       error: errorBuilder != null && errorText != null
-                          ? DefaultTextStyle(
-                        style: Theme.of(field.context)
-                            .textTheme
-                            .bodySmall
-                            ?.copyWith(
-                          color:
-                          Theme.of(field.context).colorScheme.error,
-                        ) ??
-                            const TextStyle(),
-                        child: errorBuilder.call(field.context, errorText),
-                      )
-                          : null
-                  ),
+                          ? DefaultTextStyle.merge(
+                              style: effectiveDecoration.errorStyle,
+                              child: errorBuilder.call(
+                                field.context,
+                                errorText,
+                              ),
+                            )
+                          : null),
                   expands: expands,
                   baseStyle: baseStyle,
                   textAlign: textAlign,
                   textAlignVertical: textAlignVertical,
+                  isFocused: field.focusNode?.hasFocus ?? false,
                   child: child,
                 ),
               ),
