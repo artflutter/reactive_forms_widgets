@@ -1,6 +1,6 @@
 name: reactive_file_picker
 description: Wrapper around file_picker to use with reactive_forms.
-version: 3.0.1
+version: 3.0.2
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_file_picker
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 

@@ -1,3 +1,7 @@
+## [3.0.2]
+
+* MultiFile.fromFile factory method
+
 ## [3.0.1]
 
 * MultiFile.fromFiles factory method

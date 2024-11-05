@@ -15,4 +15,7 @@ class MultiFile<T> with _$MultiFile<T> {
   factory MultiFile.fromFiles(List<T?> files) => MultiFile(
         files: files.whereType<T>().toList(),
       );
+  factory MultiFile.fromFile(T? file) => MultiFile(
+        files: [file].whereType<T>().toList(),
+      );
 }
