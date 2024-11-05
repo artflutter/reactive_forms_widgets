@@ -113,6 +113,7 @@ class ReactiveInputDecorator extends ReactiveFormField<dynamic, dynamic> {
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
             final errorText = field.errorText;
+            final st = effectiveDecoration.errorStyle;
 
             return IgnorePointer(
               ignoring: !field.control.enabled,
@@ -129,7 +130,13 @@ class ReactiveInputDecorator extends ReactiveFormField<dynamic, dynamic> {
                       enabled: field.control.enabled,
                       error: errorBuilder != null && errorText != null
                           ? DefaultTextStyle.merge(
-                              style: effectiveDecoration.errorStyle,
+                              style: Theme.of(field.context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                color:
+                                Theme.of(field.context).colorScheme.error,
+                              ).merge(effectiveDecoration.errorStyle),
                               child: errorBuilder.call(
                                 field.context,
                                 errorText,

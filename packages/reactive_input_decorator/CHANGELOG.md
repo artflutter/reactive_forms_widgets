@@ -1,3 +1,7 @@
+## 0.0.8
+
+* fix: error style application
+
 ## 0.0.7
 
 * fix: properly apply default text style for error builder
