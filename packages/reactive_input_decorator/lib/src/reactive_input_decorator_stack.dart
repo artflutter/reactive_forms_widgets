@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:reactive_input_decorator/reactive_input_decorator.dart';
 
 /// A [ReactiveInputDecorator] that contains a [InputDecorator].
 ///
@@ -88,21 +89,39 @@ class ReactiveInputDecoratorStack extends ReactiveFormField<dynamic, dynamic> {
     TextStyle? baseStyle,
     TextAlign? textAlign,
     TextAlignVertical? textAlignVertical,
+    Widget Function(BuildContext context, String error)? errorBuilder,
+    MarkAsTouched markAsTouched = MarkAsTouched.pointerDown,
   }) : super(
           builder: (field) {
             final effectiveDecoration = (decoration ?? const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
+            final errorText = field.errorText;
+
             return IgnorePointer(
               ignoring: !field.control.enabled,
               child: Listener(
-                onPointerDown: (_) => field.control.markAsTouched(),
+                onPointerDown: markAsTouched == MarkAsTouched.pointerDown ? (_) => field.control.markAsTouched() : null,
+                onPointerUp: markAsTouched == MarkAsTouched.pointerUp ? (_) => field.control.markAsTouched() : null,
                 child: Stack(
                   children: [
                     InputDecorator(
                       decoration: effectiveDecoration.copyWith(
-                        errorText: field.errorText,
-                        enabled: field.control.enabled,
+                          errorText: errorBuilder == null ? field.errorText : null,
+                          enabled: field.control.enabled,
+                          error: errorBuilder != null && errorText != null
+                              ? DefaultTextStyle(
+                            style: Theme.of(field.context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(
+                              color:
+                              Theme.of(field.context).colorScheme.error,
+                            ) ??
+                                const TextStyle(),
+                            child: errorBuilder.call(field.context, errorText),
+                          )
+                              : null
                       ),
                       expands: expands,
                       baseStyle: baseStyle,

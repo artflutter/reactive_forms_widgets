@@ -1,3 +1,8 @@
+## 0.0.6
+
+* `errorBuilder`
+* `markAsTouched`
+
 ## 0.0.5
 
 * export `ReactiveInputDecoratorStack`

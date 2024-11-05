@@ -1,6 +1,6 @@
 name: reactive_input_decorator
 description: Wrapper around input_decorator to use with reactive_forms.
-version: 0.0.5
+version: 0.0.6
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_input_decorator
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
