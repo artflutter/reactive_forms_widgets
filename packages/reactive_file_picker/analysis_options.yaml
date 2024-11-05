@@ -1,7 +1,7 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude: [ lib/multi_file.* ]
+  exclude: [ lib/multi_file.freezed.dart ]
   language:
     strict-casts: true
     strict-raw-types: true
