@@ -9,12 +9,14 @@
 .history
 .svn/
 packages/.mason
+packages/mason-lock.json
 
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
 .idea/
+
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line

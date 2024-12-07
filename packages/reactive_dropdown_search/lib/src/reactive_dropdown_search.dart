@@ -174,18 +174,19 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
                 decoration: effectiveDecoration.copyWith(
                   errorText: errorBuilder == null ? errorText : null,
                   error: errorBuilder != null && errorText != null
-                      ? DefaultTextStyle(
+                      ? DefaultTextStyle.merge(
                           style: Theme.of(field.context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color: Theme.of(field.context)
-                                        .colorScheme
-                                        .error,
-                                  ) ??
-                              const TextStyle(),
-                          child:
-                              errorBuilder.call(field.context, errorText),
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(
+                                color:
+                                    Theme.of(field.context).colorScheme.error,
+                              )
+                              .merge(effectiveDecoration.errorStyle),
+                          child: errorBuilder.call(
+                            field.context,
+                            errorText,
+                          ),
                         )
                       : null,
                 ),

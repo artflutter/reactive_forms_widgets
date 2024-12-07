@@ -48,6 +48,18 @@ class MyApp extends StatelessWidget {
                           border: OutlineInputBorder(),
                         ),
                       ),
+                      suffixProps: const DropdownSuffixProps(
+                        dropdownButtonProps: DropdownButtonProps(
+                          iconOpened: Padding(
+                            padding: EdgeInsets.only(right: 120.0),
+                            child: Icon(Icons.ac_unit, size: 24),
+                          ),
+                          iconClosed: Padding(
+                            padding: EdgeInsets.only(right: 120.0),
+                            child: Icon(Icons.ac_unit, size: 24),
+                          ),
+                        ),
+                      ),
                       popupProps: PopupProps.menu(
                         showSelectedItems: true,
                         disabledItemFn: (s) {

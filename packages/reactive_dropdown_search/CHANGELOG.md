@@ -1,3 +1,7 @@
+## [5.0.5]
+
+* errorBuilder style application
+
 ## [5.0.4]
 
 * errorBuilder
