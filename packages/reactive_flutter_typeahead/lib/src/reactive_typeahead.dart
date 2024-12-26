@@ -117,6 +117,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
     TextDirection? textDirection,
     TextAlign textAlign = TextAlign.start,
     TextAlignVertical? textAlignVertical,
+    TextEditingController? textEditingController,
     bool autofocus = false,
     bool readOnly = false,
     bool? showCursor,
@@ -134,7 +135,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);
 
             state._setFocusNode(focusNode);
-            final controller = state._textController;
+            final controller = textEditingController ?? state._textController;
             if (field.value != null) {
               controller.text = stringify(field.value as V);
             }
@@ -148,6 +149,11 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
                 onSuggestionSelected?.call(value);
               },
               builder: (context, controller, focusNode) {
+                // Keep the selected value in the text field
+                if (field.value != null) {
+                  controller.text = stringify(field.value as V);
+                }
+
                 return TextField(
                   controller: controller,
                   focusNode: focusNode,
@@ -248,7 +254,6 @@ class _ReactiveTypeaheadState<T, V> extends ReactiveFormFieldState<T, V> {
 
     super.onControlValueChanged(value);
   }
-
   // @override
   // ControlValueAccessor<T, V> selectValueAccessor() {
   //   if (control is FormControl<int>) {

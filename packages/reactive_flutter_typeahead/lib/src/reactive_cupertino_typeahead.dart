@@ -116,6 +116,7 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
     TextCapitalization textCapitalization = TextCapitalization.none,
     TextInputAction? textInputAction,
     TextStyle? style,
+    TextEditingController? textEditingController,
     StrutStyle? strutStyle,
     TextDirection? textDirection,
     TextAlign textAlign = TextAlign.start,
@@ -134,7 +135,11 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
             final state = field as _ReactiveCupertinoTypeAheadState<T, V>;
 
             state._setFocusNode(focusNode);
-            final controller = state._textController;
+            final controller = textEditingController ?? state._textController;
+
+            if (field.value != null) {
+              controller.text = stringify(field.value as V);
+            }
 
             return CupertinoTypeAheadField<V>(
               suggestionsCallback: suggestionsCallback,
