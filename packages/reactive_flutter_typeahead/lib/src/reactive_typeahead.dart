@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'dart:async';
 
 /// A [ReactiveTypeAhead] that contains a [TextField].
 ///
@@ -88,35 +89,29 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
     V Function(String)? viewDataTypeFromTextEditingValue,
 
     ////////////////////////////////////////////////////////////////////////////
-    required SuggestionsCallback<V> suggestionsCallback,
-    required ItemBuilder<V> itemBuilder,
-    SuggestionsBoxDecoration suggestionsBoxDecoration =
-        const SuggestionsBoxDecoration(),
+    required FutureOr<List<V>?> Function(String) suggestionsCallback,
+    required Widget Function(BuildContext, V) itemBuilder,
+    Widget Function(BuildContext, Widget)? decorationBuilder,
     Duration debounceDuration = const Duration(milliseconds: 300),
-    WidgetBuilder? loadingBuilder,
-    WidgetBuilder? noItemsFoundBuilder,
-    ErrorBuilder? errorBuilder,
-    AnimationTransitionBuilder? transitionBuilder,
-    double animationStart = 0.25,
+    Widget Function(BuildContext)? loadingBuilder,
+    Widget Function(BuildContext)? emptyBuilder,
+    Widget Function(BuildContext, Object?)? errorBuilder,
+    Widget Function(BuildContext, Animation<double>, Widget)? transitionBuilder,
     Duration animationDuration = const Duration(milliseconds: 500),
-    bool getImmediateSuggestions = false,
-    double suggestionsBoxVerticalOffset = 5.0,
-    AxisDirection direction = AxisDirection.down,
+    Offset? offset,
+    VerticalDirection? direction,
     bool hideOnLoading = false,
     bool hideOnEmpty = false,
     bool hideOnError = false,
-    bool hideSuggestionsOnKeyboardHide = true,
-    bool keepSuggestionsOnLoading = true,
-    bool keepSuggestionsOnSuggestionSelected = false,
+    bool hideWithKeyboard = true,
+    bool retainOnLoading = true,
+    bool hideOnSelect = true,
     bool autoFlipDirection = false,
-    bool hideKeyboard = false,
-    TextFieldConfiguration textFieldConfiguration =
-        const TextFieldConfiguration(),
-    SuggestionsBoxController? suggestionsBoxController,
-    InputDecoration decoration = const InputDecoration(),
-    TextInputType? keyboardType,
-    TextCapitalization textCapitalization = TextCapitalization.none,
-    TextInputAction? textInputAction,
+    SuggestionsController<V>? suggestionsController,
+    ScrollController? scrollController,
+    bool hideKeyboardOnDrag = false,
+    Widget Function(BuildContext, int)? itemSeparatorBuilder,
+    Widget Function(BuildContext, List<Widget>)? listBuilder,
     TextStyle? style,
     StrutStyle? strutStyle,
     TextDirection? textDirection,
@@ -128,25 +123,18 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
     bool obscureText = false,
     String obscuringCharacter = '•',
     bool autocorrect = true,
-    SuggestionSelectionCallback<V>? onSuggestionSelected,
-    ScrollController? scrollController,
-    bool autoFlipListDirection = true,
-    bool intercepting = false,
-    bool hideKeyboardOnDrag = false,
-    Widget Function(Iterable<Widget>, ScrollController)? layoutArchitecture,
-    Widget Function(BuildContext, int)? itemSeparatorBuilder,
-    int minCharsForSuggestions = 0,
-    double autoFlipMinHeight = 64.0,
-    void Function(bool)? onSuggestionsBoxToggle,
+    bool enabled = true,
+    FocusNode? focusNode,
+    InputDecoration? decoration,
+    void Function(V)? onSuggestionSelected,
   }) : super(
           builder: (field) {
             final state = field as _ReactiveTypeaheadState<T, V>;
-            final effectiveDecoration = textFieldConfiguration.decoration
+            final effectiveDecoration = (decoration ?? const InputDecoration())
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);
 
-            state._setFocusNode(textFieldConfiguration.focusNode);
-            final controller =
-                textFieldConfiguration.controller ?? state._textController;
+            state._setFocusNode(focusNode);
+            final controller = state._textController;
             if (field.value != null) {
               controller.text = stringify(field.value as V);
             }
@@ -154,55 +142,59 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
             return TypeAheadField<V>(
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
-              onSuggestionSelected: (value) {
+              onSelected: (value) {
                 controller.text = stringify(value);
                 field.didChange(value);
                 onSuggestionSelected?.call(value);
               },
-              textFieldConfiguration: textFieldConfiguration.copyWith(
-                focusNode: textFieldConfiguration.focusNode ?? state.focusNode,
-                controller: controller,
-                enabled: field.control.enabled,
-                decoration: effectiveDecoration.copyWith(
-                  errorText: state.errorText,
-                ),
-                onChanged: (value) {
-                  if (viewDataTypeFromTextEditingValue != null) {
-                    field.didChange(
-                        viewDataTypeFromTextEditingValue.call(value));
-                  }
-                },
-              ),
-              suggestionsBoxDecoration: suggestionsBoxDecoration,
+              builder: (context, controller, focusNode) {
+                return TextField(
+                  controller: controller,
+                  focusNode: focusNode,
+                  decoration: effectiveDecoration.copyWith(
+                    errorText: state.errorText,
+                  ),
+                  enabled: enabled,
+                  style: style,
+                  strutStyle: strutStyle,
+                  textDirection: textDirection,
+                  textAlign: textAlign,
+                  textAlignVertical: textAlignVertical,
+                  autofocus: autofocus,
+                  readOnly: readOnly,
+                  showCursor: showCursor,
+                  obscureText: obscureText,
+                  obscuringCharacter: obscuringCharacter,
+                  autocorrect: autocorrect,
+                  onChanged: (value) {
+                    if (viewDataTypeFromTextEditingValue != null) {
+                      field.didChange(
+                          viewDataTypeFromTextEditingValue.call(value));
+                    }
+                  },
+                );
+              },
+              decorationBuilder: decorationBuilder,
               debounceDuration: debounceDuration,
-              suggestionsBoxController: suggestionsBoxController,
+              suggestionsController: suggestionsController,
               loadingBuilder: loadingBuilder,
-              noItemsFoundBuilder: noItemsFoundBuilder,
+              emptyBuilder: emptyBuilder,
               errorBuilder: errorBuilder,
               transitionBuilder: transitionBuilder,
-              animationStart: animationStart,
               animationDuration: animationDuration,
-              getImmediateSuggestions: getImmediateSuggestions,
-              suggestionsBoxVerticalOffset: suggestionsBoxVerticalOffset,
+              offset: offset ?? const Offset(0, 5.0),
               direction: direction,
               hideOnLoading: hideOnLoading,
               hideOnEmpty: hideOnEmpty,
               hideOnError: hideOnError,
-              hideSuggestionsOnKeyboardHide: hideSuggestionsOnKeyboardHide,
-              keepSuggestionsOnLoading: keepSuggestionsOnLoading,
-              keepSuggestionsOnSuggestionSelected:
-                  keepSuggestionsOnSuggestionSelected,
+              hideWithKeyboard: hideWithKeyboard,
+              retainOnLoading: retainOnLoading,
+              hideOnSelect: hideOnSelect,
               autoFlipDirection: autoFlipDirection,
-              hideKeyboard: hideKeyboard,
               scrollController: scrollController,
-              autoFlipListDirection: autoFlipListDirection,
-              intercepting: intercepting,
               hideKeyboardOnDrag: hideKeyboardOnDrag,
-              layoutArchitecture: layoutArchitecture,
               itemSeparatorBuilder: itemSeparatorBuilder,
-              minCharsForSuggestions: minCharsForSuggestions,
-              autoFlipMinHeight: autoFlipMinHeight,
-              onSuggestionsBoxToggle: onSuggestionsBoxToggle,
+              listBuilder: listBuilder,
             );
           },
         );

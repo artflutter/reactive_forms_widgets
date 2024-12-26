@@ -11,145 +11,71 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  FormGroup buildForm() => fb.group({
-        'input': FormControl<String>(value: null),
-        'input2': FormControl<String>(value: null),
-      });
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      title: 'Reactive TypeAhead Example',
       home: Scaffold(
-        appBar: AppBar(),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 20.0,
-            ),
-            child: ReactiveFormBuilder(
-              form: buildForm,
-              builder: (context, form, child) {
-                return Column(
-                  children: [
-                    // ReactiveTypeAhead(
-                    //   formControlName: 'phone',
-                    //   textFieldConfiguration: TextFieldConfiguration(
-                    //     keyboardType: TextInputType.phone,
-                    //     decoration: InputDecoration(
-                    //       labelText: 'Phone Number',
-                    //       icon: Icon(Icons.email),
-                    //     ),
-                    //     // inputFormatters: [
-                    //     //   phoneNumberMask,
-                    //     // ],
-                    //     controller: _typeAheadController1,
-                    //   ),
-                    //   suggestionsCallback: (pattern) =>
-                    //       queryMemberPhoneData1(pattern),
-                    //   itemBuilder: (context, Member suggestion) {
-                    //     return ListTile(
-                    //       title: Text(suggestion.phone),
-                    //       subtitle: Text('${suggestion.firstName}'),
-                    //     );
-                    //   },
-                    //   onSuggestionSelected: (Member suggestion) {
-                    //     form.control('phone').value(suggestion.phone);
-                    //   },
-                    // ),
-                    ReactiveTypeAhead<String, String>(
-                      formControlName: 'input',
-                      stringify: (_) => _,
-                      textFieldConfiguration: TextFieldConfiguration(
-                        autofocus: false,
-                        style: DefaultTextStyle.of(context)
-                            .style
-                            .copyWith(fontStyle: FontStyle.italic),
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      suggestionsCallback: (pattern) async {
-                        return CitiesService.getSuggestions(pattern);
-                      },
-                      itemBuilder: (context, suggestion) {
-                        return ListTile(
-                          leading: const Icon(Icons.shopping_cart),
-                          title: Text(suggestion),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 16),
-                    ReactiveCupertinoTypeAhead<String, String>(
-                      formControlName: 'input2',
-                      stringify: (_) => _,
-                      getImmediateSuggestions: true,
-                      suggestionsCallback: (pattern) {
-                        return Future.delayed(
-                          const Duration(seconds: 1),
-                          () => CitiesService.getSuggestions(pattern),
-                        );
-                      },
-                      itemBuilder: (context, suggestion) {
-                        return Material(
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Text(
-                              suggestion,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    ElevatedButton(
-                      child: const Text('Sign Up'),
-                      onPressed: () {
-                        if (form.valid) {
-                          // ignore: avoid_print
-                          print(form.value);
-                        } else {
-                          form.markAllAsTouched();
-                        }
-                      },
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
-        ),
+        appBar: AppBar(title: const Text('Reactive TypeAhead Example')),
+        body: const TypeaheadExample(),
       ),
     );
   }
 }
 
-class CitiesService {
-  static final List<String> cities = [
-    'Beirut',
-    'Damascus',
-    'San Fransisco',
-    'Rome',
-    'Los Angeles',
-    'Madrid',
-    'Bali',
-    'Barcelona',
-    'Paris',
-    'Bucharest',
-    'New York City',
-    'Philadelphia',
-    'Sydney',
-  ];
+class TypeaheadExample extends StatelessWidget {
+  const TypeaheadExample({super.key});
 
-  static List<String> getSuggestions(String query) {
-    List<String> matches = <String>[];
-    matches.addAll(cities);
+  @override
+  Widget build(BuildContext context) {
+    final form = FormGroup({
+      'city': FormControl<String>(),
+    });
 
-    matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
-    return matches;
+    return ReactiveForm(
+      formGroup: form,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            ReactiveTypeAhead<String, String>(
+              formControlName: 'city',
+              stringify: (value) => value,
+              suggestionsCallback: (pattern) async {
+                // Simulated API call
+                await Future.delayed(const Duration(milliseconds: 500));
+                final cities = [
+                  'New York',
+                  'Los Angeles',
+                  'Chicago',
+                  'Houston',
+                  'Phoenix',
+                ];
+                return cities
+                    .where((city) =>
+                        city.toLowerCase().contains(pattern.toLowerCase()))
+                    .toList();
+              },
+              itemBuilder: (context, city) {
+                return ListTile(
+                  title: Text(city),
+                );
+              },
+              decoration: const InputDecoration(
+                labelText: 'City',
+                helperText: 'Start typing a city name',
+              ),
+            ),
+            const SizedBox(height: 16),
+            ReactiveFormConsumer(
+              builder: (context, form, child) {
+                return Text(
+                    'Selected city: ${form.control('city').value ?? ''}');
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
