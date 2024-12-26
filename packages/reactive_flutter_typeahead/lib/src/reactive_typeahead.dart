@@ -150,7 +150,9 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
               },
               builder: (context, controller, focusNode) {
                 // Keep the selected value in the text field
-                if (field.value != null) {
+                if (field.value == null) {
+                  controller.text = '';
+                } else if (field.value != null) {
                   controller.text = stringify(field.value as V);
                 }
 
@@ -245,7 +247,10 @@ class _ReactiveTypeaheadState<T, V> extends ReactiveFormFieldState<T, V> {
 
   @override
   void onControlValueChanged(dynamic value) {
-    final effectiveValue = (value == null) ? '' : value.toString();
+    final effectiveValue = value == null
+        ? ''
+        : (widget as ReactiveTypeAhead<T, V>).stringify(value as V);
+
     _textController.value = _textController.value.copyWith(
       text: effectiveValue,
       selection: TextSelection.collapsed(offset: effectiveValue.length),

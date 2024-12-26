@@ -29,7 +29,7 @@ class TypeaheadExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final form = FormGroup({
-      'city': FormControl<String>(),
+      'city': FormControl<String>(value: 'Los Angeles'),
     });
 
     return ReactiveForm(
@@ -38,6 +38,16 @@ class TypeaheadExample extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            ElevatedButton(
+                onPressed: () {
+                  form.control('city').value = 'New York';
+                },
+                child: const Text('Set New York')),
+            ElevatedButton(
+                onPressed: () {
+                  form.control('city').value = null;
+                },
+                child: const Text('Clear value')),
             ReactiveTypeAhead<String, String>(
               formControlName: 'city',
               stringify: (value) => value,

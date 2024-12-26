@@ -150,6 +150,12 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
                 onSuggestionSelected?.call(value);
               },
               builder: (context, controller, focusNode) {
+                if (field.value == null) {
+                  controller.text = '';
+                } else if (field.value != null) {
+                  controller.text = stringify(field.value as V);
+                }
+
                 return CupertinoTextField(
                   controller: controller,
                   focusNode: focusNode,
@@ -242,7 +248,10 @@ class _ReactiveCupertinoTypeAheadState<T, V>
 
   @override
   void onControlValueChanged(dynamic value) {
-    final effectiveValue = (value == null) ? '' : value.toString();
+    final effectiveValue = value == null
+        ? ''
+        : (widget as ReactiveCupertinoTypeAhead<T, V>).stringify(value as V);
+
     _textController.value = _textController.value.copyWith(
       text: effectiveValue,
       selection: TextSelection.collapsed(offset: effectiveValue.length),
