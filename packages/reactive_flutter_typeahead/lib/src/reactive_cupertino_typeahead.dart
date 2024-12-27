@@ -177,7 +177,9 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
                   obscuringCharacter: obscuringCharacter,
                   autocorrect: autocorrect,
                   onChanged: (value) {
-                    if (viewDataTypeFromTextEditingValue != null) {
+                    if (value.isEmpty) {
+                      field.didChange(null);
+                    } else if (viewDataTypeFromTextEditingValue != null) {
                       field.didChange(
                           viewDataTypeFromTextEditingValue.call(value));
                     }
