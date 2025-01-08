@@ -1,3 +1,7 @@
+## [5.0.0]
+
+* smart_auth version bump
+
 ## [4.0.0]
 
 * pinput: ^5.0.0
