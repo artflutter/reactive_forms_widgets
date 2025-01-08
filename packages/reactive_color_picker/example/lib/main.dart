@@ -56,6 +56,7 @@ class MyApp extends StatelessWidget {
                     const SizedBox(height: 16),
                     ReactiveColorPicker<Color>(
                       formControlName: 'colorPicker',
+                      enableAlpha: false,
                     ),
                     const SizedBox(height: 16),
                     ReactiveSliderColorPicker<Color>(

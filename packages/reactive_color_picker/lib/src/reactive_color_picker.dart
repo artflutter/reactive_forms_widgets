@@ -135,7 +135,7 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
                             onPressed: () {
                               _showDialog(
                                 field.context,
-                                pickerColor: field.value ?? Colors.transparent,
+                                pickerColor: field.value ?? (enableAlpha ? Colors.transparent : Colors.white),
                                 onColorChanged: field.didChange,
                               );
                             },
