@@ -162,7 +162,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
                   decoration: effectiveDecoration.copyWith(
                     errorText: state.errorText,
                   ),
-                  enabled: enabled,
+                  enabled: field.control.enabled,
                   style: style,
                   strutStyle: strutStyle,
                   textDirection: textDirection,
