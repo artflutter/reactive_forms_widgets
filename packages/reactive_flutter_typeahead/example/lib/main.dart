@@ -39,6 +39,18 @@ class TypeaheadExample extends StatelessWidget {
         child: Column(
           children: [
             ElevatedButton(
+              onPressed: () {
+                form.control('city').markAsEnabled();
+              },
+              child: const Text('Enable'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                form.control('city').markAsDisabled();
+              },
+              child: const Text('Disable'),
+            ),
+            ElevatedButton(
                 onPressed: () {
                   form.control('city').value = 'New York';
                 },
