@@ -5,6 +5,15 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
+typedef ColorPickerBuilder<T> = Widget Function(
+  void Function() pickColor,
+  Color? color,
+);
+
+typedef ColorPickerDialogBuilder = Widget Function(
+  ColorPicker colorPicker,
+);
+
 /// A builder that builds a widget responsible to decide when to show
 /// the picker dialog.
 ///
@@ -66,45 +75,47 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
     TextEditingController? hexInputController,
     List<Color>? colorHistory,
     ValueChanged<List<Color>>? onHistoryChanged,
+    ColorPickerBuilder<Color>? colorPickerBuilder,
+    ColorPickerDialogBuilder? colorPickerDialogBuilder,
   }) : super(
           builder: (field) {
-            void _showDialog(
-              BuildContext context, {
-              required Color pickerColor,
-              required ValueChanged<Color> onColorChanged,
-            }) {
+            void pickColor() {
+              final _colorPicker = ColorPicker(
+                pickerColor: field.value ?? Colors.transparent,
+                onColorChanged: field.didChange,
+                paletteType: paletteType,
+                enableAlpha: enableAlpha,
+                pickerHsvColor: pickerHsvColor,
+                labelTypes: labelTypes,
+                displayThumbColor: displayThumbColor,
+                portraitOnly: portraitOnly,
+                colorPickerWidth: colorPickerWidth,
+                pickerAreaHeightPercent: pickerAreaHeightPercent,
+                pickerAreaBorderRadius: pickerAreaBorderRadius,
+                hexInputBar: hexInputBar,
+                hexInputController: hexInputController,
+                colorHistory: colorHistory,
+                onHistoryChanged: onHistoryChanged,
+              );
+
               showDialog<Color>(
-                context: context,
+                context: field.context,
                 builder: (BuildContext context) {
-                  return AlertDialog(
-                    titlePadding: const EdgeInsets.all(0.0),
-                    contentPadding: const EdgeInsets.all(0.0),
-                    content: SingleChildScrollView(
-                      child: ColorPicker(
-                        pickerColor: pickerColor,
-                        onColorChanged: onColorChanged,
-                        paletteType: paletteType,
-                        enableAlpha: enableAlpha,
-                        pickerHsvColor: pickerHsvColor,
-                        labelTypes: labelTypes,
-                        displayThumbColor: displayThumbColor,
-                        portraitOnly: portraitOnly,
-                        colorPickerWidth: colorPickerWidth,
-                        pickerAreaHeightPercent: pickerAreaHeightPercent,
-                        pickerAreaBorderRadius: pickerAreaBorderRadius,
-                        hexInputBar: hexInputBar,
-                        hexInputController: hexInputController,
-                        colorHistory: colorHistory,
-                        onHistoryChanged: onHistoryChanged,
-                      ),
-                    ),
-                  );
+                  return colorPickerDialogBuilder?.call(
+                        _colorPicker,
+                      ) ??
+                      AlertDialog(
+                        titlePadding: const EdgeInsets.all(0.0),
+                        contentPadding: const EdgeInsets.all(0.0),
+                        content: SingleChildScrollView(
+                          child: _colorPicker,
+                        ),
+                      );
                 },
               );
             }
 
-            final isEmptyValue =
-                field.value == null || field.value.toString().isEmpty;
+            final value = field.value;
 
             final InputDecoration effectiveDecoration = (decoration ??
                     const InputDecoration())
@@ -114,51 +125,40 @@ class ReactiveColorPicker<T> extends ReactiveFormField<T, Color> {
                 ? contrastIconColorDark
                 : contrastIconColorLight;
 
-            return IgnorePointer(
-              ignoring: !field.control.enabled,
-              child: Opacity(
-                opacity: field.control.enabled ? 1 : disabledOpacity,
-                child: Listener(
-                  onPointerDown: (_) => field.control.markAsTouched(),
-                  child: InputDecorator(
-                    decoration: effectiveDecoration.copyWith(
-                      errorText: field.errorText,
-                      enabled: field.control.enabled,
-                      fillColor: field.value,
-                      filled: field.value != null,
-                      suffixIcon: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          IconButton(
-                            color: iconColor,
-                            icon: const Icon(Icons.edit),
-                            onPressed: () {
-                              _showDialog(
-                                field.context,
-                                pickerColor: field.value ?? (enableAlpha ? Colors.transparent : Colors.white),
-                                onColorChanged: field.didChange,
-                              );
-                            },
-                            splashRadius: 0.01,
-                          ),
-                          if (field.value != null)
+            return InputDecorator(
+              decoration: effectiveDecoration.copyWith(
+                errorText: field.errorText,
+                enabled: field.control.enabled,
+              ),
+              child: IgnorePointer(
+                ignoring: !field.control.enabled,
+                child: Opacity(
+                  opacity: field.control.enabled ? 1 : 0.5,
+                  child: colorPickerBuilder?.call(
+                        () => pickColor(),
+                        value,
+                      ) ??
+                      ListTile(
+                        tileColor: value,
+                        trailing: Wrap(
+                          children: [
                             IconButton(
                               color: iconColor,
-                              icon: const Icon(Icons.clear),
-                              onPressed: () {
-                                field.didChange(null);
-                              },
+                              icon: const Icon(Icons.edit),
+                              onPressed: () => pickColor(),
                               splashRadius: 0.01,
                             ),
-                        ],
+                            if (field.value != null)
+                              IconButton(
+                                color: iconColor,
+                                icon: const Icon(Icons.clear),
+                                onPressed: () => field.didChange(null),
+                                splashRadius: 0.01,
+                              ),
+                          ],
+                        ),
+                        onTap: pickColor,
                       ),
-                    ),
-                    isEmpty:
-                        isEmptyValue && effectiveDecoration.hintText == null,
-                    child: Container(
-                      color: field.value,
-                    ),
-                  ),
                 ),
               ),
             );
