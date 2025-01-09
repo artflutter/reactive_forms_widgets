@@ -1,6 +1,6 @@
 name: reactive_color_picker
 description: Wrapper around `flutter_colorpicker` to use with `reactive_forms`.
-version: 2.1.0
+version: 2.2.0
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_color_picker
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 

@@ -1,3 +1,7 @@
+## [2.2.0]
+
+* color picker builders for more customisations
+
 ## [2.1.0]
 
 * package update + bugfix
