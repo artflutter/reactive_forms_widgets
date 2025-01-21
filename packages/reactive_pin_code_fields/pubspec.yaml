@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   reactive_forms: ">=16.0.0 <18.0.0"
-  pin_code_fields: ^7.4.0
+  pin_code_fields: ^8.0.1
 
 dev_dependencies:
   flutter_test:
