@@ -1,3 +1,8 @@
+
+## [2.1.2]
+
+* FIX: Suggestion box was not closed on selection
+
 ## [2.1.1]
 
 * Support `reactive_forms: 17.x`
