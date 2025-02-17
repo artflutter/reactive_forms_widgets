@@ -136,6 +136,8 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
 
             state._setFocusNode(focusNode);
             final controller = textEditingController ?? state._textController;
+            final fieldSuggestionsController =
+                suggestionsController ?? state._suggestionsController;
             if (field.value != null) {
               controller.text = stringify(field.value as V);
             }
@@ -147,6 +149,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
                 controller.text = stringify(value);
                 field.didChange(value);
                 onSuggestionSelected?.call(value);
+                fieldSuggestionsController.close(); // close the suggestions box
               },
               builder: (context, controller, focusNode) {
                 // Keep the selected value in the text field
@@ -186,7 +189,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
               },
               decorationBuilder: decorationBuilder,
               debounceDuration: debounceDuration,
-              suggestionsController: suggestionsController,
+              suggestionsController: fieldSuggestionsController,
               loadingBuilder: loadingBuilder,
               emptyBuilder: emptyBuilder,
               errorBuilder: errorBuilder,
@@ -217,6 +220,8 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
 
 class _ReactiveTypeaheadState<T, V> extends ReactiveFormFieldState<T, V> {
   late TextEditingController _textController;
+  late SuggestionsController<V> _suggestionsController;
+
   FocusNode? _focusNode;
   late FocusController _focusController;
 
@@ -226,6 +231,7 @@ class _ReactiveTypeaheadState<T, V> extends ReactiveFormFieldState<T, V> {
   @override
   void initState() {
     super.initState();
+    _suggestionsController = SuggestionsController<V>();
 
     final initialValue = value;
     _textController = TextEditingController(
