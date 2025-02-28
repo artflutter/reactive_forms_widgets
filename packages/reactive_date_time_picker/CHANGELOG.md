@@ -1,3 +1,18 @@
+## [4.3.0]
+
+* mouse cursor
+
+## [4.2.0]
+
+* hover effect support
+* expose more input decorator props
+
+## [4.1.0]
+
+* improved disabled state handling
+* errorBuilder
+* deprecate disabledOpacity
+
 ## [4.0.0]
 
 * fixes https://github.com/artflutter/reactive_forms_widgets/issues/139

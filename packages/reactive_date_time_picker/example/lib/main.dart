@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   FormGroup buildForm() => fb.group({
-        'date': FormControl<DateTime>(value: DateTime.now()),
+        'date': FormControl<DateTime>(value: DateTime.now(), disabled: true),
         'time': FormControl<DateTime>(value: DateTime.now()),
         'dateTime': FormControl<DateTime>(value: DateTime.now()),
         'dateTimeNullable': FormControl<DateTime>(value: null),
@@ -39,12 +39,25 @@ class MyApp extends StatelessWidget {
                   children: [
                     const SizedBox(height: 8),
                     ReactiveDateTimePicker(
+                      disabledOpacity: 1,
                       formControlName: 'date',
                       decoration: const InputDecoration(
                         labelText: 'Date',
                         border: OutlineInputBorder(),
                         helperText: '',
                         suffixIcon: Icon(Icons.calendar_today),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    TextField(
+                      decoration: const InputDecoration(
+                        labelText: 'Time',
+                        border: OutlineInputBorder(),
+                        helperText: '',
+                        filled: true,
+                        fillColor: Colors.green,
+                        // hoverColor: Colors.yellow,
+                        suffixIcon: Icon(Icons.watch_later_outlined),
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -55,6 +68,9 @@ class MyApp extends StatelessWidget {
                         labelText: 'Time',
                         border: OutlineInputBorder(),
                         helperText: '',
+                        filled: true,
+                        fillColor: Colors.green,
+                        // hoverColor: Colors.yellow,
                         suffixIcon: Icon(Icons.watch_later_outlined),
                       ),
                     ),
@@ -85,7 +101,10 @@ class MyApp extends StatelessWidget {
                     ElevatedButton(
                       child: const Text('Sign Up'),
                       onPressed: () {
-                        showTimePicker(context: context, initialTime: TimeOfDay.fromDateTime(DateTime.now()));
+                        showTimePicker(
+                            context: context,
+                            initialTime:
+                                TimeOfDay.fromDateTime(DateTime.now()));
                         if (form.valid) {
                           // ignore: avoid_print
                           print(form.value);
