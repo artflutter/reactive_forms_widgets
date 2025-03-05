@@ -11,6 +11,13 @@ class MyApp extends StatelessWidget {
 
   FormGroup buildForm() => fb.group({
         'dateRange': FormControl<DateTimeRange>(),
+        'dateRange2': FormControl<DateTimeRange>(
+          disabled: true,
+          value: DateTimeRange(
+            start: DateTime.now(),
+            end: DateTime.now().add(const Duration(days: 1)),
+          ),
+        ),
       });
 
   @override
@@ -36,6 +43,16 @@ class MyApp extends StatelessWidget {
                   children: [
                     ReactiveDateRangePicker(
                       formControlName: 'dateRange',
+                      decoration: const InputDecoration(
+                        labelText: 'Date range',
+                        border: OutlineInputBorder(),
+                        helperText: '',
+                        suffixIcon: Icon(Icons.calendar_today),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    ReactiveDateRangePicker(
+                      formControlName: 'dateRange2',
                       decoration: const InputDecoration(
                         labelText: 'Date range',
                         border: OutlineInputBorder(),

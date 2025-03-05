@@ -1,3 +1,11 @@
+## [2.2.0]
+
+* mouse cursor
+* hover effect support
+* expose more input decorator props
+* improved disabled state handling
+* errorBuilder
+
 ## [2.1.0]
 
 * props update

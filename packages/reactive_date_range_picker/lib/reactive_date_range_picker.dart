@@ -82,6 +82,13 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
     TextInputType keyboardType = TextInputType.datetime,
     Icon? switchToInputEntryModeIcon,
     Icon? switchToCalendarEntryModeIcon,
+    Widget Function(BuildContext context, String error)? errorBuilder,
+    // input decorator props
+    TextStyle? baseStyle,
+    TextAlign? textAlign,
+    TextAlignVertical? textAlignVertical,
+    bool expands = false,
+    MouseCursor cursor = SystemMouseCursors.click,
   }) : super(
           valueAccessor: valueAccessor ?? DateTimeRangeValueAccessor(),
           builder: (field) {
@@ -108,68 +115,135 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
             final effectiveValueAccessor =
                 valueAccessor ?? DateTimeRangeValueAccessor();
 
+            final errorText = field.errorText;
+
             final effectiveLastDate = lastDate ?? DateTime(2100);
 
             return IgnorePointer(
               ignoring: !field.control.enabled,
-              child: GestureDetector(
-                onTap: () async {
-                  final dateRange = await showDateRangePicker(
-                    context: field.context,
-                    initialDateRange: field.control.value,
-                    firstDate: firstDate ?? DateTime(1900),
-                    lastDate: effectiveLastDate,
-                    currentDate: currentDate,
-                    initialEntryMode: initialEntryMode,
-                    helpText: helpText,
-                    cancelText: cancelText,
-                    confirmText: confirmText,
-                    saveText: saveText,
-                    errorFormatText: errorFormatText,
-                    errorInvalidText: errorInvalidText,
-                    errorInvalidRangeText: errorInvalidRangeText,
-                    fieldStartHintText: fieldStartHintText,
-                    fieldEndHintText: fieldEndHintText,
-                    fieldStartLabelText: fieldStartLabelText,
-                    fieldEndLabelText: fieldEndLabelText,
-                    locale: locale,
-                    useRootNavigator: useRootNavigator,
-                    routeSettings: routeSettings,
-                    textDirection: textDirection,
-                    builder: builder,
-                    barrierDismissible: barrierDismissible,
-                    barrierColor: barrierColor,
-                    anchorPoint: anchorPoint,
-                    keyboardType: keyboardType,
-                    switchToInputEntryModeIcon: switchToInputEntryModeIcon,
-                    switchToCalendarEntryModeIcon:
-                        switchToCalendarEntryModeIcon,
-                  );
+              child: HoverBuilder(builder: (context, isHovered) {
+                return MouseRegion(
+                  cursor: cursor,
+                  child: GestureDetector(
+                    onTap: () async {
+                      final dateRange = await showDateRangePicker(
+                        context: field.context,
+                        initialDateRange: field.control.value,
+                        firstDate: firstDate ?? DateTime(1900),
+                        lastDate: effectiveLastDate,
+                        currentDate: currentDate,
+                        initialEntryMode: initialEntryMode,
+                        helpText: helpText,
+                        cancelText: cancelText,
+                        confirmText: confirmText,
+                        saveText: saveText,
+                        errorFormatText: errorFormatText,
+                        errorInvalidText: errorInvalidText,
+                        errorInvalidRangeText: errorInvalidRangeText,
+                        fieldStartHintText: fieldStartHintText,
+                        fieldEndHintText: fieldEndHintText,
+                        fieldStartLabelText: fieldStartLabelText,
+                        fieldEndLabelText: fieldEndLabelText,
+                        locale: locale,
+                        useRootNavigator: useRootNavigator,
+                        routeSettings: routeSettings,
+                        textDirection: textDirection,
+                        builder: builder,
+                        barrierDismissible: barrierDismissible,
+                        barrierColor: barrierColor,
+                        anchorPoint: anchorPoint,
+                        keyboardType: keyboardType,
+                        switchToInputEntryModeIcon: switchToInputEntryModeIcon,
+                        switchToCalendarEntryModeIcon:
+                            switchToCalendarEntryModeIcon,
+                      );
 
-                  if (dateRange == null) {
-                    return;
-                  }
+                      if (dateRange == null) {
+                        return;
+                      }
 
-                  field.control.markAsTouched();
-                  field.didChange(
-                      effectiveValueAccessor.modelToViewValue(dateRange));
-                },
-                child: InputDecorator(
-                  decoration: effectiveDecoration.copyWith(
-                    errorText: field.errorText,
-                    enabled: field.control.enabled,
+                      field.control.markAsTouched();
+                      field.didChange(
+                          effectiveValueAccessor.modelToViewValue(dateRange));
+                    },
+                    child: InputDecorator(
+                      isFocused: field.control.hasFocus,
+                      isEmpty: isEmptyValue,
+                      baseStyle: baseStyle,
+                      textAlign: textAlign,
+                      textAlignVertical: textAlignVertical,
+                      expands: expands,
+                      decoration: effectiveDecoration.copyWith(
+                        enabled: field.control.enabled,
+                        errorText:
+                            errorBuilder == null ? field.errorText : null,
+                        error: errorBuilder != null && errorText != null
+                            ? DefaultTextStyle.merge(
+                                style: Theme.of(field.context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(
+                                      color: Theme.of(field.context)
+                                          .colorScheme
+                                          .error,
+                                    )
+                                    .merge(effectiveDecoration.errorStyle),
+                                child: errorBuilder.call(
+                                  field.context,
+                                  errorText,
+                                ),
+                              )
+                            : null,
+                      ),
+                      isHovering: isHovered,
+                      child: Text(
+                        field.value ?? '',
+                        style: Theme.of(field.context)
+                            .textTheme
+                            .titleMedium
+                            ?.merge(style)
+                            .copyWith(
+                              color: !field.control.enabled
+                                  ? Theme.of(field.context).disabledColor
+                                  : null,
+                            ),
+                      ),
+                    ),
                   ),
-                  isEmpty: isEmptyValue,
-                  child: Text(
-                    field.value ?? '',
-                    style: Theme.of(field.context)
-                        .textTheme
-                        .titleMedium
-                        ?.merge(style),
-                  ),
-                ),
-              ),
+                );
+              }),
             );
           },
         );
+}
+
+class HoverBuilder extends StatefulWidget {
+  const HoverBuilder({
+    required this.builder,
+    super.key,
+  });
+
+  final Widget Function(BuildContext context, bool isHovered) builder;
+
+  @override
+  _HoverBuilderState createState() => _HoverBuilderState();
+}
+
+class _HoverBuilderState extends State<HoverBuilder> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (event) => _onHoverChanged(enabled: true),
+      onExit: (event) => _onHoverChanged(enabled: false),
+      child: widget.builder(context, _isHovered),
+    );
+  }
+
+  void _onHoverChanged({required bool enabled}) {
+    setState(() {
+      _isHovered = enabled;
+    });
+  }
 }
