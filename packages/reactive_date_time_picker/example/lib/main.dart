@@ -1,3 +1,4 @@
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_date_time_picker/reactive_date_time_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -116,6 +117,21 @@ class MyApp extends StatelessWidget {
                         suffixIcon: Icon(Icons.calendar_today),
                       ),
                     ),
+                    const SizedBox(height: 8),
+                    ReactiveDateTimePicker(
+                      formControlName: 'dateTimeNullable',
+                      type: ReactiveDatePickerFieldType.date,
+                      decoration: const InputDecoration(
+                        labelText: 'Date & Time',
+                        hintText: 'hintText',
+                        border: OutlineInputBorder(),
+                        helperText: 'helperText',
+                        suffixIcon: Icon(Icons.calendar_today),
+                      ),
+                      onTap: (context, value) async {
+                        return await showDatePicker(context);
+                      },
+                    ),
                     const SizedBox(height: 16),
                     ElevatedButton(
                       child: const Text('Sign Up'),
@@ -140,5 +156,108 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+Future<DateTime?> showDatePicker(
+  BuildContext context, {
+  DateTime? value,
+  DateTime? firstDate,
+  DateTime? lastDate,
+  DateTime? currentDate,
+}) async {
+  final result = await _showCalendarDatePicker2Dialog(
+    context,
+    firstDate: firstDate,
+    lastDate: lastDate,
+    currentDate: currentDate,
+    value: [value],
+    calendarType: CalendarDatePicker2Type.single,
+  );
+
+  return result?.firstOrNull;
+}
+
+Future<List<DateTime?>?> _showCalendarDatePicker2Dialog(
+  BuildContext context, {
+  required CalendarDatePicker2Type calendarType,
+  List<DateTime?> value = const [],
+  DateTime? firstDate,
+  DateTime? lastDate,
+  DateTime? currentDate,
+}) async {
+  return showCalendarDatePicker2Dialog(
+    value: value,
+    context: context,
+    config: calendarConfig(
+      context,
+      calendarType: calendarType,
+      firstDate: firstDate,
+      lastDate: lastDate,
+      currentDate: currentDate,
+    ),
+    dialogSize: const Size(360, 400),
+    borderRadius: BorderRadius.circular(16),
+    dialogBackgroundColor: Colors.white,
+  );
+}
+
+CalendarDatePicker2WithActionButtonsConfig calendarConfig(
+  BuildContext context, {
+  CalendarDatePicker2Type calendarType = CalendarDatePicker2Type.single,
+  DateTime? firstDate,
+  DateTime? lastDate,
+  DateTime? currentDate,
+}) {
+  final primaryColor = Theme.of(context).primaryColor;
+
+  const dayTextStyle = TextStyle(
+    fontWeight: FontWeight.w700,
+  );
+
+  final firstDay = firstDate?.startOfDay();
+  final lastDay = lastDate?.startOfDay();
+
+  return CalendarDatePicker2WithActionButtonsConfig(
+    firstDate: firstDate,
+    lastDate: lastDate,
+    dayTextStyle: dayTextStyle,
+    calendarType: calendarType,
+    selectedDayHighlightColor: primaryColor,
+    closeDialogOnCancelTapped: true,
+    firstDayOfWeek: 1,
+    selectableDayPredicate: (day) =>
+        (firstDay == null || !day.isBefore(firstDay)) &&
+        (lastDay == null || !day.isAfter(lastDay)),
+    currentDate: currentDate,
+    weekdayLabelTextStyle: TextStyle(
+      color: primaryColor,
+      fontWeight: FontWeight.w500,
+    ),
+    controlsTextStyle: TextStyle(
+      color: primaryColor,
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
+    ),
+    centerAlignModePicker: true,
+    customModePickerIcon: const SizedBox(),
+    selectedDayTextStyle: dayTextStyle.copyWith(color: Colors.white),
+    nextMonthIcon: Icon(
+      Icons.arrow_circle_right,
+      size: 20,
+      color: primaryColor,
+    ),
+    lastMonthIcon: Icon(
+      Icons.arrow_circle_left,
+      size: 20,
+      color: primaryColor,
+    ),
+    todayTextStyle: dayTextStyle.merge(TextStyle(color: primaryColor)),
+  );
+}
+
+extension on DateTime {
+  DateTime startOfDay() {
+    return DateTime(year, month, day);
   }
 }

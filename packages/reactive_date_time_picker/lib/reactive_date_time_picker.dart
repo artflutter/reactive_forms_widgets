@@ -98,10 +98,28 @@ class ReactiveDateTimePicker
     RouteSettings? datePickerRouteSettings,
     TextInputType? keyboardType,
     Offset? anchorPoint,
+    DateTime? currentDate,
+    bool barrierDismissible = true,
+    Color? barrierColor,
+    String? barrierLabel,
+    ValueChanged<DatePickerEntryMode>? onDatePickerModeChange,
 
     // time picker params
     TimePickerEntryMode timePickerEntryMode = TimePickerEntryMode.dial,
     RouteSettings? timePickerRouteSettings,
+    bool timePickerBarrierDismissible = true,
+    Color? timePickerBarrierColor,
+    String? timePickerBarrierLabel,
+    String? hourLabelText,
+    String? minuteLabelText,
+    String? timePickerErrorInvalidText,
+    EntryModeChangeCallback? onEntryModeChanged,
+    Offset? timePickerAnchorPoint,
+    Orientation? timePickerOrientation,
+    Future<DateTime?> Function(
+      BuildContext context,
+      DateTime? value,
+    )? onTap,
     Widget Function(BuildContext context, String error)? errorBuilder,
 
     // input decorator props
@@ -111,6 +129,8 @@ class ReactiveDateTimePicker
     bool expands = false,
     MouseCursor cursor = SystemMouseCursors.click,
     Widget Function(BuildContext context, String? value)? valueBuilder,
+    Icon? switchToInputEntryModeIcon,
+    Icon? switchToCalendarEntryModeIcon,
   }) : super(
           valueAccessor:
               valueAccessor ?? _effectiveValueAccessor(type, dateFormat),
@@ -156,78 +176,111 @@ class ReactiveDateTimePicker
                         field.control.focus();
                         field.control.updateValueAndValidity();
 
-                        if (type == ReactiveDatePickerFieldType.date ||
-                            type == ReactiveDatePickerFieldType.dateTime) {
-                          date = await showDatePicker(
-                            context: field.context,
-                            initialDate: (getInitialDate ?? _getInitialDate)(
-                              field.control.value,
-                              effectiveLastDate,
-                            ),
-                            firstDate: firstDate ?? DateTime(1900),
-                            lastDate: effectiveLastDate,
-                            initialEntryMode: datePickerEntryMode,
-                            selectableDayPredicate: selectableDayPredicate,
-                            helpText: helpText,
-                            cancelText: cancelText,
-                            confirmText: confirmText,
-                            locale: locale,
-                            useRootNavigator: useRootNavigator,
-                            routeSettings: datePickerRouteSettings,
-                            textDirection: textDirection,
-                            builder: builder,
-                            initialDatePickerMode: initialDatePickerMode,
-                            errorFormatText: errorFormatText,
-                            errorInvalidText: errorInvalidText,
-                            fieldHintText: fieldHintText,
-                            fieldLabelText: fieldLabelText,
-                            keyboardType: keyboardType,
-                            anchorPoint: anchorPoint,
-                          );
-                        }
+                        final initialDate = (getInitialDate ?? _getInitialDate)(
+                          field.control.value,
+                          effectiveLastDate,
+                        );
 
-                        if (type == ReactiveDatePickerFieldType.time ||
-                            (type == ReactiveDatePickerFieldType.dateTime &&
-                                // there is no need to show timepicker if cancel was pressed on datepicker
-                                date != null)) {
-                          time = await showTimePicker(
-                            context: field.context,
-                            initialTime: (getInitialTime ??
-                                _getInitialTime)(field.control.value),
-                            builder: builder,
-                            useRootNavigator: useRootNavigator,
-                            initialEntryMode: timePickerEntryMode,
-                            cancelText: cancelText,
-                            confirmText: confirmText,
-                            helpText: helpText,
-                            routeSettings: timePickerRouteSettings,
-                          );
-                        }
-
-                        if (
-                            // if `date` and `time` in `dateTime` mode is not empty...
-                            (type == ReactiveDatePickerFieldType.dateTime &&
-                                    (date != null && time != null)) ||
-                                // ... or if `date` in `date` mode is not empty ...
-                                (type == ReactiveDatePickerFieldType.date &&
-                                    date != null) ||
-                                // ... or if `time` in `time` mode is not empty ...
-                                (type == ReactiveDatePickerFieldType.time &&
-                                    time != null)) {
-                          final dateTime = _combine(date, time);
-
-                          final value = field.control.value;
-                          // ... and new value is not the same as was before...
-                          if (value == null || dateTime.compareTo(value) != 0) {
-                            // ... this means that cancel was not pressed at any moment
-                            // so we can update the field
-                            field.didChange(
-                              effectiveValueAccessor.modelToViewValue(
-                                _combine(date, time),
+                        if (onTap != null) {
+                          field.didChange(
+                            effectiveValueAccessor.modelToViewValue(
+                              await onTap(
+                                field.context,
+                                initialDate,
                               ),
+                            ),
+                          );
+                        } else {
+                          if (type == ReactiveDatePickerFieldType.date ||
+                              type == ReactiveDatePickerFieldType.dateTime) {
+                            date = await showDatePicker(
+                              context: field.context,
+                              initialDate: initialDate,
+                              currentDate: currentDate,
+                              firstDate: firstDate ?? DateTime(1900),
+                              lastDate: effectiveLastDate,
+                              initialEntryMode: datePickerEntryMode,
+                              selectableDayPredicate: selectableDayPredicate,
+                              helpText: helpText,
+                              cancelText: cancelText,
+                              confirmText: confirmText,
+                              locale: locale,
+                              useRootNavigator: useRootNavigator,
+                              routeSettings: datePickerRouteSettings,
+                              textDirection: textDirection,
+                              builder: builder,
+                              initialDatePickerMode: initialDatePickerMode,
+                              errorFormatText: errorFormatText,
+                              errorInvalidText: errorInvalidText,
+                              fieldHintText: fieldHintText,
+                              fieldLabelText: fieldLabelText,
+                              keyboardType: keyboardType,
+                              anchorPoint: anchorPoint,
+                              barrierDismissible: barrierDismissible,
+                              barrierColor: barrierColor,
+                              barrierLabel: barrierLabel,
+                              onDatePickerModeChange: onDatePickerModeChange,
+                              switchToInputEntryModeIcon:
+                                  switchToInputEntryModeIcon,
+                              switchToCalendarEntryModeIcon:
+                                  switchToCalendarEntryModeIcon,
                             );
                           }
+
+                          if (type == ReactiveDatePickerFieldType.time ||
+                              (type == ReactiveDatePickerFieldType.dateTime &&
+                                  // there is no need to show timepicker if cancel was pressed on datepicker
+                                  date != null)) {
+                            time = await showTimePicker(
+                              context: field.context,
+                              initialTime: (getInitialTime ??
+                                  _getInitialTime)(field.control.value),
+                              builder: builder,
+                              useRootNavigator: useRootNavigator,
+                              initialEntryMode: timePickerEntryMode,
+                              cancelText: cancelText,
+                              confirmText: confirmText,
+                              helpText: helpText,
+                              routeSettings: timePickerRouteSettings,
+                              barrierDismissible: timePickerBarrierDismissible,
+                              barrierColor: timePickerBarrierColor,
+                              barrierLabel: timePickerBarrierLabel,
+                              errorInvalidText: timePickerErrorInvalidText,
+                              hourLabelText: hourLabelText,
+                              minuteLabelText: minuteLabelText,
+                              onEntryModeChanged: onEntryModeChanged,
+                              anchorPoint: timePickerAnchorPoint,
+                              orientation: timePickerOrientation,
+                            );
+                          }
+
+                          if (
+                              // if `date` and `time` in `dateTime` mode is not empty...
+                              (type == ReactiveDatePickerFieldType.dateTime &&
+                                      (date != null && time != null)) ||
+                                  // ... or if `date` in `date` mode is not empty ...
+                                  (type == ReactiveDatePickerFieldType.date &&
+                                      date != null) ||
+                                  // ... or if `time` in `time` mode is not empty ...
+                                  (type == ReactiveDatePickerFieldType.time &&
+                                      time != null)) {
+                            final dateTime = _combine(date, time);
+
+                            final value = field.control.value;
+                            // ... and new value is not the same as was before...
+                            if (value == null ||
+                                dateTime.compareTo(value) != 0) {
+                              // ... this means that cancel was not pressed at any moment
+                              // so we can update the field
+                              field.didChange(
+                                effectiveValueAccessor.modelToViewValue(
+                                  _combine(date, time),
+                                ),
+                              );
+                            }
+                          }
                         }
+
                         field.control.unfocus();
                         field.control.updateValueAndValidity();
                         field.control.markAsTouched();
@@ -273,9 +326,11 @@ class ReactiveDateTimePicker
                                     ? Theme.of(field.context).disabledColor
                                     : null,
                               ),
-                          child: valueBuilder?.call(field.context, field.value) ?? Text(
-                            field.value ?? '',
-                          ),
+                          child:
+                              valueBuilder?.call(field.context, field.value) ??
+                                  Text(
+                                    field.value ?? '',
+                                  ),
                         ),
                       ),
                     ),

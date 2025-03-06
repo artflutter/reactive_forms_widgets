@@ -1,3 +1,8 @@
+## [4.5.0]
+
+* more props pass through
+* custom picker integration
+
 ## [4.4.0]
 
 * valueBuilder method
