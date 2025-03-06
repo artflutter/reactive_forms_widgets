@@ -75,15 +75,34 @@ class MyApp extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    ReactiveDateTimePicker(
-                      formControlName: 'dateTime',
-                      type: ReactiveDatePickerFieldType.dateTime,
-                      decoration: const InputDecoration(
-                        labelText: 'Date & Time',
-                        border: OutlineInputBorder(),
-                        helperText: '',
-                        suffixIcon: Icon(Icons.calendar_today),
-                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ReactiveDateTimePicker(
+                            formControlName: 'dateTime',
+                            type: ReactiveDatePickerFieldType.dateTime,
+                            decoration: const InputDecoration(
+                              labelText: 'Date & Time',
+                              border: OutlineInputBorder(),
+                              helperText: '',
+                              suffixIcon: Icon(Icons.calendar_today),
+                            ),
+                            valueBuilder: (_, value) => Text(
+                              value ?? '',
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: TextField(
+                              decoration: const InputDecoration(
+                            labelText: 'Date & Time',
+                            border: OutlineInputBorder(),
+                            helperText: '',
+                            suffixIcon: Icon(Icons.calendar_today),
+                          )),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 8),
                     ReactiveDateTimePicker(

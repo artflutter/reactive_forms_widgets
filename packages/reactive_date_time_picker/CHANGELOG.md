@@ -1,3 +1,7 @@
+## [4.4.0]
+
+* valueBuilder method
+
 ## [4.3.0]
 
 * mouse cursor

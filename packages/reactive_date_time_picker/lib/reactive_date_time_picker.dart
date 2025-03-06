@@ -110,6 +110,7 @@ class ReactiveDateTimePicker
     TextAlignVertical? textAlignVertical,
     bool expands = false,
     MouseCursor cursor = SystemMouseCursors.click,
+    Widget Function(BuildContext context, String? value)? valueBuilder,
   }) : super(
           valueAccessor:
               valueAccessor ?? _effectiveValueAccessor(type, dateFormat),
@@ -262,8 +263,7 @@ class ReactiveDateTimePicker
                                 )
                               : null,
                         ),
-                        child: Text(
-                          field.value ?? '',
+                        child: DefaultTextStyle.merge(
                           style: Theme.of(field.context)
                               .textTheme
                               .titleMedium
@@ -273,6 +273,9 @@ class ReactiveDateTimePicker
                                     ? Theme.of(field.context).disabledColor
                                     : null,
                               ),
+                          child: valueBuilder?.call(field.context, field.value) ?? Text(
+                            field.value ?? '',
+                          ),
                         ),
                       ),
                     ),
