@@ -89,6 +89,11 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
     TextAlignVertical? textAlignVertical,
     bool expands = false,
     MouseCursor cursor = SystemMouseCursors.click,
+    Future<DateTimeRange?> Function(
+      BuildContext context,
+      DateTimeRange? value,
+    )? onTap,
+    Widget Function(BuildContext context, String? value)? valueBuilder,
   }) : super(
           valueAccessor: valueAccessor ?? DateTimeRangeValueAccessor(),
           builder: (field) {
@@ -126,49 +131,67 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
                   cursor: cursor,
                   child: GestureDetector(
                     onTap: () async {
-                      final dateRange = await showDateRangePicker(
-                        context: field.context,
-                        initialDateRange: field.control.value,
-                        firstDate: firstDate ?? DateTime(1900),
-                        lastDate: effectiveLastDate,
-                        currentDate: currentDate,
-                        initialEntryMode: initialEntryMode,
-                        helpText: helpText,
-                        cancelText: cancelText,
-                        confirmText: confirmText,
-                        saveText: saveText,
-                        errorFormatText: errorFormatText,
-                        errorInvalidText: errorInvalidText,
-                        errorInvalidRangeText: errorInvalidRangeText,
-                        fieldStartHintText: fieldStartHintText,
-                        fieldEndHintText: fieldEndHintText,
-                        fieldStartLabelText: fieldStartLabelText,
-                        fieldEndLabelText: fieldEndLabelText,
-                        locale: locale,
-                        useRootNavigator: useRootNavigator,
-                        routeSettings: routeSettings,
-                        textDirection: textDirection,
-                        builder: builder,
-                        barrierDismissible: barrierDismissible,
-                        barrierColor: barrierColor,
-                        anchorPoint: anchorPoint,
-                        keyboardType: keyboardType,
-                        switchToInputEntryModeIcon: switchToInputEntryModeIcon,
-                        switchToCalendarEntryModeIcon:
-                            switchToCalendarEntryModeIcon,
-                      );
+                      field.control.focus();
+                      field.control.updateValueAndValidity();
+                      if (onTap != null) {
+                        field.didChange(
+                          effectiveValueAccessor.modelToViewValue(
+                            await onTap(
+                              field.context,
+                              field.control.value,
+                            ),
+                          ),
+                        );
+                      } else {
+                        final dateRange = await showDateRangePicker(
+                          context: field.context,
+                          initialDateRange: field.control.value,
+                          firstDate: firstDate ?? DateTime(1900),
+                          lastDate: effectiveLastDate,
+                          currentDate: currentDate,
+                          initialEntryMode: initialEntryMode,
+                          helpText: helpText,
+                          cancelText: cancelText,
+                          confirmText: confirmText,
+                          saveText: saveText,
+                          errorFormatText: errorFormatText,
+                          errorInvalidText: errorInvalidText,
+                          errorInvalidRangeText: errorInvalidRangeText,
+                          fieldStartHintText: fieldStartHintText,
+                          fieldEndHintText: fieldEndHintText,
+                          fieldStartLabelText: fieldStartLabelText,
+                          fieldEndLabelText: fieldEndLabelText,
+                          locale: locale,
+                          useRootNavigator: useRootNavigator,
+                          routeSettings: routeSettings,
+                          textDirection: textDirection,
+                          builder: builder,
+                          barrierDismissible: barrierDismissible,
+                          barrierColor: barrierColor,
+                          anchorPoint: anchorPoint,
+                          keyboardType: keyboardType,
+                          switchToInputEntryModeIcon:
+                              switchToInputEntryModeIcon,
+                          switchToCalendarEntryModeIcon:
+                              switchToCalendarEntryModeIcon,
+                        );
 
-                      if (dateRange == null) {
-                        return;
+                        if (dateRange == null) {
+                          return;
+                        }
+                        field.didChange(
+                          effectiveValueAccessor.modelToViewValue(dateRange),
+                        );
                       }
 
+                      field.control.unfocus();
+                      field.control.updateValueAndValidity();
                       field.control.markAsTouched();
-                      field.didChange(
-                          effectiveValueAccessor.modelToViewValue(dateRange));
                     },
                     child: InputDecorator(
                       isFocused: field.control.hasFocus,
                       isEmpty: isEmptyValue,
+                      isHovering: isHovered,
                       baseStyle: baseStyle,
                       textAlign: textAlign,
                       textAlignVertical: textAlignVertical,
@@ -195,9 +218,7 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
                               )
                             : null,
                       ),
-                      isHovering: isHovered,
-                      child: Text(
-                        field.value ?? '',
+                      child: DefaultTextStyle.merge(
                         style: Theme.of(field.context)
                             .textTheme
                             .titleMedium
@@ -206,6 +227,10 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
                               color: !field.control.enabled
                                   ? Theme.of(field.context).disabledColor
                                   : null,
+                            ),
+                        child: valueBuilder?.call(field.context, field.value) ??
+                            Text(
+                              field.value ?? '',
                             ),
                       ),
                     ),

@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  calendar_date_picker2: ^1.1.9
   reactive_forms: ">=16.0.0 <18.0.0"
   reactive_date_range_picker:
     path: ../

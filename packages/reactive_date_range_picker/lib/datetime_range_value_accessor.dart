@@ -9,9 +9,10 @@ class DateTimeRangeValueAccessor
   final DateFormat dateTimeFormat;
   final String delimiter;
 
-  DateTimeRangeValueAccessor(
-      {DateFormat? dateTimeFormat, this.delimiter = ' - '})
-      : dateTimeFormat = dateTimeFormat ?? DateFormat('yyyy/MM/dd');
+  DateTimeRangeValueAccessor({
+    DateFormat? dateTimeFormat,
+    this.delimiter = ' - ',
+  }) : dateTimeFormat = dateTimeFormat ?? DateFormat('yyyy/MM/dd');
 
   @override
   String? modelToViewValue(DateTimeRange? modelValue) {
@@ -22,7 +23,9 @@ class DateTimeRangeValueAccessor
 
   @override
   DateTimeRange? viewToModelValue(String? viewValue) {
-    final dateRange = viewValue?.trim().split(delimiter);
+    final dateRange = viewValue == null || viewValue.isEmpty
+        ? null
+        : viewValue.trim().split(delimiter);
 
     return dateRange == null || dateRange.isEmpty
         ? null

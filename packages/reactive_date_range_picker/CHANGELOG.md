@@ -1,3 +1,8 @@
+## [2.3.0]
+
+* onTap for custom calendars support
+* valueBuilder
+
 ## [2.2.0]
 
 * mouse cursor
