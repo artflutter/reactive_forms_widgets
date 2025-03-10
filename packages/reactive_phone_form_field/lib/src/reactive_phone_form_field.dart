@@ -139,12 +139,15 @@ class ReactivePhoneFormField<T>
     Widget Function(BuildContext, EditableTextState)? contextMenuBuilder,
     Function(PointerDownEvent)? onTapOutside,
     PhoneController? controller,
+    Widget Function(BuildContext context, String error)? errorBuilder,
   })  : _textController = controller,
         super(
           builder: (field) {
             final state = field as _ReactivePhoneFormFieldState<T>;
             final effectiveDecoration = decoration
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);
+            final errorText = field.errorText;
+
             return PhoneFormField(
               countryButtonStyle: countryButtonStyle,
               focusNode: state.focusNode,
@@ -156,8 +159,23 @@ class ReactivePhoneFormField<T>
               countrySelectorNavigator: countrySelectorNavigator,
               onSaved: onSaved,
               decoration: effectiveDecoration.copyWith(
-                errorText: field.errorText,
+                errorText: errorBuilder == null ? field.errorText : null,
                 enabled: field.control.enabled,
+                error: errorBuilder != null && errorText != null
+                    ? DefaultTextStyle.merge(
+                        style: Theme.of(field.context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(
+                              color: Theme.of(field.context).colorScheme.error,
+                            )
+                            .merge(effectiveDecoration.errorStyle),
+                        child: errorBuilder.call(
+                          field.context,
+                          errorText,
+                        ),
+                      )
+                    : null,
               ),
               cursorColor: cursorColor,
               autovalidateMode: AutovalidateMode.disabled,
