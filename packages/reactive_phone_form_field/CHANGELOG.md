@@ -1,3 +1,7 @@
+## [5.0.1]
+
+* phone_form_field: ^10.0.5
+
 ## [5.0.0]
 
 * phone_form_field: ^10.0.0

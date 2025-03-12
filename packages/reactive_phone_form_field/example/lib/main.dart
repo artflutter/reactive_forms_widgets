@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
             isoCode: IsoCode.UA,
             nsn: '933456789',
           ),
+          disabled: true,
           validators: [
             // PhoneValidators.required,
             // PhoneValidators.valid,
