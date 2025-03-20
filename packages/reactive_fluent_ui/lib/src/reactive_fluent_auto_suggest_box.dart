@@ -89,7 +89,7 @@ class ReactiveFluentAutoSuggestBox<T, V> extends ReactiveFormField<T, V> {
     //////////////////////////////////////////////////////////////////////////
     required List<AutoSuggestBoxItem<V>> items,
     TextEditingController? controller,
-    BoxDecoration? decoration,
+    WidgetStateProperty<BoxDecoration>? decoration,
     TextInputAction? textInputAction,
     TextStyle? style,
     bool autofocus = false,
@@ -112,7 +112,7 @@ class ReactiveFluentAutoSuggestBox<T, V> extends ReactiveFormField<T, V> {
     AutoSuggestBoxSorter<V>? sorter,
     Widget? trailingIcon,
     bool clearButtonEnabled = true,
-    BoxDecoration? foregroundDecoration,
+    WidgetStateProperty<BoxDecoration>? foregroundDecoration,
     bool enableKeyboardControls = true,
     double maxPopupHeight = 380.0,
     WidgetBuilder? noResultsFoundBuilder,

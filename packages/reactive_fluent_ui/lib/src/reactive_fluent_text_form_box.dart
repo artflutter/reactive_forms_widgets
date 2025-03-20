@@ -90,7 +90,7 @@ class ReactiveFluentTextFormBox<T> extends ReactiveFormField<T, String> {
 
     //////////////////////////////////////////////////////////////////////////
     TextEditingController? controller,
-    BoxDecoration? decoration,
+    WidgetStateProperty<BoxDecoration>? decoration,
     TextInputType? keyboardType,
     TextCapitalization textCapitalization = TextCapitalization.none,
     TextInputAction? textInputAction,
