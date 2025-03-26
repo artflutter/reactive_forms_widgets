@@ -142,9 +142,9 @@ class MyApp extends StatelessWidget {
                                 spacing: 24,
                                 children: value
                                     .map(
-                                      (e) => e.map(
-                                        video: (_) => Text("video"),
-                                        image: (i) => SizedBox.square(
+                                      (selectedFile) => switch (selectedFile) {
+                                        SelectedFileVideo() => Text("video"),
+                                        SelectedFileImage() => SizedBox.square(
                                             dimension: 50,
                                             child: InkWell(
                                                 onTap: () {
@@ -153,8 +153,9 @@ class MyApp extends StatelessWidget {
                                                     null,
                                                   );
                                                 },
-                                                child: ImageView(image: i))),
-                                      ),
+                                                child: ImageView(
+                                                    image: selectedFile))),
+                                      },
                                     )
                                     .toList()
                                   ..add(IconButton(

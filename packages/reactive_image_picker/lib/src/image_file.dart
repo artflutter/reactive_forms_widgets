@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 part 'image_file.freezed.dart';
 
 @freezed
-class SelectedFile with _$SelectedFile {
+sealed class SelectedFile with _$SelectedFile {
   SelectedFile._();
 
   factory SelectedFile.video({
