@@ -183,6 +183,7 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
                                     Theme.of(field.context).colorScheme.error,
                               )
                               .merge(effectiveDecoration.errorStyle),
+                          maxLines: effectiveDecoration.errorMaxLines,
                           child: errorBuilder.call(
                             field.context,
                             errorText,

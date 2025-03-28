@@ -187,6 +187,7 @@ class ReactiveDropdownSearchMultiSelection<T, V>
                       color:
                       Theme.of(field.context).colorScheme.error,
                     ).merge(effectiveDecoration.errorStyle),
+                    maxLines: effectiveDecoration.errorMaxLines,
                     child: errorBuilder.call(
                       field.context,
                       errorText,

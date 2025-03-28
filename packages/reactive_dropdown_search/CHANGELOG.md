@@ -1,3 +1,7 @@
+## [5.0.6]
+
+* errorBuilder add errorMaxLines to default text style
+
 ## [5.0.5]
 
 * errorBuilder style application

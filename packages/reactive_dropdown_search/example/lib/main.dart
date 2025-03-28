@@ -65,6 +65,8 @@ class MyApp extends StatelessWidget {
                         disabledItemFn: (s) {
                           return s.startsWith('I');
                         },
+                          // fit: FlexFit.loose,
+                        constraints: BoxConstraints(minHeight: 100, maxHeight: 400)
                       ),
                       items: (_, __) => const [
                         "Brazil",
