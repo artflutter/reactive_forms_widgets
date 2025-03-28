@@ -19,6 +19,10 @@ class MyApp extends StatelessWidget {
             ],
           ),
         ),
+        'multiImage2': FormControl<MultiFile<String>>(
+          disabled: true,
+          value: MultiFile<String>.fromFiles([]),
+        ),
       });
 
   // This widget is the root of your application.
@@ -123,6 +127,91 @@ class MyApp extends StatelessWidget {
                         decoration: const InputDecoration(
                           labelText: 'Multi image picker',
                           border: OutlineInputBorder(),
+                          helperText: '',
+                        ),
+                      ),
+                    ),
+                    Container(
+                      constraints:
+                          const BoxConstraints(minHeight: 0, maxHeight: 300),
+                      child: ReactiveFilePicker<String>(
+                        formControlName: 'multiImage2',
+                        filePickerBuilder: (pickImage, files, onChange) {
+                          final items = [
+                            ...files.files
+                                .asMap()
+                                .map((key, value) => MapEntry(
+                                    key,
+                                    ListTile(
+                                      onTap: () {
+                                        onChange(files.copyWith(
+                                            files:
+                                                List<String>.from(files.files)
+                                                  ..removeAt(key)));
+                                      },
+                                      leading: const Icon(Icons.delete),
+                                      title: FileListItem(value).build(context),
+                                    )))
+                                .values,
+                            ...files.platformFiles
+                                .asMap()
+                                .map((key, value) => MapEntry(
+                                      key,
+                                      ListTile(
+                                        onTap: () {
+                                          onChange(files.copyWith(
+                                              platformFiles:
+                                                  List<PlatformFile>.from(
+                                                      files.platformFiles)
+                                                    ..removeAt(key)));
+                                        },
+                                        leading: const Icon(Icons.delete),
+                                        title: PlatformFileListItem(value)
+                                            .build(context),
+                                      ),
+                                      // InkWell(
+                                      //   onTap: () => onChange(images.copyWith(
+                                      //       platformFiles: List<PlatformFile>.from(
+                                      //           images.platformFiles)
+                                      //         ..removeAt(key))),
+                                      //   child: Icon(
+                                      //     Icons.delete,
+                                      //     color: Colors.white,
+                                      //   ),
+                                      // ),
+                                    ))
+                                .values,
+                          ];
+
+                          return Column(
+                            children: [
+                              Expanded(
+                                child: ListView.builder(
+                                  itemCount: items.length,
+                                  itemBuilder: (_, i) {
+                                    return items[i];
+                                  },
+                                ),
+
+                                // GridView.count(
+                                //   crossAxisCount: 3,
+                                //   children: List.generate(items.length, (index) {
+                                //     return items[index];
+                                //   }),
+                                // ),
+                              ),
+                              ElevatedButton(
+                                onPressed: pickImage,
+                                child: const Text("Pick images"),
+                              ),
+                            ],
+                          );
+                        },
+                        decoration: const InputDecoration(
+                          labelText: 'Multi image picker',
+                          border: OutlineInputBorder(),
+                          filled: true,
+                          fillColor: Colors.grey,
                           helperText: '',
                         ),
                       ),

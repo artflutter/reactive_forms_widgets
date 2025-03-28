@@ -1,3 +1,9 @@
+## [3.1.0]
+
+* mouse cursor
+* hover effect support
+* expose more input decorator props
+
 ## [3.0.3]
 
 * MultiFile.fromFiles allow null
