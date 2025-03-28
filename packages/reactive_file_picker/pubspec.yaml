@@ -14,11 +14,11 @@ dependencies:
     sdk: flutter
   reactive_forms: ">=16.0.0 <18.0.0"
   file_picker: ^8.0.3
-  freezed_annotation: ^2.4.1
+  freezed_annotation: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  freezed: ^2.5.2
+  freezed: ^3.0.0
   build_runner: ^2.4.9
   flutter_lints: ^3.0.2
