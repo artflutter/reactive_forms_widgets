@@ -157,7 +157,6 @@ class ReactiveDropdownSearchMultiSelection<T, V>
             final effectiveDecoration = dropdownDecoratorProps.decoration?.applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
             final errorText = field.errorText;
-            final x = Stack();
 
             return DropdownSearch<V>.multiSelection(
               key: widgetKey,
