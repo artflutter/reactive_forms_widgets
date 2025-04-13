@@ -87,7 +87,7 @@ class MyApp extends StatelessWidget {
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      popupProps: PopupPropsMultiSelection.menu(
+                      popupProps: MultiSelectionPopupProps.menu(
                         showSelectedItems: true,
                         disabledItemFn: (s) {
                           return s.startsWith('I');

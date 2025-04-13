@@ -152,13 +152,13 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
               : null,
           builder: (field) {
             final effectiveDecoration = dropdownDecoratorProps.decoration
-                .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+                ?.applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
             final errorText = field.errorText;
 
             return DropdownSearch<V>(
               key: widgetKey,
-              onChanged: field.didChange,
+              onSelected: field.didChange,
               popupProps: popupProps,
               selectedItem: field.value,
               dropdownBuilder: dropdownBuilder,
@@ -171,7 +171,7 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
               onBeforeChange: onBeforeChange,
               onBeforePopupOpening: onBeforePopupOpening,
               decoratorProps: DropDownDecoratorProps(
-                decoration: effectiveDecoration.copyWith(
+                decoration: effectiveDecoration?.copyWith(
                   errorText: errorBuilder == null ? errorText : null,
                   error: errorBuilder != null && errorText != null
                       ? DefaultTextStyle.merge(
