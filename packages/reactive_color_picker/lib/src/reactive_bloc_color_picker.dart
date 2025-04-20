@@ -36,7 +36,7 @@ Widget _defaultItemBuilder(
       color: color,
       boxShadow: [
         BoxShadow(
-            color: color.withOpacity(0.8),
+            color: color.withAlpha(200),
             offset: const Offset(1, 2),
             blurRadius: 5)
       ],

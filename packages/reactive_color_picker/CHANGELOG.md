@@ -1,3 +1,7 @@
+## [2.2.1]
+
+* fixed deprecations
+
 ## [2.2.0]
 
 * color picker builders for more customisations
