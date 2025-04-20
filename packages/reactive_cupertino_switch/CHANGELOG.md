@@ -1,3 +1,15 @@
+## [3.0.0]
+
+* migrate deprecations
+
+## [2.1.3]
+
+* rollback migrate deprecations
+
+## [2.1.2]
+
+* migrate deprecations
+
 ## [2.1.0]
 
 * update api
