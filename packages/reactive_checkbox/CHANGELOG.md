@@ -1,3 +1,7 @@
+## [3.0.0]
+
+* migrate deprecated activeColor, trackColor,
+
 ## [2.1.0]
 
 * added missing properties
