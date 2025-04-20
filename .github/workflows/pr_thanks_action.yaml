@@ -13,6 +13,7 @@ jobs:
       - name: Post a themed thank you comment
         uses: actions/github-script@v7
         with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const prNumber = context.payload.pull_request.number;
             const author = context.payload.pull_request.user.login;
