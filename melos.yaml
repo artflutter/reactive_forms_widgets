@@ -1,4 +1,5 @@
 # fvm flutter pub global run melos bootstrap
+# fvm flutter pub global run melos bootstrap
 name: reactive_forms_widgets
 packages:
   - packages/**
