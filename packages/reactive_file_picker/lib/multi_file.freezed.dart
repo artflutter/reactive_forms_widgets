@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,91 +10,75 @@ part of 'multi_file.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MultiFile<T> {
-  List<T> get files => throw _privateConstructorUsedError;
-  List<PlatformFile> get platformFiles => throw _privateConstructorUsedError;
+  List<T> get files;
+  List<PlatformFile> get platformFiles;
 
-  @JsonKey(ignore: true)
-  $MultiFileCopyWith<T, MultiFile<T>> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MultiFileCopyWith<T, $Res> {
-  factory $MultiFileCopyWith(
-          MultiFile<T> value, $Res Function(MultiFile<T>) then) =
-      _$MultiFileCopyWithImpl<T, $Res, MultiFile<T>>;
-  @useResult
-  $Res call({List<T> files, List<PlatformFile> platformFiles});
-}
-
-/// @nodoc
-class _$MultiFileCopyWithImpl<T, $Res, $Val extends MultiFile<T>>
-    implements $MultiFileCopyWith<T, $Res> {
-  _$MultiFileCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
+  /// Create a copy of MultiFile
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
+  $MultiFileCopyWith<T, MultiFile<T>> get copyWith =>
+      _$MultiFileCopyWithImpl<T, MultiFile<T>>(
+          this as MultiFile<T>, _$identity);
+
   @override
-  $Res call({
-    Object? files = null,
-    Object? platformFiles = null,
-  }) {
-    return _then(_value.copyWith(
-      files: null == files
-          ? _value.files
-          : files // ignore: cast_nullable_to_non_nullable
-              as List<T>,
-      platformFiles: null == platformFiles
-          ? _value.platformFiles
-          : platformFiles // ignore: cast_nullable_to_non_nullable
-              as List<PlatformFile>,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is MultiFile<T> &&
+            const DeepCollectionEquality().equals(other.files, files) &&
+            const DeepCollectionEquality()
+                .equals(other.platformFiles, platformFiles));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(files),
+      const DeepCollectionEquality().hash(platformFiles));
+
+  @override
+  String toString() {
+    return 'MultiFile<$T>(files: $files, platformFiles: $platformFiles)';
   }
 }
 
 /// @nodoc
-abstract class _$$MultiFileImplCopyWith<T, $Res>
-    implements $MultiFileCopyWith<T, $Res> {
-  factory _$$MultiFileImplCopyWith(
-          _$MultiFileImpl<T> value, $Res Function(_$MultiFileImpl<T>) then) =
-      __$$MultiFileImplCopyWithImpl<T, $Res>;
-  @override
+abstract mixin class $MultiFileCopyWith<T, $Res> {
+  factory $MultiFileCopyWith(
+          MultiFile<T> value, $Res Function(MultiFile<T>) _then) =
+      _$MultiFileCopyWithImpl;
   @useResult
   $Res call({List<T> files, List<PlatformFile> platformFiles});
 }
 
 /// @nodoc
-class __$$MultiFileImplCopyWithImpl<T, $Res>
-    extends _$MultiFileCopyWithImpl<T, $Res, _$MultiFileImpl<T>>
-    implements _$$MultiFileImplCopyWith<T, $Res> {
-  __$$MultiFileImplCopyWithImpl(
-      _$MultiFileImpl<T> _value, $Res Function(_$MultiFileImpl<T>) _then)
-      : super(_value, _then);
+class _$MultiFileCopyWithImpl<T, $Res> implements $MultiFileCopyWith<T, $Res> {
+  _$MultiFileCopyWithImpl(this._self, this._then);
 
+  final MultiFile<T> _self;
+  final $Res Function(MultiFile<T>) _then;
+
+  /// Create a copy of MultiFile
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? files = null,
     Object? platformFiles = null,
   }) {
-    return _then(_$MultiFileImpl<T>(
+    return _then(_self.copyWith(
       files: null == files
-          ? _value._files
+          ? _self.files
           : files // ignore: cast_nullable_to_non_nullable
               as List<T>,
       platformFiles: null == platformFiles
-          ? _value._platformFiles
+          ? _self.platformFiles
           : platformFiles // ignore: cast_nullable_to_non_nullable
               as List<PlatformFile>,
     ));
@@ -102,13 +87,12 @@ class __$$MultiFileImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$MultiFileImpl<T> extends _MultiFile<T> {
-  const _$MultiFileImpl(
+class _MultiFile<T> implements MultiFile<T> {
+  const _MultiFile(
       {final List<T> files = const [],
       final List<PlatformFile> platformFiles = const []})
       : _files = files,
-        _platformFiles = platformFiles,
-        super._();
+        _platformFiles = platformFiles;
 
   final List<T> _files;
   @override
@@ -128,16 +112,19 @@ class _$MultiFileImpl<T> extends _MultiFile<T> {
     return EqualUnmodifiableListView(_platformFiles);
   }
 
+  /// Create a copy of MultiFile
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'MultiFile<$T>(files: $files, platformFiles: $platformFiles)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MultiFileCopyWith<T, _MultiFile<T>> get copyWith =>
+      __$MultiFileCopyWithImpl<T, _MultiFile<T>>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MultiFileImpl<T> &&
+            other is _MultiFile<T> &&
             const DeepCollectionEquality().equals(other._files, _files) &&
             const DeepCollectionEquality()
                 .equals(other._platformFiles, _platformFiles));
@@ -149,25 +136,50 @@ class _$MultiFileImpl<T> extends _MultiFile<T> {
       const DeepCollectionEquality().hash(_files),
       const DeepCollectionEquality().hash(_platformFiles));
 
-  @JsonKey(ignore: true)
+  @override
+  String toString() {
+    return 'MultiFile<$T>(files: $files, platformFiles: $platformFiles)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$MultiFileCopyWith<T, $Res>
+    implements $MultiFileCopyWith<T, $Res> {
+  factory _$MultiFileCopyWith(
+          _MultiFile<T> value, $Res Function(_MultiFile<T>) _then) =
+      __$MultiFileCopyWithImpl;
+  @override
+  @useResult
+  $Res call({List<T> files, List<PlatformFile> platformFiles});
+}
+
+/// @nodoc
+class __$MultiFileCopyWithImpl<T, $Res>
+    implements _$MultiFileCopyWith<T, $Res> {
+  __$MultiFileCopyWithImpl(this._self, this._then);
+
+  final _MultiFile<T> _self;
+  final $Res Function(_MultiFile<T>) _then;
+
+  /// Create a copy of MultiFile
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  _$$MultiFileImplCopyWith<T, _$MultiFileImpl<T>> get copyWith =>
-      __$$MultiFileImplCopyWithImpl<T, _$MultiFileImpl<T>>(this, _$identity);
+  $Res call({
+    Object? files = null,
+    Object? platformFiles = null,
+  }) {
+    return _then(_MultiFile<T>(
+      files: null == files
+          ? _self._files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<T>,
+      platformFiles: null == platformFiles
+          ? _self._platformFiles
+          : platformFiles // ignore: cast_nullable_to_non_nullable
+              as List<PlatformFile>,
+    ));
+  }
 }
 
-abstract class _MultiFile<T> extends MultiFile<T> {
-  const factory _MultiFile(
-      {final List<T> files,
-      final List<PlatformFile> platformFiles}) = _$MultiFileImpl<T>;
-  const _MultiFile._() : super._();
-
-  @override
-  List<T> get files;
-  @override
-  List<PlatformFile> get platformFiles;
-  @override
-  @JsonKey(ignore: true)
-  _$$MultiFileImplCopyWith<T, _$MultiFileImpl<T>> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on
