@@ -2,12 +2,7 @@ name: Thank PR Author
 
 on:
   pull_request_target:
-    types:
-      - closed
-      - opened
-      - edited
-      - synchronize
-      - reopened
+    types: [ opened, edited, synchronize, reopened ]
 
 permissions:
   pull-requests: write
