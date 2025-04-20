@@ -1,3 +1,7 @@
+## [5.0.0]
+
+* remove deprecated disabledOpacity
+
 ## [4.5.0]
 
 * more props pass through

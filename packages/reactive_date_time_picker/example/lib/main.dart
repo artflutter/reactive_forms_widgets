@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
                   children: [
                     const SizedBox(height: 8),
                     ReactiveDateTimePicker(
-                      disabledOpacity: 1,
                       formControlName: 'date',
                       decoration: const InputDecoration(
                         labelText: 'Date',
@@ -115,7 +114,11 @@ class MyApp extends StatelessWidget {
                         border: OutlineInputBorder(),
                         helperText: 'helperText',
                         suffixIcon: Icon(Icons.calendar_today),
+                        
                       ),
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime.now().add(Duration(days: 1)),
+                      
                     ),
                     const SizedBox(height: 8),
                     ReactiveDateTimePicker(
