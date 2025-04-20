@@ -11,20 +11,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  {{originalPackageName.snakeCase()}}:
+  ? { { originalPackageName.snakeCase() } }
   reactive_forms: ">=16.0.0 <18.0.0"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.2
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
 # To add assets to your package, add an assets section, like this:
 # assets:
 #   - images/a_dot_burr.jpeg

@@ -1,3 +1,7 @@
+## [2.1.2]
+
+* bugfix: https://github.com/artflutter/reactive_forms_widgets/pull/174
+
 ## [2.1.1]
 
 * bugfix: https://github.com/artflutter/reactive_forms_widgets/issues/134

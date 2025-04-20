@@ -176,7 +176,7 @@ class ReactiveRawAutocomplete<T, V extends Object>
     bool onTapAlwaysCalled = false,
     bool canRequestFocus = true,
     Color? cursorErrorColor,
-    MaterialStatesController? statesController,
+    WidgetStatesController? statesController,
   }) : super(
           builder: (field) {
             final state = field as _ReactiveRawAutocompleteState<T, V>;

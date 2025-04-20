@@ -15,6 +15,6 @@ dependencies:
   reactive_forms: ">=16.0.0 <18.0.0"
 
 dev_dependencies:
-  flutter_lints: ^3.0.2
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter

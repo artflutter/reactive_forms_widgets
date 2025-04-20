@@ -21,4 +21,4 @@ dev_dependencies:
     sdk: flutter
   freezed: ^3.0.6
   build_runner: ^2.4.9
-  flutter_lints: ^3.0.2
+  flutter_lints: ^5.0.0
