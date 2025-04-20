@@ -144,19 +144,39 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
     Clip clipBehavior = Clip.hardEdge,
     bool enableIMEPersonalizedLearning = true,
     bool scribbleEnabled = true,
+    Widget Function(BuildContext context, String error)? errorBuilder,
   }) : super(
           builder: (ReactiveFormFieldState<T, String> field) {
             final state = field as _ReactiveTextFieldState<T>;
             final effectiveDecoration = decoration
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);
 
+            final errorText = field.errorText;
+
             state._setFocusNode(focusNode);
 
             return TextField(
               controller: state._textController,
               focusNode: state.focusNode,
-              decoration:
-                  effectiveDecoration.copyWith(errorText: state.errorText),
+              decoration: effectiveDecoration.copyWith(
+                errorText: errorBuilder == null ? field.errorText : null,
+                enabled: field.control.enabled,
+                error: errorBuilder != null && errorText != null
+                    ? DefaultTextStyle.merge(
+                        style: Theme.of(field.context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(
+                              color: Theme.of(field.context).colorScheme.error,
+                            )
+                            .merge(effectiveDecoration.errorStyle),
+                        child: errorBuilder.call(
+                          field.context,
+                          errorText,
+                        ),
+                      )
+                    : null,
+              ),
               keyboardType: keyboardType,
               textInputAction: textInputAction,
               style: style,
