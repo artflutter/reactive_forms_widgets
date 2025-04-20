@@ -1,3 +1,7 @@
+## [8.0.0]
+
+* package bumps
+
 ## [7.0.0]
 
 * fixes for `selectedValueBuilder` and `deleteDialogBuilder`

@@ -44,8 +44,8 @@ class ReactiveRangeSlider<T> extends ReactiveFormField<T, RangeValues> {
     Color? activeColor,
     Color? inactiveColor,
     SemanticFormatterCallback? semanticFormatterCallback,
-    MaterialStateProperty<MouseCursor?>? mouseCursor,
-    MaterialStateProperty<Color?>? overlayColor,
+    WidgetStateProperty<MouseCursor?>? mouseCursor,
+    WidgetStateProperty<Color?>? overlayColor,
   }) : super(
           builder: (field) {
             final InputDecoration effectiveDecoration = (decoration ??
