@@ -1,4 +1,4 @@
-library reactive_date_range_picker;
+library;
 
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';

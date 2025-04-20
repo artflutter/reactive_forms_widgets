@@ -1,4 +1,4 @@
-library reactive_flutter_rating_bar;
+library;
 
 export 'package:reactive_flutter_rating_bar/src/reactive_rating_bar.dart';
 export 'package:reactive_flutter_rating_bar/src/reactive_rating_bar_builder.dart';

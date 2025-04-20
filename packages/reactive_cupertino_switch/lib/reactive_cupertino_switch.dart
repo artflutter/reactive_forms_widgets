@@ -1,4 +1,4 @@
-library reactive_cupertino_switch;
+library;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';

@@ -1,4 +1,4 @@
-library reactive_advanced_switch;
+library;
 
 import 'dart:async';
 
@@ -118,7 +118,7 @@ class ReactiveAdvancedSwitch<T> extends ReactiveFormField<T, bool> {
               height: height,
               enabled: field.control.enabled,
               thumb: thumb,
-                disabledOpacity:disabledOpacity,
+              disabledOpacity: disabledOpacity,
             );
 
             return InputDecorator(

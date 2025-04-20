@@ -1,4 +1,4 @@
-library reactive_flutter_typeahead;
+library;
 
 export 'package:flutter_typeahead/flutter_typeahead.dart';
 export 'src/reactive_typeahead.dart';

@@ -1,4 +1,4 @@
-library reactive_month_picker_dialog;
+library;
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

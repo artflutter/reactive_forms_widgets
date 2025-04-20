@@ -1,4 +1,4 @@
-library reactive_textfield_tags;
+library;
 
 export 'src/reactive_textfield_tags.dart';
 

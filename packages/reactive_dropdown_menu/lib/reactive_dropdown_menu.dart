@@ -1,4 +1,3 @@
-library reactive_dropdown_menu;
+library;
 
 export 'src/reactive_dropdown_menu.dart';
-

@@ -1,4 +1,4 @@
-library reactive_awesome_select;
+library;
 
 import 'package:flutter_awesome_select/flutter_awesome_select.dart';
 import 'package:flutter/material.dart';

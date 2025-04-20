@@ -1,3 +1,3 @@
-library reactive_sf_signaturepad;
+library;
 
 export 'src/reactive_sf_signaturepad.dart';

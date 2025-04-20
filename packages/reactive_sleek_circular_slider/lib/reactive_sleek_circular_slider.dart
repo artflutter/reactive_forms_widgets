@@ -1,4 +1,4 @@
-library reactive_sleek_circular_slider;
+library;
 
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';

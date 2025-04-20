@@ -1,4 +1,4 @@
-library reactive_awesome_select;
+library;
 
 export 'package:flutter_awesome_select/flutter_awesome_select.dart';
 

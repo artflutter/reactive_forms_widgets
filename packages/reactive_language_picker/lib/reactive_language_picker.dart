@@ -1,4 +1,4 @@
-library reactive_language_picker;
+library;
 
 export 'package:language_picker/language_picker.dart';
 export 'package:language_picker/languages.dart';

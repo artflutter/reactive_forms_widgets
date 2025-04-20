@@ -1,4 +1,4 @@
-library reactive_forms_lbc;
+library;
 
 export 'src/reactive_form_control_value/reactive_form_control_value_listener.dart';
 export 'src/reactive_form_control_value/reactive_form_control_value_builder.dart';

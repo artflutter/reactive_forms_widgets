@@ -1,4 +1,4 @@
-library reactive_wechat_camera_picker;
+library;
 
 export 'src/reactive_wechat_camera_picker.dart';
 

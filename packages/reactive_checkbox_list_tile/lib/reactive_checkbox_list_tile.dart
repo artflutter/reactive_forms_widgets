@@ -1,3 +1,3 @@
-library reactive_checkbox_list_tile;
+library;
 
 export 'src/reactive_checkbox_list_tile.dart';

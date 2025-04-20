@@ -1,4 +1,4 @@
-library reactive_fluent_ui;
+library;
 
 export 'package:fluent_ui/fluent_ui.dart';
 export 'src/reactive_fluent_text_form_box.dart';

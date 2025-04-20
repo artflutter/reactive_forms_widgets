@@ -1,3 +1,3 @@
-library reactive_toggle_switch;
+library;
 
 export 'src/reactive_toggle_switch.dart';

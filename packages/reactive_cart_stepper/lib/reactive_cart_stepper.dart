@@ -1,4 +1,4 @@
-library reactive_cart_stepper;
+library;
 
 import 'package:cart_stepper/cart_stepper.dart';
 import 'package:flutter/material.dart';

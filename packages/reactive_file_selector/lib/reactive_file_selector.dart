@@ -1,4 +1,4 @@
-library reactive_file_selector;
+library;
 
 export 'package:file_selector/file_selector.dart';
 export 'src/reactive_file_selector.dart';

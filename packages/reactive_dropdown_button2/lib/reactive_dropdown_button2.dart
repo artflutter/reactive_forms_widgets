@@ -1,4 +1,4 @@
-library reactive_dropdown_button2;
+library;
 
 export 'src/reactive_dropdown_button2.dart';
 

@@ -1,4 +1,4 @@
-library reactive_animated_toggle_switch;
+library;
 
 export 'src/reactive_animated_toggle_switch_rolling.dart';
 

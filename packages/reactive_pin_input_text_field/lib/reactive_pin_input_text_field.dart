@@ -1,4 +1,4 @@
-library reactive_pin_input_text_field;
+library;
 
 // Copyright 2020 Vasyl Dytsiak. All rights reserved.
 // Use of this source code is governed by the MIT license that can be

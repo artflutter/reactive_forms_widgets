@@ -1,4 +1,4 @@
-library reactive_fancy_password_field;
+library;
 
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 

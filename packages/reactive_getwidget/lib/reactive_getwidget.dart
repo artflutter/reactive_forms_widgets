@@ -1,1 +1,1 @@
-library reactive_getwidget;
+library;

@@ -1,4 +1,4 @@
-library reactive_signature;
+library;
 
 import 'dart:typed_data';
 

@@ -1,4 +1,4 @@
-library reactive_color_picker;
+library;
 
 export 'package:reactive_color_picker/reactive_color_picker.dart';
 

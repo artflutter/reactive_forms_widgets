@@ -1,4 +1,4 @@
-library reactive_macos_ui;
+library;
 
 export 'src/reactive_raiting_indicator.dart';
 export 'src/reactive_capacity_indicator.dart';
