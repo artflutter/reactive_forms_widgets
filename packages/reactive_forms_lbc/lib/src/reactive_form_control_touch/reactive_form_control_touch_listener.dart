@@ -134,7 +134,7 @@ class ReactiveFormControlTouchListenerBaseState<T>
     _subscription = _formControl.touchChanges.listen((state) {
       if (widget.listenWhen?.call(_formControl, _previousState, state) ??
           true) {
-        widget.listener(context, _formControl);
+        if (mounted) widget.listener(context, _formControl);
       }
       _previousState = state;
     });

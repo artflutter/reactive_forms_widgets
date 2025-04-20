@@ -20,7 +20,7 @@ class ReactiveFormControlValueListener<T>
     super.formControl,
     super.listenWhen,
     super.child,
-  })  : assert(
+  }) : assert(
             (formControlName != null && formControl == null) ||
                 (formControlName == null && formControl != null),
             'Must provide a formControlName or a formControl, but not both at the same time.');
@@ -134,7 +134,7 @@ class ReactiveFormControlValueListenerBaseState<T>
     _subscription = _formControl.valueChanges.listen((state) {
       if (widget.listenWhen?.call(_formControl, _previousState, state) ??
           true) {
-        widget.listener(context, _formControl);
+        if (mounted) widget.listener(context, _formControl);
       }
       _previousState = state;
     });

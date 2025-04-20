@@ -1,3 +1,7 @@
+## [4.0.1]
+
+* context across async gap fix
+
 ## [4.0.0]
 
 * rf 17
