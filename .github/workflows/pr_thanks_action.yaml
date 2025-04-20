@@ -5,9 +5,6 @@ on:
     types:
       - closed
 
-permissions:
-  pull-requests: write
-
 jobs:
   thank-author:
     if: github.event.pull_request.merged == true
