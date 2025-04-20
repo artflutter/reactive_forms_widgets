@@ -33,15 +33,18 @@ class SelectedFileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final selectedFile = file;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         SizedBox.fromSize(
           size: mediaSize ?? const Size(double.infinity, 250),
-          child: file.map(
-            video: (v) => selectedVideoBuilder?.call(v) ?? VideoView(video: v),
-            image: (i) => selectedImageBuilder?.call(i) ?? ImageView(image: i),
-          ),
+          child: switch (selectedFile) {
+            SelectedFileVideo() => selectedVideoBuilder?.call(selectedFile) ??
+                VideoView(video: selectedFile),
+            SelectedFileImage() => selectedImageBuilder?.call(selectedFile) ??
+                ImageView(image: selectedFile),
+          },
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
