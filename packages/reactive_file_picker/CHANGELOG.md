@@ -1,3 +1,7 @@
+## [4.0.0]
+
+* file_picker: ^10.1.2
+
 ## [3.1.0]
 
 * mouse cursor

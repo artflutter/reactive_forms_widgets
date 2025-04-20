@@ -106,7 +106,7 @@ class ReactiveFilePicker<T>
     FileType type = FileType.any,
     List<String>? allowedExtensions,
     Function(FilePickerStatus)? onFileLoading,
-    bool allowCompression = false,
+    int compressionQuality = 0,
     bool withData = false,
     bool withReadStream = false,
     bool lockParentWindow = false,
@@ -139,7 +139,7 @@ class ReactiveFilePicker<T>
                       type: type,
                       allowedExtensions: allowedExtensions,
                       onFileLoading: onFileLoading,
-                      allowCompression: allowCompression,
+                      compressionQuality: compressionQuality,
                       withData: withData,
                       withReadStream: withReadStream,
                       lockParentWindow: lockParentWindow,
@@ -167,8 +167,9 @@ class ReactiveFilePicker<T>
 
             final errorText = field.errorText;
 
-            final isEmptyValue =
-                field.value == null || (field.value?.platformFiles.isEmpty == true && field.value?.files.isEmpty == true);
+            final isEmptyValue = field.value == null ||
+                (field.value?.platformFiles.isEmpty == true &&
+                    field.value?.files.isEmpty == true);
 
             return IgnorePointer(
               ignoring: !field.control.enabled,
@@ -193,8 +194,9 @@ class ReactiveFilePicker<T>
                                   .textTheme
                                   .bodySmall
                                   ?.copyWith(
-                                    color:
-                                        Theme.of(field.context).colorScheme.error,
+                                    color: Theme.of(field.context)
+                                        .colorScheme
+                                        .error,
                                   )
                                   .merge(effectiveDecoration.errorStyle),
                               child: errorBuilder.call(
