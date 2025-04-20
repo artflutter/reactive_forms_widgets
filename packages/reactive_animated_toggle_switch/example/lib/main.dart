@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   color: Color.lerp(
                                     Colors.black26,
-                                    Theme.of(context).colorScheme.background,
+                                    Theme.of(context).colorScheme.surface,
                                     global.position,
                                   ),
                                   borderRadius: const BorderRadius.all(
@@ -141,7 +141,8 @@ class MyApp extends StatelessWidget {
                         return VerticalDivider(
                             indent: 10.0,
                             endIndent: 10.0,
-                            color: Colors.white38.withOpacity(opacity));
+                            color: Colors.white38
+                                .withAlpha((opacity * 255).toInt()));
                       },
                       customIconBuilder: (context, local, global) {
                         final text =

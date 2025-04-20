@@ -63,7 +63,7 @@ class SelectedAssetsListView extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4.0),
-          color: Theme.of(context).canvasColor.withOpacity(0.5),
+          color: Theme.of(context).canvasColor.withAlpha(128),
         ),
         child: const Icon(Icons.close, size: 18.0),
       ),

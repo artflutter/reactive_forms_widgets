@@ -1,4 +1,4 @@
-library reactive_dropdown_search;
+library;
 
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -154,7 +154,8 @@ class ReactiveDropdownSearchMultiSelection<T, V>
                 )
               : null,
           builder: (field) {
-            final effectiveDecoration = dropdownDecoratorProps.decoration?.applyDefaults(Theme.of(field.context).inputDecorationTheme);
+            final effectiveDecoration = dropdownDecoratorProps.decoration
+                ?.applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
             final errorText = field.errorText;
 
@@ -179,19 +180,20 @@ class ReactiveDropdownSearchMultiSelection<T, V>
                   errorText: errorBuilder == null ? errorText : null,
                   error: errorBuilder != null && errorText != null
                       ? DefaultTextStyle.merge(
-                    style: Theme.of(field.context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(
-                      color:
-                      Theme.of(field.context).colorScheme.error,
-                    ).merge(effectiveDecoration.errorStyle),
-                    maxLines: effectiveDecoration.errorMaxLines,
-                    child: errorBuilder.call(
-                      field.context,
-                      errorText,
-                    ),
-                  )
+                          style: Theme.of(field.context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(
+                                color:
+                                    Theme.of(field.context).colorScheme.error,
+                              )
+                              .merge(effectiveDecoration.errorStyle),
+                          maxLines: effectiveDecoration.errorMaxLines,
+                          child: errorBuilder.call(
+                            field.context,
+                            errorText,
+                          ),
+                        )
                       : null,
                 ),
                 baseStyle: dropdownDecoratorProps.baseStyle,

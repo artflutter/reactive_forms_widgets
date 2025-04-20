@@ -1,4 +1,4 @@
-library reactive_phone_form_field;
+library;
 
 export 'src/reactive_phone_form_field.dart';
 export 'src/phone_number_value_accessor.dart';

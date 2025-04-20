@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-library reactive_date_time_picker;
+library;
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' hide TextDirection;
@@ -264,8 +264,7 @@ class ReactiveDateTimePicker
 
                           final value = field.control.value;
                           // ... and new value is not the same as was before...
-                          if (value == null ||
-                              dateTime.compareTo(value) != 0) {
+                          if (value == null || dateTime.compareTo(value) != 0) {
                             // ... this means that cancel was not pressed at any moment
                             // so we can update the field
                             field.didChange(
@@ -322,11 +321,10 @@ class ReactiveDateTimePicker
                                   ? Theme.of(field.context).disabledColor
                                   : null,
                             ),
-                        child:
-                            valueBuilder?.call(field.context, field.value) ??
-                                Text(
-                                  field.value ?? '',
-                                ),
+                        child: valueBuilder?.call(field.context, field.value) ??
+                            Text(
+                              field.value ?? '',
+                            ),
                       ),
                     ),
                   ),

@@ -98,8 +98,8 @@ class ReactivePhoneContactPicker<T> extends ReactiveFormField<T, PhoneContact> {
             void pickContact() async {
               try {
                 field.didChange(await FlutterContactPicker.pickPhoneContact());
-              } on UserCancelledPickingException catch(_) {
-                print('object');
+              } on UserCancelledPickingException catch (_) {
+                debugPrint('object');
                 // user canceled picking contact
               }
             }

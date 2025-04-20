@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
                   children: [
                     ReactiveInputDecorator(
                       formControlName: 'input',
-                      errorBuilder: (_, text) => Text('${text}+'),
+                      errorBuilder: (_, text) => Text('$text+'),
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         isDense: true,
