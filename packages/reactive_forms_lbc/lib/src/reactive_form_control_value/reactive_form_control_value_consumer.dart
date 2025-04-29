@@ -1,3 +1,5 @@
+import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
+
 import 'package:flutter/widgets.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_lbc/reactive_forms_lbc.dart';
@@ -6,7 +8,7 @@ class ReactiveFormControlValueConsumer<T> extends StatefulWidget {
   const ReactiveFormControlValueConsumer({
     super.key,
     required this.builder,
-    required this.listener,
+    this.listener,
     this.formControlName,
     this.formControl,
     this.buildWhen,
@@ -22,7 +24,7 @@ class ReactiveFormControlValueConsumer<T> extends StatefulWidget {
 
   final ReactiveFormControlWidgetBuilder<T> builder;
 
-  final ReactiveFormControlWidgetListener<T> listener;
+  final ReactiveFormControlWidgetListener<T>? listener;
 
   final ReactiveBuilderCondition<T>? buildWhen;
 
@@ -88,7 +90,7 @@ class _ReactiveFormControlValueConsumerState<T> extends State<ReactiveFormContro
       builder: widget.builder,
       buildWhen: (control, previous, current) {
         if (widget.listenWhen?.call(control, previous, current) ?? true) {
-          widget.listener(context, _formControl);
+          widget.listener?.call(context, _formControl);
         }
         return widget.buildWhen?.call(_formControl, previous, current) ?? true;
       },

@@ -1,3 +1,5 @@
+import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
+
 import 'package:flutter/widgets.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_lbc/reactive_forms_lbc.dart';
@@ -6,7 +8,7 @@ class ReactiveFormControlTouchConsumer<T> extends StatefulWidget {
   const ReactiveFormControlTouchConsumer({
     super.key,
     required this.builder,
-    required this.listener,
+    this.listener,
     this.formControlName,
     this.formControl,
     this.buildWhen,
@@ -22,7 +24,7 @@ class ReactiveFormControlTouchConsumer<T> extends StatefulWidget {
 
   final ReactiveFormControlWidgetBuilder<T> builder;
 
-  final ReactiveFormControlWidgetListener<T> listener;
+  final ReactiveFormControlWidgetListener<T>? listener;
 
   final ReactiveFormControlTouchBuilderCondition<T>? buildWhen;
 
@@ -90,7 +92,7 @@ class _ReactiveFormControlTouchConsumerState<T>
       builder: widget.builder,
       buildWhen: (control, previous, current) {
         if (widget.listenWhen?.call(control, previous, current) ?? true) {
-          widget.listener(context, _formControl);
+          widget.listener?.call(context, _formControl);
         }
         return widget.buildWhen?.call(_formControl, previous, current) ?? true;
       },

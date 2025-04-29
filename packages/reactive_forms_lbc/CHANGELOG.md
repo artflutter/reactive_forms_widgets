@@ -1,3 +1,7 @@
+## [4.0.2]
+
+* `...Consumer` make `listener` a nullable parameter
+
 ## [4.0.1]
 
 * context across async gap fix
