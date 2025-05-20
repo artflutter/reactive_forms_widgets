@@ -1,3 +1,7 @@
+## [4.0.4]
+
+* export `nested`
+
 ## [4.0.3]
 
 * fix bad import
