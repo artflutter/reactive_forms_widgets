@@ -1,3 +1,7 @@
+## [3.0.1]
+
+* Support `reactive_forms: 18.x`
+
 ## [3.0.0]
 
 * fluttercontactpicker: ^5.0.0

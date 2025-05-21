@@ -1,3 +1,7 @@
+## [2.2.2]
+
+* Support `reactive_forms: 18.x`
+
 ## [2.2.1]
 
 * fixed deprecations

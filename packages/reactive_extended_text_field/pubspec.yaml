@@ -1,6 +1,6 @@
 name: reactive_extended_text_field
 description: Wrapper around extended_text_field to use with reactive_forms.
-version: 5.0.0
+version: 5.0.1
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_extended_text_field
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
@@ -11,8 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  reactive_forms: ">=16.0.0 <18.0.0"
-  extended_text_field: ^15.0.0
+  reactive_forms: ">=16.0.0 <19.0.0"
+  extended_text_field: ^16.0.0
 
 dev_dependencies:
   flutter_test:

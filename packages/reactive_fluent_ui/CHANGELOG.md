@@ -1,3 +1,8 @@
+## [3.0.0]
+
+* Support `reactive_forms: 18.x`
+* Replaced deprecated `scribbleEnabled` with `stylusHandwritingEnabled`
+
 ## [2.1.0]
 
 * fluent_ui: ^4.11.2

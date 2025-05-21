@@ -133,7 +133,7 @@ class ReactiveFluentTextFormBox<T> extends ReactiveFormField<T, String> {
     ui.BoxWidthStyle selectionWidthStyle = ui.BoxWidthStyle.tight,
     Clip clipBehavior = Clip.hardEdge,
     bool enableIMEPersonalizedLearning = true,
-    bool scribbleEnabled = true,
+    bool stylusHandwritingEnabled = true,
     double? minHeight,
     EdgeInsetsGeometry padding =
         const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
@@ -219,7 +219,7 @@ class ReactiveFluentTextFormBox<T> extends ReactiveFormField<T, String> {
               selectionWidthStyle: selectionWidthStyle,
               enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
               mouseCursor: mouseCursor,
-              scribbleEnabled: scribbleEnabled,
+              stylusHandwritingEnabled: stylusHandwritingEnabled,
               highlightColor: highlightColor,
               errorHighlightColor: errorHighlightColor,
               unfocusedColor: unfocusedColor,

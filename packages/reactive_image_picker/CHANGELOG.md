@@ -1,3 +1,7 @@
+## [8.0.1]
+
+* Support `reactive_forms: 18.x`
+
 ## [8.0.0]
 
 * package bumps

@@ -1,3 +1,7 @@
+## [5.0.2]
+
+* Support `reactive_forms: 18.x`
+
 ## [5.0.1]
 
 * phone_form_field: ^10.0.5

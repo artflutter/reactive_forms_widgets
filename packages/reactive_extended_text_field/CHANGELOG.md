@@ -1,3 +1,7 @@
+## [5.0.1]
+
+* Support `reactive_forms: 18.x`
+
 ## [5.0.0]
 
 * extended_text_field: ^15.0.0

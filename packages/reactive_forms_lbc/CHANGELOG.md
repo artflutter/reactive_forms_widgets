@@ -1,3 +1,7 @@
+## [4.0.5]
+
+* Support `reactive_forms: 18.x`
+
 ## [4.0.4]
 
 * export `nested`

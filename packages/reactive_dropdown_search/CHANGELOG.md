@@ -1,3 +1,7 @@
+## [6.0.0-pre2]
+
+* Support `reactive_forms: 18.x`
+
 ## [6.0.0-pre1]
 
 * dropdown_search: ^7.0.0-pre4

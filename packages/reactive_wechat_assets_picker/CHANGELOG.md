@@ -1,3 +1,7 @@
+## [3.0.1]
+
+* Support `reactive_forms: 18.x`
+
 ## [3.0.0]
 
 * wechat_assets_picker: ^9.1.0

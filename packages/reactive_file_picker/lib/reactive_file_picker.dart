@@ -230,7 +230,7 @@ class HoverBuilder extends StatefulWidget {
   final Widget Function(BuildContext context, bool isHovered) builder;
 
   @override
-  _HoverBuilderState createState() => _HoverBuilderState();
+  State<HoverBuilder> createState() => _HoverBuilderState();
 }
 
 class _HoverBuilderState extends State<HoverBuilder> {

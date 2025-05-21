@@ -1,3 +1,7 @@
+## [2.1.1]
+
+* Support `reactive_forms: 18.x`
+
 ## [2.1.0]
 
 * toggle_switch: ^2.3.0

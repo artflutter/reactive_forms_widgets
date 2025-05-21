@@ -1,3 +1,7 @@
+## 1.0.2-beta.12
+
+* Support `reactive_forms: 18.x`
+
 ## 1.0.2-beta.11
 
 * Support `disabled...` states
