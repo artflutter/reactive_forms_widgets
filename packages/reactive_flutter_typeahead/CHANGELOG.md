@@ -1,3 +1,6 @@
+## [2.1.3]
+
+* Support `reactive_forms: 18.x`
 
 ## [2.1.2]
 

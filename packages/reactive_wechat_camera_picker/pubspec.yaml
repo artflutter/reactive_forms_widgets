@@ -1,6 +1,6 @@
 name: reactive_wechat_camera_picker
 description: Wrapper around wechat_camera_picker to use with reactive_forms.
-version: 4.0.0
+version: 4.0.1
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_wechat_camera_picker
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   wechat_camera_picker: ^4.3.0+1
-  reactive_forms: ">=16.0.0 <18.0.0"
+  reactive_forms: ">=16.0.0 <19.0.0"
 
 dev_dependencies:
   flutter_test:

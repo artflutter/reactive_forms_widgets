@@ -1,3 +1,8 @@
+## [4.0.1]
+
+* Support `reactive_forms: 18.x`
+* Fixed style in createState()
+
 ## [4.0.0]
 
 * file_picker: ^10.1.2

@@ -1,3 +1,7 @@
+## [2.1.2]
+
+* Support `reactive_forms: 18.x`
+
 ## [2.1.1]
 
 * allow null for decoration property

@@ -1,3 +1,8 @@
+## [2.3.1]
+
+* Support `reactive_forms: 18.x`
+* Fixed style in createState()
+
 ## [2.3.0]
 
 * onTap for custom calendars support

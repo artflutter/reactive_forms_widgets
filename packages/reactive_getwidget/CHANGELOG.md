@@ -1,3 +1,7 @@
+## [1.0.2]
+
+* Support `reactive_forms: 18.x`
+
 ## [1.0.1]
 
 * Support `reactive_forms: 17.x`

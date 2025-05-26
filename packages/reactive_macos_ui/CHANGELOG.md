@@ -1,3 +1,7 @@
+## [2.0.3]
+
+* Support `reactive_forms: 18.x`
+
 ## [2.0.2]
 
 * macos_ui: ^2.0.7

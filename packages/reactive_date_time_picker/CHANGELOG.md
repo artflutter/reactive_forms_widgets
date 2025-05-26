@@ -1,3 +1,8 @@
+## [5.0.1]
+
+* Support `reactive_forms: 18.x`
+* Fixed style in createState()
+
 ## [5.0.0]
 
 * remove deprecated disabledOpacity
