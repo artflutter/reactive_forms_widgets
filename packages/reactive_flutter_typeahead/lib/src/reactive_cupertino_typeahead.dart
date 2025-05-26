@@ -94,6 +94,7 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
     required FutureOr<List<V>?> Function(String) suggestionsCallback,
     required Widget Function(BuildContext, V) itemBuilder,
     Widget Function(BuildContext, Widget)? decorationBuilder,
+    Widget Function(BuildContext, int)? itemSeparatorBuilder,
     Duration debounceDuration = const Duration(milliseconds: 300),
     Widget Function(BuildContext)? loadingBuilder,
     Widget Function(BuildContext)? emptyBuilder,
@@ -191,6 +192,7 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
                 );
               },
               decorationBuilder: decorationBuilder,
+              itemSeparatorBuilder: itemSeparatorBuilder,
               debounceDuration: debounceDuration,
               suggestionsController: suggestionsController,
               loadingBuilder: loadingBuilder,
