@@ -36,6 +36,6 @@ extension _XTargetPlatform on TargetPlatform {
       this == TargetPlatform.iOS || this == TargetPlatform.macOS;
 }
 
-extension _XColorToGradient on Color {
-  Gradient toGradient() => LinearGradient(colors: [this, this]);
-}
+// extension _XColorToGradient on Color {
+//   Gradient toGradient() => LinearGradient(colors: [this, this]);
+// }
