@@ -1,3 +1,8 @@
+## [4.0.0]
+
+* month_picker_dialog: ^6.2.3
+* update example app
+
 ## [3.0.1]
 
 * Support `reactive_forms: 18.x`
