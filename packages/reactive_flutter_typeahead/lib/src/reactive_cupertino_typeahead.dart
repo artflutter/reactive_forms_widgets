@@ -162,7 +162,7 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
                 return CupertinoTextField(
                   controller: controller,
                   focusNode: focusNode,
-                  enabled: enabled,
+                  enabled: field.control.enabled,
                   decoration: decoration,
                   padding: padding,
                   placeholder: placeholder,
