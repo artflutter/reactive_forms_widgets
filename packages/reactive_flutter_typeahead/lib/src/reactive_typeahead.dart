@@ -144,6 +144,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
             }
 
             return TypeAheadField<V>(
+              controller: controller,
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
               onSelected: (value) {

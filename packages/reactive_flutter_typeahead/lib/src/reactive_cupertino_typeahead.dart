@@ -145,6 +145,7 @@ class ReactiveCupertinoTypeAhead<T, V> extends ReactiveFormField<T, V> {
             }
 
             return CupertinoTypeAheadField<V>(
+              controller: controller,
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
               onSelected: (value) {
