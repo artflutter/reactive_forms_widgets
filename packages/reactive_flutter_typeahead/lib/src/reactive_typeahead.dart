@@ -118,6 +118,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
     TextAlign textAlign = TextAlign.start,
     TextAlignVertical? textAlignVertical,
     TextEditingController? textEditingController,
+    TextInputAction? textInputAction,
     bool autofocus = false,
     bool readOnly = false,
     bool? showCursor,
@@ -143,6 +144,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
             }
 
             return TypeAheadField<V>(
+              controller: controller,
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
               onSelected: (value) {
@@ -171,6 +173,7 @@ class ReactiveTypeAhead<T, V> extends ReactiveFormField<T, V> {
                   textDirection: textDirection,
                   textAlign: textAlign,
                   textAlignVertical: textAlignVertical,
+                  textInputAction: textInputAction,
                   autofocus: autofocus,
                   readOnly: readOnly,
                   showCursor: showCursor,
