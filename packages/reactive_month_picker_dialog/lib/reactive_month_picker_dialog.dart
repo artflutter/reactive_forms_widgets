@@ -12,13 +12,13 @@ import 'package:reactive_forms/reactive_forms.dart';
 /// that is bound to [ReactiveMonthPickerDialog].
 
 /// This is a convenience widget that wraps the function
-/// [showDatePicker] and [showTimePicker] in a [ReactiveMonthPickerDialog].
+/// [showMonthPicker] in a [ReactiveMonthPickerDialog].
 ///
 /// The [formControlName] is required to bind this [ReactiveMonthPickerDialog]
 /// to a [FormControl].
 ///
-/// For documentation about the various parameters, see the [showDatePicker]
-/// and [showTimePicker] function parameters.
+/// For documentation about the various parameters, see the [showMonthPicker]
+/// function parameters.
 ///
 /// ## Example:
 ///
@@ -28,7 +28,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 /// )
 /// ```
 class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
-  /// Creates a [ReactiveMonthPickerDialog] that wraps the function [showDatePicker].
+  /// Creates a [ReactiveMonthPickerDialog] that wraps the function [showMonthPicker].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
   ///
@@ -38,59 +38,37 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
   /// Must provide one of the arguments [formControl] or a [formControlName],
   /// but not both at the same time.
   ///
-  /// The parameter [transitionBuilder] is the equivalent of [builder]
-  /// parameter in the [showTimePicker].
-  ///
-  /// For documentation about the various parameters, see the [showTimePicker]
+  /// For documentation about the various parameters, see the [showMonthPicker]
   /// function parameters.
-  ReactiveMonthPickerDialog(
-      {super.key,
-      super.formControlName,
-      super.formControl,
-      super.validationMessages,
-      ControlValueAccessor<DateTime, String>? valueAccessor,
-      super.showErrors,
+  ReactiveMonthPickerDialog({
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    ControlValueAccessor<DateTime, String>? valueAccessor,
+    super.showErrors,
 
-      ////////////////////////////////////////////////////////////////////////////
-      InputDecoration? decoration,
-      bool showClearIcon = true,
-      Widget clearIcon = const Icon(Icons.clear),
-      TextStyle? style,
-      DateTime? firstDate,
-      DateTime? lastDate,
-      Locale? locale,
-      bool Function(DateTime)? selectableMonthPredicate,
-      bool capitalizeFirstLetter = true,
-      Color? headerColor,
-      Color? headerTextColor,
-      Color? selectedMonthBackgroundColor,
-      Color? backgroundColor,
-      Color? selectedMonthTextColor,
-      Color? unselectedMonthTextColor,
-      Color? currentMonthTextColor,
-      Widget? confirmText,
-      Widget? cancelText,
-      double? customHeight,
-      double customWidth = 320,
-      bool yearFirst = false,
-      bool dismissible = false,
-      double roundedCornersRadius = 0,
-      bool forceSelectedDate = false,
-      ButtonStyle? Function(DateTime)? monthStylePredicate,
-      ButtonStyle? Function(int)? yearStylePredicate,
-      double selectedMonthPadding = 0,
-      int animationMilliseconds = 450,
-      bool hideHeaderRow = false,
-      double? textScaleFactor,
-      double? arrowSize,
-      bool forcePortrait = false,
-      Widget? customDivider,
-      bool blockScrolling = true,
-      BorderSide dialogBorderSide = BorderSide.none})
-      : super(
+    ////////////////////////////////////////////////////////////////////////////
+    InputDecoration? decoration,
+    bool showClearIcon = true,
+    Widget clearIcon = const Icon(Icons.clear),
+    TextStyle? style,
+    DateTime? firstDate,
+    DateTime? lastDate,
+    Locale? locale,
+    bool Function(DateTime)? selectableMonthPredicate,
+    bool Function(int)? selectableYearPredicate,
+    ButtonStyle? Function(DateTime)? monthStylePredicate,
+    ButtonStyle? Function(int)? yearStylePredicate,
+    Widget? headerTitle,
+    bool onlyYear = false,
+    MonthPickerDialogSettings monthPickerDialogSettings =
+        defaultMonthPickerDialogSettings,
+  }) : super(
           valueAccessor: valueAccessor ??
               DateTimeValueAccessor(
-                dateTimeFormat: DateFormat('yyyy/MM'),
+                dateTimeFormat:
+                    onlyYear ? DateFormat.y() : DateFormat('yyyy/MM'),
               ),
           builder: (field) {
             Widget? suffixIcon = decoration?.suffixIcon;
@@ -127,35 +105,13 @@ class ReactiveMonthPickerDialog extends ReactiveFormField<DateTime, String> {
                     ),
                     firstDate: firstDate ?? DateTime(1900),
                     lastDate: effectiveLastDate,
-                    locale: locale,
                     selectableMonthPredicate: selectableMonthPredicate,
-                    capitalizeFirstLetter: capitalizeFirstLetter,
-                    headerColor: headerColor,
-                    headerTextColor: headerTextColor,
-                    selectedMonthBackgroundColor: selectedMonthBackgroundColor,
-                    selectedMonthTextColor: selectedMonthTextColor,
-                    unselectedMonthTextColor: unselectedMonthTextColor,
-                    confirmWidget: confirmText,
-                    cancelWidget: cancelText,
-                    customHeight: customHeight,
-                    customWidth: customWidth,
-                    yearFirst: yearFirst,
-                    dismissible: dismissible,
-                    roundedCornersRadius: roundedCornersRadius,
-                    forceSelectedDate: forceSelectedDate,
-                    backgroundColor: backgroundColor,
+                    selectableYearPredicate: selectableYearPredicate,
                     monthStylePredicate: monthStylePredicate,
                     yearStylePredicate: yearStylePredicate,
-                    currentMonthTextColor: currentMonthTextColor,
-                    selectedMonthPadding: selectedMonthPadding,
-                    animationMilliseconds: animationMilliseconds,
-                    hideHeaderRow: hideHeaderRow,
-                    textScaleFactor: textScaleFactor,
-                    arrowSize: arrowSize,
-                    forcePortrait: forcePortrait,
-                    customDivider: customDivider,
-                    blockScrolling: blockScrolling,
-                    dialogBorderSide: dialogBorderSide,
+                    headerTitle: headerTitle,
+                    monthPickerDialogSettings: monthPickerDialogSettings,
+                    onlyYear: onlyYear,
                   );
 
                   field.didChange(
