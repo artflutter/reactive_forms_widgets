@@ -126,7 +126,8 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     super.formControlName,
     super.formControl,
     super.validationMessages,
-    DropDownSearchMultiSelectionValueAccessor<T, V>? valueAccessor,
+    ControlValueAccessor<List<T>, List<V>>? valueAccessor,
+    DropDownSearchMultiSelectionValueAccessor<T, V>? valueItemAccessor,
     super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
@@ -147,12 +148,16 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     BeforePopupOpeningMultiSelection<V>? onBeforePopupOpening,
     Widget Function(BuildContext context, String error)? errorBuilder,
   }) : super(
-          valueAccessor: valueAccessor != null
-              ? _DropDownSearchMultiSelectionValueAccessor(
-                  items: items,
-                  dropDownValueAccessor: valueAccessor,
-                )
-              : null,
+    valueAccessor: switch(valueAccessor) {
+      ControlValueAccessor<List<T>, List<V>>() => valueAccessor,
+      null => switch(valueItemAccessor) {
+        DropDownSearchMultiSelectionValueAccessor<T, V>() => _DropDownSearchMultiSelectionValueAccessor(
+          items: items,
+          dropDownValueAccessor: valueItemAccessor,
+        ),
+        null => null,
+      },
+    },
           builder: (field) {
             final effectiveDecoration = dropdownDecoratorProps.decoration
                 ?.applyDefaults(Theme.of(field.context).inputDecorationTheme);

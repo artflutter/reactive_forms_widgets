@@ -124,7 +124,8 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
     super.formControlName,
     super.formControl,
     super.validationMessages,
-    DropDownSearchValueAccessor<T, V>? valueAccessor,
+    ControlValueAccessor<T, V>? valueAccessor,
+    DropDownSearchValueAccessor<T, V>? valueItemAccessor,
     super.showErrors,
 
     ////////////////////////////////////////////////////////////////////////////
@@ -144,12 +145,16 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
     BeforePopupOpening<V>? onBeforePopupOpening,
     Widget Function(BuildContext context, String error)? errorBuilder,
   }) : super(
-          valueAccessor: valueAccessor != null
-              ? _DropDownSearchValueAccessor(
-                  items: items,
-                  dropDownValueAccessor: valueAccessor,
-                )
-              : null,
+          valueAccessor: switch(valueAccessor) {
+            ControlValueAccessor<T, V>() => valueAccessor,
+            null => switch(valueItemAccessor) {
+              DropDownSearchValueAccessor<T, V>() => _DropDownSearchValueAccessor(
+                items: items,
+                dropDownValueAccessor: valueItemAccessor,
+              ),
+              null => null,
+            },
+          },
           builder: (field) {
             final effectiveDecoration = dropdownDecoratorProps.decoration
                 ?.applyDefaults(Theme.of(field.context).inputDecorationTheme);

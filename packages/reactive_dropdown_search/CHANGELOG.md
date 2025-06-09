@@ -1,3 +1,7 @@
+## [6.0.0-pre3]
+
+* Split value item and value accessors
+
 ## [6.0.0-pre2]
 
 * Support `reactive_forms: 18.x`
