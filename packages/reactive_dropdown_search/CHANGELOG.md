@@ -1,3 +1,7 @@
+## [6.0.0-pre4]
+
+* add reference to original valueAccessor for items accessor
+
 ## [6.0.0-pre3]
 
 * Split value item and value accessors

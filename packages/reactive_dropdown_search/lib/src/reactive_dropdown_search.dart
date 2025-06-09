@@ -10,9 +10,17 @@ import 'package:reactive_forms/reactive_forms.dart';
 abstract class DropDownSearchValueAccessor<T, V> {
   DropDownSearchValueAccessor();
 
-  V? modelToViewValue(List<V> items, T? modelValue);
+  V? modelToViewValue(
+    List<V> items,
+    T? modelValue,
+    ControlValueAccessor<T, V> accessor,
+  );
 
-  T? viewToModelValue(List<V> items, V? modelValue);
+  T? viewToModelValue(
+    List<V> items,
+    V? modelValue,
+    ControlValueAccessor<T, V> accessor,
+  );
 }
 
 class _DropDownSearchValueAccessor<T, V> extends ControlValueAccessor<T, V> {
@@ -29,7 +37,11 @@ class _DropDownSearchValueAccessor<T, V> extends ControlValueAccessor<T, V> {
   V? modelToViewValue(T? modelValue) {
     final result = items?.call('', null) ?? [];
     if (result is List<V>) {
-      return dropDownValueAccessor.modelToViewValue(result, modelValue);
+      return dropDownValueAccessor.modelToViewValue(
+        result,
+        modelValue,
+        this,
+      );
     }
 
     throw UnsupportedError('Asynchronously fetched values are not supported');
@@ -40,7 +52,11 @@ class _DropDownSearchValueAccessor<T, V> extends ControlValueAccessor<T, V> {
     final result = items?.call('', null) ?? [];
 
     if (result is List<V>) {
-      return dropDownValueAccessor.viewToModelValue(result, viewValue);
+      return dropDownValueAccessor.viewToModelValue(
+        result,
+        viewValue,
+        this,
+      );
     }
 
     throw UnsupportedError('Asynchronously fetched values are not supported');
@@ -145,15 +161,16 @@ class ReactiveDropdownSearch<T, V> extends ReactiveFormField<T, V> {
     BeforePopupOpening<V>? onBeforePopupOpening,
     Widget Function(BuildContext context, String error)? errorBuilder,
   }) : super(
-          valueAccessor: switch(valueAccessor) {
+          valueAccessor: switch (valueAccessor) {
             ControlValueAccessor<T, V>() => valueAccessor,
-            null => switch(valueItemAccessor) {
-              DropDownSearchValueAccessor<T, V>() => _DropDownSearchValueAccessor(
-                items: items,
-                dropDownValueAccessor: valueItemAccessor,
-              ),
-              null => null,
-            },
+            null => switch (valueItemAccessor) {
+                DropDownSearchValueAccessor<T, V>() =>
+                  _DropDownSearchValueAccessor(
+                    items: items,
+                    dropDownValueAccessor: valueItemAccessor,
+                  ),
+                null => null,
+              },
           },
           builder: (field) {
             final effectiveDecoration = dropdownDecoratorProps.decoration

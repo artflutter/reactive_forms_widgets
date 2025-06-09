@@ -10,9 +10,17 @@ import 'package:reactive_forms/reactive_forms.dart';
 abstract class DropDownSearchMultiSelectionValueAccessor<T, V> {
   DropDownSearchMultiSelectionValueAccessor();
 
-  List<V>? modelToViewValue(List<V> items, List<T>? modelValue);
+  List<V>? modelToViewValue(
+    List<V> items,
+    List<T>? modelValue,
+    ControlValueAccessor<List<T>, List<V>> accessor,
+  );
 
-  List<T>? viewToModelValue(List<V> items, List<V>? modelValue);
+  List<T>? viewToModelValue(
+    List<V> items,
+    List<V>? modelValue,
+    ControlValueAccessor<List<T>, List<V>> accessor,
+  );
 }
 
 class _DropDownSearchMultiSelectionValueAccessor<T, V>
@@ -30,7 +38,11 @@ class _DropDownSearchMultiSelectionValueAccessor<T, V>
   List<V>? modelToViewValue(List<T>? modelValue) {
     final result = items?.call('', null) ?? [];
     if (result is List<V>) {
-      return dropDownValueAccessor.modelToViewValue(result, modelValue);
+      return dropDownValueAccessor.modelToViewValue(
+        result,
+        modelValue,
+        this,
+      );
     }
 
     throw UnsupportedError('Asynchronously fetched values are not supported');
@@ -41,7 +53,11 @@ class _DropDownSearchMultiSelectionValueAccessor<T, V>
     final result = items?.call('', null) ?? [];
 
     if (result is List<V>) {
-      return dropDownValueAccessor.viewToModelValue(result, viewValue);
+      return dropDownValueAccessor.viewToModelValue(
+        result,
+        viewValue,
+        this,
+      );
     }
 
     throw UnsupportedError('Asynchronously fetched values are not supported');
@@ -148,16 +164,17 @@ class ReactiveDropdownSearchMultiSelection<T, V>
     BeforePopupOpeningMultiSelection<V>? onBeforePopupOpening,
     Widget Function(BuildContext context, String error)? errorBuilder,
   }) : super(
-    valueAccessor: switch(valueAccessor) {
-      ControlValueAccessor<List<T>, List<V>>() => valueAccessor,
-      null => switch(valueItemAccessor) {
-        DropDownSearchMultiSelectionValueAccessor<T, V>() => _DropDownSearchMultiSelectionValueAccessor(
-          items: items,
-          dropDownValueAccessor: valueItemAccessor,
-        ),
-        null => null,
-      },
-    },
+          valueAccessor: switch (valueAccessor) {
+            ControlValueAccessor<List<T>, List<V>>() => valueAccessor,
+            null => switch (valueItemAccessor) {
+                DropDownSearchMultiSelectionValueAccessor<T, V>() =>
+                  _DropDownSearchMultiSelectionValueAccessor(
+                    items: items,
+                    dropDownValueAccessor: valueItemAccessor,
+                  ),
+                null => null,
+              },
+          },
           builder: (field) {
             final effectiveDecoration = dropdownDecoratorProps.decoration
                 ?.applyDefaults(Theme.of(field.context).inputDecorationTheme);
