@@ -28,6 +28,8 @@ class ReactiveLanguageToolTextField<T> extends ReactiveFormField<T, String> {
   final Duration delay;
   final DelayType delayType;
 
+  final LanguageToolController? _textController;
+
   /// Creates a [ReactiveLanguageToolTextField] that contains a [LanguageToolTextField].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -98,6 +100,7 @@ class ReactiveLanguageToolTextField<T> extends ReactiveFormField<T, String> {
     super.validationMessages,
     super.valueAccessor,
     super.showErrors,
+    LanguageToolController? controller,
     String language = 'auto',
     MistakePopup? mistakePopup,
     bool alignCenter = true,
@@ -156,7 +159,8 @@ class ReactiveLanguageToolTextField<T> extends ReactiveFormField<T, String> {
     bool enableIMEPersonalizedLearning = true,
     bool scribbleEnabled = true,
     Widget Function(BuildContext context, String error)? errorBuilder,
-  }) : super(
+  })  : _textController = controller,
+        super(
           builder: (ReactiveFormFieldState<T, String> field) {
             final state = field as _ReactiveLanguageToolTextFieldState<T>;
             final effectiveDecoration = decoration
@@ -218,7 +222,6 @@ class ReactiveLanguageToolTextField<T> extends ReactiveFormField<T, String> {
               minLines: minLines,
               expands: expands,
               // maxLength: maxLength,
-              // onChanged: field.didChange,
               onTap: onTap,
               onTapOutside: onTapOutside,
               onTextChange: field.didChange,
@@ -273,20 +276,33 @@ class _ReactiveLanguageToolTextFieldState<T>
 
     final initialValue = value;
 
-    _textController = LanguageToolController(
-      highlightStyle:
-          (widget as ReactiveLanguageToolTextField<T>).highlightStyle,
-      delay: (widget as ReactiveLanguageToolTextField<T>).delay,
-      delayType: (widget as ReactiveLanguageToolTextField<T>).delayType,
-    );
+    final currentWidget = widget as ReactiveLanguageToolTextField<T>;
+    _textController = currentWidget._textController ??
+        LanguageToolController(
+          highlightStyle:
+              (widget as ReactiveLanguageToolTextField<T>).highlightStyle,
+          delay: (widget as ReactiveLanguageToolTextField<T>).delay,
+          delayType: (widget as ReactiveLanguageToolTextField<T>).delayType,
+        );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _textController.text = initialValue?.toString() ?? '';
     });
+    _textController.addListener(_onTextChangeListener);
 
     (widget as ReactiveLanguageToolTextField<T>)
         .onControllerInit
         ?.call(_textController);
+  }
+
+  void _onTextChangeListener() {
+    final text = _textController.text;
+    final controlValue = control.value;
+    final stringValue = controlValue?.toString();
+
+    if (stringValue != null && stringValue != text) {
+      didChange(text);
+    }
   }
 
   @override
@@ -331,6 +347,7 @@ class _ReactiveLanguageToolTextFieldState<T>
 
   @override
   void dispose() {
+    _textController.removeListener(_onTextChangeListener);
     _unregisterFocusController();
     _textController.dispose();
     super.dispose();
