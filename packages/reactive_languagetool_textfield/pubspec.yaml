@@ -1,6 +1,6 @@
 name: reactive_languagetool_textfield
 description: Wrapper around languagetool_textfield to use with reactive_forms.
-version: 0.0.2
+version: 0.0.3
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_languagetool_textfield
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 

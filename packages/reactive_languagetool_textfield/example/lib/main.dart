@@ -68,12 +68,10 @@ class _MyAppState extends State<MyApp> {
                     ElevatedButton(
                       child: const Text('Select all text'),
                       onPressed: () {
-                        if (_controller != null) {
-                          form.control('input').focus();
-
-                          _controller?.selection = TextSelection(
-                            baseOffset: 0,
-                            extentOffset: _controller?.text.length ?? 0,
+                        final value = form.control('input').value;
+                        if (value != null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Selected text: ${value.toString()}')),
                           );
                         }
                       },
