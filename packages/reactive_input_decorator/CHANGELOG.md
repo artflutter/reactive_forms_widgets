@@ -1,3 +1,7 @@
+## 1.0.0
+
+* Api change
+
 ## 0.0.9
 
 * Support `reactive_forms: 18.x`

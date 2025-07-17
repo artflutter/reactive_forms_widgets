@@ -14,6 +14,12 @@ class MyApp extends StatelessWidget {
           value: null,
           validators: [const RequiredValidator()],
         ),
+        'inputArray': FormArray<String>([
+          FormControl<String>(value: 'john@email.com'),
+          FormControl<String>(value: 'susan@email.com'),
+        ], validators: [
+          const MinLengthValidator(1),
+        ]),
       });
 
   @override
@@ -53,6 +59,24 @@ class MyApp extends StatelessWidget {
                           const SizedBox(width: 16),
                           const Expanded(child: Text('Some label')),
                           ReactiveCheckbox(formControlName: 'input'),
+                        ],
+                      ),
+                    ),
+                    ReactiveArrayDecorator(
+                      formControlName: 'inputArray',
+                      errorBuilder: (_, text) => Text('$text+'),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        isDense: true,
+                        isCollapsed: true,
+                        helperText: "",
+                        helperStyle: TextStyle(height: 0.8),
+                        errorStyle: TextStyle(height: 0.8),
+                      ),
+                      child: const Row(
+                        children: [
+                          SizedBox(width: 16),
+                          Expanded(child: Text('Some label')),
                         ],
                       ),
                     ),

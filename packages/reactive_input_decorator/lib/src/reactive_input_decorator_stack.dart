@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_input_decorator/reactive_input_decorator.dart';
 
+import 'abstract_form_field.dart';
+
 /// A [ReactiveInputDecorator] that contains a [InputDecorator].
 ///
 /// This is a convenience widget that wraps a [InputDecorator] widget in a
@@ -9,7 +11,8 @@ import 'package:reactive_input_decorator/reactive_input_decorator.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveInputDecoratorStack extends ReactiveFormField<dynamic, dynamic> {
+class ReactiveInputDecoratorStack
+    extends ReactiveFormFieldAbstract<dynamic, dynamic> {
   /// Creates a [ReactiveInputDecoratorStack] that contains a [InputDecorator].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -78,7 +81,6 @@ class ReactiveInputDecoratorStack extends ReactiveFormField<dynamic, dynamic> {
     super.formControlName,
     super.formControl,
     super.validationMessages,
-    super.valueAccessor,
     super.showErrors,
 
     //////////////////////////////////////////////////////////////////////////

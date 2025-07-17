@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
 
   FormGroup buildForm() => fb.group({
         'switch': FormControl<bool>(value: false),
-        'switchDisabled': FormControl<bool>(value: true, disabled: true),
+        'switchDisabled': FormControl<bool>(value: true, disabled: false),
       });
 
   @override
