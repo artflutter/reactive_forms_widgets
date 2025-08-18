@@ -58,43 +58,46 @@ class ReactiveCheckboxListTile<T> extends ReactiveFocusableFormField<T, bool> {
     ValueChanged<bool>? onFocusChange,
     String? checkboxSemanticLabel,
   }) : super(
-    builder: (field) {
-      return CheckboxListTile(
-        value: tristate ? field.value : field.value ?? false,
-        mouseCursor: mouseCursor,
-        fillColor: fillColor,
-        hoverColor: hoverColor,
-        overlayColor: overlayColor,
-        materialTapTargetSize: materialTapTargetSize,
-        splashRadius: splashRadius,
-        activeColor: activeColor,
-        checkColor: checkColor,
-        onFocusChange: onFocusChange,
-        isError: field.errorText != null,
-        title: title,
-        subtitle: subtitle,
-        isThreeLine: isThreeLine,
-        dense: dense,
-        secondary: secondary,
-        controlAffinity: controlAffinity,
-        autofocus: autofocus,
-        contentPadding: contentPadding,
-        tristate: tristate,
-        selectedTileColor: selectedTileColor,
-        tileColor: tileColor,
-        shape: shape,
-        selected: selected,
-        visualDensity: visualDensity,
-        focusNode: field.focusNode,
-        enableFeedback: enableFeedback,
-        checkboxShape: checkboxShape,
-        side: side,
-        enabled: field.control.enabled,
-        onChanged: field.control.enabled
-            ? field.didChange
-            : null,
-          checkboxSemanticLabel:checkboxSemanticLabel,
-      );
-    },
-  );
+          builder: (field) {
+            return CheckboxListTile(
+              value: tristate ? field.value : field.value ?? false,
+              mouseCursor: mouseCursor,
+              fillColor: fillColor,
+              hoverColor: hoverColor,
+              overlayColor: overlayColor,
+              materialTapTargetSize: materialTapTargetSize,
+              splashRadius: splashRadius,
+              activeColor: activeColor,
+              checkColor: checkColor,
+              onFocusChange: onFocusChange,
+              isError: field.errorText != null,
+              title: title,
+              subtitle: subtitle,
+              isThreeLine: isThreeLine,
+              dense: dense,
+              secondary: secondary,
+              controlAffinity: controlAffinity,
+              autofocus: autofocus,
+              contentPadding: contentPadding,
+              tristate: tristate,
+              selectedTileColor: selectedTileColor,
+              tileColor: tileColor,
+              shape: shape,
+              selected: selected,
+              visualDensity: visualDensity,
+              focusNode: field.focusNode,
+              enableFeedback: enableFeedback,
+              checkboxShape: checkboxShape,
+              side: side,
+              enabled: field.control.enabled,
+              onChanged: (value) => field.control.enabled
+                  ? () {
+                      field.didChange(value);
+                      field.control.markAsTouched();
+                    }
+                  : null,
+              checkboxSemanticLabel: checkboxSemanticLabel,
+            );
+          },
+        );
 }
