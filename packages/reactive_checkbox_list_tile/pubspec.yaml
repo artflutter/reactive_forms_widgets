@@ -1,6 +1,6 @@
 name: reactive_checkbox_list_tile
 description: Wrapper around CheckboxListTile to use with reactive_forms.
-version: 1.0.1
+version: 1.0.2
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_checkbox_list_tile
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
