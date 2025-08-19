@@ -90,8 +90,8 @@ class ReactiveCheckboxListTile<T> extends ReactiveFocusableFormField<T, bool> {
               checkboxShape: checkboxShape,
               side: side,
               enabled: field.control.enabled,
-              onChanged: (value) => field.control.enabled
-                  ? () {
+              onChanged: field.control.enabled
+                  ? (value) {
                       field.didChange(value);
                       field.control.markAsTouched();
                     }
