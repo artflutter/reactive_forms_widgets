@@ -19,6 +19,7 @@ class ReactiveFormControlValueListener<T>
     super.formControlName,
     super.formControl,
     super.listenWhen,
+    super.listenOnInit,
     super.child,
   }) : assert(
             (formControlName != null && formControl == null) ||
@@ -35,6 +36,7 @@ abstract class ReactiveFormControlValueListenerBase<T>
     this.formControlName,
     this.child,
     this.listenWhen,
+    this.listenOnInit = false,
   }) : super(child: child);
 
   final String? formControlName;
@@ -42,6 +44,7 @@ abstract class ReactiveFormControlValueListenerBase<T>
   final Widget? child;
 
   final AbstractControl<T>? formControl;
+  final bool listenOnInit;
 
   final ReactiveFormControlWidgetListener<T> listener;
 
@@ -86,6 +89,18 @@ class ReactiveFormControlValueListenerBaseState<T>
     _formControl = widget.control(context);
 
     _previousState = _formControl.value;
+
+    if(widget.listenOnInit) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (widget.listenWhen?.call(_formControl, _previousState, _formControl.value) ??
+            true) {
+          if (mounted) widget.listener(context, _formControl);
+        }
+      });
+    }
+
+
+
     _subscribe();
   }
 

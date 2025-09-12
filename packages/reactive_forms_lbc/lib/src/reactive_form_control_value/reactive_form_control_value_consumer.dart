@@ -11,7 +11,8 @@ class ReactiveFormControlValueConsumer<T> extends StatefulWidget {
     this.formControl,
     this.buildWhen,
     this.listenWhen,
-  })  : assert(
+    this.listenOnInit = false,
+  }) : assert(
             (formControlName != null && formControl == null) ||
                 (formControlName == null && formControl != null),
             'Must provide a formControlName or a formControl, but not both at the same time.');
@@ -23,6 +24,8 @@ class ReactiveFormControlValueConsumer<T> extends StatefulWidget {
   final ReactiveFormControlWidgetBuilder<T> builder;
 
   final ReactiveFormControlWidgetListener<T>? listener;
+
+  final bool listenOnInit;
 
   final ReactiveBuilderCondition<T>? buildWhen;
 
@@ -50,10 +53,12 @@ class ReactiveFormControlValueConsumer<T> extends StatefulWidget {
   }
 
   @override
-  State<ReactiveFormControlValueConsumer<T>> createState() => _ReactiveFormControlValueConsumerState<T>();
+  State<ReactiveFormControlValueConsumer<T>> createState() =>
+      _ReactiveFormControlValueConsumerState<T>();
 }
 
-class _ReactiveFormControlValueConsumerState<T> extends State<ReactiveFormControlValueConsumer<T>> {
+class _ReactiveFormControlValueConsumerState<T>
+    extends State<ReactiveFormControlValueConsumer<T>> {
   late AbstractControl<T> _formControl;
 
   @override
@@ -86,6 +91,7 @@ class _ReactiveFormControlValueConsumerState<T> extends State<ReactiveFormContro
     return ReactiveFormControlValueBuilder<T>(
       formControl: widget.control(context),
       builder: widget.builder,
+      listenOnInit: widget.listenOnInit,
       buildWhen: (control, previous, current) {
         if (widget.listenWhen?.call(control, previous, current) ?? true) {
           widget.listener?.call(context, _formControl);

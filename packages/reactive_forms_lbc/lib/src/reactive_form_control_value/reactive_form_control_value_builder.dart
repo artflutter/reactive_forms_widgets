@@ -8,14 +8,16 @@ typedef ReactiveBuilderCondition<T> = bool Function(
   T? currentValue,
 );
 
-class ReactiveFormControlValueBuilder<T> extends ReactiveFormControlValueBuilderBase<T> {
+class ReactiveFormControlValueBuilder<T>
+    extends ReactiveFormControlValueBuilderBase<T> {
   const ReactiveFormControlValueBuilder({
     super.key,
     required this.builder,
     super.formControlName,
     super.formControl,
     super.buildWhen,
-  })  : assert(
+    super.listenOnInit,
+  }) : assert(
             (formControlName != null && formControl == null) ||
                 (formControlName == null && formControl != null),
             'Must provide a formControlName or a formControl, but not both at the same time.');
@@ -33,6 +35,7 @@ abstract class ReactiveFormControlValueBuilderBase<T> extends StatefulWidget {
     this.formControl,
     this.formControlName,
     this.buildWhen,
+    this.listenOnInit = false,
   });
 
   final String? formControlName;
@@ -40,6 +43,7 @@ abstract class ReactiveFormControlValueBuilderBase<T> extends StatefulWidget {
   final AbstractControl<T>? formControl;
 
   final ReactiveBuilderCondition<T>? buildWhen;
+  final bool listenOnInit;
 
   Widget build(BuildContext context, AbstractControl<T> control);
 
@@ -101,6 +105,7 @@ class ReactiveFormControlValueBuilderBaseState<T>
   @override
   Widget build(BuildContext context) {
     return ReactiveFormControlValueListener<T>(
+      listenOnInit: widget.listenOnInit,
       listenWhen: widget.buildWhen,
       formControl: widget.control(context),
       listener: (context, control) => setState(() => _formControl = control),

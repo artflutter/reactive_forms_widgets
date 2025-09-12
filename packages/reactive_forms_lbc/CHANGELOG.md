@@ -1,3 +1,8 @@
+## [4.0.6]
+
+* add `listenOnInit` experiments flag to `ReactiveFormControlValueListener` to simplify attaching listeners
+  which runs some actions on form initialisation
+
 ## [4.0.5]
 
 * Support `reactive_forms: 18.x`
