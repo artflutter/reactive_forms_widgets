@@ -1,3 +1,7 @@
+## [5.0.0]
+
+* replace `listenOnInit` with `listenerOnInit`
+
 ## [4.0.6]
 
 * add `listenOnInit` experiments flag to `ReactiveFormControlValueListener` to simplify attaching listeners

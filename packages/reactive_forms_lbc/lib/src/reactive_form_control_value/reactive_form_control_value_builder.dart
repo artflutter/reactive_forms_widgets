@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_forms_lbc/reactive_forms_lbc.dart';
+import 'package:reactive_forms_lbc/src/typedef.dart';
 
 typedef ReactiveBuilderCondition<T> = bool Function(
   AbstractControl<T> control,
@@ -16,7 +18,6 @@ class ReactiveFormControlValueBuilder<T>
     super.formControlName,
     super.formControl,
     super.buildWhen,
-    super.listenOnInit,
   }) : assert(
             (formControlName != null && formControl == null) ||
                 (formControlName == null && formControl != null),
@@ -35,7 +36,6 @@ abstract class ReactiveFormControlValueBuilderBase<T> extends StatefulWidget {
     this.formControl,
     this.formControlName,
     this.buildWhen,
-    this.listenOnInit = false,
   });
 
   final String? formControlName;
@@ -43,7 +43,6 @@ abstract class ReactiveFormControlValueBuilderBase<T> extends StatefulWidget {
   final AbstractControl<T>? formControl;
 
   final ReactiveBuilderCondition<T>? buildWhen;
-  final bool listenOnInit;
 
   Widget build(BuildContext context, AbstractControl<T> control);
 
@@ -75,12 +74,16 @@ abstract class ReactiveFormControlValueBuilderBase<T> extends StatefulWidget {
 
 class ReactiveFormControlValueBuilderBaseState<T>
     extends State<ReactiveFormControlValueBuilderBase<T>> {
+  StreamSubscription<T?>? _subscription;
   late AbstractControl<T> _formControl;
+  late T? _previousValue;
 
   @override
   void initState() {
     super.initState();
     _formControl = widget.control(context);
+    _previousValue = _formControl.value;
+    _subscribe();
   }
 
   @override
@@ -89,7 +92,10 @@ class ReactiveFormControlValueBuilderBaseState<T>
     final oldControl = oldWidget.control(context);
     final currentControl = widget.control(context);
     if (oldControl != currentControl) {
+      _unsubscribe();
       _formControl = currentControl;
+      _previousValue = _formControl.value;
+      _subscribe();
     }
   }
 
@@ -98,18 +104,37 @@ class ReactiveFormControlValueBuilderBaseState<T>
     super.didChangeDependencies();
     final control = widget.control(context);
     if (_formControl != control) {
-      _formControl = widget.control(context);
+      _unsubscribe();
+      _formControl = control;
+      _previousValue = _formControl.value;
+      _subscribe();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return ReactiveFormControlValueListener<T>(
-      listenOnInit: widget.listenOnInit,
-      listenWhen: widget.buildWhen,
-      formControl: widget.control(context),
-      listener: (context, control) => setState(() => _formControl = control),
-      child: widget.build(context, _formControl),
-    );
+    return widget.build(context, _formControl);
+  }
+
+  @override
+  void dispose() {
+    _unsubscribe();
+    super.dispose();
+  }
+
+  void _subscribe() {
+    _subscription = _formControl.valueChanges.listen((value) {
+      if (widget.buildWhen?.call(_formControl, _previousValue, value) ?? true) {
+        setState(() {
+          _formControl = widget.control(context);
+        });
+      }
+      _previousValue = value;
+    });
+  }
+
+  void _unsubscribe() {
+    _subscription?.cancel();
+    _subscription = null;
   }
 }

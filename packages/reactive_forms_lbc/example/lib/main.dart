@@ -103,11 +103,10 @@ class MyApp1 extends StatelessWidget {
               formControlName: 'input2',
             ),
             ReactiveFormControlValueConsumer<String>(
-              listenOnInit: true,
               builder: (context, control) {
                 return Text(control.value ?? '');
               },
-              listener: (context, control) {
+              listenerOnInit: (control) {
                 print("ReactiveFormControlValueConsumer => listenOnInit: true");
               },
               buildWhen: (control, prev, curr) {
@@ -160,9 +159,8 @@ class MyApp1 extends StatelessWidget {
             //   child: Text(c.toString()),
             // ),
             ReactiveFormControlValueListener<String>(
-              listenOnInit: true,
-              listener: (context, control) {
-                print("ReactiveFormControlValueListener => listenOnInit: true");
+              listenerOnInit: (control) {
+                print("ReactiveFormControlValueListener => listener");
               },
               listenWhen: (control, prev, curr) {
                 debugPrint('Value => $prev -- c => $curr');
