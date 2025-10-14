@@ -1,3 +1,7 @@
+## [5.0.1]
+
+* fix repository link
+
 ## [5.0.0]
 
 * replace `listenOnInit` with `listenerOnInit`
