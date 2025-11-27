@@ -3,7 +3,7 @@ description: This is a set of widgets for reactive_forms package in Listener/Bui
 repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_forms_lbc
 issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
 
-version: 5.0.1
+version: 5.0.2
 
 environment:
   sdk: ">=3.0.0 <4.0.0"

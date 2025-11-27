@@ -1,3 +1,7 @@
+## [5.0.2]
+
+* `notEquals` for `listenWhen` to help omit RF behavior on enabling control
+
 ## [5.0.1]
 
 * fix repository link

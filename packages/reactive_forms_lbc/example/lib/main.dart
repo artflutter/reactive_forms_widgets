@@ -98,26 +98,16 @@ class MyApp1 extends StatelessWidget {
               decoration: const InputDecoration(labelText: 'Input'),
               formControlName: 'input',
             ),
-            ReactiveTextField(
-              decoration: const InputDecoration(labelText: 'Input2'),
-              formControlName: 'input2',
-            ),
-            ReactiveFormControlValueConsumer<String>(
-              builder: (context, control) {
-                return Text(control.value ?? '');
-              },
-              listenerOnInit: (control) {
-                print("ReactiveFormControlValueConsumer => listenOnInit: true");
-              },
-              buildWhen: (control, prev, curr) {
-                debugPrint('Focus => $prev -- c => $curr');
-                return (curr?.length ?? 0) <= 6;
-              },
-              formControl: form.controls['input']! as FormControl<String>,
-            ),
-            // ReactiveFormControlValueBuilder<String>(
+            // ReactiveTextField(
+            //   decoration: const InputDecoration(labelText: 'Input2'),
+            //   formControlName: 'input2',
+            // ),
+            // ReactiveFormControlValueConsumer<String>(
             //   builder: (context, control) {
             //     return Text(control.value ?? '');
+            //   },
+            //   listenerOnInit: (control) {
+            //     print("ReactiveFormControlValueConsumer => listenOnInit: true");
             //   },
             //   buildWhen: (control, prev, curr) {
             //     debugPrint('Focus => $prev -- c => $curr');
@@ -125,6 +115,16 @@ class MyApp1 extends StatelessWidget {
             //   },
             //   formControl: form.controls['input']! as FormControl<String>,
             // ),
+            ReactiveFormControlValueBuilder<String>(
+              builder: (context, control) {
+                return Text(control.value ?? '');
+              },
+              // buildWhen: (control, prev, curr) {
+              //   debugPrint('Focus => $prev -- c => $curr');
+              //   return (curr?.length ?? 0) <= 6;
+              // },
+              formControl: form.controls['input']! as FormControl<String>,
+            ),
             // ReactiveFormControlFocusListener<String>(
             //   listener: (context, control) {
             //     // print(value);
@@ -159,13 +159,17 @@ class MyApp1 extends StatelessWidget {
             //   child: Text(c.toString()),
             // ),
             ReactiveFormControlValueListener<String>(
-              listenerOnInit: (control) {
-                print("ReactiveFormControlValueListener => listener");
+              listener: (_, control) {
+                print(control.value);
               },
-              listenWhen: (control, prev, curr) {
-                debugPrint('Value => $prev -- c => $curr');
-                return true;
-              },
+              listenWhen: notEquals,
+              // listenerOnInit: (control) {
+              //   print("ReactiveFormControlValueListener => listener");
+              // },
+              // listenWhen: (control, prev, curr) {
+              //   debugPrint('Value => $prev -- c => $curr');
+              //   return true;
+              // },
               formControl: form.controls['input']! as AbstractControl<String>,
               child: Text(c.toString()),
             ),
@@ -185,10 +189,19 @@ class MyApp1 extends StatelessWidget {
               onPressed: () {
                 (form.controls['input']! as AbstractControl<String>)
                     .markAsDisabled();
+                // (form.controls['input']! as AbstractControl<String>)
+                //     .markAsEnabled();
+              },
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              child: const Text('Enable'),
+              onPressed: () {
                 (form.controls['input']! as AbstractControl<String>)
                     .markAsEnabled();
               },
             ),
+            const SizedBox(height: 16),
             ElevatedButton(
               child: const Text('Sign Up'),
               onPressed: () {

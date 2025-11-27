@@ -10,6 +10,9 @@ typedef ReactiveBuilderCondition<T> = bool Function(
   T? currentValue,
 );
 
+
+bool notEquals<T>(AbstractControl<T> control, T a, T b) => a != b;
+
 class ReactiveFormControlValueBuilder<T>
     extends ReactiveFormControlValueBuilderBase<T> {
   const ReactiveFormControlValueBuilder({
