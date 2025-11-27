@@ -11,7 +11,8 @@ typedef ReactiveBuilderCondition<T> = bool Function(
 );
 
 
-bool notEquals<T>(AbstractControl<T> control, T a, T b) => a != b;
+bool notEquals(AbstractControl<dynamic> control, dynamic a, dynamic b) =>
+    a != b;
 
 class ReactiveFormControlValueBuilder<T>
     extends ReactiveFormControlValueBuilderBase<T> {
