@@ -154,6 +154,7 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
     EdgeInsets scrollPadding = const EdgeInsets.all(20),
     TapRegionCallback? onTapOutside,
     SmsRetriever? smsRetriever,
+    Widget Function(String?, String)? errorBuilder,
   }) : super(
           builder: (field) {
             final state = field as _ReactiveMacosTextFieldState<T>;
@@ -217,6 +218,7 @@ class ReactivePinPut<T> extends ReactiveFormField<T, String> {
               scrollPadding: scrollPadding,
               onTapOutside: onTapOutside,
               smsRetriever: smsRetriever,
+              errorBuilder: errorBuilder,
             );
           },
         );
