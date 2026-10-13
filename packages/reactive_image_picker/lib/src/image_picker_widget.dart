@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_image_picker/src/reactive_image_picker.dart';
 import 'package:reactive_image_picker/src/selected_file_view.dart';

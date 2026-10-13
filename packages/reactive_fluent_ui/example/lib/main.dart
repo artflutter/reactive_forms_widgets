@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' hide Colors;
+import 'package:material_ui/material_ui.dart' hide Colors;
 import 'package:reactive_fluent_ui/reactive_fluent_ui.dart' as fui;
 import 'package:reactive_fluent_ui/reactive_fluent_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';

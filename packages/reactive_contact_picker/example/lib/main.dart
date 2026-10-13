@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_contact_picker/reactive_contact_picker.dart';
 
 import 'package:reactive_forms/reactive_forms.dart';

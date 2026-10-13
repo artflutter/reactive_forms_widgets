@@ -5,7 +5,7 @@ library;
 // found in the LICENSE file.
 
 import 'package:direct_select/direct_select.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 export 'package:direct_select/direct_select.dart';

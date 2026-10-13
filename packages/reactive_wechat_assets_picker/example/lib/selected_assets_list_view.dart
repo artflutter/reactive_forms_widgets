@@ -4,7 +4,7 @@
 
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart'
     show AssetEntity, AssetPicker, AssetPickerViewer;
 

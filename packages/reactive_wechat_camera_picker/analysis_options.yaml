@@ -1,6 +1,9 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
+  exclude:
+    - build/**
+    - macos/**
   language:
     strict-casts: true
     strict-raw-types: true

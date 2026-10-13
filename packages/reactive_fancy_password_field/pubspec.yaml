@@ -14,6 +14,7 @@ dependencies:
   reactive_forms: ">=16.0.0 <19.0.0"
   fancy_password_field: ^2.0.7
 
+  material_ui: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
