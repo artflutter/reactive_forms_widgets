@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_fancy_password_field/reactive_fancy_password_field.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';

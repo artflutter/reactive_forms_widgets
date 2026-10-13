@@ -10,7 +10,7 @@ import 'package:fancy_password_field/src/widget/strength_indicator_widget.dart';
 // ignore: implementation_imports
 import 'package:fancy_password_field/src/widget/validation_rules_widget.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 

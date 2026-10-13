@@ -16,6 +16,7 @@ dependencies:
   file_picker: ^10.1.2
   freezed_annotation: ^3.0.0
 
+  material_ui: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

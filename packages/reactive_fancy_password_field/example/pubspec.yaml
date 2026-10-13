@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   step_progress_indicator: ^1.0.1
 
+  material_ui: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

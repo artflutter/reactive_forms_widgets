@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_animated_toggle_switch/reactive_animated_toggle_switch.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 

@@ -5,7 +5,7 @@ library;
 // found in the LICENSE file.
 
 import 'package:code_text_field/code_text_field.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 export 'package:code_text_field/code_text_field.dart';

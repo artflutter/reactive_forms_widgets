@@ -4,7 +4,7 @@ library;
 // found in the LICENSE file.
 
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 abstract class DropDownSearchValueAccessor<T, V> {

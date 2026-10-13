@@ -15,6 +15,7 @@ dependencies:
   pinput: ^5.0.0
   smart_auth: ^3.2.0
 
+  material_ui: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

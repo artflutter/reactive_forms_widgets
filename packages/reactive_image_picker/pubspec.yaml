@@ -17,6 +17,7 @@ dependencies:
   app_settings: ^6.1.1
   video_player: ^2.9.5
 
+  material_ui: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
