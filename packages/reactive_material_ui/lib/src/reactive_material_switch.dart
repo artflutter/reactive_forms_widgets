@@ -1,0 +1,195 @@
+// Copyright 2020 Joan Pablo Jimenez Milian. All rights reserved.
+// Use of this source code is governed by the MIT license that can be
+// found in the LICENSE file.
+//
+// Ported from reactive_forms 18.2.2 (https://github.com/joanpablo/reactive_forms)
+// to be built on top of package:material_ui instead of package:flutter/material.dart.
+
+import 'package:flutter/gestures.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:reactive_forms/reactive_forms.dart';
+
+/// This is a convenience widget that wraps a [Switch] widget in a
+/// [ReactiveMaterialSwitch].
+///
+/// Can optionally provide a [formControl] to bind this widget to a control.
+///
+/// Can optionally provide a [formControlName] to bind this ReactiveFormField
+/// to a [FormControl].
+///
+/// Must provide one of the arguments [formControl] or a [formControlName],
+/// but not both at the same time.
+///
+/// For documentation about the various parameters, see the [Switch] class
+/// and [Switch], the constructor.
+class ReactiveMaterialSwitch extends ReactiveFocusableFormField<bool, bool> {
+  /// Creates a [ReactiveMaterialSwitch] that wraps a material design switch.
+  ///
+  /// Can optionally provide a [formControl] to bind this widget to a control.
+  ///
+  /// Can optionally provide a [formControlName] to bind this ReactiveFormField
+  /// to a [FormControl].
+  ///
+  /// Must provide one of the arguments [formControl] or a [formControlName],
+  /// but not both at the same time.
+  ///
+  /// For documentation about the various parameters, see the [Switch] class
+  /// and [Switch], the constructor.
+  ReactiveMaterialSwitch({
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.focusNode,
+    Color? activeColor,
+    Color? activeTrackColor,
+    Color? inactiveThumbColor,
+    Color? inactiveTrackColor,
+    ImageProvider? activeThumbImage,
+    ImageErrorListener? onActiveThumbImageError,
+    ImageProvider? inactiveThumbImage,
+    ImageErrorListener? onInactiveThumbImageError,
+    MaterialTapTargetSize? materialTapTargetSize,
+    DragStartBehavior dragStartBehavior = DragStartBehavior.start,
+    Color? focusColor,
+    Color? hoverColor,
+    bool autofocus = false,
+    EdgeInsetsGeometry? padding,
+    WidgetStateProperty<double?>? trackOutlineWidth,
+    WidgetStateProperty<Color?>? thumbColor,
+    WidgetStateProperty<Color?>? trackColor,
+    MouseCursor? mouseCursor,
+    WidgetStateProperty<Color?>? overlayColor,
+    double? splashRadius,
+    ReactiveFormFieldCallback<bool>? onChanged,
+    WidgetStateProperty<Color?>? trackOutlineColor,
+    WidgetStateProperty<Icon?>? thumbIcon,
+    ValueChanged<bool>? onFocusChange,
+  }) : super(
+         builder: (field) {
+           return Switch(
+             value: field.value ?? false,
+             // ignore: deprecated_member_use
+             activeColor: activeColor,
+             trackOutlineColor: trackOutlineColor,
+             thumbIcon: thumbIcon,
+             onFocusChange: onFocusChange,
+             activeTrackColor: activeTrackColor,
+             inactiveThumbColor: inactiveThumbColor,
+             inactiveTrackColor: inactiveTrackColor,
+             activeThumbImage: activeThumbImage,
+             onActiveThumbImageError: onActiveThumbImageError,
+             inactiveThumbImage: inactiveThumbImage,
+             onInactiveThumbImageError: onInactiveThumbImageError,
+             materialTapTargetSize: materialTapTargetSize,
+             dragStartBehavior: dragStartBehavior,
+             focusColor: focusColor,
+             hoverColor: hoverColor,
+             autofocus: autofocus,
+             thumbColor: thumbColor,
+             trackColor: trackColor,
+             mouseCursor: mouseCursor,
+             overlayColor: overlayColor,
+             splashRadius: splashRadius,
+             focusNode: field.focusNode,
+             padding: padding,
+             trackOutlineWidth: trackOutlineWidth,
+             onChanged: field.control.enabled
+                 ? (value) {
+                     field.didChange(value);
+                     onChanged?.call(field.control);
+                   }
+                 : null,
+           );
+         },
+       );
+
+  /// Creates a [ReactiveMaterialSwitch] that wraps a [CupertinoSwitch] if the
+  /// target platform is iOS, creates a material design switch otherwise.
+  ///
+  /// If a [CupertinoSwitch] is created, the following parameters are
+  /// ignored: [activeTrackColor], [inactiveThumbColor], [inactiveTrackColor],
+  /// [activeThumbImage], [onActiveThumbImageError], [inactiveThumbImage],
+  /// [onInactiveImageThumbError], [materialTapTargetSize].
+  ///
+  /// Can optionally provide a [formControl] to bind this widget to a control.
+  ///
+  /// Can optionally provide a [formControlName] to bind this ReactiveFormField
+  /// to a [FormControl].
+  ///
+  /// Must provide one of the arguments [formControl] or a [formControlName],
+  /// but not both at the same time.
+  ///
+  /// The target platform is based on the current [Theme]: [ThemeData.platform].
+  ///
+  /// For documentation about the various parameters, see the [Switch.adaptive]
+  /// constructor.
+  ReactiveMaterialSwitch.adaptive({
+    super.key,
+    super.formControlName,
+    super.formControl,
+    super.focusNode,
+    Color? activeColor,
+    Color? activeTrackColor,
+    Color? inactiveThumbColor,
+    Color? inactiveTrackColor,
+    ImageProvider? activeThumbImage,
+    ImageErrorListener? onActiveThumbImageError,
+    ImageProvider? inactiveThumbImage,
+    ImageErrorListener? onInactiveThumbImageError,
+    MaterialTapTargetSize? materialTapTargetSize,
+    DragStartBehavior dragStartBehavior = DragStartBehavior.start,
+    Color? focusColor,
+    Color? hoverColor,
+    bool autofocus = false,
+    ValueChanged<bool>? onFocusChange,
+    EdgeInsetsGeometry? padding,
+    bool? applyCupertinoTheme,
+    WidgetStateProperty<Color?>? thumbColor,
+    WidgetStateProperty<Icon?>? thumbIcon,
+    WidgetStateProperty<Color?>? trackColor,
+    WidgetStateProperty<double?>? trackOutlineWidth,
+    WidgetStateProperty<Color?>? trackOutlineColor,
+    WidgetStateProperty<Color?>? overlayColor,
+    MouseCursor? mouseCursor,
+    double? splashRadius,
+    ReactiveFormFieldCallback<bool>? onChanged,
+  }) : super(
+         builder: (field) {
+           return Switch.adaptive(
+             value: field.value ?? false,
+             // ignore: deprecated_member_use
+             activeColor: activeColor,
+             activeTrackColor: activeTrackColor,
+             inactiveThumbColor: inactiveThumbColor,
+             inactiveTrackColor: inactiveTrackColor,
+             activeThumbImage: activeThumbImage,
+             onActiveThumbImageError: onActiveThumbImageError,
+             inactiveThumbImage: inactiveThumbImage,
+             onInactiveThumbImageError: onInactiveThumbImageError,
+             materialTapTargetSize: materialTapTargetSize,
+             dragStartBehavior: dragStartBehavior,
+             focusColor: focusColor,
+             hoverColor: hoverColor,
+             thumbColor: thumbColor,
+             thumbIcon: thumbIcon,
+             trackColor: trackColor,
+             trackOutlineWidth: trackOutlineWidth,
+             trackOutlineColor: trackOutlineColor,
+             mouseCursor: mouseCursor,
+             overlayColor: overlayColor,
+             splashRadius: splashRadius,
+             autofocus: autofocus,
+             padding: padding,
+             applyCupertinoTheme: applyCupertinoTheme,
+             onFocusChange: onFocusChange,
+             focusNode: field.focusNode,
+             onChanged: field.control.enabled
+                 ? (value) {
+                     field.didChange(value);
+                     onChanged?.call(field.control);
+                   }
+                 : null,
+           );
+         },
+       );
+}
