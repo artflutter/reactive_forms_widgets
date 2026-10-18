@@ -1,0 +1,20 @@
+name: reactive_material_ui
+description: Wrapper around material_ui input widgets to use with reactive_forms
+version: 1.0.0
+repository: https://github.com/artflutter/reactive_forms_widgets/tree/master/packages/reactive_material_ui
+issue_tracker: https://github.com/artflutter/reactive_forms_widgets/issues
+
+environment:
+  sdk: ^3.13.0
+  flutter: ">=3.47.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  material_ui: ^1.7.0
+  reactive_forms: ">=18.0.0 <19.0.0"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
